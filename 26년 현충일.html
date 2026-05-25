@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>2026 국제 현충일 특별 집회 · 새로운 부흥에 대한 필요성</title>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:     #b0a47e; 
@@ -361,7 +361,7 @@ body{
   <div class="hero-theme">2026 국제 현충일 특별 집회</div>
   <div class="hero-divider"></div>
   <p class="hero-summary">
-    하나님이 사람이 되심으로써 사람이 생명과 본성에서 하나님과 똑같이 변화되어<br>
+    하나님이 사람이 되심으로써 사람이 생명และ 본성에서 하나님과 똑같이 변화되어<br>
     그리스도의 몸을 건축하고 새 예루살렘을 완결하는 것입니다.<br><br>
     믿는 이들은 자신의 <em>천연적인 생명을 부인하고</em><br>
     연합된 영 안에서 <em>하나님-사람의 생활</em>을 실천해야 합니다.<br><br>
@@ -623,7 +623,7 @@ function render(n, items) {
   const list = document.getElementById('list-'+n);
   const cnt  = document.getElementById('count-'+n);
   if (!items || !items.length) {
-    list.innerHTML = '<div class="board-empty" style="font-family:Noto Sans KR,sans-serif;">첫 번째로 은혜를 나눠주세요 🙏</div>';
+    list.innerHTML = '<div class="board-empty" style="font-family:Noto Sans KR,sans-serif;">첫 번째로 은혜를 나눠주세요 ❤️</div>';
     cnt.textContent = '0개의 나눔';
     return;
   }
@@ -633,7 +633,6 @@ function render(n, items) {
     const likedKey = 'liked_'+n+'_'+c.fbId;
     const liked = localStorage.getItem(likedKey) === '1';
     
-    // [피드백 반영] 기도하는 손(🙏) 아이콘을 제거하고, 선택 시 하트(❤️) 상태가 되도록 변경
     return `
     <div class="comment-item">
       <div class="c-meta">
@@ -708,7 +707,7 @@ window.submit = function(n) {
         document.getElementById('belong-'+n).value = '';
         document.getElementById('text-'+n).value = '';
         document.getElementById('char-'+n).textContent = '0';
-        toast('🙏 은혜를 나눠주셔서 감사합니다!');
+        toast('❤️ 은혜를 나눠주셔서 감사합니다!');
       })
       .catch(e => toast('❌ 저장 실패: '+e.message))
       .finally(() => { btn.disabled=false; btn.textContent='은혜 나누기 →'; });
@@ -725,7 +724,7 @@ window.submit = function(n) {
     document.getElementById('text-'+n).value = '';
     document.getElementById('char-'+n).textContent = '0';
     btn.disabled=false; btn.textContent='은혜 나누기 →';
-    toast('🙏 저장됐어요 (오프라인 모드)');
+    toast('❤️ 저장됐어요 (오프라인 모드)');
   }
 };
 
