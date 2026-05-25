@@ -4,657 +4,771 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>2026 국제 현충일 특별 집회 · 새로운 부흥에 대한 필요성</title>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #c4a870;
-  --bg1:    #b89860;
-  --card:   #f5ead8;
-  --card2:  #eee0c8;
-  --paper:  #2e2318;
-  --paper2: #4a3828;
-  --paper3: #7a6248;
-  --cream:  #fdf6ea;
-  --heart:  #e03030;
-  --br:     rgba(90,60,20,.18);
-  --br2:    rgba(90,60,20,.1);
-  --gold:   #8b6010;
-  --tape:   rgba(180,140,80,.45);
+  --bg:     #b0a47e; 
+  --bg2:    #fdfbf7; 
+  --bg3:    #f5ecd8; 
+  --paper:  #4a3f35; 
+  --paper2: #5c5044; 
+  --gold:   #92845a; 
+  --gold2:  #a67c52; 
+  --gold3:  #ebdcae; 
+  --warm:   #bfab80; 
+  --ink3:   #8a7b6a; 
+  --ink4:   #a89988; 
+  --border: rgba(146,132,90,.25);
+  --border2:rgba(146,132,90,.15);
+  --border3:rgba(146,132,90,.08);
 }
-*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body {
-  font-family:'Nanum Pen Script', cursive;
-  background:var(--bg);
-  color:var(--paper);
-  line-height:2.1;
-  font-size:18px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Noto Serif KR',Georgia,serif;
+  background:var(--bg); color:var(--paper);
+  line-height:1.9; font-size:15px;
+  font-style:normal;
 }
 
-/* ══ COVER ══════════════════════════════════════ */
-.cover {
-  min-height:100svh;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  text-align:center;
-  padding:88px 32px 80px;
-  position:relative; overflow:hidden;
-  background:linear-gradient(160deg, #c8ac74 0%, #b89458 100%);
+/* ══════════ HERO ══════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 28px 64px;
+  position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, rgba(235,220,174,.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(191,171,128,.15) 0%, transparent 50%),
+              var(--bg2);
 }
-.cover::before {
+.hero::before {
   content:'';
-  position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(ellipse 70% 50% at 50% 35%,
-    rgba(255,245,220,.12) 0%, transparent 70%);
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px, transparent 38px,
+    rgba(146,132,90,.025) 38px, rgba(146,132,90,.025) 39px
+  );
+  pointer-events:none;
 }
-.cvr-tag {
+.hero-tag {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:9px; letter-spacing:4px; color:rgba(255,245,200,.7);
-  text-transform:uppercase; margin-bottom:20px;
-}
-.cvr-date {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:12px; letter-spacing:1.5px;
-  color:rgba(255,245,200,.6); margin-bottom:16px;
-}
-.cvr-h1 {
-  font-size:clamp(32px,7vw,56px);
-  font-weight:400; letter-spacing:-1px; line-height:1.3;
-  color:var(--cream); margin-bottom:10px;
-  text-shadow:0 2px 12px rgba(80,50,0,.2);
-}
-.cvr-h1 strong { color:#fff5d0; }
-.cvr-sub {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; letter-spacing:2px;
-  color:rgba(255,245,200,.55); margin-bottom:44px;
-}
-.cvr-rule {
-  width:50px; height:1px;
-  background:rgba(255,240,190,.3); margin:0 auto 44px;
-}
-.cvr-body {
-  max-width:560px;
-  font-size:clamp(17px,3.2vw,22px);
-  color:rgba(255,245,220,.85);
-  line-height:2.3; word-break:keep-all;
-  margin-bottom:60px;
-}
-.cvr-body em { color:#fff5a0; font-style:normal; }
-.cvr-scroll {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:9px; letter-spacing:2.5px;
-  color:rgba(255,245,200,.45);
-  animation:bob 3s ease-in-out infinite;
-}
-@keyframes bob {
-  0%,100%{ opacity:.4; transform:translateY(0); }
-  50%{ opacity:.75; transform:translateY(6px); }
-}
-
-/* ══ NAV ══════════════════════════════════════ */
-.nav {
-  position:sticky; top:0; z-index:200;
-  background:rgba(160,120,55,.97);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(90,60,10,.25);
-  display:flex; overflow-x:auto; scrollbar-width:none;
-}
-.nav::-webkit-scrollbar { display:none; }
-.nav a {
-  padding:14px 20px;
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:10px; letter-spacing:1.5px;
-  color:rgba(255,245,200,.55); text-decoration:none;
-  white-space:nowrap;
-  border-bottom:1.5px solid transparent;
-  transition:color .2s, border-color .2s; flex-shrink:0;
-}
-.nav a:hover, .nav a.on {
-  color:rgba(255,245,200,.95);
-  border-bottom-color:rgba(255,245,200,.8);
-}
-
-/* ══ LAYOUT ══════════════════════════════════════ */
-.wrap { max-width:780px; margin:0 auto; padding:0 28px; }
-
-/* ══ MESSAGE SECTION ══════════════════════════════════════ */
-.ms { padding:80px 0 0; }
-
-.ms-ch {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:9px; letter-spacing:4px;
-  color:rgba(90,60,10,.6);
-  text-transform:uppercase; margin-bottom:14px;
-  display:flex; align-items:center; gap:14px;
-}
-.ms-ch::after {
-  content:''; flex:0 0 28px; height:1px;
-  background:rgba(90,60,10,.2);
-}
-
-.ms-title {
-  font-size:clamp(20px,3.8vw,30px);
-  font-weight:400; color:var(--paper);
-  line-height:1.7; letter-spacing:-.5px;
-  margin-bottom:40px; word-break:keep-all;
-}
-.ms-title em { color:#6a3a00; font-style:normal; }
-
-/* ══ BOARD ══════════════════════════════════════ */
-.board {
-  background:var(--card);
-  border-radius:4px;
-  border:1px solid var(--br2);
-  box-shadow:0 4px 20px rgba(80,50,0,.12),
-             0 1px 4px rgba(80,50,0,.08);
-  margin-bottom:80px;
-  overflow:hidden;
-  /* 테이프 장식 — CSS only */
+  font-size:11px; letter-spacing:4px; color:var(--gold);
+  font-weight: 500;
+  text-transform:uppercase; margin-bottom:28px;
   position:relative;
 }
-.board::before {
-  content:'';
-  position:absolute; top:-6px; left:50%;
-  transform:translateX(-50%);
-  width:60px; height:14px;
-  background:repeating-linear-gradient(
-    90deg,
-    rgba(200,160,80,.4) 0px, rgba(200,160,80,.4) 4px,
-    rgba(220,180,100,.25) 4px, rgba(220,180,100,.25) 8px
-  );
-  border-radius:2px;
-  opacity:.8;
+.hero-tag::before,.hero-tag::after {
+  content:'——'; margin:0 12px; opacity:.5;
+}
+.hero-date {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:12px; letter-spacing:2px; color:var(--ink3);
+  margin-bottom:22px;
+}
+.hero-title {
+  font-size: clamp(24px,5vw,40px);
+  font-weight:300; color:var(--paper);
+  letter-spacing:-1px; line-height:1.35;
+  margin-bottom:12px;
+}
+.hero-title strong { 
+  font-weight:600; 
+  color:var(--paper);
+  background: linear-gradient(to top, var(--gold3) 40%, transparent 40%); 
+  padding: 0 4px;
+}
+.hero-theme {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:13px; color:var(--gold);
+  font-weight: 500;
+  margin-bottom:36px; letter-spacing:.3px;
+}
+.hero-divider {
+  width:60px; height:1px; background:var(--gold);
+  opacity: 0.4;
+  margin:0 auto 36px;
+}
+.hero-summary {
+  max-width:600px; font-size:15px;
+  color:var(--paper2); line-height:2.1;
+  font-weight:400; word-break:keep-all;
+  margin-bottom:48px;
+  background: rgba(245,236,216,0.4);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.hero-summary em { 
+  color:var(--paper); 
+  font-style:normal; 
+  font-weight: 600;
+  background: linear-gradient(to top, var(--gold3) 45%, transparent 45%);
+  padding: 0 2px;
+}
+.hero-scroll {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:11px; letter-spacing:2px; color:var(--ink3);
+  animation: fadeUpDown 2.5s ease-in-out infinite;
+}
+@keyframes fadeUpDown {
+  0%,100%{opacity:.4;transform:translateY(0);}
+  50%{opacity:.8;transform:translateY(6px);}
 }
 
-.board-hd {
-  padding:18px 22px 14px;
-  border-bottom:1px solid var(--br2);
+/* ══════════ NAV ══════════ */
+.nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,251,247,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border2);
+  display:flex; overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none;}
+.nav a {
+  padding:15px 20px;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:12px; letter-spacing:1px;
+  color:var(--ink3); text-decoration:none;
+  white-space:nowrap; border-bottom:2px solid transparent;
+  transition:all .2s; flex-shrink:0;
+}
+.nav a:hover,.nav a.on { color:var(--gold); font-weight: 500; border-bottom-color:var(--gold); }
+
+/* ══════════ WRAP ══════════ */
+.wrap { 
+  background: var(--bg2);
+  max-width:780px; 
+  margin:0 auto; 
+  padding:0 24px; 
+  box-shadow: 0 0 30px rgba(0,0,0,0.05);
+}
+
+/* ══════════ MESSAGE SECTION ══════════ */
+.msg-section {
+  padding:80px 0 0;
+  border-top:1px solid var(--border3);
+}
+.msg-section:first-child { border-top:none; }
+
+.msg-num {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:10px; letter-spacing:3px; color:var(--gold);
+  font-weight: 500;
+  text-transform:uppercase; margin-bottom:12px;
+  display:flex; align-items:center; gap:10px;
+}
+.msg-num::after {
+  content:''; flex:0 0 40px; height:1px; background:var(--border);
+}
+
+.msg-title {
+  font-size: clamp(18px,3.5vw,25px);
+  font-weight:400; color:var(--paper);
+  line-height:1.6; letter-spacing:-.3px;
+  margin-bottom:32px; word-break:keep-all;
+}
+.msg-title em { 
+  color:var(--paper); 
+  font-style:normal; 
+  font-weight: 600;
+  background: linear-gradient(to top, var(--gold3) 40%, transparent 40%);
+  padding: 0 3px;
+}
+
+/* ══════════ COMMENT BOARD ══════════ */
+.board {
+  background:var(--bg3);
+  border:1px solid var(--border2);
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:80px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.01);
+}
+.board-head {
+  padding:18px 22px;
+  border-bottom:1px solid var(--border2);
   display:flex; align-items:center; justify-content:space-between;
 }
-.board-hd-lbl {
+.board-head-label {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:9px; letter-spacing:3px;
-  color:var(--paper3); text-transform:uppercase;
+  font-size:11px; letter-spacing:2px; color:var(--gold);
+  font-weight: 500;
 }
-.board-hd-cnt {
+.board-count {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; color:var(--paper3);
+  font-size:11px; color:var(--ink3);
 }
 
-/* form */
-.board-form {
-  padding:22px 22px 20px;
-  border-bottom:1px solid var(--br2);
-  background:var(--cream);
+/* Write form */
+.board-form { padding:20px 22px; border-bottom:1px solid var(--border2); }
+.form-row {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;
 }
-.frow {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:10px; margin-bottom:10px;
+@media(max-width:520px){ .form-row{grid-template-columns:1fr;} }
+.form-input, .form-textarea {
+  width:100%; padding:11px 14px;
+  background:rgba(255,255,255,.6);
+  border:1px solid var(--border2);
+  border-radius:8px; color:var(--paper);
+  font-family:'Noto Serif KR',serif; font-size:13.5px;
+  outline:none; transition:all .2s;
+  font-style:normal;
 }
-@media(max-width:520px){ .frow{ grid-template-columns:1fr; } }
-.fi, .fta {
-  width:100%; padding:10px 14px;
-  background:rgba(255,255,255,.7);
-  border:1px solid var(--br2);
-  border-radius:3px; color:var(--paper);
-  font-family:'Nanum Pen Script', cursive;
-  font-size:17px;
-  outline:none; transition:border-color .25s;
+.form-input:focus,.form-textarea:focus {
+  background:#fff;
+  border-color:var(--gold);
+  box-shadow: 0 0 8px rgba(146,132,90,0.1);
 }
-.fi:focus, .fta:focus { border-color:rgba(90,60,10,.4); background:#fff; }
-.fi::placeholder, .fta::placeholder {
-  color:var(--paper3);
-  font-family:'Noto Sans KR',sans-serif; font-size:12px;
+.form-input::placeholder,.form-textarea::placeholder {
+  color:var(--ink3); font-family:'Noto Sans KR',sans-serif; font-size:13px;
 }
-.fta { min-height:90px; resize:vertical; line-height:2; }
-.ffoot {
-  display:flex; justify-content:space-between;
-  align-items:center; margin-top:10px;
+.form-textarea { min-height:88px; resize:vertical; line-height:1.85; }
+.form-bottom {
+  display:flex; justify-content:space-between; align-items:center; margin-top:10px;
 }
-.fcc {
+.form-char {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; color:var(--paper3);
+  font-size:11px; color:var(--ink3);
 }
-.fcc span { color:var(--gold); }
-.sbtn {
-  background:rgba(90,60,10,.08);
-  border:1px solid var(--br);
-  color:var(--paper2); padding:8px 22px; border-radius:3px;
+.form-char span { color:var(--gold); font-weight: 500; }
+.submit-btn {
+  background: var(--gold);
+  border:1px solid var(--gold);
+  color:#fff;
+  padding:9px 20px; border-radius:6px;
   font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; letter-spacing:1px;
-  cursor:pointer; transition:background .2s;
-}
-.sbtn:hover { background:rgba(90,60,10,.15); }
-.sbtn:disabled { opacity:.35; cursor:not-allowed; }
-
-/* comment list */
-.blist { padding:4px 0; }
-.ci {
-  padding:20px 22px;
-  border-bottom:1px solid var(--br2);
-}
-.ci:last-child { border-bottom:none; }
-.ci-meta {
-  display:flex; align-items:baseline;
-  gap:8px; margin-bottom:8px; flex-wrap:wrap;
-}
-.ci-name {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:12.5px; font-weight:500; color:var(--paper);
-}
-.ci-belong {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; color:var(--paper3);
-}
-.ci-date {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:10.5px; color:var(--paper3); margin-left:auto;
-}
-.ci-text {
-  font-size:clamp(16px,3vw,20px);
-  color:var(--paper2); line-height:2.1;
-  word-break:keep-all;
-}
-.ci-act { margin-top:10px; }
-.lbtn {
-  background:none;
-  border:1px solid rgba(220,50,50,.25);
-  border-radius:20px; padding:4px 14px;
-  color:var(--paper3);
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:12px; cursor:pointer;
+  font-size:12px; font-weight: 500; cursor:pointer;
   transition:all .2s;
-  display:inline-flex; align-items:center; gap:5px;
 }
-.lbtn:hover, .lbtn.on {
-  border-color:var(--heart);
-  color:var(--heart);
-  background:rgba(220,50,50,.06);
+.submit-btn:hover { background:var(--paper); border-color:var(--paper); }
+.submit-btn:active { transform:scale(.97); }
+.submit-btn:disabled { opacity:.35; cursor:not-allowed; }
+
+/* Comment list */
+.board-list { padding:8px 0; }
+.comment-item {
+  padding:20px 22px;
+  border-bottom:1px solid var(--border3);
+  transition:background .2s;
 }
-.lbtn .hrt { color:var(--heart); font-size:13px; }
-.bempty {
-  padding:28px 22px; text-align:center;
+.comment-item:last-child { border-bottom:none; }
+.comment-item:hover { background:rgba(255,255,255,0.3); }
+.c-meta {
+  display:flex; align-items:center; gap:10px; margin-bottom:12px;
+}
+.c-avatar {
+  width:30px; height:30px; border-radius:50%;
+  background: var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:600;
+  color:#fff; flex-shrink:0;
   font-family:'Noto Sans KR',sans-serif;
-  font-size:12px; color:var(--paper3);
+}
+.c-name {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:13.5px; font-weight:500; color:var(--paper);
+}
+.c-sub {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:11px; color:var(--ink3);
+}
+.c-date {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:11px; color:var(--ink4);
+  margin-left:auto;
+}
+.c-text {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 21px; 
+  color: var(--paper2);
+  line-height: 1.5; 
+  word-break: keep-all;
+  padding-left: 40px;
+  letter-spacing: 0.5px;
+}
+.c-actions {
+  display:flex; gap:8px; margin-top:10px; padding-left:40px;
+}
+.like-btn {
+  background:#fff; border:1px solid var(--border2);
+  border-radius:20px; padding:4px 14px;
+  color:var(--paper2); font-family:'Noto Sans KR',sans-serif;
+  font-size:11px; cursor:pointer; transition:all .2s;
+  display:flex; align-items:center; gap:5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.like-btn:hover,.like-btn.on {
+  border-color:var(--gold); color:var(--gold); background: #fffbf0;
+}
+.board-empty {
+  padding:40px 22px; text-align:center;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:13px; color:var(--ink3);
 }
 
-/* ══ FOOTER ══════════════════════════════════════ */
-.footer {
-  border-top:1px solid rgba(90,60,10,.2);
-  padding:64px 28px 80px;
-  text-align:center;
-  background:linear-gradient(160deg,#c0a060 0%,#b08848 100%);
-}
-.footer-v {
-  max-width:460px; margin:0 auto 24px;
-  font-size:clamp(17px,3vw,22px);
-  color:rgba(255,248,225,.85);
-  line-height:2.3; word-break:keep-all;
-}
-.footer-ref {
-  display:block; margin-top:8px;
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; color:rgba(255,248,225,.5); letter-spacing:1px;
-}
-.footer-info {
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:11px; color:rgba(255,248,225,.45); letter-spacing:.5px;
-}
-
-/* ══ TOAST ══════════════════════════════════════ */
+/* ══════════ TOAST ══════════ */
 #toast {
   position:fixed; bottom:28px; left:50%;
   transform:translateX(-50%);
-  background:rgba(46,35,24,.96);
-  border:1px solid rgba(200,168,74,.3);
-  color:var(--cream); padding:10px 22px; border-radius:4px;
-  font-family:'Noto Sans KR',sans-serif; font-size:12.5px;
-  z-index:999; opacity:0; transition:opacity .3s;
+  background:rgba(74,63,53,.96);
+  border:1px solid var(--paper);
+  color:#fff; padding:10px 22px;
+  border-radius:8px; font-family:'Noto Sans KR',sans-serif;
+  font-size:13px; z-index:999;
+  backdrop-filter:blur(8px);
+  opacity:0; transition:opacity .3s;
   pointer-events:none; white-space:nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 #toast.show { opacity:1; }
+
+/* ══════════ FOOTER ══════════ */
+.footer {
+  background: var(--bg2);
+  text-align:center; padding:64px 24px;
+  border-top:1px solid var(--border2);
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:12px; color:var(--ink3);
+}
+.footer-cross {
+  color: var(--gold);
+  font-size:24px; margin-bottom:16px; opacity:.6;
+}
+.footer-verse {
+  font-family:'Noto Serif KR',serif;
+  font-size:14px; color:var(--paper2);
+  line-height:2; margin-bottom:20px;
+  word-break:keep-all; max-width:440px;
+  margin-left:auto; margin-right:auto;
+}
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<section class="cover">
-  <div class="cvr-tag">International Memorial Day Special Conference</div>
-  <div class="cvr-date">2026. 05. 25 — 05. 30</div>
-  <h1 class="cvr-h1">새로운 부흥에<br><strong>대한 필요성</strong></h1>
-  <div class="cvr-sub">2026 국제 현충일 특별 집회</div>
-  <div class="cvr-rule"></div>
-  <p class="cvr-body">
-    하나님이 사람이 되심으로써 사람이 생명과 본성에서
-    하나님과 똑같이 변화되어 그리스도의 몸을 건축하고
-    새 예루살렘을 완결하는 것입니다.<br><br>
-    믿는 이들은 자신의 <em>천연적인 생명을 부인하고</em>
-    연합된 영 안에서 <em>하나님-사람의 생활</em>을
-    실천해야 합니다.<br><br>
-    이러한 생활의 본이 세워질 때
-    이 시대를 끝내고 <em>주님을 다시 모셔 오는</em>
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-tag">International Memorial Day Special Conference · 2026</div>
+  <div class="hero-date">2026년 5월 25일 — 30일</div>
+  <h1 class="hero-title">
+    <strong>새로운 부흥에</strong><br>대한 필요성
+  </h1>
+  <div class="hero-theme">2026 국제 현충일 특별 집회</div>
+  <div class="hero-divider"></div>
+  <p class="hero-summary">
+    하나님이 사람이 되심으로써 사람이 생명과 본성에서 하나님과 똑같이 변화되어<br>
+    그리스도의 몸을 건축하고 새 예루살렘을 완결하는 것입니다.<br><br>
+    믿는 이들은 자신의 <em>천연적인 생명을 부인하고</em><br>
+    연합된 영 안에서 <em>하나님-사람의 생활</em>을 실천해야 합니다.<br><br>
+    이러한 생활의 본이 세워질 때<br>
+    이 시대를 끝내고 <em>주님을 다시 모셔 오는</em><br>
     가장 위대한 부흥이 일어날 것입니다.
   </p>
-  <div class="cvr-scroll">메시지를 읽어 내려가세요</div>
+  <div class="hero-scroll">▾ &nbsp; 메시지를 읽어내려가세요 &nbsp; ▾</div>
 </section>
 
-<!-- NAV -->
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
 <nav class="nav" id="main-nav">
-  <a href="#m1" class="on">메시지 1</a>
-  <a href="#m2">메시지 2</a>
-  <a href="#m3">메시지 3</a>
-  <a href="#m4">메시지 4</a>
-  <a href="#m5">메시지 5</a>
-  <a href="#m6">메시지 6</a>
+  <a href="#msg1" class="on">메시지 1</a>
+  <a href="#msg2">메시지 2</a>
+  <a href="#msg3">메시지 3</a>
+  <a href="#msg4">메시지 4</a>
+  <a href="#msg5">메시지 5</a>
+  <a href="#msg6">메시지 6</a>
 </nav>
 
+<!-- ══════════════════════════════════════
+     MESSAGES
+══════════════════════════════════════ -->
 <div class="wrap">
 
-<!-- MESSAGE 1 -->
-<section class="ms" id="m1">
-  <div class="ms-ch">Message · 01</div>
-  <h2 class="ms-title">주님과 동역하여 이 시대를 끝낼<br><em>새로운 부흥을 가져옴</em></h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-1">—</span>
+<!-- ─── MESSAGE 1 ─── -->
+<section class="msg-section" id="msg1">
+  <div class="msg-num">Message · 01</div>
+  <h2 class="msg-title">주님과 동역하여 이 시대를 끝낼<br><em>새로운 부흥을 가져옴</em></h2>
+  <div class="board" id="board-1">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-1">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n1" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b1" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-1" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-1" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t1" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(1)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c1">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(1)">나누기</button>
+      <textarea class="form-textarea" id="text-1"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(1)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-1">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(1)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l1"></div>
+    <div class="board-list" id="list-1"></div>
   </div>
 </section>
 
-<!-- MESSAGE 2 -->
-<section class="ms" id="m2">
-  <div class="ms-ch">Message · 02</div>
-  <h2 class="ms-title"><em>신성한 계시의 최고봉에</em> 도달함</h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-2">—</span>
+<!-- ─── MESSAGE 2 ─── -->
+<section class="msg-section" id="msg2">
+  <div class="msg-num">Message · 02</div>
+  <h2 class="msg-title"><em>신성한 계시의 최고봉에</em> 도달함</h2>
+  <div class="board" id="board-2">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-2">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n2" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b2" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-2" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-2" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t2" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(2)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c2">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(2)">나누기</button>
+      <textarea class="form-textarea" id="text-2"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(2)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-2">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(2)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l2"></div>
+    <div class="board-list" id="list-2"></div>
   </div>
 </section>
 
-<!-- MESSAGE 3 -->
-<section class="ms" id="m3">
-  <div class="ms-ch">Message · 03</div>
-  <h2 class="ms-title">새로운 부흥을 위한<br><em>하나님-사람의 생활</em></h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-3">—</span>
+<!-- ─── MESSAGE 3 ─── -->
+<section class="msg-section" id="msg3">
+  <div class="msg-num">Message · 03</div>
+  <h2 class="msg-title">새로운 부흥을 위한<br><em>하나님-사람의 생활</em></h2>
+  <div class="board" id="board-3">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-3">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n3" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b3" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-3" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-3" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t3" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(3)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c3">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(3)">나누기</button>
+      <textarea class="form-textarea" id="text-3"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(3)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-3">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(3)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l3"></div>
+    <div class="board-list" id="list-3"></div>
   </div>
 </section>
 
-<!-- MESSAGE 4 -->
-<section class="ms" id="m4">
-  <div class="ms-ch">Message · 04</div>
-  <h2 class="ms-title">신성한 종의 영역인 하나님의 왕국 안에 삶으로<br><em>하나님-사람의 생활을 함</em></h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-4">—</span>
+<!-- ─── MESSAGE 4 ─── -->
+<section class="msg-section" id="msg4">
+  <div class="msg-num">Message · 04</div>
+  <h2 class="msg-title">신성한 종의 영역인 하나님의 왕국 안에 삶으로<br><em>하나님-사람의 생활을 함</em></h2>
+  <div class="board" id="board-4">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-4">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n4" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b4" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-4" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-4" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t4" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(4)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c4">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(4)">나누기</button>
+      <textarea class="form-textarea" id="text-4"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(4)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-4">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(4)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l4"></div>
+    <div class="board-list" id="list-4"></div>
   </div>
 </section>
 
-<!-- MESSAGE 5 -->
-<section class="ms" id="m5">
-  <div class="ms-ch">Message · 05</div>
-  <h2 class="ms-title">그리스도의 몸의 건축과 새로운 부흥을 위해<br>하나님의 양 떼인 하나님의 교회를 목양하는<br><em>그리스도의 하늘에서의 사역과 협력하는 사도들의 사역</em></h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-5">—</span>
+<!-- ─── MESSAGE 5 ─── -->
+<section class="msg-section" id="msg5">
+  <div class="msg-num">Message · 05</div>
+  <h2 class="msg-title">그리스도의 몸의 건축과 새로운 부흥을 위해<br>하나님의 양 떼인 하나님의 교회를 목양하는<br><em>그리스도의 하늘에서의 사역과 협력하는 사도들의 사역</em></h2>
+  <div class="board" id="board-5">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-5">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n5" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b5" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-5" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-5" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t5" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(5)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c5">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(5)">나누기</button>
+      <textarea class="form-textarea" id="text-5"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(5)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-5">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(5)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l5"></div>
+    <div class="board-list" id="list-5"></div>
   </div>
 </section>
 
-<!-- MESSAGE 6 -->
-<section class="ms" id="m6">
-  <div class="ms-ch">Message · 06</div>
-  <h2 class="ms-title"><em>하나님을 따라</em> 목양함</h2>
-  <div class="board">
-    <div class="board-hd">
-      <span class="board-hd-lbl">나눔 · Sharing</span>
-      <span class="board-hd-cnt" id="cnt-6">—</span>
+<!-- ─── MESSAGE 6 ─── -->
+<section class="msg-section" id="msg6">
+  <div class="msg-num">Message · 06</div>
+  <h2 class="msg-title"><em>하나님을 따라</em> 목양함</h2>
+  <div class="board" id="board-6">
+    <div class="board-head">
+      <span class="board-head-label">📖 은혜 나눔</span>
+      <span class="board-count" id="count-6">0개의 나눔</span>
     </div>
     <div class="board-form">
-      <div class="frow">
-        <input class="fi" id="n6" placeholder="이름 (또는 익명)" maxlength="20">
-        <input class="fi" id="b6" placeholder="소속 교회 / 직분" maxlength="30">
+      <div class="form-row">
+        <input class="form-input" id="name-6" placeholder="이름 (또는 익명)" maxlength="20">
+        <input class="form-input" id="belong-6" placeholder="소속 (예: 부산교회)" maxlength="30">
       </div>
-      <textarea class="fta" id="t6" placeholder="이 메시지를 통해 받은 은혜와 깨달음을 나눠 주세요 (최대 300자)" maxlength="300" oninput="cc(6)"></textarea>
-      <div class="ffoot">
-        <span class="fcc"><span id="c6">0</span> / 300</span>
-        <button class="sbtn" onclick="sub(6)">나누기</button>
+      <textarea class="form-textarea" id="text-6"
+        placeholder="이 메시지를 통해 받은 은혜, 깨달음, 기도 제목을 나눠주세요..."
+        maxlength="300" oninput="updateChar(6)"></textarea>
+      <div class="form-bottom">
+        <span class="form-char"><span id="char-6">0</span> / 300</span>
+        <button class="submit-btn" onclick="submit(6)">은혜 나누기 →</button>
       </div>
     </div>
-    <div class="blist" id="l6"></div>
+    <div class="board-list" id="list-6"></div>
   </div>
 </section>
 
 </div><!-- .wrap -->
 
-<!-- FOOTER -->
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
 <footer class="footer">
-  <p class="footer-v">
+  <div class="footer-cross">✝</div>
+  <p class="footer-verse">
     "이기는 자에게는 내가 내 보좌에 나와 함께 앉도록 허락하겠으니,<br>
-    이것은 내가 이겨서 내 아버지와 함께<br>그분의 보좌에 앉은 것과 같습니다."
-    <span class="footer-ref">— 요한계시록 3 : 21</span>
+    이것은 내가 이겨서 내 아버지와 함께 그분의 보좌에 앉은 것과 같습니다."<br>
+    <span style="font-size:12px;color:var(--ink3)">— 요한계시록 3:21</span>
   </p>
-  <p class="footer-info">2026 국제 현충일 특별 집회 &nbsp;·&nbsp; 2026. 05. 25 — 05. 30</p>
+  <p>2026 국제 현충일 특별 집회 · 새로운 부흥에 대한 필요성<br>
+  2026.05.25 — 05.30</p>
 </footer>
 
 <div id="toast"></div>
 
-<!-- FIREBASE -->
+<!-- ══════════════════════════════════════
+     FIREBASE + SCRIPT
+══════════════════════════════════════ -->
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getDatabase, ref, push, onValue, get, set }
+import { getDatabase, ref, push, onValue, update }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
-const cfg = {
-  apiKey:"AIzaSyBCz54UBVbRa9dTeRGjjo3jP8NLPN70lek",
-  authDomain:"busanch-youngth.firebaseapp.com",
-  databaseURL:"https://busanch-youngth-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:"busanch-youngth",
-  storageBucket:"busanch-youngth.firebasestorage.app",
-  messagingSenderId:"980464442220",
-  appId:"1:980464442220:web:0b5977e0b57b770aadb149"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBCz54UBVbRa9dTeRGjjo3jP8NLPN70lek",
+  authDomain: "busanch-youngth.firebaseapp.com",
+  databaseURL: "https://busanch-youngth-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "busanch-youngth",
+  storageBucket: "busanch-youngth.firebasestorage.app",
+  messagingSenderId: "980464442220",
+  appId: "1:980464442220:web:0b5977e0b57b770aadb149"
 };
-const fapp=initializeApp(cfg);
-const fdb=getDatabase(fapp);
-window._db=fdb; window._ref=ref; window._push=push;
-window._onValue=onValue; window._get=get; window._set=set;
-window._fbOK=true;
+
+const app = initializeApp(firebaseConfig);
+const db  = getDatabase(app);
+
+// 전역으로 함수/DB 노출
+window._db  = db;
+window._ref = ref;
+window._push = push;
+window._onValue = onValue;
+window._update = update;
+window._fbOK = true;
 document.dispatchEvent(new Event('fb-ready'));
 </script>
 
 <script>
-function toast(m){
-  const e=document.getElementById('toast');
-  e.textContent=m; e.classList.add('show');
-  clearTimeout(e._t); e._t=setTimeout(()=>e.classList.remove('show'),3000);
+/* ═══════════════════════════════
+   UTILS
+═══════════════════════════════ */
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 3000);
 }
-function esc(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function fmtDate(){
-  const d=new Date();
-  return d.getFullYear()+'.'
-    +String(d.getMonth()+1).padStart(2,'0')+'.'
-    +String(d.getDate()).padStart(2,'0');
-}
-function cc(n){
-  document.getElementById('c'+n).textContent=
-    document.getElementById('t'+n).value.length;
-}
-window.cc=cc;
 
-function render(n,items){
-  const list=document.getElementById('l'+n);
-  const cnt=document.getElementById('cnt-'+n);
-  if(!items||!items.length){
-    list.innerHTML='<div class="bempty">아직 나눔이 없습니다</div>';
-    cnt.textContent='—'; return;
+function updateChar(n) {
+  const v = document.getElementById('text-'+n).value.length;
+  document.getElementById('char-'+n).textContent = v;
+}
+window.updateChar = updateChar;
+
+function fmtDate() {
+  const d = new Date();
+  return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');
+}
+
+/* ═══════════════════════════════
+   RENDER COMMENTS
+═══════════════════════════════ */
+function render(n, items) {
+  const list = document.getElementById('list-'+n);
+  const cnt  = document.getElementById('count-'+n);
+  if (!items || !items.length) {
+    list.innerHTML = '<div class="board-empty" style="font-family:Noto Sans KR,sans-serif;">첫 번째로 은혜를 나눠주세요 ❤️</div>';
+    cnt.textContent = '0개의 나눔';
+    return;
   }
-  cnt.textContent=items.length+'개';
-  list.innerHTML=items.map(c=>{
-    const lk='lk_'+n+'_'+c.fbId;
-    const liked=localStorage.getItem(lk)==='1';
-    return `<div class="ci">
-      <div class="ci-meta">
-        <span class="ci-name">${esc(c.name||'익명')}</span>
-        ${c.belong?`<span class="ci-belong">· ${esc(c.belong)}</span>`:''}
-        <span class="ci-date">${c.date||''}</span>
+  cnt.textContent = items.length + '개의 나눔';
+  list.innerHTML = items.map((c, i) => {
+    const initial = (c.name || '익').slice(0, 1);
+    const likedKey = 'liked_'+n+'_'+c.fbId;
+    const liked = localStorage.getItem(likedKey) === '1';
+    
+    return `
+    <div class="comment-item">
+      <div class="c-meta">
+        <div class="c-avatar">${initial}</div>
+        <div>
+          <div class="c-name">${esc(c.name||'익명')}${c.belong ? ' <span style="font-family:Noto Sans KR,sans-serif;font-size:11px;color:var(--ink3)">· '+esc(c.belong)+'</span>' : ''}</div>
+        </div>
+        <div class="c-date">${c.date||''}</div>
       </div>
-      <div class="ci-text">${esc(c.text||'').replace(/\n/g,'<br>')}</div>
-      <div class="ci-act">
-        <button class="lbtn${liked?' on':''}" onclick="tgl(${n},'${c.fbId}',this)">
-          <span class="hrt">❤</span> 은혜 받음${c.likes>0?' '+c.likes:''}
+      <div class="c-text">${esc(c.text||'').replace(/\n/g,'<br>')}</div>
+      <div class="c-actions">
+        <button class="like-btn ${liked?'on':''}" onclick="toggleLike(${n},'${c.fbId}',this)">
+          ${liked?'❤️':'🤍'} 은혜 받았어요${c.likes>0?' '+c.likes:''}
         </button>
       </div>
     </div>`;
   }).join('');
 }
 
-window.tgl=function(n,fbId,btn){
-  const lk='lk_'+n+'_'+fbId;
-  const was=localStorage.getItem(lk)==='1';
-  if(!window._fbOK){toast('잠시 후 다시 시도해 주세요');return;}
-  import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js').then(m=>{
-    const r=window._ref(window._db,'conf2026/m'+n+'/'+fbId+'/likes');
-    m.get(r).then(s=>{
-      const cur=s.val()||0;
-      m.set(r,was?Math.max(0,cur-1):cur+1).then(()=>
-        localStorage.setItem(lk,was?'0':'1'));
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ═══════════════════════════════
+   TOGGLE LIKE (Firebase)
+═══════════════════════════════ */
+window.toggleLike = function(n, fbId, btn) {
+  const likedKey = 'liked_'+n+'_'+fbId;
+  const wasLiked = localStorage.getItem(likedKey) === '1';
+  if (!window._fbOK) { toast('잠시 후 다시 시도해주세요'); return; }
+  const r = window._ref(window._db, 'conference2026/msg'+n+'/'+fbId+'/likes');
+  window._db; // keep ref
+  // get current and update
+  import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js').then(m => {
+    m.get(r).then(snap => {
+      const cur = snap.val() || 0;
+      const next = wasLiked ? Math.max(0, cur-1) : cur+1;
+      m.set(r, next).then(() => {
+        localStorage.setItem(likedKey, wasLiked ? '0' : '1');
+        toast(wasLiked ? '취소됐어요' : '❤️ 은혜 받았어요!');
+      });
     });
   });
 };
 
-window.sub=function(n){
-  const name=document.getElementById('n'+n).value.trim();
-  const belong=document.getElementById('b'+n).value.trim();
-  const text=document.getElementById('t'+n).value.trim();
-  if(!text){toast('내용을 입력해 주세요');return;}
-  if(text.length<5){toast('5자 이상 입력해 주세요');return;}
-  const btn=document.querySelector('#m'+n+' .sbtn');
-  btn.disabled=true; btn.textContent='저장 중';
-  const entry={name:name||'익명',belong,text,date:fmtDate(),likes:0,createdAt:Date.now()};
-  if(window._fbOK){
-    window._push(window._ref(window._db,'conf2026/m'+n),entry)
-      .then(()=>{
-        ['n','b','t'].forEach(p=>document.getElementById(p+n).value='');
-        document.getElementById('c'+n).textContent='0';
-        toast('나눔이 등록됐습니다');
+/* ═══════════════════════════════
+   SUBMIT
+═══════════════════════════════ */
+window.submit = function(n) {
+  const name   = document.getElementById('name-'+n).value.trim();
+  const belong = document.getElementById('belong-'+n).value.trim();
+  const text   = document.getElementById('text-'+n).value.trim();
+  if (!text) { toast('⚠️ 내용을 입력해주세요'); return; }
+  if (text.length < 5) { toast('⚠️ 5자 이상 입력해주세요'); return; }
+
+  const btn = document.querySelector('#board-'+n+' .submit-btn');
+  btn.disabled = true; btn.textContent = '저장 중...';
+
+  const entry = {
+    name: name || '익명',
+    belong: belong || '',
+    text,
+    date: fmtDate(),
+    likes: 0,
+    createdAt: Date.now(),
+  };
+
+  if (window._fbOK) {
+    window._push(window._ref(window._db, 'conference2026/msg'+n), entry)
+      .then(() => {
+        document.getElementById('name-'+n).value = '';
+        document.getElementById('belong-'+n).value = '';
+        document.getElementById('text-'+n).value = '';
+        document.getElementById('char-'+n).textContent = '0';
+        toast('❤️ 은혜를 나눠주셔서 감사합니다!');
       })
-      .catch(e=>toast('저장 실패: '+e.message))
-      .finally(()=>{btn.disabled=false;btn.textContent='나누기';});
+      .catch(e => toast('❌ 저장 실패: '+e.message))
+      .finally(() => { btn.disabled=false; btn.textContent='은혜 나누기 →'; });
   } else {
-    const key='conf2026_m'+n;
-    const arr=JSON.parse(localStorage.getItem(key)||'[]');
-    entry.fbId='lo_'+Date.now(); arr.unshift(entry);
-    localStorage.setItem(key,JSON.stringify(arr));
-    render(n,arr);
-    ['n','b','t'].forEach(p=>document.getElementById(p+n).value='');
-    document.getElementById('c'+n).textContent='0';
-    btn.disabled=false; btn.textContent='나누기';
-    toast('저장됐습니다 (오프라인)');
+    // fallback: localStorage
+    const key = 'conf2026_msg'+n;
+    const arr = JSON.parse(localStorage.getItem(key)||'[]');
+    entry.fbId = 'local_'+Date.now();
+    arr.unshift(entry);
+    localStorage.setItem(key, JSON.stringify(arr));
+    render(n, arr);
+    document.getElementById('name-'+n).value = '';
+    document.getElementById('belong-'+n).value = '';
+    document.getElementById('text-'+n).value = '';
+    document.getElementById('char-'+n).textContent = '0';
+    btn.disabled=false; btn.textContent='은혜 나누기 →';
+    toast('❤️ 저장됐어요 (오프라인 모드)');
   }
 };
 
-function startFB(){
-  [1,2,3,4,5,6].forEach(n=>{
-    window._onValue(window._ref(window._db,'conf2026/m'+n),snap=>{
-      const d=snap.val();
-      if(!d){render(n,[]);return;}
-      const items=Object.entries(d)
-        .map(([fbId,v])=>({...v,fbId}))
-        .sort((a,b)=>b.createdAt-a.createdAt);
-      render(n,items);
+/* ═══════════════════════════════
+   FIREBASE LISTENERS
+═══════════════════════════════ */
+function startListeners() {
+  [1,2,3,4,5,6].forEach(n => {
+    window._onValue(window._ref(window._db, 'conference2026/msg'+n), snap => {
+      const data = snap.val();
+      if (!data) { render(n, []); return; }
+      const items = Object.entries(data)
+        .map(([fbId, v]) => ({...v, fbId}))
+        .sort((a,b) => b.createdAt - a.createdAt);
+      render(n, items);
     });
   });
 }
-document.addEventListener('fb-ready',startFB,{once:true});
-setTimeout(()=>{
-  if(!window._fbOK)
-    [1,2,3,4,5,6].forEach(n=>{
-      const arr=JSON.parse(localStorage.getItem('conf2026_m'+n)||'[]');
-      render(n,arr);
-    });
-},3500);
 
-const io=new IntersectionObserver(ee=>{
-  ee.forEach(e=>{
-    if(e.isIntersecting){
-      document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('on'));
-      const a=document.querySelector('.nav a[href="#'+e.target.id+'"]');
-      if(a){a.classList.add('on');a.scrollIntoView({inline:'center',behavior:'smooth'});}
+document.addEventListener('fb-ready', startListeners, {once:true});
+// fallback if Firebase doesn't load
+setTimeout(() => {
+  if (!window._fbOK) {
+    [1,2,3,4,5,6].forEach(n => {
+      const arr = JSON.parse(localStorage.getItem('conf2026_msg'+n)||'[]');
+      render(n, arr);
+    });
+  }
+}, 3000);
+
+/* ═══════════════════════════════
+   NAV HIGHLIGHT
+═══════════════════════════════ */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('on'));
+      const id = e.target.id;
+      const a = document.querySelector(`.nav a[href="#${id}"]`);
+      if (a) { a.classList.add('on'); a.scrollIntoView({inline:'center',behavior:'smooth'}); }
     }
   });
-},{rootMargin:'-15% 0px -70% 0px'});
-document.querySelectorAll('.ms[id]').forEach(s=>io.observe(s));
+}, {rootMargin:'-20% 0px -65% 0px'});
+document.querySelectorAll('.msg-section[id]').forEach(s => io.observe(s));
 </script>
 </body>
 </html>
