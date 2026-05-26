@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아외 복음 운동회 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{font-style:normal!important;box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --coral:#FF6B6B;--orange:#FF9F43;--yellow:#FFD93D;
+  --green:#6BCB77;--blue:#4D96FF;--purple:#9B6FF5;--pink:#FF6EC7;
+  --navy:#2D2D6B;--soft:#F7F3FF;
+}
+
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:linear-gradient(180deg,#E0F4FF 0%,#FFF9F0 50%,#E8F8E8 100%);
+  min-height:100vh;overflow-x:hidden;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fall{0%{transform:translateY(-80px) rotate(0deg);opacity:.9}100%{transform:translateY(110vh) rotate(540deg);opacity:0}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes cloudFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(12px)}}
+@keyframes pop{0%{transform:scale(0) rotate(-6deg);opacity:0}70%{transform:scale(1.06) rotate(1deg)}100%{transform:scale(1) rotate(0deg);opacity:1}}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes grassWave{0%,100%{transform:scaleY(1) skewX(0deg)}50%{transform:scaleY(1.04) skewX(1deg)}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes flagWave{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ─── CONFETTI ─── */
+.confetti-wrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.cf{position:absolute;top:-12px;border-radius:2px}
+
+/* ─── SKY LAYER ─── */
+.sky-deco{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+.sun{
+  position:absolute;top:30px;right:60px;width:90px;height:90px;
+  animation:spin-slow 30s linear infinite;
+}
+.sun-inner{
+  width:90px;height:90px;
+  background:radial-gradient(circle,#FFE566 40%,#FFD93D 70%,#FFB347 100%);
+  border-radius:50%;position:absolute;top:0;left:0;
+}
+.sun-ray{
+  position:absolute;width:10px;height:26px;
+  background:#FFB347;border-radius:5px;
+  left:40px;transform-origin:5px 60px;
+}
+
+.cloud{
+  position:absolute;animation:cloudFloat 6s ease-in-out infinite;
+  opacity:.85;
+}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;text-align:center;
+  padding:70px 24px 50px;z-index:2;
+}
+
+.badge-wrap{margin-bottom:18px;animation:bounce 2s ease-in-out infinite}
+.badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--coral),var(--orange));
+  color:#fff;font-size:17px;font-weight:700;
+  padding:9px 28px;border-radius:50px;
+  box-shadow:0 6px 20px rgba(255,107,107,.45);
+  letter-spacing:.5px;
+}
+
+.hero-title{
+  font-size:clamp(38px,9vw,76px);font-weight:900;
+  line-height:1.18;margin-bottom:18px;
+  background:linear-gradient(120deg,var(--coral) 0%,var(--orange) 20%,var(--yellow) 40%,var(--green) 60%,var(--blue) 80%,var(--purple) 100%);
+  background-size:200% 200%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s ease infinite,float 5s ease-in-out infinite;
+  filter:drop-shadow(0 3px 12px rgba(0,0,0,.12));
+}
+
+.hero-sub{
+  font-size:clamp(16px,4vw,22px);font-weight:700;
+  color:#4A4A8A;margin-bottom:6px;
+  animation:slideUp .8s .3s ease both;
+}
+
+/* ─── INFO CARDS ─── */
+.section{max-width:680px;margin:0 auto;padding:0 20px 20px;position:relative;z-index:2}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr}}
+
+.info-card{
+  background:#fff;border-radius:24px;padding:24px 20px;
+  box-shadow:0 8px 32px rgba(80,60,180,.10);
+  display:flex;align-items:flex-start;gap:16px;
+  animation:pop .5s ease both;
+  border-bottom:5px solid var(--card-color,#4D96FF);
+  transition:transform .25s,box-shadow .25s;
+}
+.info-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(80,60,180,.18)}
+
+.info-icon-wrap{
+  width:58px;height:58px;border-radius:18px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  background:linear-gradient(135deg,var(--ic1,#E0EAFF),var(--ic2,#C2D5FF));
+  animation:bounce 2.8s ease-in-out infinite;
+}
+
+.info-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#9999BB;text-transform:uppercase;margin-bottom:4px}
+.info-value{font-size:clamp(18px,3.5vw,24px);font-weight:900;color:var(--navy);line-height:1.25}
+.info-detail{font-size:13px;color:#8888AA;margin-top:3px;font-weight:500}
+
+/* ─── ACTIVITIES ─── */
+.section-heading{
+  text-align:center;font-size:clamp(22px,5vw,30px);font-weight:900;
+  color:var(--navy);margin-bottom:20px;
+  animation:slideUp .6s ease both;
+}
+.section-heading span{
+  display:inline-block;
+  animation:bounce 2s ease-in-out infinite;
+}
+
+.act-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-bottom:24px;
+}
+@media(max-width:440px){.act-grid{grid-template-columns:repeat(2,1fr)}}
+
+.act-card{
+  background:#fff;border-radius:22px;
+  padding:22px 12px 18px;text-align:center;
+  box-shadow:0 6px 22px rgba(80,60,180,.09);
+  cursor:default;
+  animation:pop .5s ease both;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.act-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:6px;
+  background:var(--ac,#FF6B6B);border-radius:22px 22px 0 0;
+}
+.act-card:hover{transform:translateY(-7px) scale(1.03);box-shadow:0 18px 40px rgba(80,60,180,.17)}
+
+.act-emoji{
+  font-size:44px;display:block;margin-bottom:10px;
+  animation:bounce 3s ease-in-out infinite;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.12));
+}
+.act-name{font-size:14px;font-weight:700;color:var(--navy)}
+
+/* ─── FOOTER CARD ─── */
+.footer-card{
+  background:linear-gradient(135deg,#4D96FF 0%,#9B6FF5 60%,#FF6EC7 100%);
+  border-radius:28px;padding:36px 28px;color:#fff;text-align:center;
+  box-shadow:0 14px 40px rgba(77,150,255,.40);
+  animation:pop .6s .4s ease both;
+  position:relative;overflow:hidden;
+}
+.footer-card::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='25' fill='none' stroke='rgba(255,255,255,.08)' stroke-width='2'/%3E%3C/svg%3E") repeat;
+  pointer-events:none;
+}
+
+.footer-icon{font-size:52px;margin-bottom:12px;display:block;animation:heartbeat 2s ease-in-out infinite}
+.footer-church{font-size:clamp(22px,5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:.5px}
+.footer-sub{font-size:13px;opacity:.85;font-weight:500;line-height:1.8}
+.footer-sub strong{font-weight:900;font-size:14px;opacity:1}
+.divider-dot{display:inline-block;margin:0 6px;opacity:.7}
+
+/* ─── GRASS BOTTOM ─── */
+.grass-container{
+  position:fixed;bottom:0;left:0;width:100%;
+  pointer-events:none;z-index:0;
+  display:flex;align-items:flex-end;
+}
+.grass-blade{
+  width:12px;height:0;
+  background:linear-gradient(to top,#4CAF50,#8BC34A);
+  border-radius:50% 50% 0 0;
+  animation:grassWave 1.5s ease-in-out infinite;
+  flex-shrink:0;
+}
+
+/* ─── FLOATING CHARS ─── */
+.char-deco{
+  position:fixed;font-size:32px;pointer-events:none;z-index:0;
+  animation:float 4s ease-in-out infinite;
+}
+
+/* ─── RIBBON TOP ─── */
+.ribbon{
+  position:relative;background:linear-gradient(90deg,var(--coral),var(--orange),var(--yellow),var(--green),var(--blue),var(--purple));
+  height:8px;width:100%;z-index:10;
+}
+
+</style>
+</head>
+<body>
+
+<!-- rainbow ribbon -->
+<div class="ribbon"></div>
+
+<!-- Confetti layer -->
+<div class="confetti-wrap" id="cfWrap"></div>
+
+<!-- sky decorations -->
+<div class="sky-deco">
+  <!-- Sun -->
+  <div class="sun">
+    <div class="sun-inner"></div>
+    <div class="sun-ray" style="transform:rotate(0deg)"></div>
+    <div class="sun-ray" style="transform:rotate(45deg)"></div>
+    <div class="sun-ray" style="transform:rotate(90deg)"></div>
+    <div class="sun-ray" style="transform:rotate(135deg)"></div>
+    <div class="sun-ray" style="transform:rotate(180deg)"></div>
+    <div class="sun-ray" style="transform:rotate(225deg)"></div>
+    <div class="sun-ray" style="transform:rotate(270deg)"></div>
+    <div class="sun-ray" style="transform:rotate(315deg)"></div>
+  </div>
+  <!-- Clouds -->
+  <svg class="cloud" style="left:5%;top:70px;animation-delay:0s" width="120" height="50" viewBox="0 0 120 50">
+    <ellipse cx="45" cy="35" rx="35" ry="18" fill="rgba(255,255,255,.9)"/>
+    <ellipse cx="70" cy="30" rx="28" ry="16" fill="rgba(255,255,255,.9)"/>
+    <ellipse cx="90" cy="35" rx="20" ry="14" fill="rgba(255,255,255,.9)"/>
+    <ellipse cx="25" cy="38" rx="18" ry="12" fill="rgba(255,255,255,.9)"/>
+  </svg>
+  <svg class="cloud" style="right:8%;top:100px;animation-delay:3s" width="90" height="40" viewBox="0 0 90 40">
+    <ellipse cx="35" cy="28" rx="25" ry="14" fill="rgba(255,255,255,.85)"/>
+    <ellipse cx="55" cy="24" rx="22" ry="13" fill="rgba(255,255,255,.85)"/>
+    <ellipse cx="70" cy="29" rx="16" ry="11" fill="rgba(255,255,255,.85)"/>
+    <ellipse cx="18" cy="30" rx="14" ry="10" fill="rgba(255,255,255,.85)"/>
+  </svg>
+</div>
+
+<!-- Floating deco -->
+<div class="char-deco" style="left:2%;top:20%;animation-delay:.5s">🎈</div>
+<div class="char-deco" style="right:3%;top:30%;animation-delay:1.2s">🎊</div>
+<div class="char-deco" style="left:4%;top:55%;animation-delay:2s">🌟</div>
+<div class="char-deco" style="right:1%;top:65%;animation-delay:.8s">🎉</div>
+<div class="char-deco" style="left:1%;top:78%;animation-delay:1.6s">🎀</div>
+<div class="char-deco" style="right:2%;top:80%;animation-delay:2.4s">⭐</div>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <div class="badge-wrap">
+    <div class="badge">🌞 야외 복음 운동회 🌞</div>
+  </div>
+  <h1 class="hero-title">사랑하는 여러분을<br>초대합니다!</h1>
+  <p class="hero-sub">함께 뛰고 · 웃고 · 나누는 특별한 하루 🌈</p>
+</div>
+
+<!-- ═══════ INFO CARDS ═══════ -->
+<div class="section">
+  <div class="info-grid">
+
+    <div class="info-card" style="--card-color:var(--coral);--ic1:#FFE0E0;--ic2:#FFBCBC;animation-delay:.1s">
+      <div class="info-icon-wrap" style="animation-delay:.2s">📅</div>
+      <div>
+        <div class="info-label">일시</div>
+        <div class="info-value">5월 31일<br><span style="font-size:.72em;color:#7777AA">(주일)</span></div>
+        <div class="info-detail">오전 10 : 30분</div>
+      </div>
+    </div>
+
+    <div class="info-card" style="--card-color:var(--blue);--ic1:#DDEEFF;--ic2:#B8D9FF;animation-delay:.2s">
+      <div class="info-icon-wrap" style="animation-delay:.5s">📍</div>
+      <div>
+        <div class="info-label">장소</div>
+        <div class="info-value">한국해양대학교<br><span style="font-size:.72em;color:#7777AA">실내체육관</span></div>
+        <div class="info-detail">영도구 태종로 727</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════ ACTIVITIES ═══════ -->
+<div class="section">
+  <h2 class="section-heading">
+    <span style="animation-delay:0s">🏃</span>&nbsp;신나는 프로그램&nbsp;<span style="animation-delay:.4s">🎯</span>
+  </h2>
+
+  <div class="act-grid">
+
+    <div class="act-card" style="--ac:var(--coral);animation-delay:.1s">
+      <span class="act-emoji" style="animation-delay:0s">🔔</span>
+      <div class="act-name">도전 골든벨</div>
+    </div>
+
+    <div class="act-card" style="--ac:var(--orange);animation-delay:.15s">
+      <span class="act-emoji" style="animation-delay:.3s">🃏</span>
+      <div class="act-name">판 뒤집기</div>
+    </div>
+
+    <div class="act-card" style="--ac:var(--yellow);animation-delay:.2s">
+      <span class="act-emoji" style="animation-delay:.6s">🎈</span>
+      <div class="act-name">풍선 옷 입히기</div>
+    </div>
+
+    <div class="act-card" style="--ac:var(--green);animation-delay:.25s">
+      <span class="act-emoji" style="animation-delay:.9s">🏃</span>
+      <div class="act-name">릴레이</div>
+    </div>
+
+    <div class="act-card" style="--ac:var(--blue);animation-delay:.3s">
+      <span class="act-emoji" style="animation-delay:1.2s">⚽</span>
+      <div class="act-name">공 구르기</div>
+    </div>
+
+    <div class="act-card" style="--ac:var(--pink);animation-delay:.35s">
+      <span class="act-emoji" style="animation-delay:1.5s">🍱</span>
+      <div class="act-name">점심 · 선물 제공</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="section" style="padding-bottom:90px">
+  <div class="footer-card">
+    <span class="footer-icon">⛪</span>
+    <div class="footer-church">주최 : 부산교회</div>
+    <div class="footer-sub">
+      <strong>참여 자원봉사단체</strong><br>
+      지사자원봉사센터
+      <span class="divider-dot">·</span>
+      다함께돌봄 비젯 등
+    </div>
+    <!-- Stars deco inside footer -->
+    <div style="margin-top:18px;font-size:22px;letter-spacing:10px;opacity:.7">
+      ⭐ ✨ 🌟 ✨ ⭐
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ GRASS ═══════ -->
+<div class="grass-container" id="grassWrap"></div>
+
+<script>
+// ── Confetti ──
+(function(){
+  const wrap = document.getElementById('cfWrap');
+  const colors = ['#FF6B6B','#FF9F43','#FFD93D','#6BCB77','#4D96FF','#9B6FF5','#FF6EC7','#43E97B','#FA709A'];
+  for(let i=0;i<80;i++){
+    const el = document.createElement('div');
+    el.className='cf';
+    const c=colors[i%colors.length];
+    const w=Math.random()*9+5;
+    const type=Math.floor(Math.random()*3);
+    const dur=Math.random()*6+7;
+    const delay=Math.random()*10;
+    el.style.cssText=`left:${Math.random()*100}%;width:${w}px;height:${w*(.4+Math.random()*.8)}px;background:${c};animation:fall ${dur}s ${delay}s linear infinite;border-radius:${type===0?'50%':type===1?'2px':'0'};opacity:.9;`;
+    wrap.appendChild(el);
+  }
+})();
+
+// ── Grass ──
+(function(){
+  const wrap=document.getElementById('grassWrap');
+  const w=window.innerWidth;
+  const cnt=Math.ceil(w/10)+4;
+  for(let i=0;i<cnt;i++){
+    const b=document.createElement('div');
+    b.className='grass-blade';
+    const h=Math.random()*28+14;
+    const hue=100+Math.random()*20;
+    b.style.cssText=`height:${h}px;background:linear-gradient(to top,hsl(${hue},55%,38%),hsl(${hue+10},65%,58%));animation-delay:${Math.random()*1.5}s;animation-duration:${1.2+Math.random()*.6}s;`;
+    wrap.appendChild(b);
+  }
+})();
+
+// ── Stagger pop animations ──
+document.querySelectorAll('.info-card,.act-card').forEach((el,i)=>{
+  el.style.animationDelay=`${.08+i*.07}s`;
+});
+</script>
+
+</body>
+</html>
