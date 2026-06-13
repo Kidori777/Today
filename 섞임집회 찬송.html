@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>섞임 찬송 (Blended Hymns)</title>
+    <style>
+        /* 기본 스타일 및 테마 정의 */
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --primary-color: #4a5568;
+            --accent-color: #81e6d9;
+            --text-main: #2d3748;
+            --text-ko: #1a202c;
+            --text-en: #4a5568;
+            --text-zh: #2b6cb0;
+            --text-pinyin: #718096;
+            --border-color: #edf2f7;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a202c;
+                --card-bg: #2d3748;
+                --primary-color: #cbd5e0;
+                --accent-color: #4fd1c5;
+                --text-main: #edf2f7;
+                --text-ko: #ffffff;
+                --text-en: #e2e8f0;
+                --text-zh: #63b3ed;
+                --text-pinyin: #a0aec0;
+                --border-color: #4a5568;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-ko);
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--text-pinyin);
+        }
+
+        /* 메인 컨테이너 래퍼 - 항상 세로로 1열 정렬되도록 고정 */
+        .hymn-container {
+            max-width: 850px; /* 화면이 커져도 찬송가가 너무 퍼지지 않고 보기 좋은 너비 */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr; /* 2열 배치 미디어쿼리를 완벽히 제거했습니다 */
+            gap: 40px;
+        }
+
+        /* 찬송 카드 스타일 */
+        .hymn-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .hymn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hymn-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-ko);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* 언어별 섹션 스타일 */
+        .lang-section {
+            margin-bottom: 25px;
+        }
+
+        .lang-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background-color: var(--border-color);
+            color: var(--primary-color);
+        }
+
+        /* 가사 텍스트 스타일 */
+        .lyrics {
+            white-space: pre-line;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .ko { color: var(--text-ko); font-weight: 500; }
+        .en { color: var(--text-en); font-style: italic; font-size: 0.95rem; }
+        .zh { color: var(--text-zh); font-weight: bold; font-family: "Noto Sans CJK KR", "Microsoft YaHei", sans-serif; }
+        .pinyin { color: var(--text-pinyin); font-size: 0.9rem; margin-top: 2px; margin-bottom: 12px; }
+
+        .line-group {
+            margin-bottom: 12px;
+        }
+        
+        .line-group:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-pinyin);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>섞임 찬송</h1>
+        <p>Blended Hymns • 融調詩歌</p>
+    </header>
+
+    <main class="hymn-container">
+
+        <!-- 찬송 1 -->
+        <article class="hymn-card">
+            <h2 class="hymn-title">찬송 1. 아무것도 갖지 않고</h2>
+            
+            <div class="lang-section">
+                <span class="badge">한국어</span>
+                <p class="lyrics ko">아무것도 갖지 않고 아무것도 보지 않고
+영광 안에 그리스도만 바라보는 기쁨이여
+아무것도 갖지 않고 아무것도 되지 않고
+오직 그의 권익만을 관심하는 기쁨이여</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">English</span>
+                <p class="lyrics en">Oh! The joy of having nothing, being nothing, seeing nothing
+But a living Christ in glory and being careful for nothing
+Oh! The joy of having nothing, being nothing, seeing nothing
+But a living Christ in glory His interest down on earth</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">中國語</span>
+                <div class="line-group">
+                    <p class="lyrics zh">何等喜樂 何等喜樂</p>
+                    <p class="pinyin">허떵씰러 허떵씰러</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">我們能夠一無所有 一無所是</p>
+                    <p class="pinyin">워먼 능꾸오 이우쑤오요우 이우쑤오쓰</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">無所見 惟見榮耀裏의 基督</p>
+                    <p class="pinyin">이우쑤오젠 웨이젠롱야오리디지뚜</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">何等喜樂 何等喜樂</p>
+                    <p class="pinyin">허떵씰러 허떵씰러</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">我們能夠 一無所有 一無所是</p>
+                    <p class="pinyin">워먼 능꾸오 이우쑤오요우 이우쑤오쓰</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">無所顧 惟顧祂在地權益</p>
+                    <p class="pinyin">이우쑤오꾸 웨이꾸타짜이띠추엔이</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- 찬송 2 -->
+        <article class="hymn-card">
+            <h2 class="hymn-title">찬송 2. 주여 당신만을 정말 사랑하네</h2>
+            
+            <div class="lang-section">
+                <span class="badge">한국어</span>
+                <p class="lyrics ko">주여 당신만을 정말 사랑하네 주 없으면 다 헛되네
+날 이끄시며 내 맘 매혹하니 당신 풍성 다 측량 못 해
+달콤한 주 이름 날 만족케 하네 주 나의 것 나는 주의 것
+연결 연합 합병 하나님 사람 돼 새 예루살렘 미리 맛 봐</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">English</span>
+                <p class="lyrics en">Oh Lord, I love You I really love You without You life's really nothing
+You are so attractive and You are so charming Your riches are unsearchable
+Your name's so dear and sweet calling makes one satisfied
+Now You are mine and I am Thine, Lord,
+Joined and mingled with You, God-man incorporation Foretaste of the New Jerusalem</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">中國語</span>
+                <div class="line-group">
+                    <p class="lyrics zh">主阿!我愛你 主阿! 我愛你,我實在深愛你,</p>
+                    <p class="pinyin">쭈아 워아이니 쭈아 워아이니 워쓰짜이썬아이니</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">無你活著枉然、失意。</p>
+                    <p class="pinyin">우니후오쩌왕란 쓰이</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">你是富有吸引,極其引人著迷, 你的豐富 追測不盡。</p>
+                    <p class="pinyin">니쓰푸요우씨인 지치인런짜오미 니디퐁푸 쮀이츠뿌진</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">我主名何 甜蜜,呼求 叫人 滿意,</p>
+                    <p class="pinyin">우쭈밍허티엔미 후치우자오런만이</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">主, 你 屬 我; 主,我 也 屬 你。</p>
+                    <p class="pinyin">쭈니쑤워 쭈워이에쑤니</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">聯結 調和於你,神人合併是一</p>
+                    <p class="pinyin">리엔지에 티아우허위니 썬런허삥쓰이</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">豫嘗新耶路撒冷實際。</p>
+                    <p class="pinyin">위창씬예루싸렁쓰지</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- 찬송 3 -->
+        <article class="hymn-card">
+            <h2 class="hymn-title">찬송 3. 하나님의 영원한 경륜</h2>
+            
+            <div class="lang-section">
+                <span class="badge">한국어</span>
+                <p class="lyrics ko">하나님의 영원한 경륜은 신격 아닌 생명과 본성에서
+우리들과 똑같이 만드는 것
+하나님이 사람과 사람이 그분과 하나되어
+그의 표현이 확대 확장되니
+모든 신성한 그의 속성들이
+사람 미덕 통해 표현되게 함일세</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">English</span>
+                <p class="lyrics en">God's eternal economy is to make man the same as He is
+In life and nature but not in the Godhead
+And to make Himself one with man and man one with Him
+Thus to be enlarged and expanded in His expression
+That all His divine attributes may be expressed in human virtues</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">中國語</span>
+                <div class="line-group">
+                    <p class="lyrics zh">神永遠的經綸 乃是要使人在生命性情上</p>
+                    <p class="pinyin">썬용웬디찡룬 나이쓰야오쓰런짜이썽밍씽칭쌍</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">但不在神格上與祂一模一樣,</p>
+                    <p class="pinyin">딴뿌짜이썬꺼쌍위타이모이양</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">並使祂自己與人成為一 使人與祂成為一,</p>
+                    <p class="pinyin">삥쓰타쯔지위런청웨이이 쓰런위타청웨이이</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">因而使祂在彰顯上得以擴大並擴展,</p>
+                    <p class="pinyin">인얼쓰타짜이짱시엔쌍떠이쿠오따삥쿠오짠</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">使祂一切神聖的屬性得以彰顯 在人性美德裏</p>
+                    <p class="pinyin">쓰타이치에썬썽디쑤씽떠이짱시엔짜이런씽메이떠리</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- 찬송 4 -->
+        <article class="hymn-card">
+            <h2 class="hymn-title">찬송 4. 교회 생활은 아름다워 (補 717)</h2>
+            
+            <div class="lang-section">
+                <span class="badge">한국어</span>
+                <p class="lyrics ko">1. 교회생활은 아름다워 그 날 맛봐 새 예루살렘 새 예루살렘 안식과 만족
+2. 젖과 꿀이 흐르는 땅 아름다워 마음껏 누리네 마음껏 누리네 풍성한 생명
+3. 건축된 교회는 하나님 거처 그분이 안식해 그가 왕되어 그가 왕되어 다스리시네</p>
+            </div>
+
+            <div class="lang-section">
+                <span class="badge">中國語</span>
+                <div class="line-group">
+                    <p class="lyrics zh">1. 自從過 召會生活 何美麗 豫嘗那日</p>
+                    <p class="pinyin">쯔총꾸오 짜오훼이썽후오 허메이리 위창나르</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">新耶路撒冷 新耶路撒冷 安息的滿足</p>
+                    <p class="pinyin">씬예루싸렁 씬예루싸렁 안씨디만쭈</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">2. 今日的 召會 就是那美地 流奶與蜜</p>
+                    <p class="pinyin">진르디 짜오훼이 찌우쓰나메이띠 리우나이위미</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">盡情的享受 盡情的享受 豐盛的生命</p>
+                    <p class="pinyin">찐칭띠샹쇼우 찐칭띠샹쇼우 퐁썽디썽밍</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">3. 建造的召會 就是神居所 讓祂安息</p>
+                    <p class="pinyin">지엔짜오디짜오훼이 찌우쓰썬쥐쑤오 랑타안씨</p>
+                </div>
+                <div class="line-group">
+                    <p class="lyrics zh">為祂掌王權 為祂掌王權 完神旨意</p>
+                    <p class="pinyin">웨이타짱왕췐 웨이타짱왕췐 완청썬쯔이</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Blended Hymns Collection. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
