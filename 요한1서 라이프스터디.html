@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신성한 생명의 향유와 표현: 먹음과 교통의 실제적 의미</title>
+    <!-- 구글 폰트 임포트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 변수 선언 (디자인 시스템 가이드라인 반영) */
+        :root {
+            --bg-color: #0d1117;
+            --surface-color: #161b22;
+            --surface-border: #30363d;
+            --text-primary: #c9d1d9;
+            --text-muted: #8b949e;
+            --gold: #d4a017;
+            --gold-hover: #f1c40f;
+            --blue: #58a6ff;
+            --green: #7ee787;
+            --font-serif: 'Noto Serif KR', serif;
+            --font-sans: 'Noto Sans KR', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 초기화 및 기본 스타일 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.75;
+            letter-spacing: -0.02em;
+            word-break: keep-all;
+            /* 은은한 별빛 패턴 적용 */
+            background-image: radial-gradient(rgba(212, 160, 23, 0.05) 1px, transparent 0),
+                              radial-gradient(rgba(88, 166, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            overflow-x: hidden;
+        }
+
+        /* 스크롤 애니메이션을 위한 클래스 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* 레이아웃 구조 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header, section, footer {
+            padding: 60px 0;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--surface-border), transparent);
+            margin: 40px 0;
+        }
+
+        /* 타이포그래피 요소 */
+        h1, h2, h3, h4 {
+            color: #ffffff;
+            font-family: var(--font-serif);
+            font-weight: 700;
+        }
+
+        /* Component: Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 160, 23, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(212, 160, 23, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero .lead-text {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            max-width: 760px;
+            margin: 0 auto;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero .icon-marker {
+            display: block;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* 섹션 대제목 스타일 */
+        .section-title {
+            font-size: 1.85rem;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--surface-border);
+            padding-bottom: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .section-title span {
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .sub-section-title {
+            font-size: 1.35rem;
+            margin: 28px 0 16px;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-align: justify;
+        }
+
+        /* Component: Verse Card */
+        .verse-card {
+            background-color: var(--surface-color);
+            border-left: 4px solid var(--gold);
+            border-top: 1px solid var(--surface-border);
+            border-right: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+            padding: 30px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .verse-card::before {
+            content: "“";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: var(--font-serif);
+            font-size: 8rem;
+            color: rgba(212, 160, 23, 0.05);
+            line-height: 1;
+        }
+
+        .verse-card p {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            color: #ffffff;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Component: Front Card Grid & Person Card */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 28px 0;
+        }
+
+        .front-card, .person-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .front-card:hover, .person-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 6px 24px rgba(212, 160, 23, 0.1);
+        }
+
+        .front-card h4, .person-card h4 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .front-card h4 span {
+            color: var(--gold);
+        }
+
+        .front-card p, .person-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Component: Dialogue */
+        .dialogue {
+            background-color: rgba(88, 166, 255, 0.05);
+            border: 1px dashed var(--blue);
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .dialogue p {
+            font-style: italic;
+            color: #ffffff;
+            font-family: var(--font-serif);
+        }
+
+        .dialogue p strong {
+            font-style: normal;
+            color: var(--blue);
+        }
+
+        /* Component: Mission List */
+        .mission-list {
+            list-style: none;
+            margin: 24px 0;
+            padding-left: 4px;
+        }
+
+        .mission-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .mission-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 4px;
+            top: 0;
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+
+        .mission-list li strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .mission-list li span {
+            color: var(--text-primary);
+        }
+
+        /* 단계적 구조화 번호 목록 스타일 */
+        .step-list {
+            list-style: none;
+            margin: 24px 0;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .step-list .step-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background: var(--gold);
+            color: var(--bg-color);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .step-list .step-content strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 강조 텍스트 */
+        .highlight-gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .highlight-blue {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* Footer 스타일 */
+        footer {
+            background-color: #070a0e;
+            border-top: 1px solid var(--surface-border);
+            text-align: center;
+            padding: 40px 24px;
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto 16px;
+        }
+
+        footer .copyright {
+            font-size: 0.8rem;
+            color: rgba(139, 148, 158, 0.4);
+        }
+
+        /* 반응형 모바일 브레이크포인트 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.85rem;
+            }
+            .hero .lead-text {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.45rem;
+            }
+            .sub-section-title {
+                font-size: 1.2rem;
+            }
+            .verse-card p {
+                font-size: 1.05rem;
+            }
+            header, section, footer {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero fade-in-section">
+            <span class="badge">전략적 지침서</span>
+            <h1>신성한 생명의 향유와 표현:<br>먹음과 교통의 실제적 의미</h1>
+            <p class="lead-text">
+                성도들이 신성한 생명의 내재적인 법을 체득하고, 이를 통해 교회 생활의 실제적인 치리 원칙을 실행할 수 있도록 설계된 전략적 지침서입니다. 사도 요한의 사역에 계시된 '먹음'과 '교통'의 원리를 체계화하여, 단순한 지식의 전달을 넘어 성도들을 유기적인 생명의 건축으로 인도하는 영적 아키텍처를 제시합니다.
+            </p>
+            <span class="icon-marker">▼</span>
+        </header>
+
+        <hr>
+
+        <!-- Section 1 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>1.</span> 서론: 신성한 생명의 비밀성과 사역의 전략적 가치</h2>
+            
+            <h3 class="sub-section-title">신성한 본성에 기초한 '비밀스러운 존재'로서의 그리스도인</h3>
+            <p class="paragraph">
+                그리스도인의 정체성은 세상이 이해할 수 없는 '비밀성'에 그 본질이 있습니다. 우리 안에 신성한 본성을 지닌 신성한 생명이 내주하기 때문에, 그리스도인은 필연적으로 비밀스러운 사람이 됩니다. 만일 어떤 믿는이가 세상의 논리로 완전히 설명 가능하다면, 그의 구원은 재고되어야 할 만큼 이 비밀성은 강력한 실재입니다. 사역자는 성도들이 이 신성한 비밀을 인식하고, 오해와 박해 속에서도 그 비밀스러운 생명을 살아내도록 전략적으로 보조해야 합니다.
+            </p>
+
+            <h3 class="sub-section-title">요한 사역의 전략적 위치: 예방 접종과 보수(補修)</h3>
+            <p class="paragraph">
+                사도 요한의 사역은 단순히 바울의 계시를 반복하는 것이 아니라, 손상된 계시를 보수(補修)하고 완결하는 '논쟁적(Polemic)' 성격을 띱니다. 이는 일종의 영적 예방 접종입니다. 혼합된 철학(영지주의 등)과 세속화의 이단적 가르침으로부터 성도들을 보호하기 위해, 요한은 '생명의 말씀(Logos)'—즉 하나님 자신의 정의이자 설명이신 그리스도의 인격을 제시합니다.
+            </p>
+
+            <h3 class="sub-section-title">영원한 생명의 세 가지 차원</h3>
+            <p class="paragraph">
+                우리가 누리는 '영원한 생명'은 다음의 세 차원을 포함하는 완결된 생명입니다:
+            </p>
+            
+            <div class="card-grid">
+                <div class="front-card">
+                    <h4><span>1.</span> 시간 (Time)</h4>
+                    <p>영존하고 끝없는 지속성.</p>
+                </div>
+                <div class="front-card">
+                    <h4><span>2.</span> 공간 (Space)</h4>
+                    <p>전 우주를 에워싸는 광대함과 무한함.</p>
+                </div>
+                <div class="front-card">
+                    <h4><span>3.</span> 질 (Quality)</h4>
+                    <p>결함이나 부족함이 없는 절대적인 온전함.</p>
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                이 장대한 생명의 비밀을 인식하는 것이 사역의 시작이며, 이를 실제적인 공급으로 전환하는 구체적인 기제는 '먹음'의 원리에 있습니다.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Section 2 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>2.</span> '먹음'의 원리: 신성한 생명 공급의 체험적 구조화</h2>
+            
+            <h3 class="sub-section-title">'연구자'에서 '참여자'로의 전환: 전채 요리로서의 말씀</h3>
+            <p class="paragraph">
+                영적 성장은 지식의 습득이 아닌 유기적인 소화와 동화의 과정입니다. 사역자는 성도들을 성경을 분석하는 '연구자'가 아닌, '잔치에 참여하는 자'로 이끌어야 합니다.
+            </p>
+            
+            <div class="verse-card">
+                <p>특히 사도 요한이 제시한 <strong>'생명의 말씀'은 우리의 영적 식욕을 돋구기 위한 전채 요리(Appetizer)</strong>입니다. 말씀 그 자체를 연구하는 데 머물지 않고, 그 말씀을 통해 신성한 생명의 실재를 먹고 누리는 '참여'의 단계로 나아가야 합니다.</p>
+            </div>
+
+            <h3 class="sub-section-title">단계적 공급 체계: 영적 음식의 코스 구성</h3>
+            <ul class="mission-list">
+                <li>
+                    <strong>생명의 떡 (요 6장)</strong>
+                    <span>주님을 믿음으로 영접하여 영생을 유지하는 기초 공급.</span>
+                </li>
+                <li>
+                    <strong>생명나무 (계 2, 22장)</strong>
+                    <span>이기는 자의 분깃이자 생명의 흐름에 따른 유기적 공급.</span>
+                </li>
+                <li>
+                    <strong>감추인 만나 (계 2장)</strong>
+                    <span>세상에 드러나지 않은, 주님과의 은밀한 접촉을 통한 특별 양식.</span>
+                </li>
+                <li>
+                    <strong>정찬 (계 3장)</strong>
+                    <span>주님과 더불어 먹고 마시는 풍성한 잔치의 완결.</span>
+                </li>
+            </ul>
+
+            <h3 class="sub-section-title">객관적 경배와 주관적 먹음의 차이</h3>
+            <p class="paragraph">
+                종교적 시스템은 하나님을 멀리 두고 격식을 차리는 '객관적 경배'를 선호합니다. 이는 안전하지만 생명력이 없습니다. 반면 '주관적 먹음'은 하나님을 우리 존재 안으로 받아들이는 급진적인 실행입니다. 우리가 무엇을 먹느냐가 우리의 영적 안색(Complexion)을 결정합니다. 신성한 양식을 충분히 섭취한 성도는 영적으로 강건하고 활발한 상태를 자연스럽게 나타내게 됩니다.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Section 3 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>3.</span> 소화와 표현: 신성한 속성의 인간적 미덕으로의 전이</h2>
+            
+            <h3 class="sub-section-title">신성한 조성의 메커니즘: "우리가 먹은 것이 곧 우리이다"</h3>
+            <div class="dialogue">
+                <p>"쇠고기를 많이 먹으면 쇠고기로 조성된다"는 원리처럼, 우리가 하나님을 먹고 소화할 때 신성한 생명은 우리 존재의 구성 성분이 됩니다. 소화된 하나님은 우리 안에서 주관적인 말씀이 되어 우리 존재를 통해 표현됩니다. 이는 천연적인 노력이 아닌, 생물학적인 대사 작용과 같은 신성한 조성의 결과입니다.</p>
+            </div>
+
+            <h3 class="sub-section-title">4대 속성과 인간적 미덕의 상관관계</h3>
+            <p class="paragraph">
+                하나님의 내재적 속성은 성도의 인격적 미덕을 통해 외부로 투사됩니다:
+            </p>
+            
+            <div class="card-grid">
+                <div class="person-card">
+                    <h4>사랑과 빛</h4>
+                    <p>하나님의 본질(사랑)과 표현(빛)이 성도의 무조건적인 사랑과 진실함으로 나타남.</p>
+                </div>
+                <div class="person-card">
+                    <h4>거룩과 의</h4>
+                    <p>하나님의 구별된 인격(거룩)과 행정적 공의(의)가 성도의 구별된 생활과 올바른 관계로 치환됨.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-section-title">생명 안에서 왕노릇 하기 (Ruling in Life)</h3>
+            <p class="paragraph">
+                성도는 자신의 성질이나 환경을 이기기 위해 결심할 필요가 없습니다. 대신 신성한 생명을 잔치로 누려야 합니다. 생명이 우리 안에서 <span class="highlight-gold">왕노릇</span> 할 때, 우리는 그 생명의 권위를 힘입어 모든 소극적인 환경을 다스리는 통치력을 갖게 됩니다. 이것이 누림을 통한 승리의 전략입니다.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Section 4 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>4.</span> 신성한 교통(Koinonia)의 활성화 전략</h2>
+            
+            <h3 class="sub-section-title">생명의 넘쳐흐름과 쌍방 왕래(Two-way Traffic)</h3>
+            <p class="paragraph">
+                교통(Koinonia)은 단순한 사교가 아니라 신성한 생명의 <span class="highlight-gold">'넘쳐흐름(Outflow)'</span>입니다. 이는 그리스도라는 머리와 사도들, 그리고 성도들 사이를 흐르는 <span class="highlight-blue">'쌍방 왕래(Two-way traffic)'</span>의 에너지 흐름입니다. 발전소에서 각 가정의 전등으로 전류가 흐르듯, 이 흐름이 끊기지 않게 유지하는 것이 사역의 핵심 성패를 좌우합니다.
+            </p>
+
+            <h3 class="sub-section-title">교통의 구조: '프로스(pros)'의 연합</h3>
+            <p class="paragraph">
+                성경은 아들이 아버지와 함께 계셨음을 기술할 때 전치사 <span class="highlight-gold">'프로스(pros)'</span>를 사용합니다. 이는 정적인 '곁에 있음'이 아니라, 살아있고 능동적인 연합과 교통을 의미합니다. 사역자는 성도들을 이 능동적인 전류의 흐름—즉 하나님과의 수직적 교통과 사도 및 성도들과의 수평적 교통이 결합된 흐름—안으로 배치해야 합니다.
+            </p>
+
+            <h3 class="sub-section-title">공동체적 건축과 기쁨의 진단</h3>
+            <p class="paragraph">
+                교통은 사적인 위로를 넘어 '하나님의 목적을 수행하기 위한 연결'입니다.
+            </p>
+            <ul class="mission-list">
+                <li>
+                    <strong>목적</strong>
+                    <span>믿는 이들이 생명 안에서 자라 세상과 마귀를 이기고, 지방 교회가 예수의 간증을 위한 등대(Lampstand)로 건축되는 것.</span>
+                </li>
+                <li>
+                    <strong>진단</strong>
+                    <span>공동체 내에 <span class="highlight-gold">'기쁨의 유무'</span>를 통해 교통의 상태를 점검하십시오. 종교적 엄숙주의(Solemnity)가 지배한다면 교통은 막힌 것입니다. 영 안에서 기뻐 뛰는(Exulting) 상태가 건강한 교통의 증거입니다.</span>
+                </li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- Section 5 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>5.</span> 실제적 실행 지침: 먹음과 교통의 일상화</h2>
+            <p class="paragraph">건강한 안색을 위한 데일리 루틴(Daily Routine)</p>
+            
+            <ul class="step-list">
+                <li>
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <strong>주의 이름을 부름 (Calling on the Lord's Name): 긴급 처방</strong>
+                        <p class="paragraph">상황: 소극적인 감정(성질 등)이 일어날 때나 생명 안에서의 왕노릇이 필요할 때.</p>
+                        <p class="paragraph">실행: "오 주 예수여!"라고 간절히 부름으로써 즉각적으로 생명의 통치 아래 자신을 둡니다. 이는 성질을 이기려는 결심보다 강력한 생명의 기제입니다.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <strong>기도로 말씀 읽기 (Pray-reading): 식욕 촉진과 영양 공급</strong>
+                        <p class="paragraph">상황: 말씀을 지식이 아닌 양식으로 취득하고자 할 때.</p>
+                        <p class="paragraph">단계:</p>
+                        <ol style="list-style: decimal; padding-left: 20px; color: var(--text-primary); margin-bottom: 10px;">
+                            <li style="margin-bottom: 4px;">말씀(Logos)을 짧은 구절로 나눕니다.</li>
+                            <li style="margin-bottom: 4px;">나눈 말씀을 자신의 기도로 바꿉니다. (예: "태초에 말씀이 계셨습니다. 아멘! 이 말씀이 내 안에 계십니다! 할렐루야!")</li>
+                            <li style="margin-bottom: 4px;">주의 이름을 섞어 말씀을 영 안으로 소화시킵니다.</li>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <strong>즐거운 소음(Joyful Noise)의 회복: 환경 조성</strong>
+                        <p class="paragraph">상황: 집회와 소그룹의 생명력이 침체되었을 때.</p>
+                        <p class="paragraph">가이드: 종교적 엄숙주의를 거부하고 "주님께 즐거운 소음(시 95:1)"을 내십시오. 소리 내어 찬양하고 기쁨을 표현할 때 어둠의 세력은 예방 접종된 항체에 의해 소멸되듯 물러갑니다.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- Section 6 -->
+        <section class="fade-in-section">
+            <h2 class="section-title"><span>6.</span> 결론: 예수의 간증과 새 예루살렘의 최종 완결</h2>
+            <p class="paragraph">
+                사역의 최종 목적지는 개인의 만족이 아닙니다. 모든 실행의 결과는 <span class="highlight-gold">'예수의 간증'</span>인 등대의 건축으로 귀결되어야 합니다. 오늘 우리가 실천하는 '먹음'과 '교통'은 단순히 현재의 위로를 위한 것이 아니라, 장차 올 왕국 시대의 상급과 영원한 시대의 새 예루살렘의 누림으로 이어지는 연속성을 갖습니다.
+            </p>
+            
+            <div class="verse-card">
+                <p>모든 사역 실행의 종착지는 하나님으로 조성된 공동체가 그분 자신을 온전히 표현해 내는 것입니다. 사역자들은 성도들을 이 우주적인 행정의 중심이자 하나님의 최종 완결인 새 예루살렘의 실재로 인도해야 하는 거룩한 사명을 완수해야 합니다. 우리가 하나님을 먹고 그분과 교통할 때, 교회는 이 땅에서 하나님의 살아있는 설명서인 '말씀'이 될 것입니다.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>신성한 생명의 향유와 표현: 먹음과 교통의 실제적 의미</p>
+        <p class="copyright">&copy; 2026 영적 아키텍처 연구회. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript: 스크롤 애니메이션 (Intersection Observer API) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // 한 번 나타난 이후에는 관찰을 해제하여 성능 최적화
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const targetSections = document.querySelectorAll('.fade-in-section');
+            targetSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
