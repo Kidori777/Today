@@ -3,155 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교회 주보</title>
+    <title>교회의 기도 사역 - 주보</title>
     <!-- Google Fonts 임포트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* Reset & Base Styles */
+        /* CSS Reset 및 변수 정의 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #0d1117;
+            --surface-color: #161b22;
+            --surface-border: #30363d;
+            --gold-color: #d4a017;
+            --gold-hover: #f3c644;
+            --blue-color: #58a6ff;
+            --green-color: #3fb950;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --font-serif: 'Noto Serif KR', serif;
+            --font-sans: 'Noto Sans KR', sans-serif;
+        }
+
         body {
-            background-color: #0d1117;
-            background-image: radial-gradient(circle at 50% 50%, #161b22 0%, #0d1117 100%);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 30%, rgba(212, 160, 23, 0.05) 0%, transparent 60%),
+                              radial-gradient(circle at 10% 80%, rgba(88, 166, 255, 0.03) 0%, transparent 40%);
             background-attachment: fixed;
-            color: #c9d1d9;
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.8;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.7;
             padding: 0;
             margin: 0;
-            word-break: keep-all;
+            overflow-x: hidden;
         }
 
-        /* Typography Shortcuts */
-        h1, h2, h3, h4, .serif-font {
-            font-family: 'Noto Serif KR', serif;
-            color: #d4a017; /* Gold */
-        }
-
-        /* Layout Container */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 20px 80px 20px;
         }
 
-        /* Component: Hero Section */
+        /* Fade-in 애니메이션 초기 상태 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Component */
         .hero {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 20px 40px 20px;
             margin-bottom: 40px;
-            background: #161b22;
-            border-radius: 16px;
-            border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
+        .hero::after {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #d4a017, #2f81f7, #238636);
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold-color);
+            margin: 24px auto 0 auto;
         }
 
         .hero-badge {
             display: inline-block;
             padding: 6px 16px;
-            background: rgba(212, 160, 23, 0.1);
-            border: 1px solid #d4a017;
-            color: #d4a017;
-            border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 500;
+            color: var(--gold-color);
+            border: 1px solid var(--gold-color);
+            border-radius: 20px;
+            margin-bottom: 16px;
             letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            background-color: rgba(212, 160, 23, 0.05);
         }
 
-        .hero h1 {
+        .hero-title {
+            font-family: var(--font-serif);
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            word-break: keep-all;
         }
 
-        .hero-icon {
-            font-size: 2rem;
-            color: #d4a017;
-            margin-bottom: 10px;
+        /* Section Layout */
+        .section-block {
+            margin-bottom: 50px;
         }
 
-        /* Main Section Divider */
-        .main-section {
-            margin-bottom: 60px;
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 10px;
+        }
+
+        .section-number {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--gold-color);
+            font-weight: 700;
+            margin-right: 10px;
         }
 
         .section-title {
-            font-size: 1.8rem;
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: #ffffff;
+            font-weight: 700;
         }
 
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 24px;
-            background-color: #d4a017;
-            border-radius: 3px;
-        }
-
-        /* Component: Front Card & Person Card */
+        /* Front Card */
         .front-card {
-            background: #161b22;
-            border: 1px solid #30363d;
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: border-color 0.3s ease, transform 0.3s ease;
         }
 
         .front-card:hover {
-            transform: translateY(-4px);
-            border-color: #d4a017;
-            box-shadow: 0 8px 24px rgba(212, 160, 23, 0.15);
+            border-color: var(--gold-color);
+            transform: translateY(-2px);
         }
 
-        .card-header {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #58a6ff; /* Blue Point */
-            display: flex;
-            align-items: center;
-        }
-
-        /* Component: Verse Card (Core Sayings) */
+        /* Verse Card */
         .verse-card {
-            background: rgba(22, 27, 34, 0.8);
-            border-left: 4px solid #d4a017;
-            border-top: 1px solid #30363d;
-            border-right: 1px solid #30363d;
-            border-bottom: 1px solid #30363d;
+            background-color: rgba(22, 27, 34, 0.8);
+            border-left: 4px solid var(--gold-color);
+            border-top: 1px solid var(--surface-border);
+            border-right: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
             border-radius: 0 12px 12px 0;
-            padding: 30px;
-            margin: 20px 0;
+            padding: 30px 24px;
+            margin-bottom: 24px;
             position: relative;
             z-index: 1;
             overflow: hidden;
@@ -160,145 +162,125 @@
         .verse-card::before {
             content: '“';
             position: absolute;
-            top: -20px;
-            right: 10px;
-            font-family: 'Noto Serif KR', serif;
-            font-size: 12rem;
+            top: -10px;
+            left: 10px;
+            font-family: var(--font-serif);
+            font-size: 8rem;
             color: rgba(212, 160, 23, 0.05);
             z-index: -1;
             line-height: 1;
         }
 
         .verse-content {
-            font-family: 'Noto Serif KR', serif;
+            font-family: var(--font-serif);
             font-size: 1.25rem;
             font-weight: 700;
-            color: #f0f6fc;
+            color: var(--gold-color);
             text-align: center;
+            word-break: keep-all;
             line-height: 1.6;
         }
 
-        /* Component: Mission List */
+        /* Dialogue Component */
+        .dialogue {
+            font-style: italic;
+            color: var(--blue-color);
+            font-weight: 500;
+            padding-left: 8px;
+            border-left: 2px solid rgba(88, 166, 255, 0.3);
+            margin: 12px 0;
+        }
+
+        /* Mission List */
         .mission-list {
             list-style: none;
-            padding: 0;
         }
 
-        .mission-list li {
+        .mission-item {
             position: relative;
-            padding-left: 25px;
-            margin-bottom: 15px;
+            padding-left: 24px;
+            margin-bottom: 16px;
             font-size: 1.05rem;
-            color: #c9d1d9;
-            text-align: justify;
+            color: var(--text-main);
+            word-break: keep-all;
         }
 
-        .mission-list li::before {
-            content: '•';
+        .mission-item::before {
+            content: '◆';
             position: absolute;
-            left: 5px;
-            top: 0;
-            color: #238636; /* Green Point */
-            font-size: 1.3rem;
-            font-weight: bold;
+            left: 0;
+            top: 2px;
+            color: var(--gold-color);
+            font-size: 0.85rem;
         }
 
-        /* Component: Dialogue style for lists inside sub-sections */
-        .dialogue-box {
-            background: #0d1117;
-            border: 1px dashed #30363d;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-top: 10px;
+        .mission-item.blue::before {
+            color: var(--blue-color);
         }
 
+        .mission-item.green::before {
+            color: var(--green-color);
+        }
+
+        /* Person Card Grid */
         .person-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
 
         .person-card {
-            background: #161b22;
-            border: 1px solid #30363d;
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            font-size: 1.05rem;
-            color: #f0f6fc;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            padding: 16px;
+            transition: all 0.3s ease;
         }
 
         .person-card:hover {
-            background: #21262d;
-            border-color: #58a6ff;
-            color: #58a6ff;
+            border-color: var(--green-color);
+            background-color: rgba(63, 185, 80, 0.02);
         }
 
-        /* Footer Style */
-        footer {
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-            margin-top: 80px;
-            border-top: 1px solid #30363d;
-            font-family: 'Noto Serif KR', serif;
-        }
-
-        .footer-logo {
-            font-size: 1.6rem;
+        .person-name {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #d4a017;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .person-details {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--surface-border);
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--gold-color);
             letter-spacing: 4px;
-        }
-
-        .footer-sub {
-            font-size: 0.85rem;
-            color: #8b949e;
-            margin-top: 5px;
-        }
-
-        /* Scroll Animation (Intersection Observer Class) */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+            font-weight: 700;
         }
 
         /* Responsive Breakpoints */
         @media (max-width: 768px) {
             .container {
-                padding: 20px 15px;
+                padding: 20px 16px 60px 16px;
             }
-            .hero {
-                padding: 40px 15px;
-                margin-bottom: 30px;
+            .hero-title {
+                font-size: 2rem;
             }
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-            .section-title {
-                font-size: 1.4rem;
-            }
-            .verse-card {
-                padding: 20px;
+            .person-grid {
+                grid-template-columns: 1fr;
             }
             .verse-content {
                 font-size: 1.1rem;
-            }
-            .front-card {
-                padding: 18px;
-            }
-            .person-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 10px;
             }
         }
     </style>
@@ -307,141 +289,122 @@
 
     <div class="container">
         
-        <!-- Hero Header -->
+        <!-- Hero Section -->
         <header class="hero fade-in-section">
-            <div class="hero-icon">✦</div>
-            <div class="hero-badge">Church Bulletin</div>
-            <h1>교회 주보</h1>
+            <span class="hero-badge">PRAYER MINISTRY</span>
+            <h1 class="hero-title">교회의 기도 사역</h1>
         </header>
 
-        <!-- Section 1: 교회의 기도 사역 -->
-        <main class="main-section fade-in-section">
-            <h2 class="section-title">[교회의 기도 사역]</h2>
-
-            <!-- 사역을 위한 기도 -->
+        <!-- Section I -->
+        <section class="section-block fade-in-section">
+            <div class="section-header">
+                <span class="section-number">I.</span>
+                <h2 class="section-title">사역을 위한 기도</h2>
+            </div>
             <div class="front-card">
-                <div class="card-header">Ⅰ. 사역을 위한 기도</div>
                 <ul class="mission-list">
-                    <li>1. 신성한 계시의 최고봉에 이르고 하나님-사람의 생활 을 하며 하나님을 따라 목양함으로 주님을 모셔오는 새로운 부흥 안으로 들어가게 하십시오.</li>
-                    <li>2. 유럽 곳곳에 번역되고, 해석되고, 이해된 회복역 성경 이 배포되게 하시고, 기존 교회들이 강화되며 새로운 교회들이 산출되게 하십시오.</li>
-                    <li>3. 평안 가운데 북한 땅에 왕국 복음이 전파되고 교회가 세워지도록 환경을 열어 주십시오.</li>
+                    <li class="mission-item">신실한 계시의 교회에 이르고 하나님-사람의 생활을 하며 하나님을 따라 생활함으로 소문을 모시오는 새로운 부흥 안으로 들어가게 하십시오.</li>
+                    <li class="mission-item">유년, 중고대, 변혁되고, 형제되고, 이번 회복 성경이 배포되게 하시고, 기존 교회들이 강화되며 새로운 교회들이 산출되게 하십시오.</li>
+                    <li class="mission-item">평안 가운데 복음이 왕국 복음이 전파되고 교회가 세워지도록 환경을 열어 주십시오.</li>
                 </ul>
             </div>
+        </section>
 
-            <!-- 2026년 부산교회 봉사 방향을 위한 기도 -->
-            <div class="front-card">
-                <div class="card-header">II. 2026년 부산교회 봉사 방향을 위한 기도</div>
-                
-                <div class="verse-card">
-                    <div class="verse-content">
-                        “복음의 구조를 세우고 가정 집회를 강화하며 소그룹을 건축하여 남아 있는 열매를 맺자!”
-                    </div>
+        <!-- Section II -->
+        <section class="section-block fade-in-section">
+            <div class="section-header">
+                <span class="section-number">II.</span>
+                <h2 class="section-title">2026년 부산교회 봉사 방향을 위한 기도</h2>
+            </div>
+            
+            <div class="verse-card">
+                <div class="verse-content">
+                    “복음의 구조를 세우고 가정 전화를 강화하여 소그룹을 건축하며 다음 세대를 세움”
                 </div>
-
-                <ul class="mission-list" style="margin-top: 20px;">
-                    <li>1. 주일 인수 762명과 침례 인수 152명을 얻도록 모든 성 도들이 포도나무의 가지들로서 매년 한 명의 남아 있 는 열매를 맺게 하십시오.</li>
-                    <li>2. 복음의 구조가 세워지고, 성도들이 정해진 시간에 복음 의 움직임에 참여하며, 일상생활에서도 복음을 전하고 가정 집회 안에서 목양하는 생활을 하게 하십시오.</li>
-                    <li>3. 7구역(명지) 집회소 확장을 위해 필요한 모든 재정을 채워주시고, 가장 합당한 내부 인테리어가 이루어지게 하 십시오.</li>
-                </ul>
             </div>
 
-            <!-- 다음 세대를 위한 기도 -->
             <div class="front-card">
-                <div class="card-header">Ⅲ. 다음 세대를 위한 기도</div>
                 <ul class="mission-list">
-                    <li>1. 주님의 증거를 위하여 교회 안의 모든 연령층이 다음 세대(어린이들, 청소년들, 대학생들, 청년들)를 얻고 온전케 하십시오.</li>
-                    <li>2. 남한 땅의 35세 이하 다음 세대 3천 명이 구원받고 침 례받게 하십시오.</li>
+                    <li class="mission-item blue">주일 인수 762명과 전체 인수 152명을 연도로 모든 성도들이 초대, 나무, 가정으로서 매달 한 명씩 남아 있는 열매를 맺게 하십시오.</li>
+                    <li class="mission-item blue">복음의 구조가 세워지고, 성도들이 정해진 시간에 복음의 유익집회에 참여하여, 일상생활에서도 복음을 전하고 가정집회 안에서 목양하는 생활을 하게 하십시오.</li>
+                    <li class="mission-item blue">7구역(명지) 신회소 확장을 위해 필요한 모든 재정을 채워주시고, 가정 합당한 내부 인테리어가 이루어지게 하십시오.</li>
                 </ul>
             </div>
-        </main>
+        </section>
 
-        <!-- Section 2: 성도들 소식 -->
-        <section class="main-section fade-in-section">
-            <h2 class="section-title">[성도들 소식]</h2>
-
-            <!-- 사역을 위한 기도 (성도들 소식 항목 내 본문 보존) -->
+        <!-- Section III -->
+        <section class="section-block fade-in-section">
+            <div class="section-header">
+                <span class="section-number">III.</span>
+                <h2 class="section-title">다음 세대를 위한 기도</h2>
+            </div>
             <div class="front-card">
-                <div class="card-header">Ⅰ. 사역을 위한 기도</div>
                 <ul class="mission-list">
-                    <li>1. 신성한 계시의 최고봉에 이르고 하나님-사람의 생활을 하며 하나님을 따라 목양함으로 주님을 모셔오는 새로운 부흥 안으로 들어가게 하십시오.</li>
-                    <li>2. 유럽 곳곳에 번역되고, 해석되고, 이해된 회복역 성경 이 배포되게 하시고, 기존 교회들이 강화되며 새로운 교회들이 산출되게 하십시오.</li>
-                    <li>3. 평안 가운데 북한 땅에 왕국 복음이 전파되고 교회가 세워지도록 환경을 열어 주십시오.</li>
+                    <li class="mission-item green">주님의 축복을 위하여 교회 안의 모든 연령층이 다음 세대(어린이들, 청소년들, 대학생들, 청년들)를 얻고 온전히 하십시오.</li>
+                    <li class="mission-item green">남한 땅의 35세 이하 다음 세대 3천 명이 구원받고 침례받게 하십시오.</li>
                 </ul>
             </div>
+        </section>
 
-            <!-- 2026년 봉사 방향을 위한 기도 (성도들 소식 항목 내 본문 보존) -->
-            <div class="front-card">
-                <div class="card-header">II. 2026년 부산교회 봉사 방향을 위한 기도</div>
-                
-                <div class="verse-card">
-                    <div class="verse-content">
-                        “복음의 구조를 세우고 가정 집회를 강화하며 소그룹을 건축하여 남아 있는 열매를 맺자!”
-                    </div>
+        <!-- Section IV -->
+        <section class="section-block fade-in-section">
+            <div class="section-header">
+                <span class="section-number">IV.</span>
+                <h2 class="section-title">자녀들</h2>
+            </div>
+            <div class="person-grid">
+                <div class="person-card">
+                    <div class="person-name">허윤희(김명재)*김도현(10), 허성엽</div>
                 </div>
-
-                <ul class="mission-list" style="margin-top: 20px;">
-                    <li>1. 주일 인수 762명과 침례 인수 152명을 얻도록 모든 성 도들이 포도나무의 가지들로서 매년 한 명의 남아 있 는 열매를 맺게 하십시오.</li>
-                    <li>2. 복음의 구조가 세워지고, 성도들이 정해진 시간에 복음의 움직임에 참여하며, 일상생활에서도 복음을 전하고 가정 집회 안에서 목양하는 생활을 하게 하십시오.</li>
-                    <li>3. 7구역(명지) 집회소 확장을 위해 필요한 모든 재정을 채워주시고, 가장 합당한 내부 인테리어가 이루어지게 하 십시오.</li>
-                </ul>
-            </div>
-
-            <!-- 다음 세대를 위한 기도 (성도들 소식 항목 내 본문 보존) -->
-            <div class="front-card">
-                <div class="card-header">Ⅲ. 다음 세대를 위한 기도</div>
-                <ul class="mission-list">
-                    <li>1. 주님의 증거를 위하여 교회 안의 모든 연령층이 다음 세대(어린이들, 청소년들, 대학생들, 청년들)를 얻고 온전케 하십시오.</li>
-                    <li>2. 남한 땅의 35세 이하 다음 세대 3천 명이 구원받고 침례받게 하십시오.</li>
-                </ul>
-            </div>
-
-            <!-- 복음 및 목양대상자 -->
-            <div class="front-card">
-                <div class="card-header" style="color: #238636;">IV. 복음 및 목양대상자</div>
-                <div class="dialogue-box">
-                    <div class="person-grid">
-                        <div class="person-card">허우영</div>
-                        <div class="person-card">안도현</div>
-                        <div class="person-card">오성탁</div>
-                        <div class="person-card">최재곤</div>
-                        <div class="person-card">오수림</div>
-                        <div class="person-card">권순영</div>
-                        <div class="person-card">정승혜</div>
-                        <div class="person-card">라시카*루안*씨뚱<br><span style="font-size:0.8rem; color:#8b949e;">(스리랑카)</span></div>
-                        <div class="person-card">민지영<br><span style="font-size:0.8rem; color:#8b949e;">(조재환)</span></div>
-                    </div>
+                <div class="person-card">
+                    <div class="person-name">우장신(김엄지)*우수한,</div>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">우장성(김민정)*우아윤*우아인</div>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">노성재, 노성미, 노성복</div>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">성기훈, 성시은</div>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">안경훈, 안경빈</div>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="fade-in-section">
-            <div class="footer-logo">부산교회</div>
-            <div class="footer-sub">All Truths for All Saints</div>
+        <footer class="footer fade-in-section">
+            부산교회
         </footer>
 
     </div>
 
-    <!-- Visual Effects: 스크롤 애니메이션 스크립트 -->
+    <!-- 스크롤 애니메이션 스크립트 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0.1
+            const faders = document.querySelectorAll('.fade-in-section');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // 한 번 보인 요소는 감시 해제
+                        appearOnScroll.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, appearOptions);
 
-            const fadeElems = document.querySelectorAll('.fade-in-section');
-            fadeElems.forEach(el => observer.observe(el));
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
         });
     </script>
 </body>
