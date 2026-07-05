@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바벨탑에 갇힌 복음 - 브리핑 문서</title>
+    <!-- 구글 폰트 임포트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 디자인 시스템 및 글로벌 스타일 */
+        :root {
+            --bg-color: #0d1117;
+            --surface-color: #161b22;
+            --surface-border: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --gold: #d4a017;
+            --gold-light: #f1c40f;
+            --blue-point: #58a6ff;
+            --green-point: #2ea043;
+            --font-serif: 'Noto Serif KR', serif;
+            --font-sans: 'Noto Sans KR', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 50%, rgba(212, 160, 23, 0.05) 0%, transparent 80%);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            letter-spacing: -0.02em;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 스크롤 애니메이션 관련 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* Hero 컴포넌트 */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px 20px;
+            border-bottom: 1px solid var(--surface-border);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "†";
+            display: block;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-family: var(--font-serif);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(212, 160, 23, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            word-break: keep-all;
+        }
+
+        .hero h2 {
+            font-family: var(--font-sans);
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 0;
+            word-break: keep-all;
+        }
+
+        /* 섹션 스타일 */
+        section {
+            margin-bottom: 60px;
+        }
+
+        h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+            margin-right: 12px;
+            transform: rotate(45deg);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            word-break: keep-all;
+            text-align: justify;
+        }
+
+        /* verse-card 컴포넌트 */
+        .verse-card {
+            background-color: var(--surface-color);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 30px;
+            margin: 35px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .verse-card::after {
+            content: "“";
+            position: absolute;
+            right: 20px;
+            bottom: -20px;
+            font-size: 12rem;
+            color: rgba(212, 160, 23, 0.03);
+            font-family: var(--font-serif);
+            line-height: 1;
+        }
+
+        .verse-card p {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            color: #ffffff;
+            line-height: 1.9;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* front-card 및 person-card 컴포넌트 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .front-card, .person-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .front-card:hover, .person-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 6px 25px rgba(212, 160, 23, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: "•";
+            color: var(--blue-point);
+            font-size: 1.5rem;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        .person-card .card-title::before {
+            color: var(--green-point);
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* dialogue 컴포넌트 */
+        .dialogue {
+            background-color: rgba(88, 166, 255, 0.05);
+            border: 1px dashed var(--blue-point);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* mission-list 컴포넌트 */
+        .mission-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .mission-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+
+        .mission-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .mission-list li strong {
+            color: #ffffff;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* 테이블 컴포넌트 */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 35px 0;
+            border-radius: 8px;
+            border: 1px solid var(--surface-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: rgba(48, 54, 61, 0.6);
+            color: var(--gold);
+            font-weight: 700;
+            padding: 14px 16px;
+            border-bottom: 2px solid var(--surface-border);
+            font-family: var(--font-serif);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--surface-border);
+            color: var(--text-main);
+            background-color: var(--surface-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 구분선 */
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--surface-border), transparent);
+            margin: 50px 0;
+        }
+
+        /* 반응형 미디어 쿼리 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            .verse-card {
+                padding: 20px;
+            }
+            .verse-card p {
+                font-size: 1rem;
+            }
+            th, td {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Hero 섹션 -->
+        <header class="hero fade-in-section">
+            <span class="hero-badge">진단과 회복의 과제</span>
+            <h1>바벨탑에 갇힌 복음</h1>
+            <h2>한국 교회의 변질에 대한 진단과 회복의 과제</h2>
+        </header>
+
+        <!-- 인트로 서문 -->
+        <section class="fade-in-section">
+            <p>
+                행크 헤너그라프(Hank Hanegraaff)의 저서 『바벨탑에 갇힌 복음』을 바탕으로 한국 교회가 직면한 영적 위기의 본질을 분석한다. 핵심적인 문제는 한국 교회가 지난 수십 년간 경제 만능주의에 편승하여 '성공과 번영의 복음'이라는 세속적 가치관을 무비판적으로 수용했다는 점이다. 이로 인해 교회는 외형적 성장을 이룩했으나, 내면적으로는 신앙의 순수성과 생명력을 상실한 '빈사 상태'에 빠졌다. 이러한 변질의 원인으로 지목된 미국발 사이비 신앙의 무분별한 수입과 기복주의적 신앙 행태를 고발하며, 한국 교회가 다시 '십자가의 복음'으로 돌아가 세상의 소금과 빛으로서의 사명을 회복해야 함을 강조한다.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- 1 섹션 -->
+        <section class="fade-in-section">
+            <h3>1. 한국 교회의 변질과 역사적 배경</h3>
+            <p>한국 개신교의 타락은 과거의 신앙적 순수성을 잃어버리고 외형적 성장에만 치중한 결과로 분석된다.</p>
+            
+            <div class="grid-container">
+                <div class="front-card">
+                    <div class="card-title">역사적 유례: 주후 313년</div>
+                    <div class="card-body">콘스탄티누스 대제의 신앙 자유 부여 이후 초대교회가 급격히 타락한 것과 마찬가지로, 한국 교회 역시 가난하던 시절의 절박한 신앙을 성공과 맞바꾸며 변질되었다.</div>
+                </div>
+                <div class="front-card">
+                    <div class="card-title">신앙 생명력의 고갈</div>
+                    <div class="card-body">교회가 종교적 형식은 유지하고 있으나, 하나님 나라의 초월적인 생명의 능력이 사라진 '영적 죽음'의 상태에 직면해 있다.</div>
+                </div>
+                <div class="front-card">
+                    <div class="card-title">성공주의의 습격</div>
+                    <div class="card-body">지난 수십 년간 한국 사회를 휩쓴 경제 만능주의와 결탁하여, 교회는 비판적 성찰 없이 '성공과 번영'만을 외치는 공간으로 전락했다.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 섹션 -->
+        <section class="fade-in-section">
+            <h3>2. '성공과 번영의 복음'이 초래한 참상</h3>
+            <p>세속적 가치가 교회 내부에 깊숙이 침투하면서 복음의 본질이 왜곡되었으며, 이는 다각적인 폐해를 낳고 있다.</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>변질된 모습</th>
+                            <th>결과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>강단과 회중</strong></td>
+                            <td>바알의 사제와 신도들의 점유</td>
+                            <td>참된 제자도의 실종 및 세속적 구호의 범람</td>
+                        </tr>
+                        <tr>
+                            <td><strong>신학적 토대</strong></td>
+                            <td>심도 깊은 신학의 부재</td>
+                            <td>성경과 현실을 연결하는 능력 상실, 선동만 남음</td>
+                        </tr>
+                        <tr>
+                            <td><strong>교회의 형태</strong></td>
+                            <td>대형마트 및 문화센터화</td>
+                            <td>개교회주의와 성장·번식에만 몰두하는 마케팅 장소</td>
+                        </tr>
+                        <tr>
+                            <td><strong>평가 기준</strong></td>
+                            <td>양적 성과와 부(富)</td>
+                            <td>성공한 것이 곧 복음이자 십자가라는 왜곡된 인식</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-container">
+                <div class="person-card">
+                    <div class="card-title">기독교 출판 및 문화</div>
+                    <div class="card-body">세속적 자기계발론에 종교적 색채를 입힌 책들이 베스트셀러가 되며, 인기 스타 목사 중심의 종교로 변질되었다.</div>
+                </div>
+                <div class="person-card">
+                    <div class="card-title">영적 기복주의</div>
+                    <div class="card-body">현세의 안녕, 건강, 권력만을 갈구하는 '무당의 종교'와 다를 바 없는 지경에 이르렀다.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 섹션 -->
+        <section class="fade-in-section">
+            <h3>3. 외부적 영향과 신학적 빈곤에 대한 진단</h3>
+            <p>한국 교회의 위기는 내부적 문제뿐만 아니라, 외부, 특히 미국으로부터 유입된 잘못된 신학적 영향에 기인한다.</p>
+
+            <ul class="mission-list">
+                <li><strong>오염된 상류(미국 사역자들):</strong> 한국에서 엘리야나 바울처럼 추앙받는 미국의 유명 사역자와 저술가들이 실제로는 반성경적이고 위선적인 주장을 펼치고 있음이 지적된다.</li>
+                <li><strong>무비판적 수입:</strong> 대형 교회와 기독교 출판사들이 '종교 자본'과 마케팅의 힘을 빌려 이러한 사이비 신앙을 확대 재생산하고 있다.</li>
+                <li><strong>지도층의 오판:</strong> 현재의 위기를 리더십이나 마케팅 능력의 부족으로 오판하며, 문제의 근본인 '신학적 부패'를 외면하고 있다.</li>
+            </ul>
+        </section>
+
+        <!-- 4 섹션 -->
+        <section class="fade-in-section">
+            <h3>4. 사회적 신뢰 추락과 교회의 위상</h3>
+            <p>교회가 거룩한 백성이 아닌 '탐욕스러운 바알의 신민'이 되기를 자처하면서 사회로부터 극심한 지탄을 받고 있다.</p>
+
+            <ul class="mission-list">
+                <li><strong>사회적 반감:</strong> 교회를 향한 대중의 욕설과 비하가 위험 수위에 도달했다.</li>
+            </ul>
+
+            <div class="dialogue">
+                "교회가 세상의 소금과 빛이 아니라, 세상이 교회의 소금과 빛"이라는 비아냥을 듣는 비참한 처지에 놓였다.
+            </div>
+
+            <ul class="mission-list" style="margin-top: 10px;">
+                <li><strong>소외된 이웃:</strong> 기득권의 종교가 되어버린 개신교는 더 이상 고단하고 배고픈 사람들의 친구가 될 수 없는 구조로 고착되었다.</li>
+            </ul>
+        </section>
+
+        <!-- 5 섹션 -->
+        <section class="fade-in-section">
+            <h3>5. 회복을 위한 제언: 십자가 복음으로의 회귀</h3>
+            <p>한국 교회가 영적 비참함을 극복하고 미래를 담보하기 위해서는 근본적인 회개와 본질 회복이 시급하다.</p>
+
+            <ul class="mission-list">
+                <li><strong>복의 정거장 역할 회복:</strong> 하나님을 복의 수단으로 삼는 '복의 종점' 노릇을 버리고, 받은 축복을 나누는 '복의 정거장'이 되어야 한다.</li>
+                <li><strong>자기 비움(Kenosis)의 실천:</strong> 십자가에서 자신을 비우신 예수 그리스도의 모범을 따라, 성공의 신이 아닌 하나님 한 분만을 붙들어야 한다.</li>
+                <li><strong>성공 지표의 재정립:</strong> 세상의 기준인 성공을 십자가와 동일시하지 말고, 약하고 두려운 가운데에서도 오직 십자가의 희생과 인내를 신뢰하는 교회로 거듭나야 한다.</li>
+                <li><strong>철저한 분별과 정화:</strong> 출세, 황금, 자아성취를 복음으로 포장하는 '어둠의 영'들을 물리치고 순수한 복음의 능력을 회복해야 한다.</li>
+            </ul>
+        </section>
+
+        <!-- 결론 섹션 (verse-card 활용) -->
+        <section class="fade-in-section">
+            <h3>결론</h3>
+            <div class="verse-card">
+                <p>
+                    한국 개신교는 현재 바벨탑과 같은 허황된 성공의 신화에 갇혀 있다. 진정한 소망은 거대 종교 자본의 마케팅이 아니라, 가장 낮은 곳에서 자신을 비우신 십자가의 복음을 다시 붙드는 데 있다. 『바벨탑에 갇힌 복음』은 한국 교회의 오염된 상류를 추적하고 근본적인 처방을 제시함으로써, 교회가 다시 세상의 소금과 빛으로 기능할 수 있도록 촉구하는 비판적 초석이 될 것이다.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 스크롤 페이드인 인터랙션 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target); // 한 번 노출되면 관찰 해제
+                    }
+                });
+            }, observerOptions);
+
+            const fadeSections = document.querySelectorAll(".fade-in-section");
+            fadeSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
