@@ -338,9 +338,10 @@ body{
 .finale p{
   margin-top:46px;
   font-family:'Noto Sans KR',sans-serif;
-  font-weight:300;
+  font-weight:400;
   font-size:clamp(15px,1.9vw,17px);
-  color:var(--parchment-dim);
+  color:var(--parchment);
+  text-shadow:0 2px 14px rgba(14,11,9,0.9), 0 0 3px rgba(14,11,9,0.9);
   opacity:0;transform:translateY(20px);
   transition:opacity 1s ease .2s, transform 1s ease .2s;
 }
@@ -350,6 +351,7 @@ body{
   font-family:'Noto Sans KR',sans-serif;
   font-size:12.5px;letter-spacing:.15em;
   color:var(--dawn);
+  text-shadow:0 2px 10px rgba(14,11,9,0.9);
 }
 </style>
 </head>
@@ -905,14 +907,14 @@ document.querySelectorAll('.chapter-canvas').forEach(c=>{
     ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
 
     const sunY = h*0.6;
-    const glow = ctx.createRadialGradient(w/2,sunY,10,w/2,sunY,260);
-    glow.addColorStop(0,'rgba(244,212,136,0.55)');
+    const glow = ctx.createRadialGradient(w/2,sunY,10,w/2,sunY,220);
+    glow.addColorStop(0,'rgba(244,212,136,0.4)');
     glow.addColorStop(1,'rgba(244,212,136,0)');
     ctx.fillStyle=glow; ctx.fillRect(0,0,w,h);
 
     ctx.fillStyle='rgba(244,212,136,0.85)';
     ctx.beginPath();
-    ctx.arc(w/2, sunY, 46, 0, Math.PI*2);
+    ctx.arc(w/2, sunY, 40, 0, Math.PI*2);
     ctx.fill();
 
     // completed wall silhouette, unbroken
