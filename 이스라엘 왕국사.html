@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이스라엘 왕국사 — 통일에서 회복까지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone-dark: #15120f;
+    --stone-mid: #1f1b16;
+    --unity-gold: #c9a24d;
+    --unity-purple: #4a3b6b;
+    --north-blue: #3d5a73;
+    --south-crimson: #8a3a3a;
+    --ash-black: #100d0b;
+    --ember: #a4491f;
+    --dawn-gold: #e8b957;
+    --dawn-cream: #f4e4c1;
+    --ivory: #ece5d6;
+    --ivory-dim: #b9b0a0;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; font-style:normal !important; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--stone-dark);
+    color:var(--ivory);
+    font-family:'Noto Serif KR', serif;
+    overflow-x:hidden;
+    line-height:1.8;
+  }
+
+  canvas#bgCanvas{
+    position:fixed;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    z-index:0;
+    display:block;
+  }
+
+  .veil{
+    position:fixed;
+    top:0; left:0; width:100vw; height:100vh;
+    z-index:1;
+    background:radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.55) 100%);
+    pointer-events:none;
+  }
+
+  .content{ position:relative; z-index:2; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+  }
+  .hero-eyebrow{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:12px;
+    letter-spacing:0.45em;
+    color:var(--unity-gold);
+    text-transform:uppercase;
+    margin-bottom:28px;
+    opacity:0.9;
+  }
+  .hero-title{
+    font-size:clamp(42px, 8vw, 92px);
+    font-weight:900;
+    letter-spacing:0.02em;
+    color:var(--ivory);
+    text-shadow:0 0 40px rgba(201,162,77,0.35);
+    line-height:1.25;
+  }
+  .hero-title span{
+    display:block;
+    font-size:clamp(20px, 3vw, 30px);
+    font-weight:300;
+    color:var(--dawn-gold);
+    margin-top:18px;
+    letter-spacing:0.08em;
+  }
+  .hero-desc{
+    max-width:620px;
+    margin-top:36px;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:16px;
+    color:var(--ivory-dim);
+    line-height:2;
+  }
+  .hero-scroll{
+    margin-top:70px;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:11px;
+    letter-spacing:0.3em;
+    color:var(--ivory-dim);
+    opacity:0.6;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(10px); }
+  }
+
+  /* ---------- SECTION FRAME ---------- */
+  section.era{
+    position:relative;
+    padding:140px 20px 120px;
+    max-width:980px;
+    margin:0 auto;
+  }
+
+  .era-head{
+    text-align:center;
+    margin-bottom:80px;
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .era-head.visible{ opacity:1; transform:translateY(0); }
+
+  .era-num{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:13px;
+    letter-spacing:0.4em;
+    margin-bottom:18px;
+  }
+  .era-title{
+    font-size:clamp(30px, 5vw, 48px);
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+  .era-range{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:15px;
+    color:var(--ivory-dim);
+    margin-top:14px;
+    letter-spacing:0.05em;
+  }
+  .era-rule{
+    width:64px; height:1px;
+    margin:28px auto 0;
+    background:currentColor;
+    opacity:0.5;
+  }
+
+  .era-intro{
+    max-width:680px;
+    margin:0 auto 64px;
+    text-align:center;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:15.5px;
+    color:var(--ivory-dim);
+    line-height:2.1;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .era-intro.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- KING / EVENT CARD ---------- */
+  .card{
+    background:linear-gradient(155deg, rgba(255,255,255,0.045), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:2px;
+    padding:36px 38px;
+    margin-bottom:26px;
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 0.8s ease, transform 0.8s ease, border-color 0.4s ease;
+  }
+  .card.visible{ opacity:1; transform:translateY(0); }
+  .card:hover{ border-color:rgba(255,255,255,0.18); }
+
+  .card-title{
+    font-size:23px;
+    font-weight:600;
+    margin-bottom:6px;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .card-title small{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:13px;
+    color:var(--ivory-dim);
+    letter-spacing:0.02em;
+  }
+
+  .card-body{ margin-top:18px; }
+  .card-line{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:15.5px;
+    color:var(--ivory);
+    line-height:1.95;
+    margin-bottom:10px;
+    padding-left:20px;
+    position:relative;
+  }
+  .card-line::before{
+    content:'Ÿ';
+    position:absolute;
+    left:0;
+    opacity:0.55;
+  }
+  .verse{
+    display:inline-block;
+    margin-top:6px;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--unity-gold);
+    opacity:0.85;
+  }
+
+  /* ---------- TWO COLUMN (divided kingdom) ---------- */
+  .split-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  @media (max-width:760px){ .split-grid{ grid-template-columns:1fr; } }
+
+  .col-north .card{ border-left:2px solid var(--north-blue); }
+  .col-south .card{ border-left:2px solid var(--south-crimson); }
+
+  .col-label{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:13px;
+    letter-spacing:0.3em;
+    text-align:center;
+    margin-bottom:22px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .col-north .col-label{ color:var(--north-blue); }
+  .col-south .col-label{ color:var(--south-crimson); }
+
+  .subgroup-title{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:13px;
+    letter-spacing:0.15em;
+    color:var(--ivory-dim);
+    margin:22px 0 10px;
+  }
+
+  /* ---------- COLOR THEMES PER SECTION ---------- */
+  #unity .era-num, #unity .era-rule{ color:var(--unity-gold); }
+  #unity .era-title{ color:var(--ivory); }
+
+  #divide .era-num, #divide .era-rule{ color:var(--dawn-gold); }
+
+  #exile{ }
+  #exile .era-num, #exile .era-rule{ color:var(--ember); }
+  #exile .card{ border-color:rgba(164,73,31,0.22); }
+  #exile .card-line::before{ color:var(--ember); }
+
+  #restore .era-num, #restore .era-rule{ color:var(--dawn-gold); }
+  #restore .card{ border-left:2px solid var(--dawn-gold); }
+
+  /* ---------- FOOTER MARK ---------- */
+  .closing{
+    text-align:center;
+    padding:120px 20px 160px;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    font-size:14px;
+    letter-spacing:0.08em;
+    color:var(--ivory-dim);
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .closing.visible{ opacity:1; transform:translateY(0); }
+  .closing-verse{
+    margin-top:20px;
+    font-family:'Noto Serif KR', serif;
+    font-size:19px;
+    color:var(--dawn-gold);
+    letter-spacing:0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+<div class="veil"></div>
+
+<div class="content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">구약 성경 핵심 역사 · 왕국에서 회복까지</div>
+    <h1 class="hero-title">이스라엘 왕국사
+      <span>통일 왕국 · 분열 왕국 · 포로 생활 · 포로 귀환과 회복</span>
+    </h1>
+    <p class="hero-desc">
+      이스라엘의 통일 왕국, 남북 분열 왕국, 바벨론 포로 생활과 귀환에 이르는<br>
+      구약 성경 핵심 역사.
+    </p>
+    <div class="hero-scroll">S C R O L L</div>
+  </section>
+
+  <!-- 1. 통일 왕국 -->
+  <section class="era" id="unity" data-mode="unity">
+    <div class="era-head">
+      <div class="era-num">1</div>
+      <div class="era-title">통일 왕국 시대</div>
+      <div class="era-range">BC 약 1050년 ~ BC 930년</div>
+      <div class="era-rule"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">1) 사울 왕 <small>BC 약 1050년 ~ BC 1010년</small></div>
+      <div class="card-body">
+        <div class="card-line">이스라엘의 초대 왕. 처음과 달리 점차 하나님을 밀어내고 자신의 왕국을 세우려다 버림을 받음.</div>
+        <div class="card-line">블레셋과의 길보아 산 전투에서 전사한다.</div>
+        <div class="verse">삼상 10:1, 삼상 15:23, 삼상 31:1-6</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2) 다윗 왕 <small>BC 약 1010년 ~ BC 970년</small></div>
+      <div class="card-body">
+        <div class="card-line">헤브론에서 7년, 예루살렘에서 33년 동안 총 40년을 통치.</div>
+        <div class="card-line">주변 이방 민족(블레셋, 모압, 아람, 에돔) 정복, 영토 확장, 예루살렘을 수도로 성전 건축을 준비함.</div>
+        <div class="card-line">하나님 마음에 합한 왕으로서, 신성한 통치를 함.</div>
+        <div class="verse">삼하 5:4-5, 삼하 8:1-14, 대상 22:1-5</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3) 솔로몬 왕 <small>BC 약 970년 ~ BC 930년</small></div>
+      <div class="card-body">
+        <div class="card-line">다윗 뒤를 이어 40년을 통치. 두로 왕 히람의 지원을 받아 예루살렘 성전을 완공.</div>
+        <div class="card-line">애굽(이집트) 등 주변국과 정략결혼을 맺으며 태평성대를 누림.</div>
+        <div class="card-line">말년에 이방 아내들이 가져온 우상을 숭배하여 왕국 분열.</div>
+        <div class="verse">왕상 6:1, 왕상 11:1-13</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 분열 왕국 -->
+  <section class="era" id="divide" data-mode="divide">
+    <div class="era-head">
+      <div class="era-num">2</div>
+      <div class="era-title">분열 왕국 시대</div>
+      <div class="era-range">BC 약 930년 ~ BC 722년 / BC 586년</div>
+      <div class="era-rule"></div>
+    </div>
+    <p class="era-intro">
+      솔로몬 아들 르호보암 때 남유다와 북이스라엘로 쪼개짐. 아람, 앗수르, 애굽, 바벨론의 잦은 침략 받음.
+    </p>
+
+    <div class="split-grid">
+      <div class="col-north">
+        <div class="col-label">북 이 스 라 엘</div>
+        <div class="card">
+          <div class="card-title">북이스라엘 <small>BC 약 930년 ~ BC 722년</small></div>
+          <div class="card-body">
+            <div class="card-line">솔로몬의 신하였던 여로보암 1세가 10개 지파를 이끌고 북쪽에 세운 나라</div>
+            <div class="card-line">수도는 세겜에서 시작해 나중에 사마리아.</div>
+            <div class="card-line">여로보암이 벧엘과 단에 금송아지를 세운 이래로, 19명의 왕 모두가 하나님 보시기에 악을 행함.</div>
+            <div class="card-line">주변에 아람과 앗수르(아시리아) 등이 있음.</div>
+            <div class="verse">왕상 12:25-33</div>
+          </div>
+        </div>
+
+        <div class="subgroup-title">주요 왕</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-line">오므리(사마리아 수도 건축)</div>
+            <div class="verse">왕상 16:24</div>
+            <div class="card-line" style="margin-top:14px;">아합(이방 여인 이세벨과 결혼하여 바알 숭배 극대화)</div>
+            <div class="verse">왕상 16:30-33</div>
+            <div class="card-line" style="margin-top:14px;">예후(아합 가문을 심판함)</div>
+            <div class="verse">왕하 9-10장</div>
+          </div>
+        </div>
+
+        <div class="subgroup-title">멸망</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-line">BC 722년, 마지막 왕 호세아 때 앗수르 왕 살만에셀과 사르곤 2세에 의해 사마리아가 함락과 멸망.</div>
+            <div class="verse">왕하 17:1-6</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-south">
+        <div class="col-label">남 유 다</div>
+        <div class="card">
+          <div class="card-title">남유다 <small>BC 약 930년 ~ BC 586년</small></div>
+          <div class="card-body">
+            <div class="card-line">솔로몬의 아들 르호보암이 유다와 베냐민 지파를 이끌고 다윗의 왕위를 계승한 나라</div>
+            <div class="card-line">수도는 예루살렘. 총 20명의 왕이 통치.</div>
+            <div class="card-line">다윗의 길을 따른 선한 왕들과 우상을 숭배한 악한 왕들이 반복.</div>
+            <div class="card-line">주요 연관 국가는 애굽과 바벨론.</div>
+            <div class="verse">왕상 12:1-17</div>
+          </div>
+        </div>
+
+        <div class="subgroup-title">주요 선한 왕</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-line">아사</div>
+            <div class="verse">왕상 15:11</div>
+            <div class="card-line" style="margin-top:14px;">여호사밧</div>
+            <div class="verse">대하 17:3-4</div>
+            <div class="card-line" style="margin-top:14px;">히스기야(앗수르 왕 산헤립의 침공을 기도로 물리침)</div>
+            <div class="verse">왕하 18-19장</div>
+            <div class="card-line" style="margin-top:14px;">요시아(율법책을 발견하고 종교개혁을 단행함)</div>
+            <div class="verse">왕하 22-23장</div>
+          </div>
+        </div>
+
+        <div class="subgroup-title">주요 악한 왕</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-line">아하스(앗수르 우상을 들여옴)</div>
+            <div class="verse">왕하 16장</div>
+            <div class="card-line" style="margin-top:14px;">므나쎄(유다 역사상 가장 악한 왕으로 멸망의 결정적 원인이 됨)</div>
+            <div class="verse">왕하 21:1-16</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 포로 생활 -->
+  <section class="era" id="exile" data-mode="exile">
+    <div class="era-head">
+      <div class="era-num">3</div>
+      <div class="era-title">포로 생활 시대</div>
+      <div class="era-range">기원전 약 606년 ~ 536년 / 586년 ~ 516년</div>
+      <div class="era-rule"></div>
+    </div>
+    <p class="era-intro">
+      유다의 타락으로 하나님은 신흥 강대국인 바벨론(신바빌로니아)의 느부갓네살 왕을 징계의 막대기로 사용하여, 세 차례에 걸쳐 유다 백성들을 포로로 잡아감.
+    </p>
+
+    <div class="card">
+      <div class="card-title">1) 제1차 포로 <small>BC 약 606년/605년</small></div>
+      <div class="card-body">
+        <div class="card-line">여호야김 왕 때 느부갓네살이 예루살렘을 1차 침공</div>
+        <div class="card-line">성전 기구 일부와 함께 다니엘과 그의 세 친구, 왕족과 귀족들이 포로로 잡혀감.</div>
+        <div class="verse">왕하 24:1, 단 1:1-6</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2) 제2차 포로 <small>BC 약 597년</small></div>
+      <div class="card-body">
+        <div class="card-line">여호야긴왕 때 재침공하여 왕과 어머니, 대신들, 군사, 기술자 등 예루살렘의 핵심 인력 만 명 잡아감.</div>
+        <div class="card-line">선지자 에스겔도 함께 포로로 끌려감.</div>
+        <div class="verse">왕하 24:10-16, 겔 1:1-3</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3) 제3차 포로와 예루살렘 함락 <small>BC 586년</small></div>
+      <div class="card-body">
+        <div class="card-line">남유다의 마지막 왕 시드기야가 바벨론을 배반하고 애굽을 의지하려다 보복을 당함.</div>
+        <div class="card-line">바벨론 군대에 의해 예루살렘 성벽이 허물어지고, 솔로몬 성전이 완전히 불타며 나라가 멸망함.</div>
+        <div class="card-line">백성 대부분이 포로로 잡혀가고 시드기야는 두 눈이 뽑혀 끌려감.</div>
+        <div class="verse">왕하 25:1-12, 대하 36:17-21</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 포로 귀환과 회복 -->
+  <section class="era" id="restore" data-mode="restore">
+    <div class="era-head">
+      <div class="era-num">4</div>
+      <div class="era-title">포로 귀환과 회복 시대</div>
+      <div class="era-range">BC 약 536년 ~ 444년</div>
+      <div class="era-rule"></div>
+    </div>
+    <p class="era-intro">
+      하나님은 예레미야 선지자를 통해 "포로 생활이 70년 만에 끝나리라"고 하신 약속을 신실하게 지키셨다. 바벨론을 무너뜨린 바사(페르시아)에 의해 포로귀환을 하게하심.
+      <br><span class="verse" style="margin-top:12px;">렘 29:10, 대하 36:22-23</span>
+    </p>
+
+    <div class="card">
+      <div class="card-title">1) 제1차 귀환 <small>BC 약 536년</small></div>
+      <div class="card-body">
+        <div class="card-line">바사 왕 고레스가 조서를 내려 유대인들의 귀환과 성전 재건을 허락함.</div>
+        <div class="card-line">총독 스룹바벨과 대제사장 예수아의 인도 아래 약 5만 명이 귀환하여 대적들의 방해를 이겨냄.</div>
+        <div class="card-line">BC 516년 성전을 완공함.</div>
+        <div class="verse">에스라 1:1-4, 에스라 3:1-3, 에스라 6:14-15</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2) 제2차 귀환 <small>BC 약 458년</small></div>
+      <div class="card-body">
+        <div class="card-line">바사 왕 아닥사스다 제칠년에 학사 에스라의 주도하에 귀환함.</div>
+        <div class="card-line">에스라는 백성들에게 율법을 가르치고 이방인과의 통혼 문제를 해결하여 내적인 생명과 진리를 회복함.</div>
+        <div class="verse">에스라 7:1-7, 에스라 9-10장</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3) 제3차 귀환 <small>BC 약 444년</small></div>
+      <div class="card-body">
+        <div class="card-line">아닥사스다 왕 제이십년에 왕의 술 관원이었던 느헤미야가 총독으로 임명되어 귀환함.</div>
+        <div class="card-line">느헤미야는 온 백성과 동역하여 52일 만에 예루살렘 성벽을 재건함으로써, 하나님의 성을 방비하고 주권적 통치 체제를 완성함.</div>
+        <div class="verse">느헤미야 1:1, 느헤미야 2:1-8, 느헤미야 6:15</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div>통일 · 분열 · 포로 · 귀환 — 심판과 신실하심으로 이어진 하나님의 경륜</div>
+    <div class="closing-verse">"보라 내가 새 일을 행하리니 이제 나타낼 것이라"</div>
+  </div>
+
+</div>
+
+<script>
+/* ---------------- Scroll reveal ---------------- */
+const revealEls = document.querySelectorAll('.era-head, .era-intro, .card, .closing');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+},{ threshold:0.15, rootMargin:'0px 0px -60px 0px' });
+revealEls.forEach(el=>io.observe(el));
+
+/* ---------------- Section mode tracking ---------------- */
+let currentMode = 'unity';
+const modeSections = document.querySelectorAll('section.era[data-mode]');
+const modeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && e.intersectionRatio > 0.35){
+      currentMode = e.target.dataset.mode;
+    }
+  });
+},{ threshold:[0.35,0.5,0.65] });
+modeSections.forEach(s=>modeObserver.observe(s));
+
+/* ---------------- Canvas: the Wall ---------------- */
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, DPR;
+
+function resize(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width = W+'px';
+  canvas.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  buildStones();
+}
+
+const COLS = 22;
+const ROWS = 3;
+let stones = [];
+
+function buildStones(){
+  stones = [];
+  const wallW = Math.min(W*0.72, 760);
+  const stoneW = wallW / COLS;
+  const stoneH = 22;
+  const startX = (W - wallW)/2;
+  const baseY = H*0.62;
+
+  let id = 0;
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS;c++){
+      const offset = (r%2===0)? 0 : stoneW/2;
+      stones.push({
+        id: id++,
+        homeX: startX + c*stoneW + offset,
+        homeY: baseY - r*(stoneH+4),
+        w: stoneW-3,
+        h: stoneH,
+        isNorth: (c < COLS/2),
+        x:0, y:0, // current, set below
+        vx:0, vy:0,
+        rot:0, vrot:0,
+        alpha:1,
+        scatterX:0, scatterY:0, scatterRot:0
+      });
+    }
+  }
+  // init scatter targets (fall down & drift)
+  stones.forEach(s=>{
+    s.x = s.homeX; s.y = s.homeY;
+    s.scatterX = s.homeX + (Math.random()-0.5)*260;
+    s.scatterY = H + 60 + Math.random()*140;
+    s.scatterRot = (Math.random()-0.5)*3.2;
+  });
+}
+
+let embers = [];
+for(let i=0;i<70;i++){
+  embers.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random()*1.8+0.4,
+    speed: Math.random()*0.15+0.04,
+    drift: (Math.random()-0.5)*0.06,
+    flick: Math.random()*Math.PI*2
+  });
+}
+
+function lerp(a,b,t){ return a + (b-a)*t; }
+
+function bgColorFor(mode){
+  switch(mode){
+    case 'unity': return ['#17130f','#241d14'];
+    case 'divide': return ['#151319','#1c2430'];
+    case 'exile': return ['#0b0908','#120c09'];
+    case 'restore': return ['#191308','#2a1e0d'];
+    default: return ['#15120f','#1f1b16'];
+  }
+}
+
+let bgA = bgColorFor('unity');
+let bgB = bgColorFor('unity');
+let bgMixT = 1;
+let lastMode = 'unity';
+
+function draw(){
+  if(currentMode !== lastMode){
+    bgA = bgB;
+    bgB = bgColorFor(currentMode);
+    bgMixT = 0;
+    lastMode = currentMode;
+  }
+  bgMixT = Math.min(1, bgMixT + 0.01);
+
+  // background gradient
+  const g = ctx.createLinearGradient(0,0,0,H);
+  const top = mixHex(bgA[0], bgB[0], bgMixT);
+  const bot = mixHex(bgA[1], bgB[1], bgMixT);
+  g.addColorStop(0, top);
+  g.addColorStop(1, bot);
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,W,H);
+
+  drawStones();
+  if(currentMode === 'exile'){ drawEmbers(); }
+  if(currentMode === 'restore'){ drawDawnGlow(); }
+
+  requestAnimationFrame(draw);
+}
+
+function drawDawnGlow(){
+  const g = ctx.createRadialGradient(W/2, H*0.58, 10, W/2, H*0.58, W*0.6);
+  g.addColorStop(0, 'rgba(232,185,87,0.16)');
+  g.addColorStop(1, 'rgba(232,185,87,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,W,H);
+}
+
+function drawEmbers(){
+  const t = performance.now()*0.001;
+  ctx.save();
+  embers.forEach(e=>{
+    e.y -= e.speed*0.002;
+    e.x += e.drift*0.001;
+    if(e.y < -0.05) e.y = 1.05;
+    if(e.x < -0.05) e.x = 1.05;
+    if(e.x > 1.05) e.x = -0.05;
+    const flicker = 0.5 + 0.5*Math.sin(t*3 + e.flick);
+    ctx.globalAlpha = 0.25 + 0.5*flicker;
+    ctx.fillStyle = '#c96a2e';
+    ctx.beginPath();
+    ctx.arc(e.x*W, e.y*H, e.r, 0, Math.PI*2);
+    ctx.fill();
+  });
+  ctx.restore();
+}
+
+function mixHex(h1,h2,t){
+  const c1 = hexToRgb(h1), c2 = hexToRgb(h2);
+  const r = Math.round(lerp(c1.r,c2.r,t));
+  const g = Math.round(lerp(c1.g,c2.g,t));
+  const b = Math.round(lerp(c1.b,c2.b,t));
+  return `rgb(${r},${g},${b})`;
+}
+function hexToRgb(hex){
+  hex = hex.replace('#','');
+  return {
+    r: parseInt(hex.substring(0,2),16),
+    g: parseInt(hex.substring(2,4),16),
+    b: parseInt(hex.substring(4,6),16)
+  };
+}
+
+function drawStones(){
+  const mode = currentMode;
+  stones.forEach(s=>{
+    let targetX = s.homeX, targetY = s.homeY, targetAlpha = 1, gap = 0;
+
+    if(mode === 'unity'){
+      targetX = s.homeX; targetY = s.homeY; targetAlpha = 0.9;
+    } else if(mode === 'divide'){
+      gap = s.isNorth ? -22 : 22;
+      targetX = s.homeX + gap;
+      targetY = s.homeY;
+      targetAlpha = 0.85;
+    } else if(mode === 'exile'){
+      targetX = s.scatterX;
+      targetY = s.scatterY;
+      targetAlpha = 0.35;
+    } else if(mode === 'restore'){
+      targetX = s.homeX;
+      targetY = s.homeY;
+      targetAlpha = 0.95;
+    }
+
+    s.x = lerp(s.x, targetX, 0.035);
+    s.y = lerp(s.y, targetY, 0.035);
+    s.alpha = lerp(s.alpha, targetAlpha, 0.03);
+
+    let fill = '#8d7145';
+    if(mode === 'unity') fill = '#c9a24d';
+    else if(mode === 'divide') fill = s.isNorth ? '#4d7391' : '#a3524f';
+    else if(mode === 'exile') fill = '#3a2c22';
+    else if(mode === 'restore') fill = '#e8b957';
+
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, Math.min(1,s.alpha));
+    ctx.fillStyle = fill;
+    ctx.fillRect(s.x - s.w/2, s.y - s.h/2, s.w, s.h);
+    ctx.restore();
+  });
+}
+
+window.addEventListener('resize', resize);
+resize();
+requestAnimationFrame(draw);
+</script>
+
+</body>
+</html>
