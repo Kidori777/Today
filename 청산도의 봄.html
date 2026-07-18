@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>청산도의 봄 펜션 | 전남 완도 청산도 도락리</title>
+<meta name="description" content="세계 슬로길 1호, 청산도 도락리에 자리한 펜션 '청산도의 봄'. 서편제길, 범바위, 청보리밭이 걸어서 닿는 자리에서 느린 하루를 보내세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF1E4;
+    --bg-alt: #E6EBDA;
+    --card: #FBFAF2;
+    --ink: #17323A;
+    --ink-soft: #45605F;
+    --sea: #245B67;
+    --sea-deep: #10262C;
+    --barley: #8CA23E;
+    --barley-deep: #667A2B;
+    --rapeseed: #E4A932;
+    --stone: #8C7F68;
+    --line: rgba(23,50,58,0.14);
+    --shadow: 0 18px 40px -20px rgba(16,38,44,0.35);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    font-style:normal !important;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  em, i, .italic{ font-style:normal !important; }
+
+  h1,h2,h3,h4{
+    font-family:'Noto Serif KR', serif;
+    font-style:normal !important;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  section{ position:relative; padding:clamp(64px,10vw,120px) 24px; }
+  .wrap{ max-width:1080px; margin:0 auto; }
+  .narrow{ max-width:760px; margin:0 auto; }
+
+  /* ---------- 상단 내비 ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    background:rgba(238,241,228,0.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, background .3s;
+  }
+  header.nav.scrolled{
+    background:rgba(238,241,228,0.92);
+    border-bottom-color:var(--line);
+  }
+  .brand{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700; font-size:18px; letter-spacing:0.02em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand .dot{ width:7px; height:7px; border-radius:50%; background:var(--rapeseed); }
+  .nav-call{
+    font-size:13px; font-weight:500;
+    border:1px solid var(--ink); border-radius:999px;
+    padding:9px 18px;
+    letter-spacing:0.02em;
+    transition:background .25s, color .25s;
+    white-space:nowrap;
+  }
+  .nav-call:hover{ background:var(--ink); color:var(--bg); }
+
+  /* ---------- 히어로 ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:0;
+    background:linear-gradient(180deg,#F6F4E6 0%, #EAF0DE 38%, #DCE7CE 62%, #C7DAC0 100%);
+    overflow:hidden;
+  }
+  .hero-art{ position:absolute; inset:0; z-index:0; }
+  .hero-content{
+    position:relative; z-index:2;
+    padding:0 24px clamp(56px,9vw,96px);
+    max-width:1080px; margin:0 auto; width:100%;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12.5px; letter-spacing:0.16em; font-weight:500;
+    color:var(--sea-deep);
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(23,50,58,0.18);
+    padding:7px 14px; border-radius:999px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--barley-deep); }
+  .hero h1{
+    font-size:clamp(38px,7vw,78px);
+    font-weight:700;
+    line-height:1.16;
+    color:var(--sea-deep);
+    max-width:16ch;
+  }
+  .hero h1 .thin{ font-weight:200; display:block; font-size:0.44em; letter-spacing:0.05em; margin-bottom:10px; color:var(--ink-soft); }
+  .hero-sub{
+    margin-top:24px; max-width:46ch;
+    font-size:16.5px; color:var(--ink-soft); font-weight:400;
+  }
+  .hero-cta{ margin-top:38px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; border-radius:999px;
+    font-size:14.5px; font-weight:500; letter-spacing:0.02em;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s;
+  }
+  .btn-primary{ background:var(--sea-deep); color:#F4F2E4; box-shadow:var(--shadow); }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid var(--ink); color:var(--ink); }
+  .btn-ghost:hover{ background:rgba(23,50,58,0.06); }
+
+  .hero-meta{
+    margin-top:56px; padding-top:24px; border-top:1px solid rgba(23,50,58,0.16);
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:640px;
+  }
+  .hero-meta div{ font-size:12.5px; color:var(--ink-soft); letter-spacing:0.02em; }
+  .hero-meta strong{ display:block; font-family:'Noto Serif KR',serif; font-size:15px; color:var(--sea-deep); font-weight:500; margin-bottom:4px; }
+
+  /* ---------- 공통 섹션 헤더 ---------- */
+  .kicker{
+    font-size:12.5px; letter-spacing:0.18em; font-weight:600;
+    color:var(--barley-deep); margin-bottom:14px; text-transform:uppercase;
+  }
+  .sec-title{ font-size:clamp(26px,4vw,38px); font-weight:600; line-height:1.35; }
+  .sec-title .accent{ color:var(--sea); }
+  .sec-lead{ margin-top:18px; color:var(--ink-soft); font-size:15.5px; max-width:56ch; }
+
+  /* ---------- 인사말 ---------- */
+  .greeting{ background:var(--card); }
+  .greeting blockquote{
+    font-family:'Noto Serif KR',serif;
+    font-weight:400; font-size:clamp(20px,2.6vw,27px);
+    line-height:1.8; color:var(--sea-deep);
+    border-left:3px solid var(--rapeseed);
+    padding-left:26px; margin-top:34px;
+  }
+  .greeting .sign{ margin-top:28px; font-size:13.5px; color:var(--ink-soft); letter-spacing:0.02em; }
+
+  /* ---------- 머무는 공간 ---------- */
+  .stay{ background:var(--bg); }
+  .stay-grid{
+    margin-top:48px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:36px;
+  }
+  .stay-visual{
+    border-radius:22px; overflow:hidden; min-height:340px;
+    background:
+      radial-gradient(circle at 25% 20%, rgba(228,169,50,0.35), transparent 55%),
+      linear-gradient(155deg,#2C6673 0%, #1A4550 55%, #10262C 100%);
+    position:relative;
+  }
+  .stay-visual svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .stay-points{ display:flex; flex-direction:column; gap:0; }
+  .stay-point{
+    display:flex; gap:18px; padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stay-point:first-child{ padding-top:0; }
+  .stay-point:last-child{ border-bottom:none; }
+  .stay-point .num{
+    font-family:'Noto Serif KR',serif; font-size:13px; color:var(--barley-deep);
+    font-weight:600; padding-top:3px; min-width:24px;
+  }
+  .stay-point h4{ font-size:16.5px; font-weight:600; margin-bottom:6px; }
+  .stay-point p{ font-size:14px; color:var(--ink-soft); }
+  .stay-note{
+    margin-top:30px; font-size:13px; color:var(--ink-soft);
+    background:var(--card); border:1px solid var(--line);
+    padding:16px 18px; border-radius:14px;
+  }
+
+  /* ---------- 슬로길 여정 (시그니처) ---------- */
+  .journey{ background:var(--sea-deep); color:#EDEFE0; }
+  .journey .kicker{ color:#B9CE7A; }
+  .journey .sec-title{ color:#F4F2E4; }
+  .journey .sec-lead{ color:#B9C8C4; }
+  .journey-scale{
+    margin-top:14px; font-size:13px; color:#8FA6A2; letter-spacing:0.02em;
+  }
+  .trail{
+    margin-top:56px;
+    position:relative;
+  }
+  .trail-line{
+    position:absolute; top:0; bottom:0; left:23px;
+    width:2px;
+    background:repeating-linear-gradient(to bottom, rgba(237,239,224,0.35) 0 6px, transparent 6px 13px);
+  }
+  .stop{
+    position:relative;
+    display:grid; grid-template-columns:48px 1fr; gap:22px;
+    padding-bottom:44px;
+  }
+  .stop:last-child{ padding-bottom:0; }
+  .stop-marker{
+    width:48px; height:48px; border-radius:50%;
+    background:#EDEFE0; color:var(--sea-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif KR',serif; font-weight:700; font-size:16px;
+    z-index:1;
+    border:3px solid var(--sea-deep);
+    box-shadow:0 0 0 3px rgba(237,239,224,0.25);
+  }
+  .stop-body h4{
+    color:#F4F2E4; font-size:18px; font-weight:600; margin-bottom:8px;
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  }
+  .stop-body h4 .tag{
+    font-family:'Noto Sans KR',sans-serif; font-size:11.5px; font-weight:500;
+    color:#10262C; background:#B9CE7A; padding:3px 10px; border-radius:999px;
+    letter-spacing:0.02em;
+  }
+  .stop-body p{ color:#C9D6D2; font-size:14.5px; max-width:60ch; }
+
+  /* ---------- 계절 ---------- */
+  .seasons{ background:var(--bg-alt); }
+  .season-grid{
+    margin-top:48px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .season-card{
+    background:var(--card); border-radius:18px; padding:26px 22px;
+    border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .season-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .season-card .sw{ width:34px; height:34px; border-radius:10px; margin-bottom:18px; }
+  .season-card h4{ font-size:17px; font-weight:600; margin-bottom:8px; }
+  .season-card p{ font-size:13.5px; color:var(--ink-soft); }
+
+  /* ---------- 오시는 길 ---------- */
+  .access{ background:var(--card); }
+  .access-grid{ margin-top:44px; display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  .info-row{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
+  .info-row:first-child{ padding-top:0; }
+  .info-row .label{ min-width:84px; font-size:13px; font-weight:600; color:var(--barley-deep); letter-spacing:0.02em; padding-top:2px; }
+  .info-row .val{ font-size:15.5px; color:var(--ink); }
+  .info-row .val small{ display:block; margin-top:5px; font-size:12.5px; color:var(--ink-soft); font-weight:400; }
+  .map-link{
+    margin-top:22px; display:inline-flex; align-items:center; gap:8px;
+    font-size:13.5px; font-weight:500; color:var(--sea-deep);
+    border-bottom:1px solid var(--sea-deep); padding-bottom:2px;
+  }
+  .ferry-box{
+    background:var(--bg); border:1px solid var(--line); border-radius:18px;
+    padding:28px;
+  }
+  .ferry-box h4{ font-size:16px; font-weight:600; margin-bottom:14px; }
+  .ferry-box ol{ padding-left:18px; font-size:14px; color:var(--ink-soft); }
+  .ferry-box li{ margin-bottom:9px; }
+  .ferry-box .caveat{ margin-top:16px; font-size:12px; color:var(--stone); }
+
+  /* ---------- 예약 ---------- */
+  .reserve{
+    background:linear-gradient(160deg, var(--sea-deep) 0%, #1E4A54 100%);
+    color:#F4F2E4; text-align:center;
+  }
+  .reserve .kicker{ color:#B9CE7A; }
+  .reserve h2{ color:#F9F7EA; font-size:clamp(28px,4.5vw,44px); font-weight:600; }
+  .reserve p{ margin-top:16px; color:#C9D6D2; font-size:15.5px; }
+  .reserve .phone{
+    display:block; margin-top:34px; font-family:'Noto Serif KR',serif;
+    font-size:clamp(30px,5vw,46px); font-weight:700; letter-spacing:0.02em; color:#F9F7EA;
+  }
+  .reserve .btn-primary{ background:#F4A93A; color:#10262C; margin-top:28px; }
+  .reserve .btn-primary:hover{ background:#F9C167; }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:36px 24px 44px; text-align:center;
+    font-size:12.5px; color:var(--ink-soft); background:var(--bg);
+  }
+  footer .brand-mark{ font-family:'Noto Serif KR',serif; font-size:14px; color:var(--ink); margin-bottom:8px; font-weight:600; }
+
+  /* ---------- 스크롤 리빌 ---------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- 접근성 ---------- */
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--rapeseed); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- 반응형 ---------- */
+  @media (max-width:860px){
+    .stay-grid{ grid-template-columns:1fr; }
+    .stay-visual{ min-height:220px; order:-1; }
+    .access-grid{ grid-template-columns:1fr; }
+    .season-grid{ grid-template-columns:repeat(2,1fr); }
+    .hero-meta{ grid-template-columns:1fr; gap:14px; }
+  }
+  @media (max-width:520px){
+    section{ padding:56px 18px; }
+    .nav-call{ padding:8px 14px; font-size:12px; }
+    .hero h1{ max-width:none; }
+    .season-grid{ grid-template-columns:1fr; }
+    .stop{ grid-template-columns:40px 1fr; gap:14px; }
+    .stop-marker{ width:40px; height:40px; font-size:14px; }
+    .trail-line{ left:19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="brand"><span class="dot"></span>청산도의 봄</div>
+  <a class="nav-call" href="tel:01074066691">010-7406-6691</a>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <circle cx="1180" cy="150" r="90" fill="#F4C86B" opacity="0.55"/>
+      <path d="M0,560 C220,500 380,560 560,540 C760,516 900,470 1120,500 C1280,522 1360,560 1440,540 L1440,900 L0,900 Z" fill="#B9C98A" opacity="0.55"/>
+      <path d="M0,640 C260,600 420,650 640,630 C860,610 1020,580 1200,610 C1320,630 1400,650 1440,640 L1440,900 L0,900 Z" fill="#7DA35C" opacity="0.55"/>
+      <path d="M0,760 C240,730 480,770 720,750 C960,730 1200,720 1440,750 L1440,900 L0,900 Z" fill="#2C6673" opacity="0.9"/>
+      <g opacity="0.5" stroke="#10262C" stroke-width="2">
+        <path d="M60,820 q18,-14 36,0" fill="none"/>
+        <path d="M110,830 q18,-14 36,0" fill="none"/>
+        <path d="M170,818 q18,-14 36,0" fill="none"/>
+        <path d="M1220,800 q18,-14 36,0" fill="none"/>
+        <path d="M1280,812 q18,-14 36,0" fill="none"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="reveal in eyebrow"><span class="dot"></span>세계 슬로길 1호 · 전남 완도 청산도 도락리</div>
+    <h1 class="reveal in"><span class="thin">가장 느린 마을에서</span>가장 조용한<br>봄을 만나다</h1>
+    <p class="hero-sub reveal in">서편제 돌담길과 범바위, 청보리밭이 걸어서 닿는 자리. 청산도의 봄은 도락리 해변 바로 곁에서 섬의 속도에 맞춰 하루를 내어드립니다.</p>
+    <div class="hero-cta reveal in">
+      <a class="btn btn-primary" href="tel:01074066691">전화로 예약 문의</a>
+      <a class="btn btn-ghost" href="#journey">슬로길 여정 보기</a>
+    </div>
+    <div class="hero-meta reveal in">
+      <div><strong>도락리 해변</strong>도보권 산책 코스</div>
+      <div><strong>서편제길 · 범바위</strong>슬로길 대표 구간과 인접</div>
+      <div><strong>완도항 ↔ 청산도</strong>여객선 약 50분</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 인사말 ================= -->
+<section class="greeting">
+  <div class="wrap narrow">
+    <div class="reveal">
+      <p class="kicker">인사말</p>
+      <h2 class="sec-title">섬은 서두르지 않습니다.<br>머무는 사람도 <span class="accent">그래야 한다</span>고 생각했습니다.</h2>
+    </div>
+    <blockquote class="reveal">
+      청산도는 2011년 국제슬로시티연맹으로부터 '세계 슬로길 1호'로 공식 인증받은 섬입니다. 42.2km, 11개 코스로 이어지는 이 길을 따라 걷다 보면 시계를 보는 일을 잊게 됩니다.<br><br>
+      '청산도의 봄'은 그 길이 시작되는 도락리, 마을 우물 동구정과 해안 곰솔숲을 지나면 만나는 자리에 있습니다. 창을 열면 바다이고, 대문을 나서면 슬로길입니다.
+    </blockquote>
+    <p class="sign reveal">— 청산도의 봄, 도락리에서</p>
+  </div>
+</section>
+
+<!-- ================= 머무는 공간 ================= -->
+<section class="stay" id="stay">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">머무는 공간</p>
+      <h2 class="sec-title">바다와 돌담 사이, <span class="accent">느리게 채운 하루</span></h2>
+      <p class="sec-lead">객실 구성과 요금, 예약 가능 일정은 계절과 상황에 따라 달라질 수 있어 전화로 안내해 드리고 있습니다. 머무는 동안 청산도가 어떤 얼굴을 보여주는지, 그 결만 먼저 소개합니다.</p>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-visual reveal" aria-hidden="true">
+        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+          <rect width="500" height="400" fill="none"/>
+          <path d="M0,260 C90,230 160,270 250,250 C340,232 410,210 500,240 L500,400 L0,400 Z" fill="#E4A932" opacity="0.28"/>
+          <path d="M0,300 C100,280 200,320 300,300 C380,284 440,270 500,290 L500,400 L0,400 Z" fill="#8CA23E" opacity="0.4"/>
+          <g stroke="#F4F2E4" stroke-width="1.4" opacity="0.35">
+            <line x1="40" y1="120" x2="40" y2="340"/>
+            <line x1="90" y1="130" x2="90" y2="340"/>
+            <line x1="140" y1="118" x2="140" y2="340"/>
+          </g>
+          <circle cx="410" cy="90" r="46" fill="#F4C86B" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="stay-points">
+        <div class="stop-point stay-point reveal">
+          <div class="num">01</div>
+          <div><h4>도락리 해변을 향한 창</h4><p>아침 산책을 마치기도 전에 잠에서 깨는, 바다가 가장 가까운 자리입니다.</p></div>
+        </div>
+        <div class="stop-point stay-point reveal">
+          <div class="num">02</div>
+          <div><h4>곰솔 방풍림이 지켜주는 마당</h4><p>땅과 바다의 경계에 심어 온 곰솔숲이 바람을 한 번 걸러 마당으로 들여보냅니다.</p></div>
+        </div>
+        <div class="stop-point stay-point reveal">
+          <div class="num">03</div>
+          <div><h4>걸어서 닿는 슬로길 입구</h4><p>짐을 풀고 대문을 나서면 서편제길과 상서마을 돌담길로 이어지는 슬로길입니다.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="stay-note reveal">정확한 객실 종류, 기준 인원, 요금 및 예약 가능 여부는 전화(010-7406-6691)로 문의해 주시면 자세히 안내해 드립니다.</div>
+  </div>
+</section>
+
+<!-- ================= 슬로길 여정 ================= -->
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">슬로길 여정 · 도락리에서 시작</p>
+      <h2 class="sec-title">숙소 대문을 나서면,<br>섬 전체가 산책로입니다</h2>
+      <p class="sec-lead">청산도 슬로길은 총 11개 코스, 42.2km로 이어져 있습니다. 그 중 도락리에서 걸어서 이어지는 대표 구간만 순서대로 소개합니다.</p>
+      <p class="journey-scale">청산도의 봄 → 동구정 → 도락리 해변 → 서편제길 → 봄의왈츠 세트장 → 범바위 → 상서마을 돌담길</p>
+    </div>
+
+    <div class="trail">
+      <div class="trail-line" aria-hidden="true"></div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">1</div>
+        <div class="stop-body">
+          <h4>동구정 & 곰솔 방풍림 <span class="tag">도보 시작점</span></h4>
+          <p>도락리 마을 우물 동구정은 아무리 가물어도 수위가 늘 같았다는 이야기가 전해집니다. 해안을 따라 선 곰솔숲을 지나며 슬로길의 첫 숨을 고르는 구간입니다.</p>
+        </div>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">2</div>
+        <div class="stop-body">
+          <h4>도락리 해변</h4>
+          <p>숙소에서 가장 가까운 해변으로, 이른 아침 조용히 걷기 좋은 산책로가 이어집니다.</p>
+        </div>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">3</div>
+        <div class="stop-body">
+          <h4>서편제길(당리 돌담길) <span class="tag">영화 촬영지</span></h4>
+          <p>한국 영화 최초로 100만 관객을 넘긴 영화 &lt;서편제&gt;에서 세 사람이 진도아리랑을 부르며 걷던 구불구불한 돌담길입니다.</p>
+        </div>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">4</div>
+        <div class="stop-body">
+          <h4>봄의왈츠 촬영지 <span class="tag">봄 포토스팟</span></h4>
+          <p>유채꽃과 청보리, 돌담을 배경으로 지어진 '바닷가 언덕 위의 하얀집' 오픈세트장입니다. 봄이면 섬 전체가 노랗고 푸르게 물듭니다.</p>
+        </div>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">5</div>
+        <div class="stop-body">
+          <h4>범바위 <span class="tag">다도해 전망대</span></h4>
+          <p>범이 웅크린 형상을 닮았다 하여 이름 붙은 바위로, 나침반이 방향을 잃는다는 이야기가 전해질 만큼 신비롭습니다. 슬로길 중 가장 가파른 구간이지만, 정상에서 마주하는 다도해 풍경이 그 수고를 잊게 합니다.</p>
+        </div>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-marker">6</div>
+        <div class="stop-body">
+          <h4>상서마을 돌담길 & 구들장논</h4>
+          <p>옛 돌담이 굽이굽이 이어지는 마을과, 다랭이 형태로 논을 쌓아 올린 구들장논이 만든 청산도만의 독특한 농경 풍경을 만날 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 사계절 ================= -->
+<section class="seasons">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">청산도의 사계</p>
+      <h2 class="sec-title">언제 걸어도 <span class="accent">섬은 다른 얼굴</span>을 보여줍니다</h2>
+    </div>
+    <div class="season-grid">
+      <div class="season-card reveal">
+        <div class="sw" style="background:#E4A932;"></div>
+        <h4>봄 · 유채꽃과 청보리</h4>
+        <p>노란 유채꽃과 초록 청보리가 물결치는 계절. 봄의왈츠 세트장 일대가 가장 붐비는 시기입니다.</p>
+      </div>
+      <div class="season-card reveal">
+        <div class="sw" style="background:#7DA35C;"></div>
+        <h4>여름 · 신흥마을 해변</h4>
+        <p>풀등해변과 해송숲이 어우러진 지리해변에서 더위를 식히기 좋은 계절입니다.</p>
+      </div>
+      <div class="season-card reveal">
+        <div class="sw" style="background:#C9773A;"></div>
+        <h4>가을 · 구들장논의 결실</h4>
+        <p>다랭이 논이 황금빛으로 물들고, 슬로걷기 축제가 열려 섬 전체가 걷는 사람들로 채워집니다.</p>
+      </div>
+      <div class="season-card reveal">
+        <div class="sw" style="background:#245B67;"></div>
+        <h4>겨울 · 고요한 돌담길</h4>
+        <p>여행객이 잦아든 자리에 바람과 파도 소리만 남는, 가장 섬다운 계절입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 오시는 길 ================= -->
+<section class="access" id="access">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">오시는 길</p>
+      <h2 class="sec-title">완도항에서 배로, <span class="accent">도락리에서 걸어서</span></h2>
+    </div>
+    <div class="access-grid">
+      <div class="reveal">
+        <div class="info-row">
+          <div class="label">주소</div>
+          <div class="val">전라남도 완도군 청산면 도락길 53-8</div>
+        </div>
+        <div class="info-row">
+          <div class="label">전화</div>
+          <div class="val"><a href="tel:01074066691">010-7406-6691</a></div>
+        </div>
+        <div class="info-row">
+          <div class="label">위치 특징</div>
+          <div class="val">도락리 해변, 동구정, 서편제길 진입로와 도보로 이어지는 자리
+            <small>슬로길 코스와 가까워 차량 없이도 주변 산책이 가능합니다.</small>
+          </div>
+        </div>
+        <a class="map-link reveal" href="https://map.kakao.com/link/search/전라남도%20완도군%20청산면%20도락길%2053-8" target="_blank" rel="noopener">카카오맵에서 위치 확인하기 →</a>
+      </div>
+
+      <div class="ferry-box reveal">
+        <h4>완도 → 청산도 여객선 이용 안내</h4>
+        <ol>
+          <li>완도여객선터미널에서 청산도항까지 배로 약 50분 소요됩니다.</li>
+          <li>차량을 선적해 섬 안에서 그대로 이용하실 수 있습니다.</li>
+          <li>청산도항 도착 후 도락리 방향으로 이동해 주시면 됩니다.</li>
+        </ol>
+        <p class="caveat">※ 운항 시간과 편수는 계절·기상 상황에 따라 변경될 수 있으니, 방문 전 완도여객선터미널에 확인하시는 것을 권해 드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 예약 ================= -->
+<section class="reserve">
+  <div class="wrap narrow reveal">
+    <p class="kicker">예약 문의</p>
+    <h2>청산도의 속도에<br>맞추어 두겠습니다</h2>
+    <p>객실 안내, 요금, 예약 가능 일정은 전화로 편하게 문의해 주세요.</p>
+    <a class="phone" href="tel:01074066691">010-7406-6691</a>
+    <div>
+      <a class="btn btn-primary" href="tel:01074066691">지금 전화하기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand-mark">청산도의 봄</div>
+  <div>전라남도 완도군 청산면 도락길 53-8 · 010-7406-6691</div>
+</footer>
+
+<script>
+  // 스크롤 시 내비 배경
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive:true });
+
+  // 스크롤 리빌
+  const revealEls = document.querySelectorAll('.reveal:not(.in)');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:'0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
