@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>욥기 11-31장 — 재 가운데 앉은 자의 변론</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --ash-900:#141210;
+  --ash-800:#1e1a17;
+  --dust:#6b6259;
+  --parchment:#e8e0d0;
+  --parchment-dim:#c4bba9;
+  --job:#c9784a;
+  --job-bright:#e8a06a;
+  --zophar:#5b7c99;
+  --eliphaz:#8a7098;
+  --bildad:#6b8272;
+  --gold:#c9962c;
+  --gold-bright:#f0c869;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-style:normal !important;}
+html{scroll-behavior:smooth;}
+body{background:var(--ash-900);color:var(--parchment);font-family:'Noto Serif KR', serif;overflow-x:hidden;line-height:1.85;}
+::selection{background:var(--job);color:var(--ash-900);}
+
+#wallRail{position:fixed;right:14px;top:50%;transform:translateY(-50%);width:14px;height:min(46vh,360px);z-index:200;display:flex;flex-direction:column-reverse;gap:2px;pointer-events:none;}
+#wallRail .brick{flex:1;background:rgba(232,224,208,0.08);border:1px solid rgba(232,224,208,0.12);transition:background .4s ease, border-color .4s ease;}
+#wallRail .brick.laid{background:linear-gradient(90deg,var(--job),var(--job-bright));border-color:var(--job-bright);box-shadow:0 0 8px rgba(232,160,106,0.5);}
+#railLabel{position:fixed;right:34px;top:50%;transform:translateY(-50%);font-family:'Noto Sans KR',sans-serif;font-size:11px;letter-spacing:.25em;color:var(--parchment-dim);writing-mode:vertical-rl;z-index:200;pointer-events:none;}
+@media(max-width:720px){#wallRail,#railLabel{display:none;}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;overflow:hidden;}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;}
+.hero-inner{position:relative;z-index:2;max-width:820px;}
+.hero-eyebrow{font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.5em;color:var(--job-bright);text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp 1.2s ease .3s forwards;}
+.hero h1{font-size:clamp(2.6rem,7.6vw,5.4rem);font-weight:900;letter-spacing:.02em;color:var(--parchment);text-shadow:0 0 40px rgba(232,160,106,0.22);opacity:0;animation:fadeUp 1.2s ease .6s forwards;}
+.hero-sub{margin-top:22px;font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:clamp(15px,2.2vw,19px);color:var(--parchment-dim);opacity:0;animation:fadeUp 1.2s ease .9s forwards;}
+.hero-verse{margin-top:40px;font-size:13px;letter-spacing:.28em;font-family:'Noto Sans KR',sans-serif;color:var(--dust);opacity:0;animation:fadeUp 1.2s ease 1.2s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.scrollcue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:56px;background:linear-gradient(to bottom, var(--job-bright), transparent);opacity:.6;}
+.scrollcue::after{content:'';position:absolute;top:0;left:-3px;width:7px;height:7px;border-radius:50%;background:var(--job-bright);animation:drip 2.4s ease-in-out infinite;}
+@keyframes drip{0%{top:0;opacity:0;}20%{opacity:1;}100%{top:56px;opacity:0;}}
+
+/* section shell */
+.chapter{position:relative;padding:130px 0 110px;overflow:hidden;}
+.chapter-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.85;}
+.chapter-veil{position:absolute;inset:0;background:linear-gradient(180deg, var(--veil-top,transparent) 0%, rgba(20,18,16,.55) 45%, var(--ash-900) 100%);}
+.chapter-content{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:0 28px;}
+.ch-eyebrow{font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.4em;color:var(--accent, var(--job-bright));margin-bottom:18px;opacity:0;transform:translateY(18px);transition:opacity .8s ease, transform .8s ease;}
+.ch-title{font-size:clamp(1.8rem,4.2vw,2.9rem);font-weight:700;color:var(--parchment);margin-bottom:14px;opacity:0;transform:translateY(18px);transition:opacity .8s ease .1s, transform .8s ease .1s;}
+.ch-lede{font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:clamp(15px,1.9vw,17px);color:var(--parchment-dim);max-width:660px;margin-bottom:56px;opacity:0;transform:translateY(18px);transition:opacity .8s ease .2s, transform .8s ease .2s;}
+.ch-eyebrow.reveal,.ch-title.reveal,.ch-lede.reveal{opacity:1;transform:translateY(0);}
+
+/* speaker exchange cards */
+.exchange{margin-bottom:56px;}
+.exchange-label{font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.3em;color:var(--parchment-dim);margin-bottom:20px;padding-bottom:12px;border-bottom:1px dashed rgba(232,224,208,.15);}
+.beat{position:relative;padding:26px 0 26px 40px;border-left:1px solid rgba(232,224,208,0.14);margin-bottom:4px;opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+.beat.reveal{opacity:1;transform:translateY(0);}
+.beat::before{content:'';position:absolute;left:-5px;top:32px;width:9px;height:9px;border-radius:50%;background:var(--spk, var(--job));box-shadow:0 0 10px var(--spk, var(--job));}
+.speaker-badge{display:inline-block;font-family:'Noto Sans KR',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.15em;color:var(--spk, var(--job));background:color-mix(in srgb, var(--spk, var(--job)) 15%, transparent);border:1px solid color-mix(in srgb, var(--spk, var(--job)) 45%, transparent);padding:4px 12px;border-radius:2px;margin-bottom:12px;}
+.beat h3{font-size:clamp(1.05rem,2.1vw,1.3rem);font-weight:600;color:var(--parchment);margin-bottom:10px;}
+.beat p{font-size:clamp(14.5px,1.75vw,16px);color:var(--parchment-dim);font-weight:300;}
+.beat .ref{display:inline-block;margin-top:14px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;letter-spacing:.1em;color:var(--spk, var(--job));border:1px solid color-mix(in srgb, var(--spk, var(--job)) 40%, transparent);padding:4px 12px;border-radius:2px;}
+.beat.job{--spk:var(--job);}
+.beat.zophar{--spk:var(--zophar);}
+.beat.eliphaz{--spk:var(--eliphaz);}
+.beat.bildad{--spk:var(--bildad);}
+.beat .note{margin-top:10px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;color:var(--dust);}
+
+/* micro list (ch11-14 job replies) */
+.micro-list{margin-top:6px;}
+.micro-item{padding:16px 0;border-top:1px dashed rgba(232,224,208,.12);opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+.micro-item.reveal{opacity:1;transform:translateY(0);}
+.micro-item p{font-size:clamp(14.5px,1.75vw,16px);color:var(--parchment-dim);font-weight:300;display:inline;}
+.micro-item .ref{margin-left:10px;font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.06em;color:var(--job-bright);white-space:nowrap;}
+
+/* pull quote */
+.pull-quote{margin:30px 0 10px;padding:26px 28px;border-left:3px solid var(--job-bright);background:rgba(232,160,106,0.06);border-radius:2px;opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+.pull-quote.reveal{opacity:1;transform:translateY(0);}
+.pull-quote p{font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--parchment);font-weight:500;line-height:1.7;}
+.pull-quote span{display:block;margin-top:10px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;color:var(--job-bright);letter-spacing:.1em;}
+
+/* final testimony (26-31) numbered beats */
+.testi-num{font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--gold-bright);margin-bottom:10px;}
+
+/* finale */
+.finale{position:relative;padding:150px 28px 170px;text-align:center;overflow:hidden;}
+.finale canvas{position:absolute;inset:0;width:100%;height:100%;}
+.finale-inner{position:relative;z-index:2;max-width:700px;margin:0 auto;}
+.finale-title{font-size:clamp(1.4rem,3.4vw,2.1rem);font-weight:700;color:var(--gold-bright);text-shadow:0 0 40px rgba(240,200,105,.35);opacity:0;transform:translateY(20px);transition:opacity 1s ease, transform 1s ease;}
+.finale-title.reveal{opacity:1;transform:translateY(0);}
+.finale p{margin-top:28px;font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(15px,1.9vw,17px);color:var(--parchment);text-shadow:0 2px 14px rgba(14,11,9,0.9);opacity:0;transform:translateY(20px);transition:opacity 1s ease .2s, transform 1s ease .2s;}
+.finale p.reveal{opacity:1;transform:translateY(0);}
+.finale .ref{display:inline-block;margin-top:24px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;letter-spacing:.15em;color:var(--gold-bright);}
+</style>
+</head>
+<body>
+
+<div id="wallRail"></div>
+<div id="railLabel">본문 진행</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">성경 본문 시리즈</div>
+    <h1>욥기 11-31장</h1>
+    <div class="hero-sub">세 친구와의 논쟁, 그리고 재 가운데 앉은 자의 마지막 변론</div>
+    <div class="hero-verse">FIRST ROUND &nbsp;·&nbsp; SECOND ROUND &nbsp;·&nbsp; THIRD ROUND &nbsp;·&nbsp; JOB'S FINAL DEFENSE</div>
+  </div>
+  <div class="scrollcue"></div>
+</section>
+
+<!-- ===== SECTION 1: 첫 번째 논쟁의 마무리 (11-14장) ===== -->
+<section class="chapter" id="s1" style="--accent:#5b7c99;--veil-top:rgba(91,124,153,0.12);">
+  <canvas class="chapter-canvas" data-theme="trial1"></canvas>
+  <div class="chapter-veil"></div>
+  <div class="chapter-content">
+    <div class="ch-eyebrow">욥기 11장 ~ 14장</div>
+    <h2 class="ch-title">첫 번째 논쟁의 마무리</h2>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 11장 · 소발의 첫 번째 발언</div>
+      <div class="beat zophar">
+        <div class="speaker-badge">소발</div>
+        <p>나아마 사람 소발이 나서서 욥의 변론을 허풍이라고 비난함. 소발은 욥이 받는 벌이 그가 지은 죄악에 비하면 오히려 가벼운 것이라고 깎아내리며, 마음을 바르게 하고 죄를 멀리하라고 회개를 촉구함.</p>
+        <span class="ref">욥 11:6, 13-14</span>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 12장 ~ 14장 · 소발에 대한 욥의 대답</div>
+      <div class="beat job">
+        <div class="speaker-badge">욥</div>
+        <div class="micro-list">
+          <div class="micro-item"><p>욥은 친구들을 향해 너희가 죽으면 지혜도 죽겠다며 그들의 교만을 꼬집고, 참된 지혜와 능력은 오직 하나님께 있음을 강조함.</p><span class="ref">욥 12:2, 13</span></div>
+          <div class="micro-item"><p>친구들을 '쓸모없는 의사'라고 부르며, 그들의 위로가 거짓이라고 반박함. 욥은 오직 하나님께 직접 자신의 사정을 말씀드리고 변론하기를 원함.</p><span class="ref">욥 13:3-4</span></div>
+          <div class="micro-item"><p>인생의 짧고 허무함을 꽃과 그림자에 비유하며 슬퍼하였고, 사람이 죽은 후에도 다시 살아날 수 있는지 질문하며 부활과 회복에 대한 어렴풋한 소망을 내비침.</p><span class="ref">욥 14:1-2, 14</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: 두 번째 논쟁 (15-21장) ===== -->
+<section class="chapter" id="s2" style="--accent:#8a7098;--veil-top:rgba(138,112,152,0.14);">
+  <canvas class="chapter-canvas" data-theme="trial2"></canvas>
+  <div class="chapter-veil"></div>
+  <div class="chapter-content">
+    <div class="ch-eyebrow">욥기 15장 ~ 21장</div>
+    <h2 class="ch-title">두 번째 논쟁</h2>
+    <p class="ch-lede">두 번째 논쟁에서는 친구들의 비난이 더욱 거칠어지고, 욥의 반박 역시 더욱 격렬해짐.</p>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 15장 ~ 17장 · 엘리바스의 두 번째 발언과 욥의 대답</div>
+      <div class="beat eliphaz">
+        <div class="speaker-badge">엘리바스</div>
+        <p>욥이 하나님을 경외하지 않고 스스로 지혜롭다고 여긴다며 책망함. 악인은 평생토록 고통을 받는다며 욥을 악인으로 몰아세움.</p>
+        <span class="ref">욥 15:4, 20</span>
+      </div>
+      <div class="beat job">
+        <div class="speaker-badge">욥</div>
+        <p>친구들을 '재난을 주는 위로자들'이라 부르며, 그들의 정죄에 상처받음을 표현함. 그러나 비참한 상황 속에서도 하늘에 계신 증인(하나님)께서 자신의 결백을 아신다고 호소함.</p>
+        <span class="ref">욥 16:2, 19</span>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 18장 ~ 19장 · 빌닷의 두 번째 발언과 욥의 대답</div>
+      <div class="beat bildad">
+        <div class="speaker-badge">빌닷</div>
+        <p>악인의 빛은 꺼지고 재앙이 따를 것이라며 욥을 향해 무서운 저주의 말들을 쏟아냄.</p>
+        <span class="ref">욥 18:5, 21</span>
+      </div>
+      <div class="beat job">
+        <div class="speaker-badge">욥</div>
+        <p>친구들의 말로 인한 핍박을 멈춰달라고 호소함. 뼈와 가죽만 남은 고통 중에서도 위대한 믿음의 고백을 함.</p>
+        <div class="pull-quote">
+          <p>"나의 구속자께서 살아 계시니, 마침내 그분께서 땅 위에 서실 것이라"</p>
+          <span>욥 19:25</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 20장 ~ 21장 · 소발의 두 번째 발언과 욥의 대답</div>
+      <div class="beat zophar">
+        <div class="speaker-badge">소발</div>
+        <p>악인의 형통함은 아주 잠깐뿐이며, 결국 하나님의 진노와 심판을 받아 모든 것을 잃게 될 것이라고 경고함.</p>
+        <span class="ref">욥 20:5, 29</span>
+      </div>
+      <div class="beat job">
+        <div class="speaker-badge">욥</div>
+        <p>친구들의 인과응보 논리와 달리, 현실에서는 악인들이 오히려 건강하게 장수하고 평안히 잘 사는 모순이 있다며 친구들의 빈약한 논리를 반박함.</p>
+        <span class="ref">욥 21:7, 13</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: 세 번째 논쟁과 욥의 최후 변론 (22-31장) ===== -->
+<section class="chapter" id="s3" style="--accent:#c9962c;--veil-top:rgba(201,150,44,0.16);">
+  <canvas class="chapter-canvas" data-theme="trial3"></canvas>
+  <div class="chapter-veil"></div>
+  <div class="chapter-content">
+    <div class="ch-eyebrow">욥기 22장 ~ 31장</div>
+    <h2 class="ch-title">세 번째 논쟁과 욥의 최후 변론</h2>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 22장 ~ 24장 · 엘리바스의 세 번째 발언과 욥의 대답</div>
+      <div class="beat eliphaz">
+        <div class="speaker-badge">엘리바스</div>
+        <p>욥이 가난한 자를 억압하고 과부를 빈손으로 돌려보냈다는 등 구체적인 죄목을 지어내어 거짓으로 정죄함. 하나님과 화목하라고 강요함.</p>
+        <span class="ref">욥 22:5-9, 21</span>
+      </div>
+      <div class="beat job">
+        <div class="speaker-badge">욥</div>
+        <p>하나님을 만나 자신의 정당함을 밝히고 싶지만, 어디 계신지 찾을 수 없어 답답해함. 그러나 하나님의 주권을 인정하며 고백함.</p>
+        <div class="pull-quote">
+          <p>"내가 가는 길을 그분께서 아시나니, 그분께서 나를 단련하신 후에는 내가 금같이 나올 것이라"</p>
+          <span>욥 23:10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 25장 · 빌닷의 세 번째 발언</div>
+      <div class="beat bildad">
+        <div class="speaker-badge">빌닷</div>
+        <p>하나님의 크심과 인간의 불결함을 짧게 말하며, 사람이 하나님 앞에서 결코 의로울 수 없음을 다시 한번 율법적으로 강조함.</p>
+        <span class="ref">욥 25:4</span>
+        <div class="note">※ 소발의 세 번째 발언은 없음</div>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <div class="exchange-label">욥기 26장 ~ 31장 · 욥의 최후 변론</div>
+
+      <div class="beat job">
+        <div class="testi-num">01 · 창조주 찬양 (26장)</div>
+        <p>하나님의 놀라운 창조 능력과 광대하심을 찬양하며, 친구들의 좁은 식견을 지적함.</p>
+      </div>
+      <div class="beat job">
+        <div class="testi-num">02 · 자신의 순전함 고수 (27장)</div>
+        <p>숨이 끊어질 때까지 자신의 온전함을 버리지 않고 의로움을 굳게 지킬 것을 맹세함.</p>
+        <span class="ref">욥 27:5-6</span>
+      </div>
+      <div class="beat job">
+        <div class="testi-num">03 · 참된 지혜 (28장)</div>
+        <p>사람의 지혜로는 하나님의 길을 알 수 없으며, "주님을 경외하는 것이 지혜요, 악에서 떠나는 것이 명철이다"라고 선포함.</p>
+        <span class="ref">욥 28:28</span>
+      </div>
+      <div class="beat job">
+        <div class="testi-num">04 · 과거의 영광과 현재의 비참함 (29-30장)</div>
+        <p>과거에 하나님과 친밀하게 지내며 사람들에게 존경받고 구제에 힘썼던 시절을 회상하며 그리워함. 반면, 현재는 비천한 자들에게조차 조롱받는 자신의 비참한 처지를 탄식함.</p>
+      </div>
+      <div class="beat job">
+        <div class="testi-num">05 · 무죄 선언 (31장)</div>
+        <p>욥은 자신이 도덕적으로나 신앙적으로(순결, 공의, 구제, 이웃 사랑 등) 얼마나 깨끗하게 살았는지를 조목조목 맹세하며 밝힘. 스스로를 변호하는 이 긴 말씀을 끝으로, 전능하신 하나님께서 직접 대답해 주시기를 최종적으로 요청하며 욥의 말이 끝남.</p>
+        <span class="ref">욥 31:35, 40</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINALE ===== -->
+<section class="finale">
+  <canvas id="finaleCanvas"></canvas>
+  <div class="finale-inner">
+    <div class="finale-title">전능하신 이의 대답을 기다리며</div>
+    <p id="finaleText">세 친구의 정죄도, 자신의 결백에 대한 조목조목의 맹세도 다한 후, 욥은 더 이상 스스로를 변호하지 않는다. 오직 전능하신 하나님께서 직접 대답해 주시기를 최종적으로 요청하며, 욥의 긴 말이 끝난다.</p>
+    <span class="ref">욥기 31:35, 40</span>
+  </div>
+</section>
+
+<script>
+/* scroll reveal */
+const revealTargets = document.querySelectorAll('.ch-eyebrow,.ch-title,.ch-lede,.beat,.micro-item,.pull-quote,.finale-title,.finale p');
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); } });
+},{threshold:0.2, rootMargin:'0px 0px -60px 0px'});
+revealTargets.forEach(t=>revealObserver.observe(t));
+
+/* reading progress rail */
+const rail = document.getElementById('wallRail');
+const BRICK_COUNT = 26;
+for(let i=0;i<BRICK_COUNT;i++){ const b=document.createElement('div'); b.className='brick'; rail.appendChild(b); }
+const bricks = rail.querySelectorAll('.brick');
+function updateRail(){
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop;
+  const max = doc.scrollHeight - doc.clientHeight;
+  const pct = Math.min(1, Math.max(0, scrolled/max));
+  const laidCount = Math.round(pct * BRICK_COUNT);
+  bricks.forEach((b,i)=>{ if(i < laidCount) b.classList.add('laid'); else b.classList.remove('laid'); });
+}
+window.addEventListener('scroll', updateRail, {passive:true});
+updateRail();
+
+/* canvas helpers */
+function setupCanvas(canvas){
+  const ctx = canvas.getContext('2d');
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * devicePixelRatio;
+    canvas.height = rect.height * devicePixelRatio;
+    canvas.style.width = rect.width+'px';
+    canvas.style.height = rect.height+'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  return ctx;
+}
+function runWhenVisible(canvas, drawFrame){
+  let raf=null, running=false;
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !running){ running=true; loop(); }
+      else if(!e.isIntersecting){ running=false; if(raf) cancelAnimationFrame(raf); }
+    });
+  },{threshold:0.01});
+  io.observe(canvas);
+  function loop(t){ if(!running) return; drawFrame(t||0); raf = requestAnimationFrame(loop); }
+}
+
+/* HERO: solitary figure amid ash, faint stars */
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = setupCanvas(canvas);
+  let stars = Array.from({length:60}, ()=>({x:Math.random(), y:Math.random()*0.55, r:Math.random()*1.3+0.3, tw:Math.random()*Math.PI*2}));
+  let ash = Array.from({length:40}, ()=>({x:Math.random(), y:Math.random(), r:Math.random()*1.4+0.3, vy:Math.random()*0.00012+0.00004, phase:Math.random()*Math.PI*2}));
+  runWhenVisible(canvas, ()=>{
+    const w = canvas.width/devicePixelRatio, h = canvas.height/devicePixelRatio;
+    const now = performance.now();
+    ctx.clearRect(0,0,w,h);
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,'#171410'); g.addColorStop(0.6,'#1c1815'); g.addColorStop(1,'#100d0b');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    stars.forEach(s=>{
+      const alpha = 0.3+0.3*Math.sin(now/900+s.tw);
+      ctx.fillStyle = `rgba(232,224,208,${alpha*0.5})`;
+      ctx.beginPath(); ctx.arc(s.x*w, s.y*h, s.r, 0, Math.PI*2); ctx.fill();
+    });
+    // ash mound silhouette
+    ctx.fillStyle='rgba(20,18,16,0.92)';
+    ctx.beginPath();
+    ctx.moveTo(0,h);
+    for(let x=0;x<=w;x+=18){
+      const y = h*0.86 + Math.sin(x*0.008)*10;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(w,h); ctx.closePath(); ctx.fill();
+    // solitary seated silhouette
+    const cx = w*0.5, baseY = h*0.85;
+    ctx.fillStyle='rgba(10,9,8,0.95)';
+    ctx.beginPath();
+    ctx.ellipse(cx, baseY-14, 20, 26, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, baseY-46, 11, 0, Math.PI*2);
+    ctx.fill();
+    // faint ember glow beside figure
+    const flick = 0.6+0.4*Math.sin(now/260);
+    const eglow = ctx.createRadialGradient(cx+34, baseY-6, 2, cx+34, baseY-6, 40*flick);
+    eglow.addColorStop(0,'rgba(232,160,106,0.5)'); eglow.addColorStop(1,'rgba(232,160,106,0)');
+    ctx.fillStyle=eglow; ctx.fillRect(0,0,w,h);
+    // drifting ash
+    ash.forEach(p=>{
+      p.y -= p.vy*1000;
+      if(p.y<0) p.y=1;
+      const flick2 = 0.4+0.3*Math.sin(now/700+p.phase);
+      ctx.fillStyle='rgba(196,187,169,'+(0.2*flick2+0.08)+')';
+      ctx.beginPath(); ctx.arc(p.x*w, p.y*h, p.r, 0, Math.PI*2); ctx.fill();
+    });
+  });
+})();
+
+/* theme engine */
+function themeEngine(canvas, theme){
+  const ctx = setupCanvas(canvas);
+  const palettes = {
+    trial1: {bg1:'#161c22', bg2:'#0d1114', particle:'rgba(91,124,153,0.5)', glow:'rgba(91,124,153,0.15)'},
+    trial2: {bg1:'#1c1620', bg2:'#110d15', particle:'rgba(138,112,152,0.55)', glow:'rgba(138,112,152,0.18)'},
+    trial3: {bg1:'#231a0d', bg2:'#150f08', particle:'rgba(240,200,105,0.6)', glow:'rgba(201,150,44,0.2)'}
+  };
+  const pal = palettes[theme] || palettes.trial1;
+  let particles = Array.from({length:32}, ()=>({
+    x:Math.random(), y:Math.random(), r:Math.random()*1.6+0.4,
+    vy:-(Math.random()*0.00016+0.00004), vx:(Math.random()-0.5)*0.00006, phase:Math.random()*Math.PI*2
+  }));
+
+  runWhenVisible(canvas, ()=>{
+    const w = canvas.width/devicePixelRatio, h = canvas.height/devicePixelRatio;
+    const now = performance.now();
+    ctx.clearRect(0,0,w,h);
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,pal.bg1); g.addColorStop(1,pal.bg2);
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+
+    if(theme==='trial1'){
+      // two calm opposing light columns (debate podiums)
+      const y0=h*0.15, y1=h*0.8;
+      [w*0.32, w*0.68].forEach((x,i)=>{
+        const grad = ctx.createLinearGradient(x,y0,x,y1);
+        grad.addColorStop(0,'rgba(91,124,153,0.16)'); grad.addColorStop(1,'rgba(91,124,153,0.0)');
+        ctx.fillStyle=grad;
+        ctx.fillRect(x-40,y0,80,y1-y0);
+      });
+    }
+
+    if(theme==='trial2'){
+      // clashing sparks between two intensifying beams
+      const cx=w*0.5, cy=h*0.45;
+      for(let i=0;i<5;i++){
+        const ang = now/500 + i*1.3;
+        const x = cx + Math.cos(ang)*60;
+        const y = cy + Math.sin(ang)*30;
+        ctx.fillStyle='rgba(201,120,74,0.5)';
+        ctx.beginPath(); ctx.arc(x,y,2.4,0,Math.PI*2); ctx.fill();
+      }
+      const glow = ctx.createRadialGradient(cx,cy,4,cx,cy,180);
+      glow.addColorStop(0,'rgba(138,112,152,0.22)'); glow.addColorStop(1,'rgba(138,112,152,0)');
+      ctx.fillStyle=glow; ctx.fillRect(0,0,w,h);
+    }
+
+    if(theme==='trial3'){
+      // dawn rays breaking through, ash settling into gold
+      ctx.save(); ctx.translate(w*0.5,h*0.2);
+      for(let i=0;i<10;i++){
+        const ang = (i/10)*Math.PI*2 + now/6500;
+        const grad = ctx.createLinearGradient(0,0,Math.cos(ang)*w,Math.sin(ang)*w);
+        grad.addColorStop(0,'rgba(240,200,105,0.14)'); grad.addColorStop(1,'rgba(240,200,105,0)');
+        ctx.strokeStyle=grad; ctx.lineWidth=44;
+        ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(Math.cos(ang)*w, Math.sin(ang)*w); ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    particles.forEach(p=>{
+      p.y += p.vy*1000; p.x += p.vx*1000;
+      if(p.y<0) p.y=1; if(p.x<0) p.x=1; if(p.x>1) p.x=0;
+      const flick = 0.5+0.5*Math.sin(now/500+p.phase);
+      ctx.fillStyle = pal.particle;
+      ctx.globalAlpha = 0.35*flick+0.15;
+      ctx.beginPath(); ctx.arc(p.x*w, p.y*h, p.r, 0, Math.PI*2); ctx.fill();
+      ctx.globalAlpha=1;
+    });
+
+    const rg = ctx.createRadialGradient(w*0.5,h*0.15,10,w*0.5,h*0.15,w*0.6);
+    rg.addColorStop(0,pal.glow); rg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=rg; ctx.fillRect(0,0,w,h);
+  });
+}
+document.querySelectorAll('.chapter-canvas').forEach(c=>{ themeEngine(c, c.dataset.theme); });
+
+/* finale: quiet waiting light */
+(function(){
+  const canvas = document.getElementById('finaleCanvas');
+  const ctx = setupCanvas(canvas);
+  runWhenVisible(canvas, ()=>{
+    const w = canvas.width/devicePixelRatio, h = canvas.height/devicePixelRatio;
+    const now = performance.now();
+    ctx.clearRect(0,0,w,h);
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,'#1a1510'); g.addColorStop(1,'#0b0908');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    const cx=w/2, cy=h*0.4;
+    const flick = 0.85+0.15*Math.sin(now/300);
+    const glow = ctx.createRadialGradient(cx,cy,4,cx,cy,230*flick);
+    glow.addColorStop(0,'rgba(240,200,105,0.45)'); glow.addColorStop(1,'rgba(240,200,105,0)');
+    ctx.fillStyle=glow; ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='rgba(240,200,105,0.6)'; ctx.lineWidth=1.4;
+    ctx.beginPath(); ctx.arc(cx,cy,50*flick,0,Math.PI*2); ctx.stroke();
+  });
+})();
+</script>
+</body>
+</html>
