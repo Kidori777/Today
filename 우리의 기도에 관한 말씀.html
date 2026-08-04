@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우리의 기도에 관한 말씀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-style:normal !important; }
+  html { scroll-behavior:smooth; }
+
+  :root{
+    --ink-storm:#101a2c;
+    --ink-storm-2:#16233a;
+    --cloud:#5c6b80;
+    --cloud-soft:#8593a8;
+    --dawn:#4f8fc0;
+    --gold:#dfae5e;
+    --gold-soft:#f0cf94;
+    --parchment:#f4eee1;
+    --muted:#a9b4c6;
+    --font-serif:'Noto Serif KR', serif;
+    --font-sans:'Noto Sans KR', sans-serif;
+  }
+
+  body{
+    background:var(--ink-storm);
+    color:var(--parchment);
+    font-family:var(--font-sans);
+    overflow-x:hidden;
+    line-height:1.9;
+  }
+
+  #sky-canvas{
+    position:fixed;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    z-index:0;
+    display:block;
+  }
+
+  .veil{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:1;
+    background:radial-gradient(ellipse at 50% 0%, rgba(16,26,44,0) 0%, rgba(16,26,44,0.55) 78%, rgba(16,26,44,0.85) 100%);
+    pointer-events:none;
+  }
+
+  main{ position:relative; z-index:2; }
+
+  /* ---------- Progress rail (ball passing along a line) ---------- */
+  .rail{
+    position:fixed;
+    top:8vh; right:2.6vw;
+    height:84vh;
+    width:36px;
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .rail-track{
+    position:relative;
+    width:2px;
+    height:100%;
+    background:linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0.16));
+  }
+  .rail-fill{
+    position:absolute;
+    top:0; left:0;
+    width:2px;
+    height:0%;
+    background:linear-gradient(to bottom, var(--gold-soft), var(--gold));
+    transition:height .08s linear;
+  }
+  .rail-ball{
+    position:absolute;
+    left:50%;
+    top:0%;
+    width:12px; height:12px;
+    margin-left:-6px; margin-top:-6px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff6df, var(--gold) 55%, #a97a2c 100%);
+    box-shadow:0 0 14px 3px rgba(223,174,94,0.55);
+    transition:top .08s linear;
+  }
+  .rail-node{
+    position:absolute;
+    left:50%;
+    width:6px; height:6px;
+    margin-left:-3px; margin-top:-3px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.28);
+    transition:background .4s ease, box-shadow .4s ease, transform .4s ease;
+  }
+  .rail-node.active{
+    background:var(--gold);
+    box-shadow:0 0 8px 2px rgba(223,174,94,0.6);
+    transform:scale(1.4);
+  }
+  @media (max-width:900px){ .rail{ display:none; } }
+
+  .top-bar{
+    position:fixed; top:0; left:0; width:100%; height:3px; z-index:6;
+    background:rgba(255,255,255,0.06);
+  }
+  .top-bar-fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--dawn), var(--gold));
+    transition:width .08s linear;
+  }
+
+  /* ---------- Sections ---------- */
+  section{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:14vh 8vw;
+  }
+
+  .col{
+    max-width:680px;
+    width:100%;
+  }
+
+  /* Hero */
+  .hero{ text-align:center; align-items:center; }
+  .hero .col{ display:flex; flex-direction:column; align-items:center; }
+  .eyebrow{
+    font-family:var(--font-sans);
+    font-size:0.82rem;
+    letter-spacing:0.32em;
+    color:var(--muted);
+    margin-bottom:2.2rem;
+    font-weight:500;
+  }
+  .eyebrow .note{
+    display:block;
+    letter-spacing:0.05em;
+    font-size:0.78rem;
+    color:rgba(169,180,198,0.6);
+    margin-top:0.6rem;
+  }
+  .hero-title{
+    font-family:var(--font-serif);
+    font-weight:900;
+    font-size:clamp(2.4rem, 6.4vw, 4.6rem);
+    line-height:1.35;
+    letter-spacing:-0.01em;
+    background:linear-gradient(180deg, var(--parchment) 0%, var(--gold-soft) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin-bottom:2.6rem;
+  }
+  .editor-note{
+    font-size:0.94rem;
+    line-height:2.0;
+    color:var(--muted);
+    text-align:left;
+    border-left:2px solid rgba(223,174,94,0.4);
+    padding:1.2rem 1.6rem;
+    background:rgba(255,255,255,0.02);
+    border-radius:2px;
+    max-width:560px;
+  }
+  .scroll-cue{
+    margin-top:4rem;
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    color:rgba(169,180,198,0.55);
+    display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+  }
+  .scroll-cue .line{
+    width:1px; height:34px;
+    background:linear-gradient(to bottom, var(--gold), transparent);
+    animation:pulseLine 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseLine{
+    0%,100%{ opacity:.35; }
+    50%{ opacity:1; }
+  }
+
+  /* Message title (second hero-like) */
+  .msg-title-wrap{ text-align:center; }
+  .msg-index{
+    font-family:var(--font-sans);
+    font-size:0.78rem;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    margin-bottom:1.4rem;
+  }
+  .msg-title{
+    font-family:var(--font-serif);
+    font-weight:800;
+    font-size:clamp(1.9rem, 4.6vw, 3.1rem);
+    color:var(--parchment);
+    letter-spacing:-0.01em;
+  }
+  .msg-title .brush{
+    display:block;
+    width:64px; height:2px;
+    margin:1.8rem auto 0;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Body paragraphs */
+  .verse-block{ align-items:flex-start; }
+  .verse-block .col{ opacity:0; transform:translateY(28px); transition:opacity 1s ease, transform 1s ease; }
+  .verse-block.in-view .col{ opacity:1; transform:translateY(0); }
+
+  .para-index{
+    font-family:var(--font-sans);
+    font-size:0.78rem;
+    color:var(--cloud-soft);
+    letter-spacing:0.24em;
+    margin-bottom:1.4rem;
+    display:flex;
+    align-items:center;
+    gap:0.7rem;
+  }
+  .para-index::before{
+    content:"";
+    display:inline-block;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 6px 1px rgba(223,174,94,0.5);
+  }
+
+  .body-text{
+    font-family:var(--font-sans);
+    font-weight:400;
+    font-size:1.06rem;
+    line-height:2.05;
+    color:var(--parchment);
+    letter-spacing:0.005em;
+    word-break:keep-all;
+  }
+
+  .emphasis{
+    font-weight:700;
+    color:#f2b84e;
+  }
+
+  /* Closing */
+  .closing{ text-align:center; }
+  .closing .col{ display:flex; flex-direction:column; align-items:center; }
+  .closing-mark{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff6df, var(--gold) 55%, #a97a2c 100%);
+    box-shadow:0 0 30px 8px rgba(223,174,94,0.35);
+    margin-bottom:2.2rem;
+  }
+  .closing-text{
+    font-family:var(--font-serif);
+    font-size:1.3rem;
+    color:var(--gold-soft);
+    line-height:1.9;
+    font-weight:600;
+  }
+  .closing-sub{
+    margin-top:1.6rem;
+    font-size:0.82rem;
+    letter-spacing:0.25em;
+    color:var(--muted);
+  }
+
+  ::selection{ background:rgba(223,174,94,0.35); color:#fff; }
+
+  @media (max-width:640px){
+    section{ padding:10vh 7vw; }
+    .body-text{ font-size:1rem; line-height:2.0; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    * { animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="sky-canvas"></canvas>
+<div class="veil"></div>
+<div class="top-bar"><div class="top-bar-fill" id="topBarFill"></div></div>
+
+<div class="rail" id="rail">
+  <div class="rail-track">
+    <div class="rail-fill" id="railFill"></div>
+    <div class="rail-ball" id="railBall"></div>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero" id="s-hero" data-node>
+    <div class="col">
+      <div class="eyebrow">장로훈련 2권 10장 서문
+        <span class="note">(한글 번역본에는 누락 됨)</span>
+      </div>
+      <h1 class="hero-title">우리의 기도에 관한 말씀</h1>
+      <p class="editor-note">편집자 주: 이형제님께서는 장로훈련에 참석한 사람들에게 1984년 2월 11일 토요일 아침집회 30분전에 와서 기도할 것을 요청했다. 그 30분간의 기도에 관하여 다음과 같은 결론의 말씀을 주셨다.</p>
+      <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p1" data-node>
+    <div class="col">
+      <div class="para-index">ONE BODY, ONE TEAM</div>
+      <p class="body-text">나는 여러분의 기도 안으로 들어가고자 최선을 다했으나 할 수 없었습니다. 나는 솔직히 여러분의 기도가 단체적인 방식의 기도가 아니라고 말하고 싶습니다. 여러분 모두는 개인주의적으로 기도했습니다. 이것은 낡은 전통의 어떤 것입니다. <strong class="emphasis">우리는 기도집회에 와서 몸으로서, 단체적인 몸으로서 기도하기를 반드시 배워야 합니다. 영적인 영역에서 기도하는 것은 반드시 단체적이어야 합니다. 심지어 세상적인 영역에서도 11명의 팀이 축구경기를 하거나 5명의 팀이 농구경기를 할 때 개인주의적으로 하지 않고 단체적으로 합니다.</strong> 나는 여러분의 기도 안으로 들어가려고 30분 이상 기다리고 바라보면서 기회를 보았습니다. 그러나 나는 여러분의 노선이 무엇인지 여러분의 목표가 무엇인지 알 수 없었습니다. 기도한 각자는 자신의 생각과 자신의 목표를 가지고 있었습니다. 이것은 전적으로 우리의 전통적인 배경에 기인한 것입니다. <strong class="emphasis">우리 모두가 오늘 아침 노선이 없고 목표가 없는 기도집회를 했다는 것을 깨달을 수 있기를 나는 소망합니다. 우리는 그저 함께 모여 우리 자신의 느낌을 표현했을 뿐입니다.</strong></p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p2" data-node>
+    <div class="col">
+      <div class="para-index">THE SPIRIT IS THE FLOW</div>
+      <p class="body-text">긴 기도는 항상 기도집회를 죽입니다. 긴 기도는 당신이 자신만을 주의하고 다른 사람을 주의하지 않는 것을 가리킵니다. 당신은 당신의 느낌만을 주의합니다. 당신은 집회에서의 분위기와 흐름을 주의하지 않습니다. <strong class="emphasis">우리가 함께 모여 기도할 때 당신이 흐름이 아니라 그 영이 흐름이어야 합니다. 당신이 노선이 아니라 그 영이 노선이어야 합니다. 당신이 목표가 아니라 그 영이 목표이어야 합니다.</strong> 우리 모두는 우리가 아닌 그 영 곧, 주님께서 중심과 흐름과 노선과 목표라는, 그러한 영을 가진 그러한 태도를 견지해야 합니다. 따라서 우리가 열려 있어야 합니다. 주님께 열려 있고 그 영께 열려 있어야 합니다. 그분께서 우리를 사용해서 기도를 시작하고자 한다면, 아마도 우리는 2초 동안만 기도를 하게 될 것입니다. 우리는 우리 의견과 우리 느낌을 표현하는 긴 기도를 하지 않을 것입니다. 아마도 우리는 주님의 긍휼로 이 기도집회가 시작되어야 한다는 속의 느낌을 가졌을 것입니다. 그러면 아마도 우리는 다음과 같이 기도하였을 것입니다. "주님께서 긍휼을 베푸소서. 주님께 감사합니다. 주님의 긍휼은 주님의 은혜보다 훨씬 더 멀리 미치는 것으로 인하여 주님께 감사합니다." 이것으로 충분합니다. 주님께서는 우리를 다만 이러한 정도로 사용하시어 주님의 긍휼로 기도집회를 시작하실 것입니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p3" data-node>
+    <div class="col">
+      <div class="para-index">ONE BALL, ONE TEAM</div>
+      <p class="body-text">만일 우리가 우리의 전통적인 배경에서 나온 방식을 따르지 않고, 즉각적으로 살아있는 영을 따랐다면 누구도 교리적인 요점이 가득한 긴 기도를 하지 않았을 것입니다. 기도집회는 그와 같은 긴 기도를 필요로 하지 않습니다. <strong class="emphasis">기도집회는 신선한 요점이 있는 즉각적이고 신선한 영감이 많이 필요합니다. 이와 같은 신선한 영감은 뉴스이며 심지어 하늘에 속한 뉴스입니다. 우리 모두는 구기경기의 한 팀처럼 한 사람 한 사람 이어서 기도하였을 것입니다. 한 팀의 구성원들은 하나의 공을 가지고 경기합니다.</strong> 그러나 오늘 아침 기도한 모두는 각자 그들 자신의 공을 가지고 기도했습니다. 내가 들어왔을 때 "나는 어떤 공을 받아야 할지 알 수가 없었습니다. 여기 오늘 아침에 얼마나 많은 팀이 있었습니까? 마치 각자가 하나의 팀인 것 같았습니다. 내가 너무 엄격하다고 생각하지 마십시오. 우리는 여기에서 주님의 훈련 안에 있고, 우리는 인도하는 자들입니다. 우리는 소위 동역자들이며, 주님의 회복 전체는 우리의 손 안에 있습니다. 그러나 우리 인도하는 자들은 그와 같은 방식으로 기도 집회를 하고 있었습니다. 이것이 사실이기 때문에 우리는 교회 기도집회에서 무엇을 바랄 수 있겠습니까? 우리의 기도를 볼 때 우리는 주님의 회복 안에 결코 있었던 것 같지 않습니다. 우리는 기도하기 위해서 함께 모인 그리스도인 무리에 불과했고 주님의 회복의 어떤 것도 없는 것 같았습니다. 나는 여러분에게 내 자신이 오늘 아침 기도집회에 매우 실망했다고 참되게 말할 수밖에 없습니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p4" data-node>
+    <div class="col">
+      <div class="para-index">TWO SENTENCES, NOT A SERMON</div>
+      <p class="body-text">여러분 중 어떤 사람들은 간증하기 위해서 일어나면 설교하기를 좋아합니다. 여러분이 기도할 때도 설교합니다. 여러분이 말하면 그것은 항상 긴 어떤 것 - 긴 기도, 긴 간증, 긴 교통 - 입니다. 이것은 아마도 여러분이 낡은 전통을 결코 내려놓지 않았다는 것을 가리킵니다. <strong class="emphasis">나는 여러분 가운데 많은 사람들이 일어나서 단지 두 문장으로 교통하는 것을 듣고 싶습니다. 긴 이야기를 하지 마십시오. 여러분이 어떤 것을 한 이유를 설명하지 마십시오.</strong> 여러분의 지식을 제시하지 마십시오. 여러분 형제님들 중 어떤 사람들은 우리와 함께 있으면서 훈련에서 테스트 할 때나 간증할 때 말하기 시작하면 나는 항상 두려웠습니다. 여러분이 간증할 때는 여러분은 끝에서 그리고 시작에서 긴 이야기들로 가득한 메시지를 전하기를 항상 좋아합니다. 여러분은 심지어 그와 같은 방식으로 기도합니다. 이것은 여러분이 수년 동안 낡음을 유지해 왔음을 보여줍니다. 여러분 형제님들은 일어나서 사람들에게 여러분의 간증에서 "다이아몬드"를 보여줄 필요가 있습니다. 여러분은 그것을 홍콩에서 샀는데 사촌으로부터 그리고 아버지로부터 돈을 빌려야만 했다고 사람들에게 말할 필요가 없습니다. 여러분은 우리에게 긴 이야기를 할 필요가 없습니다. 여러분은 다이아몬드가 무엇이고 그것을 어떻게 얻게 되는지에 관하여 우리에게 가르치거나 설교할 필요가 없습니다. 이것은 시간을 낭비하는 것입니다. 이것은 낡은 것입니다. 다만 다이아몬드를 꺼내서 그것을 다른 사람들에게 보여 주십시오. "이 다이아몬드를 보십시오. 여러분은 이것을 좋아합니까? 여러분도 그것을 살 수 있습니다. 주님을 찬양합니다." 이와 같은 간증으로 충분합니다. 나는 여러분에게 비유적인 방식으로 말하고 있습니다. 그러나 여러분이 요점을 이해하리라고 믿습니다. <strong class="emphasis">똑같은 방식으로 긴 기도는 기도 집회를 죽입니다. 여러분의 긴 기도는 사람들의 인내를 시험합니다.</strong> 여러분의 기도는 사람들의 인내가 얼마 동안 지속될 수 있는지를 시험합니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p5" data-node>
+    <div class="col">
+      <div class="para-index">LAYING DOWN THE OLD WAY</div>
+      <p class="body-text">형제님들! 우리는 낡은 방식을 내려놓아야만 합니다. 여러분은 사도행전 1장에서 예루살렘에 120명이 모여서 우리 방식으로 기도했다고 믿습니까? 그들이 만일 이러한 방식으로 기도했다면, 나는 확신하건데 그들은 10일 후에는 지쳤을 것이며 지루해졌을 것입니다. 우리의 전통적인 배경의 요소는 오늘 아침 여기에 여전히 있음을 볼 수 있었습니다. 내가 너무 엄격한 것이 아닙니다. 나는 우리가 훈련 안에 있기 때문에 여러분 모두에게 솔직해야 한다고 느낍니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p6" data-node>
+    <div class="col">
+      <div class="para-index">RECOVERY MEANS BECOMING NEW</div>
+      <p class="body-text">우리는 우리가 가진 모든 것, 우리가 알고 있는 모든 것, 심지어 우리가 최근에 들었던 모든 것을 다 잊어버리는 것을 반드시 배워야 합니다. 우리는 함께 모여 아무것에도 점유되지 않고 열린 영으로 기도합시다. 비어있는 방식으로 기도집회에 다만 옵시다. 우리는 온 존재를 제단 위에 드려 기도집회에 와서 주님께서 우리 안에 운행하실 수 있고 심지어 우리를 드러내실 수 있도록 해야 합니다. 우리는 아무 것도 모르고 주님 자신만을 안다는 태도로 기도집회에 와야 합니다. <strong class="emphasis">나는 여러분 모두에게 만일 여러분이 계속 여러분의 낡은 교리와 낡은 지식과 낡은 체험과 낡은 어떤 것을 사용한다면 여러분은 주님의 회복 안에서 끝날 것이라고 확신합니다. 주님의 회복은 낡은 것과는 아무 상관이 없습니다. "회복(恢復)의 회恢/Re)"는 '새롭게'를 의미합니다. 그것은 '다시 새로워지는 것'을 의미합니다.</strong> 그것은 이상한 것, 특이한 것, 별난 것을 의미하지 않고 새로워지는 것을 의미합니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p7" data-node>
+    <div class="col">
+      <div class="para-index">EMPTY, OPEN, TWO SECONDS</div>
+      <p class="body-text">우리가 여기에서 함께 모여 5일을 지낸 후, 나는 어제 밤에 오늘 아침을 위하여 이 기도집회를 소집할 강한 부담이 있었습니다. 나는 우리의 낡음이 지난 5일 동안 죽임을 당했을 것을 기대했습니다. 우리는 완전히 비우고 완전히 새롭게 되어 오늘 아침이 기도집회에 왔어야 했습니다. 우리의 태도는 우리는 아무 것도 모르고 아무 것도 갖지 않고 아무 것도 아니라는 것이어야 했습니다. 우리가 무엇일지라도 그것이 무엇인가를 의미하지는 않습니다. 만일 여러분이 그와 같이 열려 있고 비워져 있는 방식으로 자신을 주님께 드렸다면 주님께서는 여러분을 즉각적으로 만지셨을 것입니다. 나는 그분께서 여러분을 3분 동안 기도하도록 만지셨다고는 믿지 않습니다. 그분께서는 2초 동안 표현할 수 있는 느낌을 주셨을 것입니다. 2초로 충분합니다. 이것이 매우 살아있는 것입니다! 만일 여러분이 속에서부터 이와 같은 방식으로 입을 열고 두세 문장을 말했다면 온 하늘이 열렸을 것입니다. 오늘 아침 여러분이 함께 모여 30분동안 기도했을 때 여러분 중 어느 누구도 하늘이 열렸다는 느낌이 없었다는 것을 여러분 중 어느 누구도 부인하지 못할 것입니다. 하늘이 열리지 않았습니다. 여러분이기도할수록 구름이 더 많이 몰려 왔습니다. 여러분의 기도 때문에 하늘에 구름이 가득했습니다. 나는 누가 옳은지 누가 그른지를 주의하지 않습니다. 나는 오늘 아침 우리의 기도에서 우리 위에 맑은 하늘이 없었다는 사실만을 주의합니다. 오늘 아침 여러분에게 한 나의 교통이 이 훈련의 일부입니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p8" data-node>
+    <div class="col">
+      <div class="para-index">LIVING IN THE SPIRIT</div>
+      <p class="body-text">나는 여러분 중 어떤 사람들과는 15년 이상을 같이 지냈습니다. 여러분이 여기에 오는 것이 항상 나에게 시험이었습니다. 나는 여러분이 말하고 기도하고 간증하고 교통하는 방식에 의해 많이 시험받았습니다. 나는 우리가 단지 "주님을 찬양합니다! 아멘! 할렐루야!"라고만 해야 하는 것을 의미하지 않습니다. <strong class="emphasis">나는 우리가 우리의 영 안에서 사는 것을 실행해야 한다는 것을 의미합니다. 주님의 회복 안에서 우리는 한 가지 곧, 영 안에서 사는 것을 실행합니다.</strong> 우리는 기도의 낡은 방식 안에서 살지 말아야 할 뿐 아니라 기도의 낡은 방식을 따르지 말아야 합니다. 우리는 반드시 영 안에서 살아야 하고 영을 따라 행해야 합니다. 긴 기도는 전적으로 여러분의 지식과 여러분이 들은 것과 여러분의 인식에 따른 것입니다. 거기에는 영이 없습니다. 쓸모없는 말들로 가득한 문장이 있을 뿐입니다. 나는 여러분의 기도 거의 모두가 쓸모없다고 말하고 싶습니다. 그것은 여러분의 느낌을 표현할 따름입니다. 이것은 기도집회가 아닙니다. <strong class="emphasis">나는 다시 말하건대 기도집회는 하나의 팀과 같아야 합니다. 팀의 모든 구성원들은 하나의 공으로 경기하도록 깨어 있습니다. 여러분은 기도하는 다음 사람이 여러분의 기도를 이어서 계속할 수 있는 방식으로 기도해야 합니다. 만일 여러분이 아무도 이어서 계속 경기할 수 없도록 경기를 한다면 여러분은 그 팀에서 제외될 것입니다.</strong></p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p9" data-node>
+    <div class="col">
+      <div class="para-index">DID THE SPIRIT LEAD YOU?</div>
+      <p class="body-text">우리 가운데 많은 사람이 여기 주님의 회복 안에 30년 넘게 있었지만 오늘 아침 여러분의 일부는 가만히 있고 기도하지 않았고 다른 사람들은 긴 방식으로 기도했습니다. 우리는 기도한 사람은 잘못되었고 기도하지 않은 사람은 잘못되지 않았다고 생각하지 말아야 합니다. 나는 기도하지 않은 사람들에게 왜 기도하지 않았는지를 묻고자 합니다. 그 영께서 여러분을 기도하지 말라고 인도했나요? 나는 또한 기도한 사람들에게 그 영이 여러분에게 기도하라고 인도했는지를 물어야 하겠습니다. 나는 두 질문에 대한 답이 모두 "아니다"라고 생각합니다. 당신은 기도했으나 그 영은 당신을 기도하도록 인도하지 않았습니다. 당신은 기도하지 않았으나 그 영은 당신을 기도하지 않도록 인도하지 않았습니다. 그러므로 우리 모두는 여기에 와서 우리 자신 안에서 우리의 낡은 방식으로 행동했습니다.</p>
+    </div>
+  </section>
+
+  <section class="verse-block" id="p10" data-node>
+    <div class="col">
+      <div class="para-index">NINE STRONG, TWO WEAK, ONE TEAM</div>
+      <p class="body-text">우리 가운데 경험이 있는 사람들은 "현명하게" 되는 것을 배웠습니다. 가장 현명한 길은 입을 열지 않는 것입니다. 만일 당신이 입을 연다면 어려움을 처하게 될 것입니다. 그러나 오늘 아침 나는 입을 연 사람들 뿐 아니라 입을 열지 않은 사람들에게 더욱더 어려움을 주고 있습니다. 여러분 모두는 옳지 않습니다. <strong class="emphasis">기도한 사람은 옳지 않습니다. 기도하지 않은 사람은 더욱 옳지 않습니다.</strong> 그런 결과 우리 모두는 오늘 아침 기도집회를 죽였습니다. 우리는 이것으로부터 반드시 배워야 합니다. 만일 기도하지 않은 사람들이 짧게 기도했다면 그들은 기도집회를 점유해서 긴 기도를 한 사람들이 기어들어 올 틈을 주지 않았을 것입니다. 만일 한 팀에 11명의 구성원들이 축구경기를 하는데 그 구성원들 중에서 9명이 강하다면, 그들이 경기 전체를 점유할 것이고 2명의 약한 사람들은 거기에 그대로 있을 것입니다. 그러나 그 경기는 꽤 좋을 것입니다. 나는 이러한 교통이 장래를 위하여 우리에게 도움이 될 것을 소망합니다.</p>
+    </div>
+  </section>
+
+  <section class="closing" id="s-closing" data-node>
+    <div class="col">
+      <div class="closing-mark"></div>
+      <p class="closing-text">한 팀은, 하나의 공으로 경기합니다.</p>
+      <div class="closing-sub">우리의 기도에 관한 말씀 · 끝</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // ---------- Canvas: 구름이 걷히고 하늘이 열리는 배경 ----------
+  const canvas = document.getElementById('sky-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, DPR;
+
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // cloud blobs (fixed seeds so composition stays stable)
+  const clouds = Array.from({length: 9}, (_, i) => ({
+    baseX: (i * 137 % 100) / 100,
+    baseY: 0.06 + (i * 53 % 60) / 100,
+    r: 0.16 + (i % 4) * 0.06,
+    speed: 0.02 + (i % 3) * 0.012,
+    phase: i * 1.7
+  }));
+
+  // stars (appear as sky clears)
+  const stars = Array.from({length: 70}, (_, i) => ({
+    x: (i * 233 % 1000) / 1000,
+    y: (i * 97 % 1000) / 1000 * 0.75,
+    r: 0.6 + (i % 3) * 0.55,
+    tw: i * 0.31
+  }));
+
+  function lerp(a,b,t){ return a + (b-a)*t; }
+  function hexToRgb(hex){
+    const v = parseInt(hex.slice(1),16);
+    return [ (v>>16)&255, (v>>8)&255, v&255 ];
+  }
+  const cA = hexToRgb('#0d1526'); // storm top
+  const cB = hexToRgb('#1a2c46'); // storm bottom
+  const dA = hexToRgb('#12213c'); // clear top
+  const dB = hexToRgb('#3a6a93'); // clear bottom (dawn)
+
+  let progress = 0;
+  let targetProgress = 0;
+
+  function getProgress(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  }
+
+  function draw(t){
+    targetProgress = getProgress();
+    progress = lerp(progress, targetProgress, 0.06);
+
+    // sky gradient interpolated by progress
+    const top = [ lerp(cA[0],dA[0],progress), lerp(cA[1],dA[1],progress), lerp(cA[2],dA[2],progress) ];
+    const bot = [ lerp(cB[0],dB[0],progress), lerp(cB[1],dB[1],progress), lerp(cB[2],dB[2],progress) ];
+    const grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, `rgb(${top[0]|0},${top[1]|0},${top[2]|0})`);
+    grad.addColorStop(1, `rgb(${bot[0]|0},${bot[1]|0},${bot[2]|0})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
+
+    // stars fade in with progress
+    const starAlpha = Math.max(0, (progress - 0.15) / 0.6);
+    if(starAlpha > 0){
+      stars.forEach(s => {
+        const tw = 0.5 + 0.5*Math.sin(t*0.001 + s.tw);
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,244,222,${(starAlpha*0.8*tw).toFixed(3)})`;
+        ctx.arc(s.x*W, s.y*H, s.r*DPR*0.9, 0, Math.PI*2);
+        ctx.fill();
+      });
+    }
+
+    // gold glow rising from bottom as sky opens
+    const glowAlpha = Math.max(0, (progress - 0.35)) * 0.5;
+    if(glowAlpha > 0){
+      const rg = ctx.createRadialGradient(W*0.5, H*1.05, 0, W*0.5, H*1.05, H*0.9);
+      rg.addColorStop(0, `rgba(223,174,94,${glowAlpha})`);
+      rg.addColorStop(1, 'rgba(223,174,94,0)');
+      ctx.fillStyle = rg;
+      ctx.fillRect(0,0,W,H);
+    }
+
+    // clouds: density & opacity shrink as progress -> 1
+    const cloudAlphaMax = lerp(0.5, 0.05, progress);
+    const activeCount = Math.round(lerp(clouds.length, 2, progress));
+    for(let i=0;i<activeCount;i++){
+      const c = clouds[i];
+      const drift = Math.sin(t*0.00008 + c.phase) * 0.04;
+      const cx = (c.baseX + drift) * W;
+      const cy = (c.baseY) * H * 0.9 + H*0.03;
+      const r = c.r * Math.max(W,H) * 0.55;
+      const rg = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+      rg.addColorStop(0, `rgba(120,133,155,${cloudAlphaMax})`);
+      rg.addColorStop(1, 'rgba(120,133,155,0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath();
+      ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+
+  // ---------- Progress rail: ball passing down the line ----------
+  const railTrack = document.querySelector('.rail-track');
+  const railFill = document.getElementById('railFill');
+  const railBall = document.getElementById('railBall');
+  const topBarFill = document.getElementById('topBarFill');
+  const nodesData = document.querySelectorAll('[data-node]');
+
+  // build nodes on rail proportional to section order
+  nodesData.forEach((sec, i) => {
+    const node = document.createElement('div');
+    node.className = 'rail-node';
+    node.style.top = (i / (nodesData.length - 1) * 100) + '%';
+    node.dataset.target = sec.id;
+    railTrack.appendChild(node);
+  });
+  const railNodes = document.querySelectorAll('.rail-node');
+
+  function updateRail(){
+    const p = getProgress();
+    railFill.style.height = (p*100) + '%';
+    railBall.style.top = (p*100) + '%';
+    topBarFill.style.width = (p*100) + '%';
+    requestAnimationFrame(updateRail);
+  }
+  requestAnimationFrame(updateRail);
+
+  // ---------- IntersectionObserver: reveal + active node ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        railNodes.forEach(n => n.classList.toggle('active', n.dataset.target === entry.target.id));
+      }
+    });
+  }, { threshold: 0.35 });
+
+  nodesData.forEach(sec => io.observe(sec));
+</script>
+
+</body>
+</html>
