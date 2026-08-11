@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>교회의 기도 사역(3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#080b16;
+    --deep:#101a33;
+    --deep2:#0c1428;
+    --glory:#e7b464;
+    --glory-soft:#c99a58;
+    --thread:#a67c3d;
+    --sky:#8098c9;
+    --sky-dim:#4c5c8a;
+    --ink:#eef1f9;
+    --mute:#8d95b4;
+    --mute-dim:#5c6485;
+    --line:rgba(231,180,100,0.16);
+    --serif:'Noto Serif KR', serif;
+    --sans:'Noto Sans KR', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.8;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    font-style:normal;
+  }
+  i,em{font-style:normal;}
+
+  ::selection{background:var(--glory);color:var(--void);}
+
+  /* ---------- background canvas ---------- */
+  #bgCanvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+  }
+  .grain{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    opacity:0.035;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- thread (signature element) ---------- */
+  #threadWrap{
+    position:fixed;
+    left:calc(50% - 404px);
+    top:0;
+    height:100%;
+    width:2px;
+    z-index:2;
+    pointer-events:none;
+    opacity:0.4;
+  }
+  #threadSvg{width:100%;height:100%;overflow:visible;}
+  .thread-path{
+    fill:none;
+    stroke:url(#threadGrad);
+    stroke-width:1;
+    stroke-linecap:round;
+  }
+  @media (max-width:1000px){
+    #threadWrap{display:none;}
+  }
+
+  /* ---------- progress rail ---------- */
+  #rail{
+    position:fixed;
+    right:34px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:30;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+  }
+  #rail .rail-line{
+    position:absolute;
+    top:0;left:50%;
+    transform:translateX(-50%);
+    width:1px;height:100%;
+    background:linear-gradient(var(--line),var(--line));
+    z-index:-1;
+  }
+  .rail-node{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    cursor:pointer;
+  }
+  .rail-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--mute-dim);
+    border:1px solid var(--mute-dim);
+    transition:all .5s ease;
+  }
+  .rail-num{
+    font-family:var(--serif);
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--mute-dim);
+    transition:all .5s ease;
+    writing-mode:vertical-rl;
+  }
+  .rail-node.active .rail-dot{
+    background:var(--glory);
+    border-color:var(--glory);
+    box-shadow:0 0 10px 2px rgba(231,180,100,0.55);
+  }
+  .rail-node.active .rail-num{color:var(--glory);}
+  @media (max-width:900px){ #rail{display:none;} }
+
+  /* mobile top progress */
+  #topProgress{
+    position:fixed;top:0;left:0;height:2px;width:0%;
+    background:linear-gradient(90deg,var(--thread),var(--glory));
+    z-index:40;
+    transition:width .1s linear;
+  }
+
+  /* ---------- layout ---------- */
+  main{position:relative;z-index:5;}
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 28px 100px;
+  }
+  .hero-eyebrow{
+    font-family:var(--serif);
+    font-size:13px;
+    letter-spacing:6px;
+    color:var(--glory-soft);
+    opacity:0;
+    animation:riseIn 1.2s .2s ease forwards;
+  }
+  .hero-title{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(2.4rem,7vw,4rem);
+    letter-spacing:2px;
+    margin:22px 0 18px;
+    color:var(--ink);
+    opacity:0;
+    animation:riseIn 1.3s .45s ease forwards;
+    line-height:1.35;
+  }
+  .hero-refs{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-family:var(--sans);
+    font-size:14px;
+    color:var(--mute);
+    letter-spacing:1px;
+    opacity:0;
+    animation:riseIn 1.3s .75s ease forwards;
+  }
+  .hero-refs b{color:var(--sky);font-weight:500;}
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(18px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .hero-knot{
+    margin-top:64px;
+    width:120px;height:120px;
+    opacity:0;
+    animation:riseIn 1.4s 1s ease forwards;
+  }
+
+  .scrolldown{
+    position:absolute;
+    bottom:44px;left:50%;
+    transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:var(--mute-dim);
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:0;
+    animation:riseIn 1.2s 1.4s ease forwards;
+  }
+  .scrolldown .bar{
+    width:1px;height:34px;
+    background:linear-gradient(var(--glory),transparent);
+    animation:scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+  }
+
+  /* ---------- sections ---------- */
+  section.chapter{
+    position:relative;
+    padding:150px 0 90px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:56px;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .chapter-head.visible{opacity:1;transform:translateY(0);}
+  .chapter-num{
+    font-family:var(--serif);
+    font-size:15px;
+    color:var(--glory);
+    letter-spacing:2px;
+    border:1px solid var(--line);
+    padding:5px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .chapter-title{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.5rem,4vw,2rem);
+    color:var(--ink);
+    letter-spacing:0.5px;
+  }
+  .chapter-sub{
+    font-size:13px;
+    color:var(--sky);
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+
+  /* reveal blocks */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* scripture block */
+  blockquote.scripture{
+    position:relative;
+    margin:34px 0 40px;
+    padding:26px 30px 26px 34px;
+    border-left:2px solid var(--glory-soft);
+    background:linear-gradient(90deg, rgba(231,180,100,0.06), transparent 70%);
+    font-family:var(--serif);
+    font-size:16px;
+    line-height:2.05;
+    color:#f3e9d4;
+    letter-spacing:0.2px;
+  }
+  blockquote.scripture .ref{
+    display:block;
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:2px;
+    color:var(--glory-soft);
+    margin-bottom:10px;
+  }
+
+  /* outline lists */
+  .point-wrap{margin-bottom:8px;}
+  ol.lv-a{list-style:none;counter-reset:lvA;}
+  ol.lv-a > li{
+    counter-increment:lvA;
+    position:relative;
+    padding-left:38px;
+    margin-bottom:34px;
+  }
+  ol.lv-a > li::before{
+    content: counter(lvA, upper-alpha) ".";
+    position:absolute;left:0;top:0;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:16px;
+    color:var(--glory);
+  }
+  .point-text{
+    font-size:15.5px;
+    color:var(--ink);
+    line-height:1.9;
+  }
+
+  ol.lv-1{list-style:none;counter-reset:lv1;margin-top:14px;}
+  ol.lv-1 > li{
+    counter-increment:lv1;
+    position:relative;
+    padding-left:28px;
+    margin-bottom:12px;
+    font-size:14.5px;
+    color:var(--mute);
+    line-height:1.85;
+  }
+  ol.lv-1 > li::before{
+    content: counter(lv1) ".";
+    position:absolute;left:0;top:0;
+    font-family:var(--sans);
+    font-weight:500;
+    color:var(--sky);
+    font-size:13px;
+  }
+
+  ol.lv-a2{list-style:none;counter-reset:lva2;margin-top:10px;}
+  ol.lv-a2 > li{
+    counter-increment:lva2;
+    position:relative;
+    padding-left:24px;
+    margin-bottom:8px;
+    font-size:14px;
+    color:var(--mute);
+    line-height:1.8;
+  }
+  ol.lv-a2 > li::before{
+    content: counter(lva2, lower-alpha) ".";
+    position:absolute;left:0;top:0;
+    color:var(--mute-dim);
+    font-size:13px;
+  }
+
+  strong.quote-inline{color:var(--glory-soft);font-weight:500;}
+
+  /* motif dividers between chapters */
+  .motif{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:20px 0 0;
+    opacity:.55;
+  }
+  .motif span{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--glory-soft);
+  }
+  .motif .ln{width:60px;height:1px;background:var(--line);}
+
+  /* section-specific canvases */
+  .scene{
+    position:relative;
+    width:100%;
+    height:220px;
+    margin:46px 0 8px;
+    border-radius:4px;
+    overflow:hidden;
+    opacity:0;
+    transform:scale(0.97);
+    transition:opacity 1.1s ease, transform 1.1s ease;
+  }
+  .scene.visible{opacity:1;transform:scale(1);}
+  .scene canvas{width:100%;height:100%;display:block;}
+  .scene-caption{
+    position:absolute;
+    bottom:12px;left:16px;
+    font-family:var(--serif);
+    font-size:12px;
+    letter-spacing:2px;
+    color:var(--mute);
+  }
+
+  /* footer */
+  footer{
+    position:relative;
+    padding:80px 28px 90px;
+    text-align:center;
+  }
+  footer .src{
+    font-size:12px;
+    color:var(--mute-dim);
+    letter-spacing:1px;
+  }
+  footer .flourish{
+    margin-bottom:22px;
+    display:flex;justify-content:center;
+  }
+
+  @media (max-width:560px){
+    .wrap{padding:0 22px;}
+    .chapter-head{gap:12px;}
+    .chapter-num{font-size:12px;padding:4px 9px;}
+    section.chapter{padding:110px 0 60px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+<div class="grain"></div>
+
+<div id="threadWrap">
+  <svg id="threadSvg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="threadGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4c5c8a" stop-opacity="0.5"/>
+        <stop offset="35%" stop-color="#a67c3d" stop-opacity="0.75"/>
+        <stop offset="70%" stop-color="#e7b464" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#f3e0ae" stop-opacity="0.95"/>
+      </linearGradient>
+    </defs>
+    <path class="thread-path" id="threadPath" d=""/>
+  </svg>
+</div>
+
+<div id="topProgress"></div>
+
+<div id="rail">
+  <div class="rail-line"></div>
+  <div class="rail-node" data-target="sec1"><span class="rail-num">Ⅰ</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-target="sec2"><span class="rail-num">Ⅱ</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-target="sec3"><span class="rail-num">Ⅲ</span><span class="rail-dot"></span></div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">묶임과 풀림, 그리고 하나 됨</div>
+    <h1 class="hero-title">교회의 기도 사역 (3)</h1>
+    <div class="hero-refs">
+      <div>성경&nbsp;&nbsp;<b>마태복음 18:15-20</b></div>
+      <div>찬송가&nbsp;&nbsp;<b>563장</b></div>
+    </div>
+    <svg class="hero-knot" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="var(--line)" stroke-width="1"/>
+      <path id="heroKnot" d="M30,60 C30,40 50,40 60,60 C70,80 90,80 90,60 C90,40 70,40 60,60 C50,80 30,80 30,60 Z"
+        stroke="url(#threadGrad)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="scrolldown"><span>SCROLL</span><div class="bar"></div></div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- SECTION I -->
+    <section class="chapter" id="sec1">
+      <div class="chapter-head reveal">
+        <span class="chapter-num">Ⅰ</span>
+        <div>
+          <div class="chapter-title">땅이 하늘을 지배함</div>
+          <div class="chapter-sub">마태복음 18:18</div>
+        </div>
+      </div>
+
+      <blockquote class="scripture reveal">
+        <span class="ref">마 18:18</span>
+        내가 진실로 여러분에게 말합니다. 여러분이 땅에서 묶는 것은 무엇이든지 하늘에서 이미 묶인 것이며, 여러분이 땅에서 푸는 것은 무엇이든지 하늘에서 이미 풀린 것입니다.
+      </blockquote>
+
+      <div class="scene reveal" data-scene="bind">
+        <canvas></canvas>
+        <div class="scene-caption">땅에서 묶고 풀면, 하늘에서 이미 그러합니다</div>
+      </div>
+
+      <div class="point-wrap reveal">
+        <ol class="lv-a">
+          <li>
+            <p class="point-text">땅의 행동이 하늘의 행동보다 먼저 있고 하늘이 땅의 지배를 받는다.</p>
+            <ol class="lv-1">
+              <li>무엇이든지 하나님과 상반되는 것은 묶어야 하고 무엇이든지 하나님과 상합되는 것은 다 풀어야 한다.</li>
+              <li>묶어야 할 일이든 풀어야 할 일이든 그 묶는 것이나 푸는 것이 모두 땅에서 시작되는 것이다.</li>
+            </ol>
+          </li>
+          <li>
+            <p class="point-text">하나님은 땅이 하늘을 지배하기 원하신다.</p>
+            <ol class="lv-1">
+              <li>우리는 하나님으로 하여금 그분께서 원하지 않으시는 것을 하시게 할 수는 없지만 그분께서 하고자 하시는 일을 방해할 수 있다.</li>
+              <li>하나님은 <strong class="quote-inline">“내 아들들의 일과 내 손으로 한 일에 대하여 내게 명령하라”</strong>고 말씀하신다―사 45:11.</li>
+            </ol>
+
+            <blockquote class="scripture" style="margin-top:22px;">
+              <span class="ref">사 45:11</span>
+              이스라엘의 거룩하신 이 곧 이스라엘을 지으신 여호와께서 이같이 이르시되 너희가 장래 일을 내게 물으며 또 내 아들들과 내 손으로 한 일에 관하여 내게 명령하려느냐
+            </blockquote>
+
+            <ol class="lv-1" style="margin-top:6px;">
+              <li>우리가 하나님께서 하시고자 하는 일을 하시도록 분부할 수 있는 위치에 서 있다. 우리는 <strong class="quote-inline">“하나님, 우리는 당신께서 이 일을 하시기를 원합니다. 당신께서 이 일을 하시도록 결정하셨으므로 반드시 이렇게 하셔야 합니다.”</strong>라고 강하게 기도해야 한다.</li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <div class="motif"><span></span><div class="ln"></div><span></span></div>
+    </section>
+
+    <!-- SECTION II -->
+    <section class="chapter" id="sec2">
+      <div class="chapter-head reveal">
+        <span class="chapter-num">Ⅱ</span>
+        <div>
+          <div class="chapter-title">의지의 조화(일치)</div>
+        </div>
+      </div>
+
+      <div class="scene reveal" data-scene="orbit">
+        <canvas></canvas>
+        <div class="scene-caption">사람의 뜻과 하나님의 뜻이 하나로 합해짐</div>
+      </div>
+
+      <div class="point-wrap reveal">
+        <ol class="lv-a">
+          <li><p class="point-text">하나님께서 자유 의지를 가진 사람을 지으신 후, 두 영원 사이의 시간 안에서 하나님의 권위는 사람의 제한을 받게 되었다.</p></li>
+          <li><p class="point-text">하나님의 영원한 뜻이 성취될 때 사람의 자유 의지는 하나님의 영원한 뜻과 합해질 것이다.</p></li>
+          <li><p class="point-text">그러나 시간 안에서 하나님의 행동은 사람인 교회의 지배를 받는다. 하나님은 그분께서 하고자 하시는 일을 교회로 말미암아 하기 원하신다.</p></li>
+          <li><p class="point-text">하나님은 반드시 그분의 뜻에 협력하는 사람의 의지를 얻으셔야 한다. 이렇게 조화(일치)된 의지는 하나님께 지극히 큰 영광이다!</p></li>
+        </ol>
+      </div>
+
+      <div class="motif"><span></span><div class="ln"></div><span></span></div>
+    </section>
+
+    <!-- SECTION III -->
+    <section class="chapter" id="sec3">
+      <div class="chapter-head reveal">
+        <span class="chapter-num">Ⅲ</span>
+        <div>
+          <div class="chapter-title">세 가지 큰 원칙</div>
+        </div>
+      </div>
+
+      <div class="point-wrap reveal">
+        <ol class="lv-a">
+
+          <li>
+            <p class="point-text">하나님의 뜻을 말해냄—마 18:18</p>
+            <ol class="lv-1">
+              <li>오늘날 하나님은 그분께서 하고자 하시는 일을 단독으로 하실 수 없고 반드시 교회가 그분과 협력해야만 하실 수 있다. 교회는 그분께서 하고자 하시는 일을 하시게 할 수도 있고 방해할 수도 있다.</li>
+              <li>교회의 기도 사역은 바로 하나님께서 교회에게 그분께서 하고자 하시는 것을 말씀하시고 교회는 그분께서 하고자 하시는 일을 땅에서 기도하는 것이다.</li>
+              <li>교회의 가장 큰 용도는 교회가 서서 하나님의 뜻이 땅에서 이루어지게 하는 것이다.</li>
+            </ol>
+          </li>
+
+          <li>
+            <p class="point-text">성령 안의 조화—마 18:19</p>
+
+            <blockquote class="scripture" style="margin-top:22px;">
+              <span class="ref">마 18:19</span>
+              다시 내가 진실로 여러분에게 말합니다. 여러분 가운데 두 사람이 땅에서 무엇을 구하든지 마음을 같이하면, 하늘에 계신 내 아버지께서 그들을 위하여 다 이루어 주실 것입니다.
+            </blockquote>
+
+            <div class="scene" data-scene="agree">
+              <canvas></canvas>
+              <div class="scene-caption">두 별이 마음을 같이하여 하나의 빛이 됨</div>
+            </div>
+
+            <ol class="lv-1">
+              <li>마태복음 18장 19절에서 주 예수님은 마음을 같이하여 구하는 것을 강조하시지 않고 ‘무엇’에든지 마음을 같이하고 그 후에 구하는 것을 강조하신다.
+                <ol class="lv-a2">
+                  <li>기도가 첫 번째가 아니다, 기도는 조화(마음을 같이함) 뒤에 온다.</li>
+                  <li>교회가 땅에서 사역하는 기도를 하려면, 모든 형제자매들은 주님 앞에서 육체적인 생명을 부인하기를 배워야 한다.</li>
+                </ol>
+              </li>
+              <li>두 사람의 원칙은 교회의 원칙, 곧 그리스도의 몸의 원칙이다.
+                <ol class="lv-a2">
+                  <li>두 사람은 조화 안에 있어야 하고, 몸의 터 위에 서야 하며, 몸 생명을 알아야 한다.</li>
+                  <li>두 사람에게는 한 목표만 있어야 하는데, 그것은 바로 하나님께 <strong class="quote-inline">“당신의 뜻이 하늘과 땅에서 이루어지기를 원합니다.”</strong>라고 말하는 것이다.</li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+
+          <li>
+            <p class="point-text">함께 모임—마 18:20</p>
+
+            <blockquote class="scripture" style="margin-top:22px;">
+              <span class="ref">마 18:20</span>
+              왜냐하면 두세 사람이 내 이름으로 모인 곳에는 나도 그들 가운데 있기 때문입니다.
+            </blockquote>
+
+            <div class="scene" data-scene="gather">
+              <canvas></canvas>
+              <div class="scene-caption">두세 사람이 모인 곳에, 주님이 함께 계심</div>
+            </div>
+
+            <ol class="lv-1">
+              <li>우리가 주님의 이름 안으로 함께 모일 때마다 주님께서 함께 계신다. 그러므로 땅에 큰 능력이 있고, 두세 사람이 마음을 같이하는 기도에 능력이 가득하다.</li>
+              <li>모든 형제자매들이 주님의 이름을 위하여 함께 모일 때 하나와 조화가 있다.</li>
+              <li>주님께서 교회 가운데 계실 때 교회는 풍성하고 강할 것이다. 그럴 때 교회는 묶고 풀 수 있다.</li>
+            </ol>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="flourish">
+      <svg width="80" height="24" viewBox="0 0 80 24" fill="none">
+        <path d="M2,12 Q20,2 40,12 T78,12" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="40" cy="12" r="2.5" fill="var(--glory-soft)"/>
+      </svg>
+    </div>
+    <div class="src">* 개요 발췌 근거 : ‘교회의 기도사역’ 제1장</div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  // ---------------- background starfield canvas ----------------
+  const bg = document.getElementById('bgCanvas');
+  const bctx = bg.getContext('2d');
+  let W,H,stars=[];
+
+  function resizeBg(){
+    W = bg.width = window.innerWidth;
+    H = bg.height = document.documentElement.scrollHeight;
+    stars = [];
+    const count = Math.floor((W*H)/26000);
+    for(let i=0;i<count;i++){
+      stars.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*1.3 + 0.3,
+        p: Math.random()*Math.PI*2,
+        s: Math.random()*0.02 + 0.006
+      });
+    }
+  }
+
+  let scrollY = 0;
+  function drawBg(t){
+    bctx.clearRect(0,0,W,H);
+    // vertical mood gradient across full scroll height
+    const grad = bctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0,'#080b16');
+    grad.addColorStop(0.35,'#0c1428');
+    grad.addColorStop(0.65,'#0e1730');
+    grad.addColorStop(1,'#131022');
+    bctx.fillStyle = grad;
+    bctx.fillRect(0,0,W,H);
+
+    for(const st of stars){
+      const tw = 0.5 + 0.5*Math.sin(t*st.s + st.p);
+      bctx.beginPath();
+      bctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+      bctx.fillStyle = `rgba(231,206,150,${0.15 + tw*0.55})`;
+      bctx.fill();
+    }
+    requestAnimationFrame(drawBg);
+  }
+  resizeBg();
+  requestAnimationFrame(drawBg);
+  window.addEventListener('resize', resizeBg);
+
+  // ---------------- signature thread path ----------------
+  const threadPath = document.getElementById('threadPath');
+  const threadSvg = document.getElementById('threadSvg');
+  function drawThread(){
+    const docH = document.documentElement.scrollHeight;
+    threadSvg.setAttribute('viewBox', `0 0 2 ${docH}`);
+    // gentle knot wiggle at each section boundary
+    const sec1 = document.getElementById('sec1').offsetTop;
+    const sec2 = document.getElementById('sec2').offsetTop;
+    const sec3 = document.getElementById('sec3').offsetTop;
+    let d = `M1,0 `;
+    d += `L1,${sec1-40} `;
+    d += `C -3,${sec1-10} 5,${sec1+10} 1,${sec1+40} `;
+    d += `L1,${sec2-40} `;
+    d += `C -3,${sec2-10} 5,${sec2+10} 1,${sec2+40} `;
+    d += `L1,${sec3-40} `;
+    d += `C -3,${sec3-10} 5,${sec3+10} 1,${sec3+40} `;
+    d += `L1,${docH}`;
+    threadPath.setAttribute('d', d);
+  }
+  window.addEventListener('load', drawThread);
+  window.addEventListener('resize', drawThread);
+  setTimeout(drawThread, 400);
+
+  // ---------------- reveal on scroll ----------------
+  const revealEls = document.querySelectorAll('.reveal, .chapter-head, .scene');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.18, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ---------------- rail + top progress ----------------
+  const railNodes = document.querySelectorAll('.rail-node');
+  const sections = ['sec1','sec2','sec3'].map(id=>document.getElementById(id));
+  railNodes.forEach(n=>{
+    n.addEventListener('click', ()=>{
+      document.getElementById(n.dataset.target).scrollIntoView({behavior:'smooth'});
+    });
+  });
+  const secIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const idx = sections.indexOf(e.target);
+      if(e.isIntersecting){
+        railNodes.forEach(n=>n.classList.remove('active'));
+        railNodes[idx].classList.add('active');
+      }
+    });
+  }, {threshold:0.4});
+  sections.forEach(s=>secIO.observe(s));
+
+  const topProgress = document.getElementById('topProgress');
+  window.addEventListener('scroll', ()=>{
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = h>0 ? (window.scrollY/h)*100 : 0;
+    topProgress.style.width = pct + '%';
+  });
+
+  // ---------------- per-scene canvases ----------------
+  function setupCanvas(canvas){
+    const parent = canvas.parentElement;
+    const dpr = Math.min(window.devicePixelRatio||1, 2);
+    const rect = parent.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr,dpr);
+    return {ctx, w:rect.width, h:rect.height};
+  }
+
+  // scene: bind (rope tying/untying) — Section I
+  function initBind(scene){
+    const canvas = scene.querySelector('canvas');
+    let {ctx,w,h} = setupCanvas(canvas);
+    let running = false, t0 = null;
+    function frame(ts){
+      if(!running) return;
+      if(!t0) t0 = ts;
+      const t = (ts-t0)/1000;
+      ctx.clearRect(0,0,w,h);
+      const midY = h/2;
+      ctx.strokeStyle = 'rgba(231,180,100,0.55)';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      for(let x=0;x<=w;x+=2){
+        const knotPhase = Math.sin((x/w)*Math.PI*4 + t*0.6) * (10 + 6*Math.sin(t*0.4));
+        const y = midY + knotPhase;
+        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+      // ground / heaven labels as soft glows
+      ctx.fillStyle = 'rgba(128,152,201,0.5)';
+      ctx.beginPath(); ctx.arc(w*0.08, h*0.85, 2, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba(231,180,100,0.7)';
+      ctx.beginPath(); ctx.arc(w*0.92, h*0.15, 2, 0, Math.PI*2); ctx.fill();
+      requestAnimationFrame(frame);
+    }
+    const obs = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting && !running){ running=true; t0=null; requestAnimationFrame(frame); }
+        else if(!e.isIntersecting){ running=false; }
+      });
+    }, {threshold:0.2});
+    obs.observe(scene);
+    window.addEventListener('resize', ()=>{ ({ctx,w,h} = setupCanvas(canvas)); });
+  }
+
+  // scene: orbit (two wills merging) — Section II
+  function initOrbit(scene){
+    const canvas = scene.querySelector('canvas');
+    let {ctx,w,h} = setupCanvas(canvas);
+    let running=false, t0=null;
+    function frame(ts){
+      if(!running) return;
+      if(!t0) t0 = ts;
+      const t = (ts-t0)/1000;
+      ctx.clearRect(0,0,w,h);
+      const cx=w/2, cy=h/2;
+      const merge = Math.min(1, t/6); // gradually converge over 6s
+      const spread = 34 * (1-merge) + 4*merge;
+      const a1 = t*0.7, a2 = t*0.7 + Math.PI*(1-merge*0.98);
+      const x1 = cx + Math.cos(a1)*spread, y1 = cy + Math.sin(a1)*spread*0.5;
+      const x2 = cx + Math.cos(a2)*spread, y2 = cy + Math.sin(a2)*spread*0.5;
+
+      ctx.strokeStyle='rgba(140,160,210,0.25)';
+      ctx.lineWidth=1;
+      ctx.beginPath(); ctx.ellipse(cx,cy,spread,spread*0.5,0,0,Math.PI*2); ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+      ctx.strokeStyle = `rgba(231,180,100,${0.15+merge*0.35})`;
+      ctx.stroke();
+
+      ctx.fillStyle='rgba(128,152,201,0.9)';
+      ctx.beginPath(); ctx.arc(x1,y1,3.2,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='rgba(231,180,100,0.9)';
+      ctx.beginPath(); ctx.arc(x2,y2,3.2,0,Math.PI*2); ctx.fill();
+
+      if(merge>0.85){
+        ctx.beginPath();
+        ctx.arc(cx,cy, 5+3*Math.sin(t*2), 0, Math.PI*2);
+        ctx.fillStyle=`rgba(243,224,174,${0.25})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    const obs = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting && !running){ running=true; t0=null; requestAnimationFrame(frame); }
+        else if(!e.isIntersecting){ running=false; }
+      });
+    }, {threshold:0.2});
+    obs.observe(scene);
+    window.addEventListener('resize', ()=>{ ({ctx,w,h} = setupCanvas(canvas)); });
+  }
+
+  // scene: agree (two stars align) — Section III.B
+  function initAgree(scene){
+    const canvas = scene.querySelector('canvas');
+    let {ctx,w,h} = setupCanvas(canvas);
+    let running=false, t0=null;
+    function frame(ts){
+      if(!running) return;
+      if(!t0) t0=ts;
+      const t=(ts-t0)/1000;
+      ctx.clearRect(0,0,w,h);
+      const cy=h/2;
+      const conv = Math.min(1, t/5);
+      const gap = 60*(1-conv) + 3*conv;
+      const x1 = w/2 - gap, x2 = w/2 + gap;
+      ctx.strokeStyle=`rgba(231,180,100,${0.15+conv*0.4})`;
+      ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(x1,cy); ctx.lineTo(x2,cy); ctx.stroke();
+
+      [x1,x2].forEach((x,i)=>{
+        const glow = ctx.createRadialGradient(x,cy,0,x,cy,16);
+        glow.addColorStop(0, i===0? 'rgba(128,152,201,0.9)':'rgba(231,180,100,0.9)');
+        glow.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.fillStyle=glow;
+        ctx.beginPath(); ctx.arc(x,cy,16,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = i===0? '#8098c9':'#e7b464';
+        ctx.beginPath(); ctx.arc(x,cy,3,0,Math.PI*2); ctx.fill();
+      });
+
+      if(conv>0.9){
+        const r = 8 + 4*Math.sin(t*3);
+        const glow = ctx.createRadialGradient(w/2,cy,0,w/2,cy,r*4);
+        glow.addColorStop(0,'rgba(243,224,174,0.5)');
+        glow.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.fillStyle=glow;
+        ctx.beginPath(); ctx.arc(w/2,cy,r*4,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    const obs = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting && !running){ running=true; t0=null; requestAnimationFrame(frame); }
+        else if(!e.isIntersecting){ running=false; }
+      });
+    }, {threshold:0.2});
+    obs.observe(scene);
+    window.addEventListener('resize', ()=>{ ({ctx,w,h} = setupCanvas(canvas)); });
+  }
+
+  // scene: gather (particles converge to a bright point) — Section III.C
+  function initGather(scene){
+    const canvas = scene.querySelector('canvas');
+    let {ctx,w,h} = setupCanvas(canvas);
+    let running=false, t0=null, particles=[];
+    function makeParticles(){
+      particles = [];
+      const n = 22;
+      for(let i=0;i<n;i++){
+        const ang = Math.random()*Math.PI*2;
+        const dist = 40 + Math.random()*60;
+        particles.push({
+          ang, dist,
+          speed: 0.15 + Math.random()*0.2,
+          r: 1+Math.random()*1.4
+        });
+      }
+    }
+    makeParticles();
+    function frame(ts){
+      if(!running) return;
+      if(!t0) t0=ts;
+      const t=(ts-t0)/1000;
+      ctx.clearRect(0,0,w,h);
+      const cx=w/2, cy=h/2;
+      const pull = Math.min(1, t/6);
+
+      particles.forEach(p=>{
+        const d = p.dist*(1-pull) + 3*pull;
+        const a = p.ang + t*p.speed*0.3;
+        const x = cx + Math.cos(a)*d;
+        const y = cy + Math.sin(a)*d*0.55;
+        ctx.beginPath();
+        ctx.arc(x,y,p.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(231,206,150,${0.35+pull*0.5})`;
+        ctx.fill();
+      });
+
+      const glowR = 6 + pull*16 + 3*Math.sin(t*2);
+      const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,glowR);
+      glow.addColorStop(0, `rgba(243,224,174,${0.25+pull*0.55})`);
+      glow.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath(); ctx.arc(cx,cy,glowR,0,Math.PI*2); ctx.fill();
+
+      requestAnimationFrame(frame);
+    }
+    const obs = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting && !running){ running=true; t0=null; requestAnimationFrame(frame); }
+        else if(!e.isIntersecting){ running=false; }
+      });
+    }, {threshold:0.2});
+    obs.observe(scene);
+    window.addEventListener('resize', ()=>{ ({ctx,w,h} = setupCanvas(canvas)); });
+  }
+
+  document.querySelectorAll('.scene').forEach(scene=>{
+    const kind = scene.dataset.scene;
+    if(kind==='bind') initBind(scene);
+    if(kind==='orbit') initOrbit(scene);
+    if(kind==='agree') initAgree(scene);
+    if(kind==='gather') initGather(scene);
+  });
+
+  // hero knot subtle draw-in
+  const heroKnot = document.getElementById('heroKnot');
+  const len = heroKnot.getTotalLength();
+  heroKnot.style.strokeDasharray = len;
+  heroKnot.style.strokeDashoffset = len;
+  setTimeout(()=>{
+    heroKnot.style.transition = 'stroke-dashoffset 2.4s ease';
+    heroKnot.style.strokeDashoffset = 0;
+  }, 900);
+
+})();
+</script>
+
+</body>
+</html>
