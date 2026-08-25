@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>복음 초청 집회 - 초대합니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ec;
+    --card:#f4eeda;
+    --forest:#3d5a37;
+    --forest-deep:#2c4228;
+    --sage:#8aa07d;
+    --sage-light:#b9c9ad;
+    --gold:#c8a24e;
+    --gold-light:#e2c98a;
+    --ink:#2b2a22;
+    --ink-soft:#4a4638;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    background:#e9e4d4;
+    font-family:'Noto Sans KR',sans-serif;
+    color:var(--ink);
+  }
+  body{
+    display:flex;
+    justify-content:center;
+    padding:36px 14px;
+  }
+  .sheet{
+    position:relative;
+    width:700px;
+    max-width:100%;
+    background:var(--cream);
+    box-shadow:0 30px 70px -20px rgba(30,30,15,0.35), 0 0 0 1px rgba(200,162,78,0.15);
+  }
+  .sheet::before{
+    content:'';
+    position:absolute;
+    inset:22px;
+    border:1px solid rgba(200,162,78,0.45);
+    pointer-events:none;
+    z-index:3;
+  }
+  .invite{
+    position:relative;
+    min-height:960px;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(200,162,78,0.06), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(61,90,55,0.05), transparent 55%);
+    overflow:hidden;
+  }
+
+  /* ---------- botanical corner ornaments ---------- */
+  .corner{
+    position:absolute;
+    width:260px;
+    height:260px;
+    z-index:1;
+    pointer-events:none;
+  }
+  .corner svg{width:100%;height:100%;display:block;}
+  .corner.tl{top:-6px;left:-6px;}
+  .corner.tr{top:-6px;right:-6px;transform:scaleX(-1);}
+  .corner.bl{bottom:-6px;left:-6px;width:290px;height:290px;transform:scaleY(-1);}
+  .corner.br{bottom:-6px;right:-6px;width:290px;height:290px;transform:scale(-1,-1);}
+
+  /* loose petals scattered across the lower field, between the two corners */
+  .petal-field{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:230px;
+    z-index:1;
+    pointer-events:none;
+  }
+  .petal-field svg{width:100%;height:100%;display:block;}
+  .petal{fill:#e6b9a6;opacity:0.55;}
+  .petal.rose{fill:#d9a58c;}
+  .petal.pale{fill:#efe0c2;opacity:0.7;}
+  .bud{fill:#7f9a70;}
+
+  .gold-dot{fill:var(--gold);}
+  .leaf-a{fill:#7f9a70;}
+  .leaf-b{fill:#9db38c;opacity:0.9;}
+  .leaf-outline{fill:none;stroke:#5c7650;stroke-width:1;opacity:0.5;}
+  .petal-outer{fill:#fbf8ef;stroke:#d8cfae;stroke-width:0.6;}
+  .petal-inner{fill:#f3ecd6;stroke:#d8cfae;stroke-width:0.5;}
+  .petal-core{fill:#e9dcb8;}
+  .twig{stroke:#8a7a4a;stroke-width:1.1;fill:none;opacity:0.6;}
+
+  /* ---------- content ---------- */
+  .content{
+    position:relative;
+    z-index:2;
+    padding:96px 64px 64px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .eyebrow{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    font-size:24px;
+    letter-spacing:0.32em;
+    color:var(--forest);
+    margin-bottom:6px;
+    padding-left:0.32em; /* optical centering for letter-spacing */
+  }
+
+  .headline{
+    font-family:'Nanum Myeongjo','Noto Serif KR',serif;
+    font-weight:800;
+    font-size:64px;
+    color:var(--forest-deep);
+    letter-spacing:0.06em;
+    margin-top:8px;
+    text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .rule{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    width:210px;
+    margin:34px 0 40px;
+  }
+  .rule span{
+    display:block;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+  }
+  .rule span:last-child{height:1px;opacity:0.6;}
+
+  .quote-card{
+    position:relative;
+    width:100%;
+    max-width:480px;
+    background:var(--card);
+    padding:38px 40px 34px;
+    transform:rotate(-0.6deg);
+    box-shadow:0 14px 30px -12px rgba(60,50,20,0.28);
+    margin-bottom:46px;
+  }
+  .quote-card::before,
+  .quote-card::after{
+    content:'';
+    position:absolute;
+    width:14px;height:14px;
+    border:1px solid var(--gold);
+  }
+  .quote-card::before{top:8px;left:8px;border-right:none;border-bottom:none;}
+  .quote-card::after{bottom:8px;right:8px;border-left:none;border-top:none;}
+
+  .quote-text{
+    font-family:'Nanum Myeongjo','Noto Serif KR',serif;
+    font-size:18.5px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .quote-cite{
+    margin-top:16px;
+    font-family:'Noto Serif KR',serif;
+    font-size:14px;
+    letter-spacing:0.08em;
+    color:var(--forest);
+    font-weight:500;
+  }
+  .quote-cite::before,.quote-cite::after{content:'—';margin:0 8px;color:var(--gold);}
+
+  .badge{
+    display:inline-block;
+    background:var(--forest);
+    color:#f6f1de;
+    font-family:'Noto Serif KR',serif;
+    font-weight:600;
+    font-size:17px;
+    letter-spacing:0.04em;
+    padding:11px 34px;
+    box-shadow:0 8px 18px -8px rgba(44,66,40,0.55);
+    margin-bottom:22px;
+  }
+
+  .address{
+    font-family:'Noto Sans KR',sans-serif;
+    font-weight:400;
+    font-size:15.5px;
+    color:var(--ink-soft);
+    letter-spacing:0.01em;
+    margin-bottom:6px;
+  }
+
+  .church-name{
+    font-family:'Nanum Myeongjo','Noto Serif KR',serif;
+    font-weight:800;
+    font-size:34px;
+    letter-spacing:0.36em;
+    padding-left:0.36em;
+    color:var(--forest-deep);
+    margin-top:6px;
+  }
+
+  .foot-spacer{
+    margin-top:36px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    opacity:0.9;
+  }
+  .foot-spacer .diamond{
+    width:6px;height:6px;
+    background:var(--gold);
+    transform:rotate(45deg);
+  }
+  .foot-spacer .line{
+    width:44px;height:1px;
+    background:var(--gold-light);
+  }
+  .foot-spacer .sprig{width:26px;height:16px;display:block;}
+  .foot-spacer .sprig.right{transform:scaleX(-1);}
+
+  @media (max-width:560px){
+    .content{padding:80px 30px 46px;}
+    .headline{font-size:46px;}
+    .eyebrow{font-size:18px;}
+    .church-name{font-size:26px;}
+    .corner{width:170px;height:170px;}
+    .quote-text{font-size:16px;}
+  }
+
+  /* ---------- article section: 인생의 비밀 (continues the same sheet) ---------- */
+  .article-wrap{
+    position:relative;
+    padding:8px 56px 60px;
+  }
+  .a-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .a-divider .line{width:70px;height:1px;background:var(--gold-light);}
+  .a-divider .diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+  .a-eyebrow{
+    text-align:center;
+    font-family:'Noto Serif KR',serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.3em;
+    padding-left:0.3em;
+    color:var(--sage);
+    margin-bottom:10px;
+  }
+  .a-title{
+    text-align:center;
+    font-family:'Nanum Myeongjo','Noto Serif KR',serif;
+    font-weight:800;
+    font-size:36px;
+    color:var(--forest-deep);
+    letter-spacing:0.04em;
+    margin-bottom:44px;
+  }
+  .a-lead{
+    font-family:'Noto Serif KR',serif;
+    font-size:16.5px;
+    line-height:2;
+    color:var(--ink-soft);
+    margin-bottom:30px;
+  }
+  .a-h{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    font-size:19px;
+    color:var(--forest);
+    margin:38px 0 16px;
+    padding-left:15px;
+    position:relative;
+    line-height:1.5;
+  }
+  .a-h::before{
+    content:'';
+    position:absolute;
+    left:0; top:3px; bottom:3px;
+    width:3px;
+    background:var(--gold);
+  }
+  .a-p{
+    font-family:'Noto Sans KR',sans-serif;
+    font-weight:400;
+    font-size:15.5px;
+    line-height:1.95;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .a-verse{
+    background:var(--card);
+    border-left:3px solid var(--gold);
+    padding:16px 20px;
+    margin:18px 0;
+  }
+  .a-verse p{
+    font-family:'Noto Serif KR',serif;
+    font-size:14.5px;
+    line-height:1.85;
+    color:var(--ink-soft);
+  }
+  .a-verse .ref{
+    display:block;
+    margin-top:8px;
+    font-family:'Noto Serif KR',serif;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    color:var(--forest);
+    font-weight:600;
+  }
+  .a-img-wrap{
+    margin:28px auto;
+    max-width:480px;
+  }
+  .a-img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid rgba(200,162,78,0.4);
+    box-shadow:0 14px 30px -14px rgba(40,35,15,0.35);
+  }
+  .a-img-cap{
+    text-align:center;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:12.5px;
+    color:var(--sage);
+    margin-top:8px;
+    letter-spacing:0.02em;
+  }
+  .a-closing{
+    text-align:center;
+    font-family:'Nanum Myeongjo','Noto Serif KR',serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--forest-deep);
+    line-height:1.7;
+    margin:40px 0 8px;
+  }
+  .a-call{
+    text-align:center;
+    font-family:'Noto Serif KR',serif;
+    font-weight:600;
+    font-size:17px;
+    color:var(--forest);
+    letter-spacing:0.02em;
+    margin:22px 0 6px;
+  }
+  .a-source{
+    margin-top:48px;
+    padding-top:20px;
+    border-top:1px solid rgba(200,162,78,0.4);
+    text-align:center;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:12.5px;
+    color:#9a927c;
+    line-height:1.8;
+  }
+  .a-source a{color:var(--forest);text-decoration:none;border-bottom:1px solid rgba(61,90,55,0.35);}
+
+  @media (max-width:560px){
+    .article-wrap{padding:52px 24px 44px;}
+    .a-title{font-size:28px;}
+    .a-lead,.a-p{font-size:14.5px;}
+    .a-h{font-size:17px;}
+    .a-closing{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<div class="invite">
+
+  <!-- botanical corner ornaments -->
+  <div class="corner tl">
+    <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <path class="twig" d="M10,250 C40,190 60,150 30,90 C15,60 25,30 60,10"/>
+      <path class="twig" d="M10,250 C60,220 90,200 100,150"/>
+      <!-- leaves along stem -->
+      <ellipse class="leaf-a" cx="34" cy="120" rx="20" ry="9" transform="rotate(-35 34 120)"/>
+      <ellipse class="leaf-b" cx="52" cy="150" rx="17" ry="7.5" transform="rotate(20 52 150)"/>
+      <ellipse class="leaf-a" cx="20" cy="170" rx="18" ry="8" transform="rotate(-60 20 170)"/>
+      <ellipse class="leaf-b" cx="70" cy="90" rx="15" ry="6.5" transform="rotate(-10 70 90)"/>
+      <ellipse class="leaf-a" cx="46" cy="60" rx="16" ry="7" transform="rotate(-45 46 60)"/>
+      <ellipse class="leaf-b" cx="85" cy="180" rx="14" ry="6" transform="rotate(40 85 180)"/>
+      <!-- peony bloom -->
+      <g transform="translate(58,42)">
+        <circle class="petal-outer" r="26" cx="0" cy="0"/>
+        <circle class="petal-inner" r="19" cx="-4" cy="3"/>
+        <circle class="petal-outer" r="15" cx="9" cy="-6"/>
+        <circle class="petal-inner" r="11" cx="2" cy="-2"/>
+        <circle class="petal-core" r="6" cx="1" cy="0"/>
+      </g>
+      <circle class="gold-dot" cx="100" cy="60" r="2.4"/>
+      <circle class="gold-dot" cx="16" cy="210" r="2"/>
+      <circle class="gold-dot" cx="112" cy="140" r="1.6"/>
+    </svg>
+  </div>
+
+  <div class="corner tr">
+    <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <path class="twig" d="M14,240 C70,220 120,210 150,160 C170,125 165,90 200,55"/>
+      <ellipse class="leaf-a" cx="60" cy="222" rx="19" ry="8" transform="rotate(10 60 222)"/>
+      <ellipse class="leaf-b" cx="100" cy="210" rx="17" ry="7.5" transform="rotate(-15 100 210)"/>
+      <ellipse class="leaf-a" cx="140" cy="180" rx="16" ry="7" transform="rotate(30 140 180)"/>
+      <ellipse class="leaf-b" cx="165" cy="130" rx="14" ry="6" transform="rotate(-25 165 130)"/>
+      <ellipse class="leaf-a" cx="180" cy="90" rx="15" ry="6.5" transform="rotate(15 180 90)"/>
+      <g transform="translate(206,44)">
+        <circle class="petal-outer" r="22" cx="0" cy="0"/>
+        <circle class="petal-inner" r="16" cx="4" cy="3"/>
+        <circle class="petal-outer" r="12" cx="-7" cy="-5"/>
+        <circle class="petal-core" r="5" cx="-1" cy="0"/>
+      </g>
+      <circle class="gold-dot" cx="120" cy="230" r="2"/>
+      <circle class="gold-dot" cx="190" cy="150" r="1.8"/>
+    </svg>
+  </div>
+
+  <div class="corner bl">
+    <svg viewBox="0 0 290 290" xmlns="http://www.w3.org/2000/svg">
+      <path class="twig" d="M10,280 C55,255 78,225 62,175 C50,140 62,108 44,72 C34,52 40,30 60,12"/>
+      <path class="twig" d="M10,280 C68,250 100,230 100,180"/>
+      <!-- generous leaf clusters along both stems -->
+      <ellipse class="leaf-a" cx="46" cy="210" rx="20" ry="9" transform="rotate(-25 46 210)"/>
+      <ellipse class="leaf-b" cx="68" cy="182" rx="17" ry="7.5" transform="rotate(30 68 182)"/>
+      <ellipse class="leaf-a" cx="30" cy="235" rx="18" ry="8" transform="rotate(-55 30 235)"/>
+      <ellipse class="leaf-b" cx="86" cy="150" rx="16" ry="7" transform="rotate(-10 86 150)"/>
+      <ellipse class="leaf-a" cx="55" cy="128" rx="17" ry="7.5" transform="rotate(-45 55 128)"/>
+      <ellipse class="leaf-b" cx="34" cy="100" rx="15" ry="6.5" transform="rotate(15 34 100)"/>
+      <ellipse class="leaf-a" cx="94" cy="205" rx="14" ry="6" transform="rotate(45 94 205)"/>
+      <ellipse class="leaf-b" cx="58" cy="70" rx="14" ry="6" transform="rotate(-30 58 70)"/>
+      <!-- unopened buds -->
+      <ellipse class="bud" cx="72" cy="120" rx="7" ry="10" transform="rotate(-15 72 120)"/>
+      <ellipse class="bud" cx="26" cy="160" rx="6" ry="9" transform="rotate(20 26 160)"/>
+      <!-- large peony -->
+      <g transform="translate(58,44)">
+        <circle class="petal-outer" r="27" cx="0" cy="0"/>
+        <circle class="petal-inner" r="20" cx="-4" cy="3"/>
+        <circle class="petal-outer" r="16" cx="9" cy="-6"/>
+        <circle class="petal-inner" r="12" cx="2" cy="-2"/>
+        <circle class="petal-core" r="6" cx="1" cy="0"/>
+      </g>
+      <!-- companion smaller bloom lower on the stem -->
+      <g transform="translate(96,168)">
+        <circle class="petal-outer" r="17" cx="0" cy="0"/>
+        <circle class="petal-inner" r="12" cx="3" cy="2"/>
+        <circle class="petal-outer" r="9" cx="-6" cy="-4"/>
+        <circle class="petal-core" r="4.5" cx="-1" cy="0"/>
+      </g>
+      <circle class="gold-dot" cx="102" cy="70" r="2.2"/>
+      <circle class="gold-dot" cx="18" cy="245" r="2"/>
+      <circle class="gold-dot" cx="128" cy="150" r="1.6"/>
+      <circle class="gold-dot" cx="80" cy="238" r="1.6"/>
+    </svg>
+  </div>
+
+  <div class="corner br">
+    <svg viewBox="0 0 290 290" xmlns="http://www.w3.org/2000/svg">
+      <path class="twig" d="M14,270 C75,245 130,230 165,175 C188,138 182,98 220,58"/>
+      <path class="twig" d="M14,270 C90,255 140,235 150,190"/>
+      <ellipse class="leaf-a" cx="70" cy="248" rx="19" ry="8" transform="rotate(8 70 248)"/>
+      <ellipse class="leaf-b" cx="112" cy="232" rx="17" ry="7.5" transform="rotate(-15 112 232)"/>
+      <ellipse class="leaf-a" cx="150" cy="200" rx="16" ry="7" transform="rotate(28 150 200)"/>
+      <ellipse class="leaf-b" cx="178" cy="150" rx="15" ry="6.5" transform="rotate(-25 178 150)"/>
+      <ellipse class="leaf-a" cx="196" cy="105" rx="15" ry="6.5" transform="rotate(15 196 105)"/>
+      <ellipse class="leaf-b" cx="130" cy="215" rx="14" ry="6" transform="rotate(-40 130 215)"/>
+      <ellipse class="leaf-a" cx="205" cy="140" rx="13" ry="5.5" transform="rotate(-5 205 140)"/>
+      <ellipse class="leaf-b" cx="160" cy="235" rx="13" ry="5.5" transform="rotate(40 160 235)"/>
+      <!-- unopened buds -->
+      <ellipse class="bud" cx="184" cy="118" rx="7" ry="10" transform="rotate(10 184 118)"/>
+      <ellipse class="bud" cx="140" cy="230" rx="6" ry="9" transform="rotate(-20 140 230)"/>
+      <!-- large peony -->
+      <g transform="translate(222,46)">
+        <circle class="petal-outer" r="23" cx="0" cy="0"/>
+        <circle class="petal-inner" r="17" cx="4" cy="3"/>
+        <circle class="petal-outer" r="13" cx="-8" cy="-5"/>
+        <circle class="petal-inner" r="9" cx="-2" cy="-1"/>
+        <circle class="petal-core" r="5" cx="-1" cy="0"/>
+      </g>
+      <!-- companion smaller bloom lower on the stem -->
+      <g transform="translate(148,196)">
+        <circle class="petal-outer" r="16" cx="0" cy="0"/>
+        <circle class="petal-inner" r="11" cx="-3" cy="2"/>
+        <circle class="petal-outer" r="8" cx="6" cy="-4"/>
+        <circle class="petal-core" r="4" cx="1" cy="0"/>
+      </g>
+      <circle class="gold-dot" cx="132" cy="258" r="2"/>
+      <circle class="gold-dot" cx="205" cy="165" r="1.8"/>
+      <circle class="gold-dot" cx="90" cy="270" r="1.6"/>
+    </svg>
+  </div>
+
+  <!-- drifting fallen petals across the lower field, tying both corners together -->
+  <div class="petal-field">
+    <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <ellipse class="petal" cx="150" cy="60" rx="7" ry="4" transform="rotate(25 150 60)"/>
+      <ellipse class="petal rose" cx="210" cy="110" rx="6" ry="3.5" transform="rotate(-30 210 110)"/>
+      <ellipse class="petal pale" cx="180" cy="150" rx="5.5" ry="3" transform="rotate(60 180 150)"/>
+      <ellipse class="petal" cx="270" cy="80" rx="6.5" ry="3.6" transform="rotate(-10 270 80)"/>
+      <ellipse class="petal rose" cx="330" cy="130" rx="6" ry="3.4" transform="rotate(40 330 130)"/>
+      <ellipse class="petal pale" cx="380" cy="70" rx="5.5" ry="3" transform="rotate(-45 380 70)"/>
+      <ellipse class="petal" cx="420" cy="120" rx="6.5" ry="3.6" transform="rotate(15 420 120)"/>
+      <ellipse class="petal rose" cx="470" cy="90" rx="6" ry="3.4" transform="rotate(-20 470 90)"/>
+      <ellipse class="petal pale" cx="500" cy="145" rx="5.5" ry="3" transform="rotate(50 500 145)"/>
+      <ellipse class="petal" cx="540" cy="100" rx="6.5" ry="3.6" transform="rotate(-35 540 100)"/>
+      <ellipse class="petal rose" cx="560" cy="150" rx="6" ry="3.4" transform="rotate(20 560 150)"/>
+      <circle class="gold-dot" cx="240" cy="45" r="1.6"/>
+      <circle class="gold-dot" cx="350" cy="95" r="1.4"/>
+      <circle class="gold-dot" cx="450" cy="55" r="1.6"/>
+      <circle class="gold-dot" cx="310" cy="160" r="1.3"/>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">복음 초청 집회</div>
+    <div class="headline">초대합니다</div>
+
+    <div class="rule"><span></span><span></span></div>
+
+    <div class="quote-card">
+      <p class="quote-text">
+        "주 예수 그리스도의 은혜와<br>
+        하나님의 사랑과 성령의 교통이<br>
+        여러분 모두와 함께하기를 바랍니다."
+      </p>
+      <p class="quote-cite">로마서 10:17</p>
+    </div>
+
+    <div class="badge">9월 13일 주일 오전 11시</div>
+    <p class="address">사하구 하신번영로 201번길 10, 2층</p>
+    <p class="church-name">부산교회</p>
+
+    <div class="foot-spacer">
+      <svg class="sprig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+        <path class="twig" d="M2,26 C18,20 30,14 56,6"/>
+        <ellipse class="leaf-a" cx="16" cy="21" rx="9" ry="4" transform="rotate(-15 16 21)"/>
+        <ellipse class="leaf-b" cx="34" cy="12" rx="8" ry="3.5" transform="rotate(-25 34 12)"/>
+      </svg>
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+      <svg class="sprig right" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+        <path class="twig" d="M2,26 C18,20 30,14 56,6"/>
+        <ellipse class="leaf-a" cx="16" cy="21" rx="9" ry="4" transform="rotate(-15 16 21)"/>
+        <ellipse class="leaf-b" cx="34" cy="12" rx="8" ry="3.5" transform="rotate(-25 34 12)"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="article-wrap">
+  <div class="a-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+  <div class="a-eyebrow">그리스도의 편지 · 복음 창고</div>
+  <div class="a-title">인생의 비밀</div>
+
+  <p class="a-lead">
+    우주는 사람의 힘으로 풀어낼 수 없는 비밀입니다. 아무리 뛰어난 과학자라도 우주가 존재하는 목적까지는 밝혀낼 수 없습니다.
+    그러나 성경은 우주의 비밀과 더불어 사람의 비밀까지도 우리에게 열어 보여 줍니다. 사도 바울은 하나님께서 이 비밀을 자신에게
+    알려 주셨다고 고백했습니다.
+  </p>
+  <div class="a-verse">
+    <p>하나님께서 이 비밀을 계시로 나에게 알려 주셨습니다.</p>
+    <span class="ref">에베소서 3:3</span>
+  </div>
+  <p class="a-p">
+    태초에 하나님께서 하늘들과 땅을 창조하셨고, 사람 안에 영을 지으신 그분이 친히 말씀하십니다. 성경의 이 선포는 하늘과 땅과
+    사람이 결국 하나님을 향해 지어졌다는, 창조 전체를 꿰뚫는 목적을 보여 줍니다. 창세기 1장에서 하나님은 그분의 형상과 모양을
+    따라 사람을 지으셨습니다.
+  </p>
+  <div class="a-verse">
+    <p>우리가 우리의 형상대로, 우리의 모양에 따라 사람을 만듭시다.</p>
+    <span class="ref">창세기 1:26</span>
+  </div>
+  <p class="a-p">
+    이렇게 지어진 사람을 하나님은 무엇보다 먼저 생명나무 앞으로 이끄셨습니다. 에덴 동산 한가운데, 하나님은 생명나무와 선악을
+    알게 하는 나무를 함께 자라게 하셨고, 사람이 그 앞에서 스스로 선택하도록 두셨습니다.
+  </p>
+
+  <div class="a-h">생명나무 — 음식의 형태로 사람에게 생명이 되시는 하나님</div>
+
+  <div class="a-img-wrap">
+    <img class="a-img" src="https://btmk.org/uploads/editer/images/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C8.PNG" alt="생명나무와 하나님의 생명 도식" loading="lazy">
+  </div>
+
+  <p class="a-p">
+    하나님께서 사람을 생명나무 앞에 두신 것은, 사람이 그분을 생명과 내용으로 받아들이기를 원하셨기 때문입니다. 성경 전체를
+    통해 하나님은 사람이 누릴 수 있는 음식으로 계시됩니다. 출애굽기에서는 유월절 어린양과 만나와 반석에서 흐르는 생수로,
+    가나안 땅에서는 젖과 꿀이 흐르는 풍성한 소산으로 나타나셨고, 신약에 이르러 육체가 되신 예수님은 친히 자신을 살아 있는
+    떡이라 말씀하셨습니다. 성경 전체의 사상은 한결같이, 하나님께서 사람이 그분 자신을 먹고 마시기를 갈망하신다는 것입니다.
+  </p>
+
+  <div class="a-h">하나님을 음식으로 먹는다는 것의 의미</div>
+
+  <div class="a-img-wrap">
+    <img class="a-img" src="https://btmk.org/uploads/editer/images/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C12(1).PNG" alt="사람의 영·혼·몸 도식" loading="lazy">
+  </div>
+
+  <p class="a-p">
+    먹는다는 것은 밖에 있는 것을 접촉하여 내 안으로 받아들이고, 유기적으로 동화시키는 일입니다. 하나님은 사람이 그분을
+    소화하고 동화하여 우리 내적 존재의 조성 성분이 되기를 원하십니다. 성경은 사람이 본래 하나님을 담는 그릇으로 지어졌다고
+    말합니다. 우리는 보배이신 하나님을 질그릇 같은 우리 안에 담고 있는 존재입니다.
+  </p>
+  <div class="a-verse">
+    <p>우리가 이 보배를 질그릇 안에 가지고 있습니다.</p>
+    <span class="ref">고린도후서 4:7</span>
+  </div>
+  <p class="a-p">
+    사람은 영과 혼과 몸, 세 부분으로 지어졌습니다. 가장 깊은 부분인 영은 양심과 직감과 교통으로 하나님을 접촉하고 담는
+    기관이며, 혼은 생각과 감정과 의지로 하나님을 사랑하는 기관이고, 몸은 물질세계를 접촉하는 바깥 기관입니다. 하나님의
+    갈망은 이 세 부분으로 된 사람이 그분 자신으로 채워지는 것입니다.
+  </p>
+
+  <div class="a-h">그러나 죄가 먼저 사람 안에 들어왔습니다</div>
+
+  <div class="a-img-wrap">
+    <img class="a-img" src="https://btmk.org/uploads/editer/images/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C14(1).PNG" alt="죄로 인한 사람의 상태 도식" loading="lazy">
+  </div>
+
+  <p class="a-p">
+    아담과 하와는 생명나무 대신 선악을 알게 하는 나무의 열매를 먹었고, 그 결과 죄가 사람 안으로 들어와 죽음이 모든 사람에게
+    퍼졌습니다. 몸은 죄를 짓는 육체가 되었고, 혼은 오염되었으며, 영은 죽은 상태가 되었습니다. 그렇게 조성된 사람의 운명은
+    세상과 함께 멸망하는 것뿐입니다. 사람의 선행이나 높은 교육, 도덕과 종교 그 어느 것도 사람을 죄에서 구원할 수 없습니다.
+  </p>
+
+  <div class="a-h">좋은 소식 — 그리스도께서 오셨습니다</div>
+
+  <div class="a-img-wrap">
+    <img class="a-img" src="https://btmk.org/uploads/editer/images/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C18.PNG" alt="그리스도께서 사람 안으로 들어오시는 과정 도식" loading="lazy">
+  </div>
+
+  <p class="a-p">
+    사람의 죄 문제를 해결하시기 위해 그리스도께서 오셨습니다. 자기 백성을 죄에서 구원하실 분이었기에 그분의 이름은
+    예수라 불렸습니다. 영원 안에 계셨던 하나님께서 육체가 되시어 인간 생활을 사셨고, 우리 죄를 위해 십자가에서 못
+    박히시고 장사되셨습니다. 그러나 죽음이 그분을 붙잡을 수 없었기에 사흘 만에 부활하시고 승천하셔서, 생명 주시는
+    영이 되어 지금도 사람의 영 안으로 들어오시기 위해 자신을 나누어 주고 계십니다.
+  </p>
+  <p class="a-p">
+    십자가에서 흘리신 피는 우리의 죄를 씻고 우리를 깨끗한 그릇으로 만듭니다. 깨끗해진 그릇은 생명 주시는 영이신
+    하나님을 담을 수 있습니다. 하나님을 담는 것, 그것이 바로 인생의 참된 목적입니다.
+  </p>
+
+  <p class="a-call">"오 주 예수님, 오 주 예수님, 오 주 예수님!"</p>
+  <p class="a-p" style="text-align:center;">
+    주님의 이름을 부르는 사람은 누구나 그분을 담고 구원을 받을 수 있습니다.
+  </p>
+  <div class="a-verse">
+    <p>누구든지 주님의 이름을 부르는 사람은 구원을 받을 것입니다.</p>
+    <span class="ref">로마서 10:13</span>
+  </div>
+  <p class="a-p">
+    믿은 후에는 침례를 받음으로 그 믿음을 안팎으로 확증해야 합니다. 믿는 것은 주 예수님을 구주로 받아들이는 것이고,
+    침례 받는 것은 내적으로 믿은 바를 겉으로 확증하는 것입니다.
+  </p>
+
+  <div class="a-h">주님을 먹는 길</div>
+  <p class="a-p">
+    믿은 뒤에는 날마다 주님을 먹음으로 그분을 담아 가야 합니다. 첫째는 <strong>말씀을 기도로 읽는 것</strong>입니다.
+    사람은 떡으로만 사는 것이 아니라 하나님의 입에서 나오는 모든 말씀으로 삽니다. 둘째는 <strong>교회 집회에서 그분을
+    잔치로 누리는 것</strong>입니다. 생명나무를 먹는 것, 곧 그리스도를 생명의 공급으로 누리는 것이야말로 교회 생활에서
+    가장 중요한 일입니다.
+  </p>
+
+  <div class="a-h">합당한 교회생활 — 활력 그룹 안에서 함께 걷는 길</div>
+  <p class="a-p">
+    사람의 생명 안에는 본래 다른 사람과 더불어 살고자 하는 갈망이 있습니다. 하나님은 한 사람 안에 이미 많은 사람,
+    곧 단체적인 사람을 지으셨습니다. 성경은 모든 성도가 함께 모이는 교회생활뿐 아니라, 두세 사람이 짝을 이루어
+    동반자로 살아가는 삶도 보여 줍니다. 이렇게 작은 무리로 활력있게 모이는 것이 바로 활력 그룹입니다. 동반자와 함께
+    복음을 전하고, 서로를 양육하며 소중히 품고 먹이는 이 삶이 교회생활의 중심이 되어야 합니다.
+  </p>
+
+  <p class="a-closing">
+    우리가 이러한 생활을 할 때에 우리는 이기는 이가 될 수 있고,<br>
+    주님께서 다시 오실 때에 왕국을 상으로 받게 될 것입니다.
+  </p>
+  <p class="a-closing" style="margin-top:4px;">"이것이 인생의 비밀이자 사람의 의미입니다."</p>
+
+  <div class="a-source">
+    본문은 성경진리사역원(BTMK) '그리스도의 편지 · 복음 창고'의 「인생의 비밀」을 바탕으로 재구성하였습니다.<br>
+    원문·전체 영상 보기 &middot;
+    <a href="https://btmk.org/mobile/board/view.php?mode=cont_lst&amp;m=23&amp;b=507&amp;i=3091" target="_blank" rel="noopener">btmk.org 바로가기</a>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
