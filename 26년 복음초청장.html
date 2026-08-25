@@ -339,6 +339,51 @@
     margin-top:8px;
     letter-spacing:0.02em;
   }
+  .sin-diagram{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:36px;
+    margin:30px auto;
+    max-width:520px;
+    flex-wrap:wrap;
+  }
+  .sin-circles{
+    width:230px;
+    height:230px;
+    flex:0 0 auto;
+  }
+  .sin-notes{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    flex:1 1 200px;
+    min-width:180px;
+  }
+  .sin-note{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--ink-soft);
+  }
+  .sin-note-head{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    color:#7a2f21;
+    margin-right:2px;
+  }
+  .sin-note-ref{
+    display:block;
+    font-family:'Noto Serif KR',serif;
+    font-size:12.5px;
+    color:var(--forest);
+    letter-spacing:0.04em;
+    margin-top:2px;
+  }
+  @media (max-width:480px){
+    .sin-diagram{gap:20px;justify-content:center;}
+    .sin-circles{width:190px;height:190px;}
+  }
   .a-closing{
     text-align:center;
     font-family:'Nanum Myeongjo','Noto Serif KR',serif;
@@ -535,7 +580,7 @@
         하나님의 사랑과 성령의 교통이<br>
         여러분 모두와 함께하기를 바랍니다."
       </p>
-      <p class="quote-cite">고린도후서 13:14</p>
+      <p class="quote-cite">고린도후서 13:13</p>
     </div>
 
     <div class="badge">9월 13일 주일 오전 11시</div>
@@ -625,8 +670,33 @@
 
   <div class="a-h">그러나 죄가 먼저 사람 안에 들어왔습니다</div>
 
-  <div class="a-img-wrap">
-    <img class="a-img" src="https://btmk.org/uploads/editer/images/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C14(1).PNG" alt="죄로 인한 사람의 상태 도식" loading="lazy">
+  <div class="sin-diagram">
+    <svg class="sin-circles" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="150" r="130" fill="#e4ead9" stroke="#b9c9ad" stroke-width="1"/>
+      <circle cx="150" cy="150" r="90"  fill="#cfdcc0" stroke="#b9c9ad" stroke-width="1"/>
+      <circle cx="150" cy="150" r="48"  fill="#f1e6c4" stroke="#d8cfae" stroke-width="1"/>
+      <text x="150" y="245" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="17" fill="#2c4228">몸</text>
+      <text x="150" y="205" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="17" fill="#2c4228">혼</text>
+      <text x="150" y="156" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="18" fill="#7a2f21">영</text>
+      <!-- arrow of sin pressing inward -->
+      <line x1="292" y1="150" x2="205" y2="150" stroke="#a6402c" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="205,150 222,140 222,160" fill="#a6402c"/>
+      <text x="300" y="118" text-anchor="end" font-family="Noto Serif KR, serif" font-weight="800" font-size="26" fill="#a6402c">죄</text>
+    </svg>
+    <div class="sin-notes">
+      <div class="sin-note">
+        <span class="sin-note-head">몸</span>은 죄를 짓는 육체가 되었고
+        <span class="sin-note-ref">로마서 8:10</span>
+      </div>
+      <div class="sin-note">
+        <span class="sin-note-head">혼</span>은 오염되고 더럽혀졌으며
+        <span class="sin-note-ref">디도서 1:15</span>
+      </div>
+      <div class="sin-note">
+        <span class="sin-note-head">영</span>은 죽게 되었습니다
+        <span class="sin-note-ref">에베소서 2:1</span>
+      </div>
+    </div>
   </div>
 
   <p class="a-p">
