@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 한국-대만 전시간 동역자 훈련 · 메시지 목록</title>
+<meta name="description" content="2026년 한국-대만 전시간 동역자 훈련의 전체 메시지 목록. 개요, 봉사·생명·진리 세 트랙의 메시지를 한 곳에서 확인합니다.">
+<meta property="og:title" content="2026 한국-대만 전시간 동역자 훈련 · 메시지 목록">
+<meta property="og:description" content="개요, 봉사·생명·진리 세 트랙의 메시지를 한 곳에서 확인합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1d1815;
+    --surface:#27211d;
+    --ink:#f1eae0;
+    --ink-soft:#a79c8e;
+    --line:#3a332c;
+    --gold:#c9a227;
+    --rust:#a8623a;
+    --sage:#6e8f6a;
+    --teal:#4a7a78;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+  }
+  h1,h2,.serif{font-family:'Noto Serif KR', serif;}
+
+  .bg-canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:720px;
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  header.hero{
+    padding:110px 0 64px;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.9s ease forwards 0.15s;
+  }
+  @keyframes rise{
+    to{opacity:1; transform:translateY(0);}
+  }
+  .eyebrow{
+    font-size:14px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin:0 0 18px;
+  }
+  h1{
+    font-size:clamp(30px,5vw,42px);
+    font-weight:700;
+    line-height:1.35;
+    margin:0 0 20px;
+  }
+  .lede{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0;
+  }
+
+  .overview-link{
+    display:block;
+    margin-top:36px;
+    padding:20px 22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .overview-link:hover{
+    background:#2f2822;
+    border-left-color:var(--gold);
+  }
+  .overview-link .ov-label{
+    display:block;
+    font-size:13px;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .overview-link .ov-title{
+    font-family:'Noto Serif KR', serif;
+    font-size:19px;
+    font-weight:500;
+  }
+
+  .track{
+    margin-top:72px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .track.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .track-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:22px;
+    padding-left:16px;
+    border-left:3px solid var(--track-color);
+  }
+  .track-head h2{
+    font-size:22px;
+    font-weight:500;
+    margin:0;
+  }
+  .track-count{
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  ul.msg-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-top:1px solid var(--line);
+  }
+  ul.msg-list li{
+    border-bottom:1px solid var(--line);
+  }
+  ul.msg-list a{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 4px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .msg-no{
+    font-family:'Noto Serif KR', serif;
+    font-size:17px;
+    color:var(--track-color);
+    min-width:28px;
+  }
+  .msg-title{
+    font-size:16px;
+    flex:1;
+  }
+  .msg-arrow{
+    color:var(--ink-soft);
+    font-size:14px;
+    opacity:0;
+    transform:translateX(-4px);
+    transition:opacity 0.2s ease, transform 0.2s ease;
+  }
+  ul.msg-list a:hover .msg-arrow{
+    opacity:1;
+    transform:translateX(0);
+  }
+  ul.msg-list a:hover .msg-title{
+    color:var(--track-color);
+  }
+
+  .special{
+    margin-top:72px;
+    border-top:1px solid var(--line);
+    padding-top:44px;
+  }
+  .special .track-head{ border-left-color:var(--teal); }
+  .special .msg-no{ color:var(--teal); }
+  .special a:hover .msg-title{ color:var(--teal); }
+
+  footer{
+    margin-top:100px;
+    color:var(--ink-soft);
+    font-size:13px;
+    border-top:1px solid var(--line);
+    padding-top:24px;
+  }
+
+  @media (max-width:520px){
+    header.hero{padding:72px 0 44px;}
+    .wrap{padding:0 20px 90px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    header.hero, .track{animation:none !important; transition:none !important; opacity:1 !important; transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<svg class="bg-canvas" viewBox="0 0 800 1400" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#2f2820" stroke-width="1" fill="none">
+    <path d="M-50,140 C 180,80 320,220 500,150 S 820,90 900,160" />
+    <path d="M-50,260 C 160,340 340,190 520,280 S 800,240 900,300" />
+    <path d="M-50,420 C 200,360 300,480 480,410 S 780,380 900,440" />
+    <path d="M-50,620 C 180,690 350,560 540,630 S 820,600 900,660" />
+    <path d="M-50,860 C 190,800 330,920 500,850 S 800,810 900,880" />
+    <path d="M-50,1080 C 170,1150 340,1020 520,1100 S 800,1060 900,1120" />
+    <path d="M-50,1260 C 200,1200 300,1320 480,1250 S 780,1220 900,1280" />
+  </g>
+</svg>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">2026년 한국-대만 전시간 동역자 훈련</p>
+    <h1>메시지 목록</h1>
+    <p class="lede">개요 한 편과 봉사·생명·진리 세 트랙의 메시지를 한 곳에 모았습니다. 아래에서 각 메시지로 이동할 수 있습니다.</p>
+
+    <a class="overview-link" href="2026 한국-대만훈련 메시지 개요.html">
+      <span class="ov-label">개요</span>
+      <span class="ov-title">2026 한국-대만훈련 메시지 개요</span>
+    </a>
+  </header>
+
+  <section class="track" style="--track-color:var(--rust)">
+    <div class="track-head">
+      <h2>봉사</h2>
+      <span class="track-count">3편</span>
+    </div>
+    <ul class="msg-list">
+      <li><a href="봉사 1 메시지.html"><span class="msg-no">1</span><span class="msg-title">봉사 1 메시지</span><span class="msg-arrow">→</span></a></li>
+      <li><a href="봉사 2 메시지.html"><span class="msg-no">2</span><span class="msg-title">봉사 2 메시지</span><span class="msg-arrow">→</span></a></li>
+      <li><a href="봉사 3 메시지.html"><span class="msg-no">3</span><span class="msg-title">봉사 3 메시지</span><span class="msg-arrow">→</span></a></li>
+    </ul>
+  </section>
+
+  <section class="track" style="--track-color:var(--sage)">
+    <div class="track-head">
+      <h2>생명</h2>
+      <span class="track-count">2편</span>
+    </div>
+    <ul class="msg-list">
+      <li><a href="생명 1 메시지.html"><span class="msg-no">1</span><span class="msg-title">생명 1 메시지</span><span class="msg-arrow">→</span></a></li>
+      <li><a href="생명 2 메시지.html"><span class="msg-no">2</span><span class="msg-title">생명 2 메시지</span><span class="msg-arrow">→</span></a></li>
+    </ul>
+  </section>
+
+  <section class="track" style="--track-color:var(--gold)">
+    <div class="track-head">
+      <h2>진리</h2>
+      <span class="track-count">3편</span>
+    </div>
+    <ul class="msg-list">
+      <li><a href="진리 1 메시지.html"><span class="msg-no">1</span><span class="msg-title">진리 1 메시지</span><span class="msg-arrow">→</span></a></li>
+      <li><a href="진리 2 메시지.html"><span class="msg-no">2</span><span class="msg-title">진리 2 메시지</span><span class="msg-arrow">→</span></a></li>
+      <li><a href="진리 3 메시지.html"><span class="msg-no">3</span><span class="msg-title">진리 3 메시지</span><span class="msg-arrow">→</span></a></li>
+    </ul>
+  </section>
+
+  <section class="special">
+    <div class="track-head">
+      <h2>특별 자료</h2>
+    </div>
+    <ul class="msg-list">
+      <li><a href="PSRP와 고봉의 진리.html"><span class="msg-title">PSRP와 고봉의 진리</span><span class="msg-arrow">→</span></a></li>
+    </ul>
+  </section>
+
+  <footer>
+    2026 한국-대만 전시간 동역자 훈련 메시지 목록
+  </footer>
+
+</div>
+
+<script>
+  const tracks = document.querySelectorAll('.track');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  tracks.forEach(t => io.observe(t));
+</script>
+
+</body>
+</html>
