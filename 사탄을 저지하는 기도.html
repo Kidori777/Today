@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기도의 사역(5) - 사탄을 저지하는 기도</title>
+    
+    <!-- 구글 폰트 Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --surface-color: #151a23;
+            --surface-hover: #1c2330;
+            --border-color: #2a3447;
+            --gold-primary: #d4a017;
+            --gold-light: #f5e5b8;
+            --gold-dark: #a37b0d;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-gold: #f1c40f;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --font-serif: 'Noto Serif KR', serif;
+            --font-sans: 'Noto Sans KR', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            word-break: keep-all;
+            white-space: normal;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 160, 23, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 15% 70%, rgba(212, 160, 23, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(212, 160, 23, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--text-gold);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-info span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Bible Verse Card */
+        .verse-card {
+            background-color: var(--surface-color);
+            border-left: 5px solid var(--gold-primary);
+            border-radius: 0 12px 12px 0;
+            padding: 30px 35px;
+            margin-bottom: 45px;
+            position: relative;
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .verse-card::before {
+            content: "“";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-family: var(--font-serif);
+            font-size: 8rem;
+            color: rgba(212, 160, 23, 0.06);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .verse-card p {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #f8fafc;
+            font-weight: 700;
+        }
+
+        /* Main Content Structure */
+        .outline-section {
+            margin-bottom: 45px;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+        }
+
+        .sub-group {
+            margin-bottom: 25px;
+        }
+
+        .sub-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        /* Person Cards Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .person-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 22px 25px;
+            transition: transform 0.25 ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .person-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 8px 25px rgba(212, 160, 23, 0.12);
+        }
+
+        .list-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .list-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--gold-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* Dialogue Box */
+        .dialogue-box {
+            background: linear-gradient(135deg, rgba(21, 26, 35, 0.95), rgba(28, 35, 48, 0.95));
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--gold-primary);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 14px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .simple-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .simple-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        /* Source Note */
+        .source-note {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+        /* Footer Fixed Mention */
+        .footer-bottom {
+            margin-top: 60px;
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            .verse-card {
+                padding: 22px 20px;
+            }
+            .container {
+                padding: 25px 15px;
+            }
+            .dialogue-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero fade-in">
+            <span class="badge">교회 집회 말씀</span>
+            <h1>기도의 사역(5)</h1>
+            <h2>사탄을 저지하는 기도</h2>
+            <div class="meta-info">
+                <span>성경:눅 18:1-8절</span>
+                <span>/</span>
+                <span>찬송:641장</span>
+            </div>
+        </header>
+
+        <!-- Verse Card Section -->
+        <section class="fade-in">
+            <div class="verse-card">
+                <p>**(눅 18:1-8)1 사람이 항상 기도하고 낙심하지 말아야 한다는 뜻으로 예수님께서 그들에게 비유를 드셔서 말씀하셨다. “어떤 도시에 하나님을 두려워하지도 않고 사람을 존중하지도 않는 한 재판관이 있었습니다. 그 도시에 사는 한 과부가 늘 그에게 가서, ‘나의 원수에 대한 원한을 풀어 주십시오.’라고 하니, 그 재판관이 얼마 동안 들어주지 않다가, 나중에는 속으로 ‘내가 하나님을 두려워하지도 않고 사람을 존중하지도 않지만, 이 과부가 나를 괴롭게 하니, 내가 그 원한을 풀어 주어야겠다. 그러지 않으면, 이 여인이 계속 와서 나를 못살게 굴겠구나.’라고 하였습니다.” 그리고 주님께서 말씀하셨다. “여러분은 이 불의한 재판관이 하는 말을 새겨들으십시오. 하물며 하나님께서 밤낮 자기에게 부르짖는 선택하신 사람들의 원한을 풀어 주지 않으시고 오래 참고만 계시겠습니까? 내가 여러분에게 말합니다. 하나님께서 그들의 원한을 속히 풀어 주실 것입니다. 그러나 사람의 아들이 올 때에 세상에서 믿음을 찾아 보겠습니까?”**</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Section 1 -->
+            <section class="outline-section fade-in">
+                <h2 class="main-title">Ⅰ. 우리의 기도에는 세 방면이 있다.</h2>
+                <div class="card-grid">
+                    <div class="person-card">
+                        <div class="list-item">A. 사람—사람의 필요를 위한 기도</div>
+                    </div>
+                    <div class="person-card">
+                        <div class="list-item">B. 하나님—하나님을 영광스럽게 하는 기도</div>
+                    </div>
+                    <div class="person-card">
+                        <div class="list-item">C. 사탄—사탄을 손상시키는 기도</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="outline-section fade-in">
+                <h2 class="main-title">Ⅱ. 누가복음 18장에 나타난 세 방면</h2>
+                
+                <div class="sub-group">
+                    <h3 class="sub-title">A. 재판관</h3>
+                    <div class="person-card">
+                        <div class="list-item">1. 재판관은 온 도시를 통치하는 어떤 도시의 유일한 권위자로서 하나님의 능력과 권위를 상징한다.</div>
+                        <div class="list-item">2. 이 재판관이 온 도시를 통치하듯이 하나님은 온 세상을 다스리신다.</div>
+                        <div class="list-item">3. 하나님은 이 비유의 재판관처럼 부덕한 분이 아니라 은혜가 충만한 아버지시오, 우리를 보호해 주는 분이시다.</div>
+                    </div>
+                </div>
+
+                <div class="sub-group">
+                    <h3 class="sub-title">B. 과부</h3>
+                    <div class="person-card">
+                        <div class="list-item">1. 과부는 의지하던 남편이 죽어서 의지할 데가 없는 외로운 사람이다.</div>
+                        <div class="list-item">2. 과부는 이 세상에 있는 그리스도인의 상태를 적절히 나타내 준다. 육신적인 눈으로만 본다면 그리스도인들은 과부처럼 의지할 곳이 없다.</div>
+                        <div class="list-item">3. 주님과 그분의 사도들은 그리스도인들에게 합법적인 권리라도 주장하지 말고 겸손하게 사람들의 멸시와 고통을 받아들이라고 가르치셨다.</div>
+                        <div class="list-item">4. 그리스도인들은 자신의 원수가 누구인지를 반드시 알아야 한다(엡 6:12, 고후 10:4). 그리고 재판관이신 하늘에 계신 하나님 아버지에게 가서 원수를 갚아달라고 구해야 한다.</div>
+                    </div>
+                </div>
+
+                <div class="sub-group">
+                    <h3 class="sub-title">C. 원수</h3>
+                    <div class="person-card">
+                        <div class="list-item">1. 과부에게 원수가 있는 것처럼 우리 그리스도인들에게도 원수가 있는데, 그 원수는 사탄이다—벧전 5:8.</div>
+                        <div class="list-item">2. 주님과 사탄의 관계는 영원한 원수의 관계이다. 주님을 믿는 우리는 주님 편에 서 있다. 그러므로 주님의 원수는 곧 우리의 원수이다—창 3:15.</div>
+                        <div class="list-item">3. 이 원한은 아주 깊은 것이어서, 사탄은 과부처럼 가난하고 의지할 곳 없는 우리 그리스도인들을 괴롭히기 위해 최선을 다한다.</div>
+                        <div class="list-item">4. 사탄의 소행을 다 열거하기는 불가능하다. 그런데 유감스럽게도 대부분의 하나님의 자녀들은 사탄의 손에서 괴로움을 당하면서도 그것이 사탄의 공작임을 알지 못한다.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="outline-section fade-in">
+                <h2 class="main-title">Ⅲ. 사탄을 저지하는 기도</h2>
+                <div class="dialogue-box">
+                    <ul class="simple-list">
+                        <li>A. 사탄에게 내려진 하나님의 저주라는 형벌을 이용한다—창 3:14-15.</li>
+                        <li>B. 사탄의 입을 막아 달라고 하나님께 구한다—막 1:25.</li>
+                        <li>C. 강한 자인 사탄을 결박하는 기도를 한다—마 12:29.</li>
+                        <li>D. 마귀의 일이 제거되도록 기도한다—요일 3:8.</li>
+                        <li>E. 주님께서 사탄을 꾸짖으시도록 기도한다—유 1:9, 시 18:15, 76:6, 80:16, 106:9.</li>
+                        <li>F. 사탄이 뒤로 물러가도록 기도한다—마 16:23.</li>
+                        <li>G. 악한 자에게서 구출되도록 기도한다—마 6:13.</li>
+                        <li>H. 십자가를 근거로 사탄이 한 번 더 부끄러움을 당하도록 기도한다—골 2:15.</li>
+                        <li>I. 믿음을 잃지 않고, 지속적으로 원한을 풀어달라고 하나님께 기도한다—눅 18:1-8.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="outline-section fade-in">
+                <h2 class="main-title">Ⅳ. 사탄을 저지하는 기도의 효력</h2>
+                <div class="person-card">
+                    <div class="list-item">A. 우리가 사탄을 고소할 때마다 그는 우리를 해치는 행동에 제한을 받는다. 그러나 이것은 일시적으로 저지당하는 것이다.</div>
+                    <div class="list-item">B. 사탄은 천년 왕국 시대에 무저갱에 감금되고, 그 후에는 영원한 불 못에 던져진다. 그때가 바로 성도들의 원한이 풀릴 때이다—눅 18:7-8, 계 20:1-3, 7-10.</div>
+                    <div class="list-item">C. 사탄을 고소하는 기도는 주님께서 오시는 날을 재촉한다.</div>
+                </div>
+            </section>
+
+            <!-- Source Note -->
+            <div class="source-note fade-in">
+                * 개요 발췌 근거: ‘기도의 비결’ 제5장
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-bottom fade-in">
+            부산교회 2구역
+        </footer>
+    </div>
+
+    <!-- Intersection Observer JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
