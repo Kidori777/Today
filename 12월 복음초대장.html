@@ -20,7 +20,6 @@
     --ink:#f5f0e6;
     --ink-muted:#b7b2a6;
     --line:rgba(245,240,230,0.14);
-    --curtain:#f4f1e8;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100%;}
@@ -93,65 +92,98 @@
     margin-bottom:26px;
   }
 
-  .window-stage{
+  .door-stage{
     position:relative;
-    width:min(56vw, 210px);
-    height:min(80vw, 290px);
+    width:min(74vw, 290px);
+    height:min(88vw, 300px);
     display:flex;
     align-items:center;
     justify-content:center;
     flex-shrink:0;
   }
-
-  .curtain{
-    position:absolute;
-    top:-4%;
-    width:44%;
-    height:104%;
-    filter:drop-shadow(0 6px 14px rgba(0,0,0,0.35));
-  }
-  .curtain.left{left:-6%;}
-  .curtain.right{left:auto; right:-6%; transform:scaleX(-1);}
-
-  .window-frame{
-    position:relative;
-    width:66%;
-    height:100%;
-    border-radius:44% 44% 8px 8px / 30% 30% 6px 6px;
-    background:linear-gradient(180deg, #4a4126 0%, #2a2314 100%);
-    padding:9px;
-    box-shadow:0 0 50px rgba(240,201,135,0.18);
-    z-index:2;
-  }
-  .window-glass{
+  .door-frame{
     position:relative;
     width:100%;
     height:100%;
-    border-radius:44% 44% 4px 4px / 30% 30% 4px 4px;
-    background:radial-gradient(ellipse at 50% 38%, #6b5327 0%, #2c2413 58%, #171310 100%);
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    border-radius:10px 10px 6px 6px;
+    background:linear-gradient(180deg, #3b2a1a 0%, #201409 100%);
+    padding:10px;
+    box-shadow:0 18px 44px rgba(0,0,0,0.5), 0 0 46px rgba(240,201,135,0.14);
   }
-  .window-glass::before{
+  .door-panels{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    border-radius:6px 6px 3px 3px;
+    overflow:hidden;
+    background:#171310;
+  }
+  .door-panel{
+    flex:1;
+    position:relative;
+    background:linear-gradient(180deg, #4a3820 0%, #2b2010 100%);
+  }
+  .door-panel.left{border-right:1px solid rgba(0,0,0,0.5);}
+  .door-panel.right{border-left:1px solid rgba(0,0,0,0.5);}
+  .door-panel::before{
     content:'';
+    position:absolute;
+    inset:12% 16%;
+    border:2px solid rgba(0,0,0,0.35);
+    border-radius:3px;
+    box-shadow:inset 0 0 14px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .door-panel::after{
+    content:'';
+    position:absolute;
+    inset:34% 16%;
+    border:2px solid rgba(0,0,0,0.35);
+    border-radius:3px;
+    box-shadow:inset 0 0 14px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .door-handle{
+    position:absolute;
+    top:50%;
+    width:7px;
+    height:22px;
+    border-radius:4px;
+    background:linear-gradient(180deg,#e8c67a,#a9803c);
+    box-shadow:0 0 8px rgba(240,201,135,0.4);
+    transform:translateY(-50%);
+  }
+  .door-panel.left .door-handle{right:8%;}
+  .door-panel.right .door-handle{left:8%;}
+  .door-seam-glow{
     position:absolute;
     left:50%;
-    top:6%;
-    width:2px;
-    height:88%;
-    background:rgba(16,19,28,0.5);
+    top:5%;
+    bottom:5%;
+    width:5px;
     transform:translateX(-50%);
+    background:linear-gradient(180deg, rgba(240,201,135,0) 0%, rgba(240,201,135,0.85) 50%, rgba(240,201,135,0) 100%);
+    filter:blur(3px);
+    z-index:2;
+    pointer-events:none;
   }
-  .window-glass::after{
-    content:'';
+  .door-underglow{
     position:absolute;
-    top:52%;
     left:6%;
-    width:88%;
-    height:2px;
-    background:rgba(16,19,28,0.5);
+    right:6%;
+    bottom:2px;
+    height:14px;
+    background:radial-gradient(ellipse at center, rgba(240,201,135,0.55), transparent 72%);
+    filter:blur(4px);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .letter-wrap{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
   }
 
   .letter-btn{
@@ -390,32 +422,24 @@
   <h1 class="headline">초대합니다</h1>
   <div class="kicker">12월, 한 해를 마무리하며 드리는 초청</div>
 
-  <div class="window-stage">
-    <svg class="curtain left" viewBox="0 0 100 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 L48,0 C40,50 26,95 40,140 C50,172 34,185 46,205 C56,222 42,260 22,300 L0,300 Z" fill="var(--curtain)" opacity="0.94"/>
-      <path d="M6,0 C2,55 14,100 6,150 C0,180 12,220 4,270" fill="none" stroke="#d9d4c4" stroke-width="1.5" opacity="0.6"/>
-      <path d="M20,0 C18,60 30,105 20,150 C14,182 24,222 16,270" fill="none" stroke="#d9d4c4" stroke-width="1.5" opacity="0.5"/>
-      <path d="M34,0 C32,58 40,100 32,145 C28,178 36,218 28,268" fill="none" stroke="#c7c2b2" stroke-width="1.5" opacity="0.5"/>
-    </svg>
-
-    <div class="window-frame">
-      <div class="window-glass">
-        <button class="letter-btn" id="open-btn" aria-label="편지 열기" aria-expanded="false">
-          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="14" width="52" height="38" rx="2" fill="#f8c9d6" stroke="#8a3049" stroke-width="2.4"/>
-            <path d="M6 16 L32 38 L58 16" fill="none" stroke="#8a3049" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M32 34 C24 24 14 26 14 34 C14 42 24 46 32 54 C40 46 50 42 50 34 C50 26 40 24 32 34 Z" fill="#c9425f"/>
-          </svg>
-        </button>
+  <div class="door-stage">
+    <div class="door-frame">
+      <div class="door-panels">
+        <div class="door-panel left"><span class="door-handle"></span></div>
+        <div class="door-panel right"><span class="door-handle"></span></div>
       </div>
+      <div class="door-seam-glow"></div>
+      <div class="door-underglow"></div>
     </div>
-
-    <svg class="curtain right" viewBox="0 0 100 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 L48,0 C40,50 26,95 40,140 C50,172 34,185 46,205 C56,222 42,260 22,300 L0,300 Z" fill="var(--curtain)" opacity="0.94"/>
-      <path d="M6,0 C2,55 14,100 6,150 C0,180 12,220 4,270" fill="none" stroke="#d9d4c4" stroke-width="1.5" opacity="0.6"/>
-      <path d="M20,0 C18,60 30,105 20,150 C14,182 24,222 16,270" fill="none" stroke="#d9d4c4" stroke-width="1.5" opacity="0.5"/>
-      <path d="M34,0 C32,58 40,100 32,145 C28,178 36,218 28,268" fill="none" stroke="#c7c2b2" stroke-width="1.5" opacity="0.5"/>
-    </svg>
+    <div class="letter-wrap">
+      <button class="letter-btn" id="open-btn" aria-label="편지 열기" aria-expanded="false">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="14" width="52" height="38" rx="2" fill="#f8c9d6" stroke="#8a3049" stroke-width="2.4"/>
+          <path d="M6 16 L32 38 L58 16" fill="none" stroke="#8a3049" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 34 C24 24 14 26 14 34 C14 42 24 46 32 54 C40 46 50 42 50 34 C50 26 40 24 32 34 Z" fill="#c9425f"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <h2 class="title">복음 초청 집회</h2>
