@@ -59,6 +59,25 @@
     height:100%;
     display:block;
   }
+  .snow-cap{
+    opacity:0;
+    transform-origin:top;
+    transform-box:fill-box;
+    animation:snowBuild 4.5s ease-out forwards;
+  }
+  .snow-cap:nth-child(1){animation-delay:0.4s;}
+  .snow-cap:nth-child(2){animation-delay:1.7s;}
+  .snow-cap:nth-child(3){animation-delay:3.0s;}
+  .snow-cap:nth-child(4){animation-delay:4.3s;}
+  .snow-cap:nth-child(5){animation-delay:5.6s;}
+  .snow-cap:nth-child(6){animation-delay:6.9s;}
+  .snow-cap:nth-child(7){animation-delay:8.2s;}
+  .snow-cap:nth-child(8){animation-delay:9.5s;}
+  .snow-cap:nth-child(9){animation-delay:10.8s;}
+  @keyframes snowBuild{
+    0%{opacity:0; transform:scaleY(0.12);}
+    100%{opacity:1; transform:scaleY(1);}
+  }
 
   .stage{
     position:fixed;
@@ -389,6 +408,7 @@
     .letter-btn{animation:none;}
     #snow-canvas{display:none;}
     .sheet{transition:none;}
+    .snow-cap{animation:none; opacity:1; transform:scaleY(1);}
   }
 </style>
 </head>
@@ -414,6 +434,17 @@
       <path d="M650,174 L680,98 L710,174 Z"/><rect x="676" y="174" width="8" height="12"/>
       <path d="M650,150 L680,84 L710,150 Z"/>
       <path d="M730,182 L752,128 L774,182 Z"/><rect x="748" y="182" width="7" height="9"/>
+    </g>
+    <g fill="#f4f8fc" opacity="0.92">
+      <path class="snow-cap" d="M84,96 L76.9,112 L91.1,112 Z"/>
+      <path class="snow-cap" d="M160,86 L151,106 L169,106 Z"/>
+      <path class="snow-cap" d="M232,124 L225,141 L239,141 Z"/>
+      <path class="snow-cap" d="M330,88 L321,108 L339,108 Z"/>
+      <path class="snow-cap" d="M424,126 L417,143 L431,143 Z"/>
+      <path class="snow-cap" d="M510,86 L501,106 L519,106 Z"/>
+      <path class="snow-cap" d="M592,128 L585,144 L599,144 Z"/>
+      <path class="snow-cap" d="M680,84 L671,104 L689,104 Z"/>
+      <path class="snow-cap" d="M752,128 L745,144 L759,144 Z"/>
     </g>
   </svg>
 </div>
