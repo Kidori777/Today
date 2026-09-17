@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스페인어 생활단어 1000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF6EC;
+    --ink: #26211A;
+    --ink-soft: #6b6152;
+    --azulejo: #1F5C6B;
+    --azulejo-deep: #164450;
+    --sol: #E2A63B;
+    --clavel: #C24A3E;
+    --line: #DED2B8;
+    --card: #FFFFFF;
+    --chip-bg: #F0E6D0;
+    --chip-active-bg: #1F5C6B;
+    --chip-active-fg: #FBF6EC;
+    --shadow: rgba(38,33,26,0.10);
+    --known-bg: #ECF3E3;
+    --known-fg: #4E7A34;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #1B1712;
+      --ink: #F2ECDF;
+      --ink-soft: #B8AC94;
+      --azulejo: #6FB3C4;
+      --azulejo-deep: #8FC7D6;
+      --sol: #E8B85C;
+      --clavel: #E07A6C;
+      --line: #3A3226;
+      --card: #241F18;
+      --chip-bg: #2E2820;
+      --chip-active-bg: #6FB3C4;
+      --chip-active-fg: #1B1712;
+      --shadow: rgba(0,0,0,0.35);
+      --known-bg: #223522;
+      --known-fg: #9ED17E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1B1712;
+    --ink: #F2ECDF;
+    --ink-soft: #B8AC94;
+    --azulejo: #6FB3C4;
+    --azulejo-deep: #8FC7D6;
+    --sol: #E8B85C;
+    --clavel: #E07A6C;
+    --line: #3A3226;
+    --card: #241F18;
+    --chip-bg: #2E2820;
+    --chip-active-bg: #6FB3C4;
+    --chip-active-fg: #1B1712;
+    --shadow: rgba(0,0,0,0.35);
+    --known-bg: #223522;
+    --known-fg: #9ED17E;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  header.top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--clavel);
+  }
+
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 6px 0 22px;
+    max-width: 46ch;
+  }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .progress-bar {
+    width: 96px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .progress-bar > div {
+    height: 100%;
+    background: var(--azulejo);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  nav.tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 18px;
+  }
+  nav.tabs button {
+    font-family: 'Karla', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: none;
+    border: none;
+    padding: 10px 4px;
+    margin-right: 22px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+  }
+  nav.tabs button.active {
+    color: var(--ink);
+    border-bottom: 2px solid var(--clavel);
+  }
+
+  .searchbox {
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .searchbox input {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 15px;
+    font-family: 'Karla', sans-serif;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--ink);
+    outline: none;
+  }
+  .searchbox input:focus {
+    border-color: var(--azulejo);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .chip {
+    font-size: 12.5px;
+    padding: 6px 11px;
+    border-radius: 20px;
+    background: var(--chip-bg);
+    color: var(--ink-soft);
+    cursor: pointer;
+    border: none;
+    font-family: 'Karla', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .chip.active {
+    background: var(--chip-active-bg);
+    color: var(--chip-active-fg);
+  }
+
+  .count-line {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .list { display: flex; flex-direction: column; gap: 8px; }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 13px 14px;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .row.known { background: var(--known-bg); border-color: transparent; }
+
+  .row .num {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .row .body { flex: 1; min-width: 0; }
+
+  .row .es-line {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .row .es {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17.5px;
+    color: var(--azulejo-deep);
+  }
+  .row .pron {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .row .kr {
+    font-size: 15px;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .row .ex {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  .know-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--line);
+    font-size: 16px;
+  }
+  .row.known .know-btn { color: var(--known-fg); }
+  .know-btn:hover { color: var(--sol); }
+
+  .empty-state {
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 60px 20px;
+    font-size: 14.5px;
+  }
+
+  /* Flashcard mode */
+  .flash-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6px;
+  }
+  .flash-progress {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .card-stage {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 4 / 3;
+    perspective: 1400px;
+    margin-bottom: 22px;
+  }
+  .flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(.4,.2,.2,1);
+    cursor: pointer;
+  }
+  .flip-card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 18px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+  }
+  .face.back { transform: rotateY(180deg); background: var(--azulejo-deep); border-color: var(--azulejo-deep); }
+  .face .tag {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .face.back .tag { color: rgba(251,246,236,0.65); }
+
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .copy-btn:hover { background: var(--chip-bg); color: var(--azulejo-deep); }
+  .face.back .copy-btn { color: rgba(251,246,236,0.7); }
+  .face.back .copy-btn:hover { background: rgba(255,255,255,0.14); color: var(--paper); }
+  .copy-btn svg { width: 16px; height: 16px; }
+  .copy-btn.copied { color: var(--known-fg); }
+  .face.back .copy-btn.copied { color: #9ED17E; }
+
+  .row { position: relative; }
+  .row .copy-btn {
+    position: static;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+  .face .es-big {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 34px;
+    color: var(--azulejo-deep);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .face .pron-big {
+    font-size: 16px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .face .hint {
+    position: absolute;
+    bottom: 16px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+  .face.back .hint { color: rgba(251,246,236,0.55); }
+  .face.back .kr-big {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 12px;
+  }
+  .face.back .ex-big {
+    font-size: 14px;
+    color: rgba(251,246,236,0.85);
+    line-height: 1.5;
+    max-width: 34ch;
+  }
+
+  .flash-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ctrl-btn {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .ctrl-btn:active { transform: translateY(1px); }
+  .ctrl-btn.primary { background: var(--azulejo); color: var(--paper); border-color: var(--azulejo); }
+  .ctrl-btn.ghost-sol { color: var(--sol); border-color: var(--sol); background: none; }
+
+  .flash-secondary {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .flash-secondary button {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  ::selection { background: var(--sol); color: var(--ink); }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 25px; }
+    .row .es { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>스페인어<br><em>생활단어</em> 1000</h1>
+    <div class="progress-row">
+      <span id="progressLabel">0 / 1000 암기</span>
+      <div class="progress-bar"><div id="progressFill" style="width:0%"></div></div>
+    </div>
+  </header>
+  <p class="subtitle">틈날 때마다 리딩용으로 훑어보는 스페인어 생활 표현 모음. 목록을 읽거나 카드로 뒤집어가며 익혀보세요.</p>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="list">목록</button>
+    <button class="tab-btn" data-tab="flash">카드로 학습</button>
+  </nav>
+
+  <div id="listView">
+    <div class="searchbox">
+      <input type="text" id="searchInput" placeholder="스페인어, 뜻, 발음으로 검색...">
+    </div>
+    <div class="chips" id="sectionChips"></div>
+    <div class="count-line" id="countLine"></div>
+    <div class="list" id="listContainer"></div>
+  </div>
+
+  <div id="flashView" style="display:none;">
+    <div class="chips" id="flashChips"></div>
+    <div class="flash-wrap">
+      <div class="flash-progress" id="flashProgress"></div>
+      <div class="card-stage">
+        <div class="flip-card" id="flipCard">
+          <div class="face front">
+            <span class="tag" id="frontTag"></span>
+            <button class="copy-btn" id="copyFrontBtn" aria-label="복사" title="복사">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+            <div class="es-big" id="frontEs"></div>
+            <div class="pron-big" id="frontPron"></div>
+            <span class="hint">탭하여 뜻 보기</span>
+          </div>
+          <div class="face back">
+            <span class="tag">뜻</span>
+            <button class="copy-btn" id="copyBackBtn" aria-label="복사" title="복사">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+            <div class="kr-big" id="backKr"></div>
+            <div class="ex-big" id="backEx"></div>
+            <span class="hint">탭하여 되돌리기</span>
+          </div>
+        </div>
+      </div>
+      <div class="flash-controls">
+        <button class="ctrl-btn" id="prevBtn">← 이전</button>
+        <button class="ctrl-btn ghost-sol" id="knowBtn">암기 완료</button>
+        <button class="ctrl-btn primary" id="nextBtn">다음 →</button>
+      </div>
+      <div class="flash-secondary">
+        <button id="shuffleBtn">랜덤 섞기</button>
+        <button id="unknownOnlyBtn">모르는 것만</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WORDS = [{"num": 1, "es": "casa", "pron": "까사", "kr": "집", "ex": "Vivo en una casa grande. (나는 큰 집에 산다)", "section": "기본 명사/사람/사물"}, {"num": 2, "es": "persona", "pron": "뻬르소나", "kr": "사람", "ex": "Esa persona es amable. (그 사람은 친절하다)", "section": "기본 명사/사람/사물"}, {"num": 3, "es": "amigo", "pron": "아미고", "kr": "친구", "ex": "Él es mi amigo. (그는 내 친구다)", "section": "기본 명사/사람/사물"}, {"num": 4, "es": "comida", "pron": "꼬미다", "kr": "음식", "ex": "La comida está deliciosa. (음식이 맛있다)", "section": "기본 명사/사람/사물"}, {"num": 5, "es": "agua", "pron": "아과", "kr": "물", "ex": "Necesito agua. (나는 물이 필요하다)", "section": "기본 명사/사람/사물"}, {"num": 6, "es": "trabajo", "pron": "뜨라바호", "kr": "일, 직업", "ex": "Tengo mucho trabajo. (나는 일이 많다)", "section": "기본 명사/사람/사물"}, {"num": 7, "es": "dinero", "pron": "디네로", "kr": "돈", "ex": "No tengo dinero. (나는 돈이 없다)", "section": "기본 명사/사람/사물"}, {"num": 8, "es": "tiempo", "pron": "띠엠뽀", "kr": "시간", "ex": "No tengo tiempo. (나는 시간이 없다)", "section": "기본 명사/사람/사물"}, {"num": 9, "es": "día", "pron": "디아", "kr": "날", "ex": "Hoy es un buen día. (오늘은 좋은 날이다)", "section": "기본 명사/사람/사물"}, {"num": 10, "es": "noche", "pron": "노체", "kr": "밤", "ex": "Buenas noches. (안녕히 주무세요)", "section": "기본 명사/사람/사물"}, {"num": 11, "es": "ciudad", "pron": "씨우닷", "kr": "도시", "ex": "Esta ciudad es grande. (이 도시는 크다)", "section": "기본 명사/사람/사물"}, {"num": 12, "es": "calle", "pron": "까예", "kr": "거리", "ex": "Vivo en esta calle. (나는 이 거리에서 산다)", "section": "기본 명사/사람/사물"}, {"num": 13, "es": "coche", "pron": "꼬체", "kr": "자동차", "ex": "Tengo un coche. (나는 차가 있다)", "section": "기본 명사/사람/사물"}, {"num": 14, "es": "escuela", "pron": "에스꾸엘라", "kr": "학교", "ex": "Voy a la escuela. (나는 학교에 간다)", "section": "기본 명사/사람/사물"}, {"num": 15, "es": "libro", "pron": "리브로", "kr": "책", "ex": "Leo un libro. (나는 책을 읽는다)", "section": "기본 명사/사람/사물"}, {"num": 16, "es": "mesa", "pron": "메사", "kr": "테이블", "ex": "La mesa es grande. (테이블이 크다)", "section": "기본 명사/사람/사물"}, {"num": 17, "es": "puerta", "pron": "뿌에르따", "kr": "문", "ex": "Cierra la puerta. (문을 닫아라)", "section": "기본 명사/사람/사물"}, {"num": 18, "es": "ventana", "pron": "벤따나", "kr": "창문", "ex": "Abre la ventana. (창문을 열어라)", "section": "기본 명사/사람/사물"}, {"num": 19, "es": "silla", "pron": "씨야", "kr": "의자", "ex": "Siéntate en la silla. (의자에 앉아라)", "section": "기본 명사/사람/사물"}, {"num": 20, "es": "cama", "pron": "까마", "kr": "침대", "ex": "Estoy en la cama. (나는 침대에 있다)", "section": "기본 명사/사람/사물"}, {"num": 21, "es": "ser", "pron": "쎄르", "kr": "~이다", "ex": "Soy estudiante. (나는 학생이다)", "section": "기본 동사"}, {"num": 22, "es": "estar", "pron": "에스따르", "kr": "상태", "ex": "Estoy cansado. (나는 피곤하다)", "section": "기본 동사"}, {"num": 23, "es": "tener", "pron": "떼네르", "kr": "가지다", "ex": "Tengo hambre. (나는 배고프다)", "section": "기본 동사"}, {"num": 24, "es": "hacer", "pron": "아쎄르", "kr": "하다", "ex": "Hago ejercicio. (나는 운동한다)", "section": "기본 동사"}, {"num": 25, "es": "decir", "pron": "데씨르", "kr": "말하다", "ex": "Digo la verdad. (나는 진실을 말한다)", "section": "기본 동사"}, {"num": 26, "es": "ir", "pron": "이르", "kr": "가다", "ex": "Voy al trabajo. (나는 일하러 간다)", "section": "기본 동사"}, {"num": 27, "es": "ver", "pron": "베르", "kr": "보다", "ex": "Veo la televisión. (나는 TV를 본다)", "section": "기본 동사"}, {"num": 28, "es": "dar", "pron": "다르", "kr": "주다", "ex": "Te doy esto. (나는 이것을 너에게 준다)", "section": "기본 동사"}, {"num": 29, "es": "saber", "pron": "사베르", "kr": "알다", "ex": "Sé la respuesta. (나는 답을 안다)", "section": "기본 동사"}, {"num": 30, "es": "querer", "pron": "께레르", "kr": "원하다", "ex": "Quiero café. (나는 커피를 원한다)", "section": "기본 동사"}, {"num": 31, "es": "llegar", "pron": "예가르", "kr": "도착하다", "ex": "Llego tarde. (나는 늦게 도착한다)", "section": "기본 동사"}, {"num": 32, "es": "pasar", "pron": "빠사르", "kr": "지나가다", "ex": "Paso por aquí. (나는 여기로 지나간다)", "section": "기본 동사"}, {"num": 33, "es": "deber", "pron": "데베르", "kr": "~해야 한다", "ex": "Debo estudiar. (나는 공부해야 한다)", "section": "기본 동사"}, {"num": 34, "es": "poner", "pron": "뽀네르", "kr": "놓다", "ex": "Pongo el libro. (나는 책을 놓는다)", "section": "기본 동사"}, {"num": 35, "es": "parecer", "pron": "빠레쎄르", "kr": "보이다", "ex": "Parece bueno. (좋아 보인다)", "section": "기본 동사"}, {"num": 36, "es": "quedar", "pron": "께다르", "kr": "남다", "ex": "Queda tiempo. (시간이 남아 있다)", "section": "기본 동사"}, {"num": 37, "es": "creer", "pron": "끄레에르", "kr": "믿다", "ex": "Creo en ti. (나는 너를 믿는다)", "section": "기본 동사"}, {"num": 38, "es": "hablar", "pron": "아블라르", "kr": "말하다", "ex": "Hablo español. (나는 스페인어를 말한다)", "section": "기본 동사"}, {"num": 39, "es": "llevar", "pron": "예바르", "kr": "가지고 가다", "ex": "Llevo una bolsa. (나는 가방을 들고 간다)", "section": "기본 동사"}, {"num": 40, "es": "dejar", "pron": "데하르", "kr": "두다", "ex": "Dejo esto aquí. (나는 이것을 여기 둔다)", "section": "기본 동사"}, {"num": 41, "es": "bueno", "pron": "부에노", "kr": "좋은", "ex": "Es bueno. (좋다)", "section": "형용사"}, {"num": 42, "es": "malo", "pron": "말로", "kr": "나쁜", "ex": "Es malo. (나쁘다)", "section": "형용사"}, {"num": 43, "es": "grande", "pron": "그란데", "kr": "큰", "ex": "Casa grande. (큰 집)", "section": "형용사"}, {"num": 44, "es": "pequeño", "pron": "뻬께뇨", "kr": "작은", "ex": "Perro pequeño. (작은 개)", "section": "형용사"}, {"num": 45, "es": "nuevo", "pron": "누에보", "kr": "새로운", "ex": "Teléfono nuevo. (새 휴대폰)", "section": "형용사"}, {"num": 46, "es": "viejo", "pron": "비에호", "kr": "오래된", "ex": "Edificio viejo. (오래된 건물)", "section": "형용사"}, {"num": 47, "es": "fácil", "pron": "파실", "kr": "쉬운", "ex": "Es fácil. (쉽다)", "section": "형용사"}, {"num": 48, "es": "difícil", "pron": "디피실", "kr": "어려운", "ex": "Es difícil. (어렵다)", "section": "형용사"}, {"num": 49, "es": "rápido", "pron": "라삐도", "kr": "빠른", "ex": "Corre rápido. (빨리 달린다)", "section": "형용사"}, {"num": 50, "es": "lento", "pron": "렌또", "kr": "느린", "ex": "Es lento. (느리다)", "section": "형용사"}, {"num": 51, "es": "caro", "pron": "까로", "kr": "비싼", "ex": "Es caro. (비싸다)", "section": "형용사"}, {"num": 52, "es": "barato", "pron": "바라또", "kr": "싼", "ex": "Es barato. (싸다)", "section": "형용사"}, {"num": 53, "es": "bonito", "pron": "보니또", "kr": "예쁜", "ex": "Es bonito. (예쁘다)", "section": "형용사"}, {"num": 54, "es": "feo", "pron": "페오", "kr": "못생긴", "ex": "Es feo. (못생겼다)", "section": "형용사"}, {"num": 55, "es": "alto", "pron": "알또", "kr": "키 큰", "ex": "Es alto. (키가 크다)", "section": "형용사"}, {"num": 56, "es": "bajo", "pron": "바호", "kr": "키 작은", "ex": "Es bajo. (키가 작다)", "section": "형용사"}, {"num": 57, "es": "fuerte", "pron": "푸에르떼", "kr": "강한", "ex": "Es fuerte. (강하다)", "section": "형용사"}, {"num": 58, "es": "débil", "pron": "데빌", "kr": "약한", "ex": "Es débil. (약하다)", "section": "형용사"}, {"num": 59, "es": "feliz", "pron": "펠리스", "kr": "행복한", "ex": "Estoy feliz. (나는 행복하다)", "section": "형용사"}, {"num": 60, "es": "triste", "pron": "뜨리스떼", "kr": "슬픈", "ex": "Estoy triste. (나는 슬프다)", "section": "형용사"}, {"num": 61, "es": "hola", "pron": "올라", "kr": "안녕", "ex": "Hola, amigo.", "section": "일상 표현"}, {"num": 62, "es": "adiós", "pron": "아디오스", "kr": "잘가", "ex": "Adiós, nos vemos.", "section": "일상 표현"}, {"num": 63, "es": "gracias", "pron": "그라시아스", "kr": "고마워", "ex": "Muchas gracias.", "section": "일상 표현"}, {"num": 64, "es": "por favor", "pron": "뽀르 파보르", "kr": "부탁", "ex": "Agua, por favor.", "section": "일상 표현"}, {"num": 65, "es": "perdón", "pron": "뻬르돈", "kr": "미안", "ex": "Perdón por eso.", "section": "일상 표현"}, {"num": 66, "es": "lo siento", "pron": "로 씨엔또", "kr": "유감", "ex": "Lo siento mucho.", "section": "일상 표현"}, {"num": 67, "es": "sí", "pron": "씨", "kr": "예", "ex": "Sí, claro.", "section": "일상 표현"}, {"num": 68, "es": "no", "pron": "노", "kr": "아니오", "ex": "No quiero.", "section": "일상 표현"}, {"num": 69, "es": "tal vez", "pron": "딸 베스", "kr": "아마", "ex": "Tal vez mañana.", "section": "일상 표현"}, {"num": 70, "es": "siempre", "pron": "씨엠쁘레", "kr": "항상", "ex": "Siempre estudio.", "section": "일상 표현"}, {"num": 71, "es": "nunca", "pron": "눈까", "kr": "절대", "ex": "Nunca voy.", "section": "일상 표현"}, {"num": 72, "es": "ahora", "pron": "아오라", "kr": "지금", "ex": "Ahora voy.", "section": "일상 표현"}, {"num": 73, "es": "después", "pron": "데스뿌에스", "kr": "나중에", "ex": "Después comemos.", "section": "일상 표현"}, {"num": 74, "es": "aquí", "pron": "아끼", "kr": "여기", "ex": "Estoy aquí.", "section": "일상 표현"}, {"num": 75, "es": "allí", "pron": "아이", "kr": "저기", "ex": "Está allí.", "section": "일상 표현"}, {"num": 76, "es": "hoy", "pron": "오이", "kr": "오늘", "ex": "Hoy trabajo.", "section": "일상 표현"}, {"num": 77, "es": "mañana", "pron": "마냐나", "kr": "내일", "ex": "Mañana voy.", "section": "일상 표현"}, {"num": 78, "es": "ayer", "pron": "아예르", "kr": "어제", "ex": "Ayer llovió.", "section": "일상 표현"}, {"num": 79, "es": "mucho", "pron": "무초", "kr": "많이", "ex": "Trabajo mucho.", "section": "일상 표현"}, {"num": 80, "es": "poco", "pron": "뽀꼬", "kr": "조금", "ex": "Tengo poco tiempo.", "section": "일상 표현"}, {"num": 81, "es": "comer", "pron": "꼬메르", "kr": "먹다", "ex": "Quiero comer.", "section": "생활 필수"}, {"num": 82, "es": "beber", "pron": "베베르", "kr": "마시다", "ex": "Bebo agua.", "section": "생활 필수"}, {"num": 83, "es": "dormir", "pron": "도르미르", "kr": "자다", "ex": "Duermo bien.", "section": "생활 필수"}, {"num": 84, "es": "vivir", "pron": "비비르", "kr": "살다", "ex": "Vivo aquí.", "section": "생활 필수"}, {"num": 85, "es": "comprar", "pron": "꼼쁘라르", "kr": "사다", "ex": "Compro comida.", "section": "생활 필수"}, {"num": 86, "es": "vender", "pron": "벤데르", "kr": "팔다", "ex": "Vendo ropa.", "section": "생활 필수"}, {"num": 87, "es": "abrir", "pron": "아브리르", "kr": "열다", "ex": "Abro la puerta.", "section": "생활 필수"}, {"num": 88, "es": "cerrar", "pron": "쎄라르", "kr": "닫다", "ex": "Cierro la ventana.", "section": "생활 필수"}, {"num": 89, "es": "entrar", "pron": "엔뜨라르", "kr": "들어가다", "ex": "Entro a casa.", "section": "생활 필수"}, {"num": 90, "es": "salir", "pron": "살리르", "kr": "나가다", "ex": "Salgo ahora.", "section": "생활 필수"}, {"num": 91, "es": "trabajar", "pron": "뜨라바하르", "kr": "일하다", "ex": "Trabajo mucho.", "section": "생활 필수"}, {"num": 92, "es": "estudiar", "pron": "에스뚜디아르", "kr": "공부하다", "ex": "Estudio español.", "section": "생활 필수"}, {"num": 93, "es": "aprender", "pron": "아쁘렌데르", "kr": "배우다", "ex": "Aprendo rápido.", "section": "생활 필수"}, {"num": 94, "es": "enseñar", "pron": "엔세냐르", "kr": "가르치다", "ex": "Enseño inglés.", "section": "생활 필수"}, {"num": 95, "es": "entender", "pron": "엔뗀데르", "kr": "이해하다", "ex": "Entiendo bien.", "section": "생활 필수"}, {"num": 96, "es": "usar", "pron": "우사르", "kr": "사용하다", "ex": "Uso el teléfono.", "section": "생활 필수"}, {"num": 97, "es": "encontrar", "pron": "엔꼰뜨라르", "kr": "찾다", "ex": "Encuentro el libro.", "section": "생활 필수"}, {"num": 98, "es": "llamar", "pron": "야마르", "kr": "부르다/전화하다", "ex": "Te llamo.", "section": "생활 필수"}, {"num": 99, "es": "esperar", "pron": "에스뻬라르", "kr": "기다리다", "ex": "Espero aquí.", "section": "생활 필수"}, {"num": 100, "es": "necesitar", "pron": "네쎄시따르", "kr": "필요하다", "ex": "Necesito ayuda.", "section": "생활 필수"}, {"num": 101, "es": "restaurante", "pron": "레스따우란떼", "kr": "식당", "ex": "Vamos al restaurante. (우리는 식당에 간다)", "section": "식당 기본"}, {"num": 102, "es": "menú", "pron": "메누", "kr": "메뉴", "ex": "Veo el menú. (나는 메뉴를 본다)", "section": "식당 기본"}, {"num": 103, "es": "camarero", "pron": "까마레로", "kr": "웨이터", "ex": "El camarero viene. (웨이터가 온다)", "section": "식당 기본"}, {"num": 104, "es": "mesa", "pron": "메사", "kr": "테이블", "ex": "Reservo una mesa. (나는 테이블을 예약한다)", "section": "식당 기본"}, {"num": 105, "es": "cuenta", "pron": "꾸엔따", "kr": "계산서", "ex": "Traiga la cuenta. (계산서 주세요)", "section": "식당 기본"}, {"num": 106, "es": "reserva", "pron": "레세르바", "kr": "예약", "ex": "Tengo reserva. (예약했습니다)", "section": "식당 기본"}, {"num": 107, "es": "plato", "pron": "쁠라또", "kr": "접시/요리", "ex": "Este plato es bueno. (이 요리는 맛있다)", "section": "식당 기본"}, {"num": 108, "es": "bebida", "pron": "베비다", "kr": "음료", "ex": "Quiero una bebida. (음료 하나 주세요)", "section": "식당 기본"}, {"num": 109, "es": "desayuno", "pron": "데사유노", "kr": "아침식사", "ex": "Tomo desayuno. (아침을 먹는다)", "section": "식당 기본"}, {"num": 110, "es": "almuerzo", "pron": "알무에르소", "kr": "점심", "ex": "Almuerzo aquí. (나는 여기서 점심 먹는다)", "section": "식당 기본"}, {"num": 111, "es": "cena", "pron": "쎄나", "kr": "저녁", "ex": "Cenamos juntos. (우리는 함께 저녁 먹는다)", "section": "식당 기본"}, {"num": 112, "es": "comida", "pron": "꼬미다", "kr": "식사", "ex": "La comida es buena. (음식이 좋다)", "section": "식당 기본"}, {"num": 113, "es": "pan", "pron": "빤", "kr": "빵", "ex": "Como pan. (나는 빵을 먹는다)", "section": "식당 기본"}, {"num": 114, "es": "carne", "pron": "까르네", "kr": "고기", "ex": "Como carne. (나는 고기를 먹는다)", "section": "식당 기본"}, {"num": 115, "es": "pescado", "pron": "뻬스까도", "kr": "생선", "ex": "Me gusta pescado. (나는 생선을 좋아한다)", "section": "식당 기본"}, {"num": 116, "es": "pollo", "pron": "뽀요", "kr": "닭고기", "ex": "Pollo asado. (구운 닭)", "section": "식당 기본"}, {"num": 117, "es": "arroz", "pron": "아로스", "kr": "쌀/밥", "ex": "Como arroz. (나는 밥을 먹는다)", "section": "식당 기본"}, {"num": 118, "es": "sopa", "pron": "쏘빠", "kr": "수프", "ex": "Tomo sopa. (나는 수프를 먹는다)", "section": "식당 기본"}, {"num": 119, "es": "ensalada", "pron": "엔살라다", "kr": "샐러드", "ex": "Ensalada fresca. (신선한 샐러드)", "section": "식당 기본"}, {"num": 120, "es": "postre", "pron": "뽀스뜨레", "kr": "디저트", "ex": "Quiero postre. (디저트를 원한다)", "section": "식당 기본"}, {"num": 121, "es": "pedir", "pron": "뻬디르", "kr": "주문하다", "ex": "Quiero pedir. (주문하고 싶다)", "section": "식당 표현"}, {"num": 122, "es": "traer", "pron": "뜨라에르", "kr": "가져오다", "ex": "Trae agua. (물 가져다 주세요)", "section": "식당 표현"}, {"num": 123, "es": "pagar", "pron": "빠가르", "kr": "계산하다", "ex": "Pago aquí. (여기서 계산한다)", "section": "식당 표현"}, {"num": 124, "es": "invitar", "pron": "인비따르", "kr": "대접하다", "ex": "Te invito. (내가 낼게)", "section": "식당 표현"}, {"num": 125, "es": "probar", "pron": "쁘로바르", "kr": "맛보다", "ex": "Pruebo esto. (이걸 맛본다)", "section": "식당 표현"}, {"num": 126, "es": "cocinar", "pron": "꼬씨나르", "kr": "요리하다", "ex": "Cocino en casa. (집에서 요리한다)", "section": "식당 표현"}, {"num": 127, "es": "servir", "pron": "세르비르", "kr": "제공하다", "ex": "Sirven comida. (음식을 제공한다)", "section": "식당 표현"}, {"num": 128, "es": "caliente", "pron": "깔리엔떼", "kr": "뜨거운", "ex": "Café caliente. (뜨거운 커피)", "section": "식당 표현"}, {"num": 129, "es": "frío", "pron": "프리오", "kr": "차가운", "ex": "Agua fría. (차가운 물)", "section": "식당 표현"}, {"num": 130, "es": "dulce", "pron": "둘쎄", "kr": "달콤한", "ex": "Postre dulce. (달콤한 디저트)", "section": "식당 표현"}, {"num": 131, "es": "salado", "pron": "살라도", "kr": "짠", "ex": "Está salado. (짭짤하다)", "section": "식당 표현"}, {"num": 132, "es": "picante", "pron": "삐깐떼", "kr": "매운", "ex": "Es picante. (맵다)", "section": "식당 표현"}, {"num": 133, "es": "rico", "pron": "리꼬", "kr": "맛있는", "ex": "Está rico. (맛있다)", "section": "식당 표현"}, {"num": 134, "es": "lleno", "pron": "예노", "kr": "배부른", "ex": "Estoy lleno. (배부르다)", "section": "식당 표현"}, {"num": 135, "es": "hambre", "pron": "암브레", "kr": "배고픔", "ex": "Tengo hambre. (배고프다)", "section": "식당 표현"}, {"num": 136, "es": "sed", "pron": "쎄드", "kr": "목마름", "ex": "Tengo sed. (목마르다)", "section": "식당 표현"}, {"num": 137, "es": "más", "pron": "마스", "kr": "더", "ex": "Quiero más. (더 주세요)", "section": "식당 표현"}, {"num": 138, "es": "menos", "pron": "메노스", "kr": "덜", "ex": "Menos sal. (덜 짜게)", "section": "식당 표현"}, {"num": 139, "es": "suficiente", "pron": "수피씨엔떼", "kr": "충분한", "ex": "Es suficiente. (충분하다)", "section": "식당 표현"}, {"num": 140, "es": "compartir", "pron": "꼼빠르띠르", "kr": "나누다", "ex": "Compartimos comida. (우리는 음식을 나눈다)", "section": "식당 표현"}, {"num": 141, "es": "tienda", "pron": "띠엔다", "kr": "가게", "ex": "Voy a la tienda. (나는 가게에 간다)", "section": "쇼핑 기본"}, {"num": 142, "es": "comprar", "pron": "꼼쁘라르", "kr": "사다", "ex": "Quiero comprar. (사고 싶다)", "section": "쇼핑 기본"}, {"num": 143, "es": "vender", "pron": "벤데르", "kr": "팔다", "ex": "Venden ropa. (옷을 판다)", "section": "쇼핑 기본"}, {"num": 144, "es": "precio", "pron": "쁘레씨오", "kr": "가격", "ex": "El precio es alto. (가격이 비싸다)", "section": "쇼핑 기본"}, {"num": 145, "es": "caro", "pron": "까로", "kr": "비싼", "ex": "Es caro. (비싸다)", "section": "쇼핑 기본"}, {"num": 146, "es": "barato", "pron": "바라또", "kr": "싼", "ex": "Es barato. (싸다)", "section": "쇼핑 기본"}, {"num": 147, "es": "descuento", "pron": "데스꾸엔또", "kr": "할인", "ex": "Hay descuento. (할인이 있다)", "section": "쇼핑 기본"}, {"num": 148, "es": "oferta", "pron": "오페르따", "kr": "세일", "ex": "Está en oferta. (세일 중이다)", "section": "쇼핑 기본"}, {"num": 149, "es": "pagar", "pron": "빠가르", "kr": "지불하다", "ex": "Pago en efectivo. (현금으로 낸다)", "section": "쇼핑 기본"}, {"num": 150, "es": "efectivo", "pron": "에펙띠보", "kr": "현금", "ex": "Pago efectivo. (현금 결제)", "section": "쇼핑 기본"}, {"num": 151, "es": "tarjeta", "pron": "따르헤따", "kr": "카드", "ex": "Pago con tarjeta. (카드로 결제)", "section": "쇼핑 기본"}, {"num": 152, "es": "recibo", "pron": "레씨보", "kr": "영수증", "ex": "Quiero recibo. (영수증 주세요)", "section": "쇼핑 기본"}, {"num": 153, "es": "cambio", "pron": "깜비오", "kr": "잔돈", "ex": "No tengo cambio. (잔돈이 없다)", "section": "쇼핑 기본"}, {"num": 154, "es": "talla", "pron": "따야", "kr": "사이즈", "ex": "Mi talla es M. (내 사이즈는 M이다)", "section": "쇼핑 기본"}, {"num": 155, "es": "probarse", "pron": "쁘로바르쎄", "kr": "입어보다", "ex": "Me pruebo esto. (이거 입어본다)", "section": "쇼핑 기본"}, {"num": 156, "es": "ropa", "pron": "로빠", "kr": "옷", "ex": "Compro ropa. (옷을 산다)", "section": "쇼핑 기본"}, {"num": 157, "es": "zapatos", "pron": "싸빠또스", "kr": "신발", "ex": "Zapatos nuevos. (새 신발)", "section": "쇼핑 기본"}, {"num": 158, "es": "bolsa", "pron": "볼사", "kr": "가방/봉투", "ex": "Necesito bolsa. (봉투 필요하다)", "section": "쇼핑 기본"}, {"num": 159, "es": "abrir", "pron": "아브리르", "kr": "열다", "ex": "La tienda abre. (가게가 연다)", "section": "쇼핑 기본"}, {"num": 160, "es": "cerrar", "pron": "쎄라르", "kr": "닫다", "ex": "La tienda cierra. (가게가 닫는다)", "section": "쇼핑 기본"}, {"num": 161, "es": "viajar", "pron": "비아하르", "kr": "여행하다", "ex": "Quiero viajar. (여행하고 싶다)", "section": "여행 기본"}, {"num": 162, "es": "viaje", "pron": "비아헤", "kr": "여행", "ex": "Buen viaje. (좋은 여행 되세요)", "section": "여행 기본"}, {"num": 163, "es": "hotel", "pron": "오뗄", "kr": "호텔", "ex": "Estoy en el hotel. (호텔에 있다)", "section": "여행 기본"}, {"num": 164, "es": "habitación", "pron": "아비따씨온", "kr": "방", "ex": "Reservo habitación. (방 예약한다)", "section": "여행 기본"}, {"num": 165, "es": "reserva", "pron": "레세르바", "kr": "예약", "ex": "Tengo reserva. (예약했다)", "section": "여행 기본"}, {"num": 166, "es": "pasaporte", "pron": "빠사뽀르떼", "kr": "여권", "ex": "Tengo pasaporte. (여권 있다)", "section": "여행 기본"}, {"num": 167, "es": "equipaje", "pron": "에끼빠헤", "kr": "짐", "ex": "Llevo equipaje. (짐을 들고 간다)", "section": "여행 기본"}, {"num": 168, "es": "aeropuerto", "pron": "아에로뿌에르또", "kr": "공항", "ex": "Voy al aeropuerto. (공항 간다)", "section": "여행 기본"}, {"num": 169, "es": "avión", "pron": "아비온", "kr": "비행기", "ex": "Tomo avión. (비행기 탄다)", "section": "여행 기본"}, {"num": 170, "es": "vuelo", "pron": "부엘로", "kr": "항공편", "ex": "Mi vuelo sale. (내 비행기 출발)", "section": "여행 기본"}, {"num": 171, "es": "tren", "pron": "뜨렌", "kr": "기차", "ex": "Tomo tren. (기차 탄다)", "section": "여행 기본"}, {"num": 172, "es": "estación", "pron": "에스따씨온", "kr": "역", "ex": "Estoy en la estación. (역에 있다)", "section": "여행 기본"}, {"num": 173, "es": "mapa", "pron": "마빠", "kr": "지도", "ex": "Uso mapa. (지도를 사용한다)", "section": "여행 기본"}, {"num": 174, "es": "guía", "pron": "기아", "kr": "가이드", "ex": "El guía explica. (가이드가 설명한다)", "section": "여행 기본"}, {"num": 175, "es": "turista", "pron": "뚜리스따", "kr": "관광객", "ex": "Soy turista. (나는 관광객이다)", "section": "여행 기본"}, {"num": 176, "es": "visitar", "pron": "비시따르", "kr": "방문하다", "ex": "Visito museo. (박물관 방문)", "section": "여행 기본"}, {"num": 177, "es": "museo", "pron": "무쎄오", "kr": "박물관", "ex": "El museo abre. (박물관이 열린다)", "section": "여행 기본"}, {"num": 178, "es": "entrada", "pron": "엔뜨라다", "kr": "입장권", "ex": "Compro entrada. (입장권 구매)", "section": "여행 기본"}, {"num": 179, "es": "salida", "pron": "살리다", "kr": "출구", "ex": "Salida aquí. (출구 여기)", "section": "여행 기본"}, {"num": 180, "es": "dirección", "pron": "디렉씨온", "kr": "방향", "ex": "Necesito dirección. (방향 필요)", "section": "여행 기본"}, {"num": 181, "es": "taxi", "pron": "딱시", "kr": "택시", "ex": "Tomo un taxi.", "section": "여행 표현 확장"}, {"num": 182, "es": "autobús", "pron": "아우또부스", "kr": "버스", "ex": "Tomo el autobús.", "section": "여행 표현 확장"}, {"num": 183, "es": "metro", "pron": "메뜨로", "kr": "지하철", "ex": "Tomo el metro.", "section": "여행 표현 확장"}, {"num": 184, "es": "alquiler de coche", "pron": "알낄레르 데 꼬체", "kr": "렌터카", "ex": "Necesito alquiler de coche.", "section": "여행 표현 확장"}, {"num": 185, "es": "maleta", "pron": "말레따", "kr": "여행 가방", "ex": "Hago la maleta.", "section": "여행 표현 확장"}, {"num": 186, "es": "billete", "pron": "비예떼", "kr": "표, 티켓", "ex": "Compro un billete.", "section": "여행 표현 확장"}, {"num": 187, "es": "ida y vuelta", "pron": "이다 이 부엘따", "kr": "왕복", "ex": "Billete de ida y vuelta.", "section": "여행 표현 확장"}, {"num": 188, "es": "solo ida", "pron": "솔로 이다", "kr": "편도", "ex": "Billete solo ida.", "section": "여행 표현 확장"}, {"num": 189, "es": "embarque", "pron": "엠바르께", "kr": "탑승", "ex": "Hora de embarque.", "section": "여행 표현 확장"}, {"num": 190, "es": "retraso", "pron": "레뜨라소", "kr": "지연", "ex": "Hay retraso.", "section": "여행 표현 확장"}, {"num": 191, "es": "asiento de ventana", "pron": "아시엔또 데 벤따나", "kr": "창가석", "ex": "Quiero asiento de ventana.", "section": "여행 표현 확장"}, {"num": 192, "es": "asiento de pasillo", "pron": "아시엔또 데 빠시요", "kr": "통로석", "ex": "Prefiero asiento de pasillo.", "section": "여행 표현 확장"}, {"num": 193, "es": "aduana", "pron": "아두아나", "kr": "세관", "ex": "Paso por aduana.", "section": "여행 표현 확장"}, {"num": 194, "es": "frontera", "pron": "프론떼라", "kr": "국경", "ex": "Cruzo la frontera.", "section": "여행 표현 확장"}, {"num": 195, "es": "alojamiento", "pron": "알로하미엔또", "kr": "숙소", "ex": "Busco alojamiento.", "section": "여행 표현 확장"}, {"num": 196, "es": "albergue", "pron": "알베르게", "kr": "게스트하우스", "ex": "Duermo en un albergue.", "section": "여행 표현 확장"}, {"num": 197, "es": "cambio de moneda", "pron": "깜비오 데 모네다", "kr": "환전", "ex": "Hago cambio de moneda.", "section": "여행 표현 확장"}, {"num": 198, "es": "propina", "pron": "프로피나", "kr": "팁", "ex": "Dejo propina.", "section": "여행 표현 확장"}, {"num": 199, "es": "recuerdo", "pron": "레꾸에르도", "kr": "기념품", "ex": "Compro un recuerdo.", "section": "여행 표현 확장"}, {"num": 200, "es": "wifi gratis", "pron": "위피 그라띠스", "kr": "무료 와이파이", "ex": "¿Hay wifi gratis?", "section": "여행 표현 확장"}, {"num": 201, "es": "oficina", "pron": "오피씨나", "kr": "사무실", "ex": "Trabajo en la oficina. (나는 사무실에서 일한다)", "section": "직장 기본 명사"}, {"num": 202, "es": "empresa", "pron": "엠쁘레사", "kr": "회사", "ex": "La empresa crece. (회사가 성장한다)", "section": "직장 기본 명사"}, {"num": 203, "es": "jefe", "pron": "헤페", "kr": "상사", "ex": "Mi jefe llama. (상사가 부른다)", "section": "직장 기본 명사"}, {"num": 204, "es": "empleado", "pron": "엠쁠레아도", "kr": "직원", "ex": "Soy empleado. (나는 직원이다)", "section": "직장 기본 명사"}, {"num": 205, "es": "compañero", "pron": "꼼빠녜로", "kr": "동료", "ex": "Mi compañero ayuda. (동료가 도와준다)", "section": "직장 기본 명사"}, {"num": 206, "es": "reunión", "pron": "레우니온", "kr": "회의", "ex": "Tengo reunión. (회의가 있다)", "section": "직장 기본 명사"}, {"num": 207, "es": "proyecto", "pron": "쁘로옉또", "kr": "프로젝트", "ex": "El proyecto empieza. (프로젝트 시작)", "section": "직장 기본 명사"}, {"num": 208, "es": "trabajo", "pron": "뜨라바호", "kr": "일", "ex": "Tengo trabajo. (일이 있다)", "section": "직장 기본 명사"}, {"num": 209, "es": "tarea", "pron": "따레아", "kr": "업무", "ex": "Termino la tarea. (업무를 끝낸다)", "section": "직장 기본 명사"}, {"num": 210, "es": "horario", "pron": "오라리오", "kr": "근무시간", "ex": "Mi horario cambia. (근무시간이 바뀐다)", "section": "직장 기본 명사"}, {"num": 211, "es": "contrato", "pron": "꼰뜨라또", "kr": "계약", "ex": "Firmo contrato. (계약한다)", "section": "직장 기본 명사"}, {"num": 212, "es": "salario", "pron": "살라리오", "kr": "급여", "ex": "Recibo salario. (급여 받는다)", "section": "직장 기본 명사"}, {"num": 213, "es": "cliente", "pron": "끌리엔떼", "kr": "고객", "ex": "El cliente espera. (고객이 기다린다)", "section": "직장 기본 명사"}, {"num": 214, "es": "servicio", "pron": "세르비씨오", "kr": "서비스", "ex": "Buen servicio. (좋은 서비스)", "section": "직장 기본 명사"}, {"num": 215, "es": "correo", "pron": "꼬레오", "kr": "이메일", "ex": "Envío correo. (이메일 보낸다)", "section": "직장 기본 명사"}, {"num": 216, "es": "llamada", "pron": "야마다", "kr": "전화", "ex": "Recibo llamada. (전화 받는다)", "section": "직장 기본 명사"}, {"num": 217, "es": "mensaje", "pron": "멘사헤", "kr": "메시지", "ex": "Leo mensaje. (메시지 읽는다)", "section": "직장 기본 명사"}, {"num": 218, "es": "documento", "pron": "도꾸멘또", "kr": "문서", "ex": "Reviso documento. (문서 검토)", "section": "직장 기본 명사"}, {"num": 219, "es": "informe", "pron": "인포르메", "kr": "보고서", "ex": "Hago informe. (보고서 작성)", "section": "직장 기본 명사"}, {"num": 220, "es": "sistema", "pron": "시스떼마", "kr": "시스템", "ex": "El sistema falla. (시스템 오류)", "section": "직장 기본 명사"}, {"num": 221, "es": "trabajar", "pron": "뜨라바하르", "kr": "일하다", "ex": "Trabajo mucho. (많이 일한다)", "section": "직장 동사"}, {"num": 222, "es": "empezar", "pron": "엠뻬사르", "kr": "시작하다", "ex": "Empiezo ahora. (지금 시작)", "section": "직장 동사"}, {"num": 223, "es": "terminar", "pron": "떼르미나르", "kr": "끝내다", "ex": "Termino hoy. (오늘 끝낸다)", "section": "직장 동사"}, {"num": 224, "es": "hacer", "pron": "아쎄르", "kr": "하다", "ex": "Hago tarea. (일 한다)", "section": "직장 동사"}, {"num": 225, "es": "preparar", "pron": "쁘레빠라르", "kr": "준비하다", "ex": "Preparo reunión. (회의 준비)", "section": "직장 동사"}, {"num": 226, "es": "organizar", "pron": "오르가니사르", "kr": "정리하다", "ex": "Organizo trabajo. (업무 정리)", "section": "직장 동사"}, {"num": 227, "es": "enviar", "pron": "엔비아르", "kr": "보내다", "ex": "Envío correo. (메일 보낸다)", "section": "직장 동사"}, {"num": 228, "es": "recibir", "pron": "레씨비르", "kr": "받다", "ex": "Recibo archivo. (파일 받는다)", "section": "직장 동사"}, {"num": 229, "es": "revisar", "pron": "레비사르", "kr": "검토하다", "ex": "Reviso informe. (보고서 검토)", "section": "직장 동사"}, {"num": 230, "es": "firmar", "pron": "피르마르", "kr": "서명하다", "ex": "Firmo documento. (문서 서명)", "section": "직장 동사"}, {"num": 231, "es": "explicar", "pron": "엑스쁠리까르", "kr": "설명하다", "ex": "Explico esto. (이것 설명)", "section": "직장 동사"}, {"num": 232, "es": "entender", "pron": "엔뗀데르", "kr": "이해하다", "ex": "Entiendo todo. (모두 이해)", "section": "직장 동사"}, {"num": 233, "es": "preguntar", "pron": "쁘레군따르", "kr": "질문하다", "ex": "Pregunto ahora. (지금 질문)", "section": "직장 동사"}, {"num": 234, "es": "responder", "pron": "레스뽄데르", "kr": "답하다", "ex": "Respondo rápido. (빠르게 답함)", "section": "직장 동사"}, {"num": 235, "es": "ayudar", "pron": "아유다르", "kr": "돕다", "ex": "Ayudo mucho. (많이 돕는다)", "section": "직장 동사"}, {"num": 236, "es": "aprender", "pron": "아쁘렌데르", "kr": "배우다", "ex": "Aprendo rápido. (빨리 배운다)", "section": "직장 동사"}, {"num": 237, "es": "enseñar", "pron": "엔세냐르", "kr": "가르치다", "ex": "Enseño bien. (잘 가르친다)", "section": "직장 동사"}, {"num": 238, "es": "mejorar", "pron": "메호라르", "kr": "개선하다", "ex": "Mejoro trabajo. (업무 개선)", "section": "직장 동사"}, {"num": 239, "es": "cambiar", "pron": "깜비아르", "kr": "바꾸다", "ex": "Cambio plan. (계획 변경)", "section": "직장 동사"}, {"num": 240, "es": "decidir", "pron": "데씨디르", "kr": "결정하다", "ex": "Decido hoy. (오늘 결정)", "section": "직장 동사"}, {"num": 241, "es": "hablar", "pron": "아블라르", "kr": "말하다", "ex": "Hablamos ahora. (지금 이야기)", "section": "일상 회화 기본"}, {"num": 242, "es": "decir", "pron": "데씨르", "kr": "말하다", "ex": "Digo verdad. (진실 말함)", "section": "일상 회화 기본"}, {"num": 243, "es": "escuchar", "pron": "에스꾸차르", "kr": "듣다", "ex": "Escucho bien. (잘 듣는다)", "section": "일상 회화 기본"}, {"num": 244, "es": "ver", "pron": "베르", "kr": "보다", "ex": "Veo esto. (이것 본다)", "section": "일상 회화 기본"}, {"num": 245, "es": "mirar", "pron": "미라르", "kr": "보다", "ex": "Miro pantalla. (화면 본다)", "section": "일상 회화 기본"}, {"num": 246, "es": "pensar", "pron": "뻰사르", "kr": "생각하다", "ex": "Pienso mucho. (많이 생각)", "section": "일상 회화 기본"}, {"num": 247, "es": "creer", "pron": "끄레에르", "kr": "믿다", "ex": "Creo en eso. (그것 믿는다)", "section": "일상 회화 기본"}, {"num": 248, "es": "saber", "pron": "사베르", "kr": "알다", "ex": "Sé eso. (그것 안다)", "section": "일상 회화 기본"}, {"num": 249, "es": "conocer", "pron": "꼬노쎄르", "kr": "알다(경험)", "ex": "Conozco a él. (그를 안다)", "section": "일상 회화 기본"}, {"num": 250, "es": "recordar", "pron": "레꼬르다르", "kr": "기억하다", "ex": "Recuerdo todo. (다 기억)", "section": "일상 회화 기본"}, {"num": 251, "es": "olvidar", "pron": "올비다르", "kr": "잊다", "ex": "Olvido eso. (그것 잊는다)", "section": "일상 회화 기본"}, {"num": 252, "es": "intentar", "pron": "인텐따르", "kr": "시도하다", "ex": "Intento ahora. (지금 시도)", "section": "일상 회화 기본"}, {"num": 253, "es": "lograr", "pron": "로그라르", "kr": "이루다", "ex": "Logro meta. (목표 달성)", "section": "일상 회화 기본"}, {"num": 254, "es": "necesitar", "pron": "네쎄시따르", "kr": "필요하다", "ex": "Necesito ayuda. (도움 필요)", "section": "일상 회화 기본"}, {"num": 255, "es": "querer", "pron": "께레르", "kr": "원하다", "ex": "Quiero esto. (이것 원함)", "section": "일상 회화 기본"}, {"num": 256, "es": "preferir", "pron": "쁘레페리르", "kr": "선호하다", "ex": "Prefiero café. (커피 선호)", "section": "일상 회화 기본"}, {"num": 257, "es": "gustar", "pron": "구스타르", "kr": "좋아하다", "ex": "Me gusta. (좋다)", "section": "일상 회화 기본"}, {"num": 258, "es": "encantar", "pron": "엔깐따르", "kr": "매우 좋아하다", "ex": "Me encanta. (아주 좋다)", "section": "일상 회화 기본"}, {"num": 259, "es": "odiar", "pron": "오디아르", "kr": "싫어하다", "ex": "Odio eso. (그것 싫다)", "section": "일상 회화 기본"}, {"num": 260, "es": "amar", "pron": "아마르", "kr": "사랑하다", "ex": "Amo esto. (이것 사랑)", "section": "일상 회화 기본"}, {"num": 261, "es": "feliz", "pron": "펠리스", "kr": "행복한", "ex": "Estoy feliz.", "section": "감정/상태"}, {"num": 262, "es": "triste", "pron": "뜨리스떼", "kr": "슬픈", "ex": "Estoy triste.", "section": "감정/상태"}, {"num": 263, "es": "cansado", "pron": "깐사도", "kr": "피곤한", "ex": "Estoy cansado.", "section": "감정/상태"}, {"num": 264, "es": "ocupado", "pron": "오꾸빠도", "kr": "바쁜", "ex": "Estoy ocupado.", "section": "감정/상태"}, {"num": 265, "es": "libre", "pron": "리브레", "kr": "한가한", "ex": "Estoy libre.", "section": "감정/상태"}, {"num": 266, "es": "enfermo", "pron": "엔페르모", "kr": "아픈", "ex": "Estoy enfermo.", "section": "감정/상태"}, {"num": 267, "es": "bien", "pron": "비엔", "kr": "좋다", "ex": "Estoy bien.", "section": "감정/상태"}, {"num": 268, "es": "mal", "pron": "말", "kr": "나쁘다", "ex": "Estoy mal.", "section": "감정/상태"}, {"num": 269, "es": "mejor", "pron": "메호르", "kr": "더 좋다", "ex": "Estoy mejor.", "section": "감정/상태"}, {"num": 270, "es": "peor", "pron": "뻬오르", "kr": "더 나쁘다", "ex": "Estoy peor.", "section": "감정/상태"}, {"num": 271, "es": "tranquilo", "pron": "뜨란낄로", "kr": "차분한", "ex": "Estoy tranquilo.", "section": "감정/상태"}, {"num": 272, "es": "nervioso", "pron": "네르비오소", "kr": "긴장한", "ex": "Estoy nervioso.", "section": "감정/상태"}, {"num": 273, "es": "seguro", "pron": "세구로", "kr": "확신", "ex": "Estoy seguro.", "section": "감정/상태"}, {"num": 274, "es": "duda", "pron": "두다", "kr": "의심", "ex": "Tengo duda.", "section": "감정/상태"}, {"num": 275, "es": "miedo", "pron": "미에도", "kr": "두려움", "ex": "Tengo miedo.", "section": "감정/상태"}, {"num": 276, "es": "confianza", "pron": "꼰피안사", "kr": "자신감", "ex": "Tengo confianza.", "section": "감정/상태"}, {"num": 277, "es": "energía", "pron": "에네르히아", "kr": "에너지", "ex": "Tengo energía.", "section": "감정/상태"}, {"num": 278, "es": "fuerza", "pron": "푸에르사", "kr": "힘", "ex": "Tengo fuerza.", "section": "감정/상태"}, {"num": 279, "es": "descanso", "pron": "데스깐소", "kr": "휴식", "ex": "Necesito descanso.", "section": "감정/상태"}, {"num": 280, "es": "estrés", "pron": "에스트레스", "kr": "스트레스", "ex": "Tengo estrés.", "section": "감정/상태"}, {"num": 281, "es": "siempre", "pron": "씨엠쁘레", "kr": "항상", "ex": "Siempre trabajo.", "section": "일상 표현 확장"}, {"num": 282, "es": "a veces", "pron": "아 베쎄스", "kr": "가끔", "ex": "A veces salgo.", "section": "일상 표현 확장"}, {"num": 283, "es": "nunca", "pron": "눈까", "kr": "절대", "ex": "Nunca voy.", "section": "일상 표현 확장"}, {"num": 284, "es": "normalmente", "pron": "노르말멘떼", "kr": "보통", "ex": "Normalmente estudio.", "section": "일상 표현 확장"}, {"num": 285, "es": "rápido", "pron": "라삐도", "kr": "빠르게", "ex": "Trabajo rápido.", "section": "일상 표현 확장"}, {"num": 286, "es": "despacio", "pron": "데스빠씨오", "kr": "천천히", "ex": "Hablo despacio.", "section": "일상 표현 확장"}, {"num": 287, "es": "temprano", "pron": "떼름쁘라노", "kr": "일찍", "ex": "Llego temprano.", "section": "일상 표현 확장"}, {"num": 288, "es": "tarde", "pron": "따르데", "kr": "늦게", "ex": "Llego tarde.", "section": "일상 표현 확장"}, {"num": 289, "es": "ahora", "pron": "아오라", "kr": "지금", "ex": "Ahora voy.", "section": "일상 표현 확장"}, {"num": 290, "es": "luego", "pron": "루에고", "kr": "나중에", "ex": "Luego vemos.", "section": "일상 표현 확장"}, {"num": 291, "es": "antes", "pron": "안떼스", "kr": "전에", "ex": "Antes trabajo.", "section": "일상 표현 확장"}, {"num": 292, "es": "después", "pron": "데스뿌에스", "kr": "이후", "ex": "Después descanso.", "section": "일상 표현 확장"}, {"num": 293, "es": "aquí", "pron": "아끼", "kr": "여기", "ex": "Estoy aquí.", "section": "일상 표현 확장"}, {"num": 294, "es": "allí", "pron": "아이", "kr": "저기", "ex": "Está allí.", "section": "일상 표현 확장"}, {"num": 295, "es": "cerca", "pron": "쎄르까", "kr": "가까이", "ex": "Está cerca.", "section": "일상 표현 확장"}, {"num": 296, "es": "lejos", "pron": "레호스", "kr": "멀리", "ex": "Está lejos.", "section": "일상 표현 확장"}, {"num": 297, "es": "arriba", "pron": "아리바", "kr": "위", "ex": "Está arriba.", "section": "일상 표현 확장"}, {"num": 298, "es": "abajo", "pron": "아바호", "kr": "아래", "ex": "Está abajo.", "section": "일상 표현 확장"}, {"num": 299, "es": "dentro", "pron": "덴뜨로", "kr": "안", "ex": "Está dentro.", "section": "일상 표현 확장"}, {"num": 300, "es": "fuera", "pron": "푸에라", "kr": "밖", "ex": "Está fuera.", "section": "일상 표현 확장"}, {"num": 301, "es": "problema", "pron": "쁘로블레마", "kr": "문제", "ex": "Tengo un problema. (문제가 있다)", "section": "문제/계획/행동"}, {"num": 302, "es": "solución", "pron": "솔루씨온", "kr": "해결", "ex": "Busco solución. (해결을 찾는다)", "section": "문제/계획/행동"}, {"num": 303, "es": "idea", "pron": "이데아", "kr": "아이디어", "ex": "Tengo una idea. (아이디어가 있다)", "section": "문제/계획/행동"}, {"num": 304, "es": "plan", "pron": "쁠란", "kr": "계획", "ex": "Hago un plan. (계획을 세운다)", "section": "문제/계획/행동"}, {"num": 305, "es": "objetivo", "pron": "옵헤띠보", "kr": "목표", "ex": "Tengo objetivo. (목표가 있다)", "section": "문제/계획/행동"}, {"num": 306, "es": "resultado", "pron": "레스울따도", "kr": "결과", "ex": "Veo resultado. (결과를 본다)", "section": "문제/계획/행동"}, {"num": 307, "es": "éxito", "pron": "엑시또", "kr": "성공", "ex": "Logro éxito. (성공한다)", "section": "문제/계획/행동"}, {"num": 308, "es": "error", "pron": "에로르", "kr": "실수", "ex": "Hay error. (오류가 있다)", "section": "문제/계획/행동"}, {"num": 309, "es": "oportunidad", "pron": "오뽀르뚜니다드", "kr": "기회", "ex": "Es oportunidad. (기회다)", "section": "문제/계획/행동"}, {"num": 310, "es": "decisión", "pron": "데씨씨온", "kr": "결정", "ex": "Tomo decisión. (결정한다)", "section": "문제/계획/행동"}, {"num": 311, "es": "intentar", "pron": "인텐따르", "kr": "시도하다", "ex": "Intento otra vez. (다시 시도한다)", "section": "문제/계획/행동"}, {"num": 312, "es": "lograr", "pron": "로그라르", "kr": "이루다", "ex": "Logro meta. (목표 달성)", "section": "문제/계획/행동"}, {"num": 313, "es": "fallar", "pron": "파야르", "kr": "실패하다", "ex": "Falla. (실패한다)", "section": "문제/계획/행동"}, {"num": 314, "es": "ganar", "pron": "가나르", "kr": "얻다/이기다", "ex": "Gano dinero. (돈을 번다)", "section": "문제/계획/행동"}, {"num": 315, "es": "perder", "pron": "뻬르데르", "kr": "잃다", "ex": "Pierdo tiempo. (시간을 잃는다)", "section": "문제/계획/행동"}, {"num": 316, "es": "continuar", "pron": "꼰띠누아르", "kr": "계속하다", "ex": "Continúo. (계속한다)", "section": "문제/계획/행동"}, {"num": 317, "es": "parar", "pron": "빠라르", "kr": "멈추다", "ex": "Paro ahora. (지금 멈춘다)", "section": "문제/계획/행동"}, {"num": 318, "es": "empezar", "pron": "엠뻬사르", "kr": "시작하다", "ex": "Empiezo ya. (지금 시작)", "section": "문제/계획/행동"}, {"num": 319, "es": "repetir", "pron": "레뻬띠르", "kr": "반복하다", "ex": "Repito. (반복한다)", "section": "문제/계획/행동"}, {"num": 320, "es": "practicar", "pron": "쁘락띠까르", "kr": "연습하다", "ex": "Practico mucho. (많이 연습한다)", "section": "문제/계획/행동"}, {"num": 321, "es": "claro", "pron": "끌라로", "kr": "분명한", "ex": "Es claro. (분명하다)", "section": "형용사 + 핵심 표현"}, {"num": 322, "es": "correcto", "pron": "꼬렉또", "kr": "맞는", "ex": "Es correcto. (맞다)", "section": "형용사 + 핵심 표현"}, {"num": 323, "es": "incorrecto", "pron": "인꼬렉또", "kr": "틀린", "ex": "Es incorrecto. (틀렸다)", "section": "형용사 + 핵심 표현"}, {"num": 324, "es": "importante", "pron": "임뽀르딴떼", "kr": "중요한", "ex": "Es importante. (중요하다)", "section": "형용사 + 핵심 표현"}, {"num": 325, "es": "necesario", "pron": "네쎄사리오", "kr": "필요한", "ex": "Es necesario. (필요하다)", "section": "형용사 + 핵심 표현"}, {"num": 326, "es": "posible", "pron": "뽀시블레", "kr": "가능한", "ex": "Es posible. (가능하다)", "section": "형용사 + 핵심 표현"}, {"num": 327, "es": "imposible", "pron": "임뽀시블레", "kr": "불가능한", "ex": "Es imposible. (불가능하다)", "section": "형용사 + 핵심 표현"}, {"num": 328, "es": "fácil", "pron": "파실", "kr": "쉬운", "ex": "Es fácil. (쉽다)", "section": "형용사 + 핵심 표현"}, {"num": 329, "es": "difícil", "pron": "디피실", "kr": "어려운", "ex": "Es difícil. (어렵다)", "section": "형용사 + 핵심 표현"}, {"num": 330, "es": "útil", "pron": "우띨", "kr": "유용한", "ex": "Es útil. (유용하다)", "section": "형용사 + 핵심 표현"}, {"num": 331, "es": "entender mejor", "pron": "엔뗀데르 메호르", "kr": "더 잘 이해하다", "ex": "Entiendo mejor. (더 잘 이해한다)", "section": "형용사 + 핵심 표현"}, {"num": 332, "es": "hablar mejor", "pron": "아블라르 메호르", "kr": "더 잘 말하다", "ex": "Hablo mejor. (더 잘 말한다)", "section": "형용사 + 핵심 표현"}, {"num": 333, "es": "trabajar juntos", "pron": "뜨라바하르 훈또스", "kr": "함께 일하다", "ex": "Trabajamos juntos. (함께 일한다)", "section": "형용사 + 핵심 표현"}, {"num": 334, "es": "tomar decisión", "pron": "또마르 데씨씨온", "kr": "결정하다", "ex": "Tomo decisión. (결정한다)", "section": "형용사 + 핵심 표현"}, {"num": 335, "es": "hacer plan", "pron": "아쎄르 쁠란", "kr": "계획 세우다", "ex": "Hago plan. (계획한다)", "section": "형용사 + 핵심 표현"}, {"num": 336, "es": "resolver problema", "pron": "레솔베르 쁘로블레마", "kr": "문제 해결", "ex": "Resuelvo problema. (문제를 해결한다)", "section": "형용사 + 핵심 표현"}, {"num": 337, "es": "dar idea", "pron": "다르 이데아", "kr": "아이디어 제시", "ex": "Doy idea. (아이디어를 낸다)", "section": "형용사 + 핵심 표현"}, {"num": 338, "es": "pedir ayuda", "pron": "뻬디르 아유다", "kr": "도움 요청", "ex": "Pido ayuda. (도움을 요청한다)", "section": "형용사 + 핵심 표현"}, {"num": 339, "es": "ofrecer ayuda", "pron": "오프레쎄르 아유다", "kr": "도움 제공", "ex": "Ofrezco ayuda. (도움을 제공한다)", "section": "형용사 + 핵심 표현"}, {"num": 340, "es": "aceptar propuesta", "pron": "아셉따르 쁘로뿌에스따", "kr": "제안 수락", "ex": "Acepto propuesta. (제안을 받아들인다)", "section": "형용사 + 핵심 표현"}, {"num": 341, "es": "pensar bien", "pron": "뻰사르 비엔", "kr": "잘 생각하다", "ex": "Pienso bien. (잘 생각한다)", "section": "행동/상황 표현"}, {"num": 342, "es": "actuar rápido", "pron": "악뚜아르 라삐도", "kr": "빠르게 행동하다", "ex": "Actúo rápido. (빠르게 행동한다)", "section": "행동/상황 표현"}, {"num": 343, "es": "decidir ahora", "pron": "데씨디르 아오라", "kr": "지금 결정하다", "ex": "Decido ahora. (지금 결정한다)", "section": "행동/상황 표현"}, {"num": 344, "es": "esperar respuesta", "pron": "에스뻬라르 레스뿌에스따", "kr": "답 기다리다", "ex": "Espero respuesta. (답을 기다린다)", "section": "행동/상황 표현"}, {"num": 345, "es": "revisar trabajo", "pron": "레비사르 뜨라바호", "kr": "업무 검토", "ex": "Reviso trabajo. (업무를 검토한다)", "section": "행동/상황 표현"}, {"num": 346, "es": "mejorar sistema", "pron": "메호라르 시스떼마", "kr": "시스템 개선", "ex": "Mejoro sistema. (시스템 개선)", "section": "행동/상황 표현"}, {"num": 347, "es": "cambiar idea", "pron": "깜비아르 이데아", "kr": "생각 바꾸다", "ex": "Cambio idea. (생각을 바꾼다)", "section": "행동/상황 표현"}, {"num": 348, "es": "mantener plan", "pron": "만떼네르 쁠란", "kr": "계획 유지", "ex": "Mantengo plan. (계획 유지)", "section": "행동/상황 표현"}, {"num": 349, "es": "buscar solución", "pron": "부스까르 솔루씨온", "kr": "해결 찾다", "ex": "Busco solución. (해결 찾는다)", "section": "행동/상황 표현"}, {"num": 350, "es": "encontrar error", "pron": "엔꼰뜨라르 에로르", "kr": "오류 찾다", "ex": "Encuentro error. (오류 발견)", "section": "행동/상황 표현"}, {"num": 351, "es": "¿Qué haces?", "pron": "께 아쎄스", "kr": "뭐 해?", "ex": "¿Qué haces ahora?", "section": "행동/상황 표현"}, {"num": 352, "es": "¿Dónde estás?", "pron": "돈데 에스따스", "kr": "어디야?", "ex": "¿Dónde estás?", "section": "행동/상황 표현"}, {"num": 353, "es": "¿Cuándo vienes?", "pron": "꾸안도 비에네스", "kr": "언제 와?", "ex": "¿Cuándo vienes?", "section": "행동/상황 표현"}, {"num": 354, "es": "¿Por qué?", "pron": "뽀르 께", "kr": "왜?", "ex": "¿Por qué?", "section": "행동/상황 표현"}, {"num": 355, "es": "¿Cómo estás?", "pron": "꼬모 에스따스", "kr": "어때?", "ex": "¿Cómo estás?", "section": "행동/상황 표현"}, {"num": 356, "es": "Estoy trabajando", "pron": "에스또이 뜨라바한도", "kr": "일하는 중", "ex": "Estoy trabajando.", "section": "행동/상황 표현"}, {"num": 357, "es": "Estoy ocupado", "pron": "에스또이 오꾸빠도", "kr": "바쁘다", "ex": "Estoy ocupado.", "section": "행동/상황 표현"}, {"num": 358, "es": "Estoy libre", "pron": "에스또이 리브레", "kr": "한가하다", "ex": "Estoy libre.", "section": "행동/상황 표현"}, {"num": 359, "es": "Voy ahora", "pron": "보이 아오라", "kr": "지금 간다", "ex": "Voy ahora.", "section": "행동/상황 표현"}, {"num": 360, "es": "Llego pronto", "pron": "예고 쁘론또", "kr": "곧 도착", "ex": "Llego pronto.", "section": "행동/상황 표현"}, {"num": 361, "es": "No entiendo", "pron": "노 엔띠엔도", "kr": "이해 못함", "ex": "No entiendo.", "section": "실전 회화 문장"}, {"num": 362, "es": "Entiendo bien", "pron": "엔띠엔도 비엔", "kr": "이해함", "ex": "Entiendo bien.", "section": "실전 회화 문장"}, {"num": 363, "es": "Repito", "pron": "레삐또", "kr": "다시 말함", "ex": "Repito.", "section": "실전 회화 문장"}, {"num": 364, "es": "Explico otra vez", "pron": "엑스쁠리꼬 오뜨라 베스", "kr": "다시 설명", "ex": "Explico otra vez.", "section": "실전 회화 문장"}, {"num": 365, "es": "Hablo despacio", "pron": "아블로 데스빠씨오", "kr": "천천히 말함", "ex": "Hablo despacio.", "section": "실전 회화 문장"}, {"num": 366, "es": "Espera un momento", "pron": "에스뻬라 운 모멘또", "kr": "잠깐 기다려", "ex": "Espera un momento.", "section": "실전 회화 문장"}, {"num": 367, "es": "Vamos juntos", "pron": "바모스 훈또스", "kr": "같이 가자", "ex": "Vamos juntos.", "section": "실전 회화 문장"}, {"num": 368, "es": "Estoy de acuerdo", "pron": "에스또이 데 아꾸에르도", "kr": "동의", "ex": "Estoy de acuerdo.", "section": "실전 회화 문장"}, {"num": 369, "es": "No estoy seguro", "pron": "노 에스또이 세구로", "kr": "확신 없음", "ex": "No estoy seguro.", "section": "실전 회화 문장"}, {"num": 370, "es": "Creo que sí", "pron": "끄레오 께 씨", "kr": "그런 것 같다", "ex": "Creo que sí.", "section": "실전 회화 문장"}, {"num": 371, "es": "Puede ser", "pron": "뿌에데 세르", "kr": "그럴 수도", "ex": "Puede ser.", "section": "실전 회화 문장"}, {"num": 372, "es": "No creo", "pron": "노 끄레오", "kr": "아닌 것 같다", "ex": "No creo.", "section": "실전 회화 문장"}, {"num": 373, "es": "Es posible", "pron": "에스 뽀시블레", "kr": "가능하다", "ex": "Es posible.", "section": "실전 회화 문장"}, {"num": 374, "es": "Es difícil", "pron": "에스 디피실", "kr": "어렵다", "ex": "Es difícil.", "section": "실전 회화 문장"}, {"num": 375, "es": "Es fácil", "pron": "에스 파실", "kr": "쉽다", "ex": "Es fácil.", "section": "실전 회화 문장"}, {"num": 376, "es": "No hay problema", "pron": "노 아이 쁘로블레마", "kr": "문제 없음", "ex": "No hay problema.", "section": "실전 회화 문장"}, {"num": 377, "es": "Está bien", "pron": "에스따 비엔", "kr": "괜찮다", "ex": "Está bien.", "section": "실전 회화 문장"}, {"num": 378, "es": "Perfecto", "pron": "뻬르펙또", "kr": "완벽", "ex": "Perfecto.", "section": "실전 회화 문장"}, {"num": 379, "es": "Claro", "pron": "끌라로", "kr": "물론", "ex": "Claro.", "section": "실전 회화 문장"}, {"num": 380, "es": "Exacto", "pron": "엑싹또", "kr": "맞다", "ex": "Exacto.", "section": "실전 회화 문장"}, {"num": 381, "es": "Gracias por ayuda", "pron": "그라씨아스 뽀르 아유다", "kr": "도와줘서 고마워", "ex": "Gracias por ayuda.", "section": "실전 회화 문장"}, {"num": 382, "es": "Lo siento mucho", "pron": "로 씨엔또 무초", "kr": "정말 미안", "ex": "Lo siento mucho.", "section": "실전 회화 문장"}, {"num": 383, "es": "Perdón", "pron": "뻬르돈", "kr": "미안", "ex": "Perdón.", "section": "실전 회화 문장"}, {"num": 384, "es": "Con gusto", "pron": "꼰 구스또", "kr": "기꺼이", "ex": "Con gusto.", "section": "실전 회화 문장"}, {"num": 385, "es": "De nada", "pron": "데 나다", "kr": "천만에", "ex": "De nada.", "section": "실전 회화 문장"}, {"num": 386, "es": "Nos vemos", "pron": "노스 베모스", "kr": "또 보자", "ex": "Nos vemos.", "section": "실전 회화 문장"}, {"num": 387, "es": "Hasta luego", "pron": "아스타 루에고", "kr": "나중에 봐", "ex": "Hasta luego.", "section": "실전 회화 문장"}, {"num": 388, "es": "Hasta mañana", "pron": "아스타 마냐나", "kr": "내일 보자", "ex": "Hasta mañana.", "section": "실전 회화 문장"}, {"num": 389, "es": "Buen trabajo", "pron": "부엔 뜨라바호", "kr": "잘했다", "ex": "Buen trabajo.", "section": "실전 회화 문장"}, {"num": 390, "es": "Sigue así", "pron": "씨게 아씨", "kr": "계속 그렇게 해", "ex": "Sigue así.", "section": "실전 회화 문장"}, {"num": 391, "es": "Vamos a empezar", "pron": "바모스 아 엠뻬사르", "kr": "시작하자", "ex": "Vamos a empezar.", "section": "실전 회화 문장"}, {"num": 392, "es": "Terminamos hoy", "pron": "떼르미나모스 오이", "kr": "오늘 끝내자", "ex": "Terminamos hoy.", "section": "실전 회화 문장"}, {"num": 393, "es": "Lo hacemos juntos", "pron": "로 아쎄모스 훈또스", "kr": "같이 하자", "ex": "Lo hacemos juntos.", "section": "실전 회화 문장"}, {"num": 394, "es": "Dame un momento", "pron": "다메 운 모멘또", "kr": "잠깐만", "ex": "Dame un momento.", "section": "실전 회화 문장"}, {"num": 395, "es": "Estoy listo", "pron": "에스또이 리스또", "kr": "준비됐다", "ex": "Estoy listo.", "section": "실전 회화 문장"}, {"num": 396, "es": "No funciona", "pron": "노 푼씨오나", "kr": "작동 안 함", "ex": "No funciona.", "section": "실전 회화 문장"}, {"num": 397, "es": "Funciona bien", "pron": "푼씨오나 비엔", "kr": "잘 된다", "ex": "Funciona bien.", "section": "실전 회화 문장"}, {"num": 398, "es": "Lo arreglo", "pron": "로 아레글로", "kr": "내가 고친다", "ex": "Lo arreglo.", "section": "실전 회화 문장"}, {"num": 399, "es": "Inténtalo otra vez", "pron": "인텐딸로 오뜨라 베스", "kr": "다시 해봐", "ex": "Inténtalo otra vez.", "section": "실전 회화 문장"}, {"num": 400, "es": "Ya está", "pron": "야 에스따", "kr": "됐다", "ex": "Ya está.", "section": "실전 회화 문장"}, {"num": 401, "es": "hospital", "pron": "오스삐딸", "kr": "병원", "ex": "Voy al hospital. (병원 간다)", "section": "병원/건강"}, {"num": 402, "es": "clínica", "pron": "끌리니까", "kr": "클리닉", "ex": "La clínica abre. (클리닉이 열린다)", "section": "병원/건강"}, {"num": 403, "es": "médico", "pron": "메디꼬", "kr": "의사", "ex": "El médico revisa. (의사가 진료한다)", "section": "병원/건강"}, {"num": 404, "es": "enfermero", "pron": "엔페르메로", "kr": "간호사", "ex": "El enfermero ayuda. (간호사가 돕는다)", "section": "병원/건강"}, {"num": 405, "es": "paciente", "pron": "빠씨엔떼", "kr": "환자", "ex": "Soy paciente. (나는 환자다)", "section": "병원/건강"}, {"num": 406, "es": "cita", "pron": "씨따", "kr": "예약", "ex": "Tengo cita. (예약 있다)", "section": "병원/건강"}, {"num": 407, "es": "consulta", "pron": "꼰술따", "kr": "진료", "ex": "Consulta médica. (진료)", "section": "병원/건강"}, {"num": 408, "es": "dolor", "pron": "돌로르", "kr": "통증", "ex": "Tengo dolor. (아프다)", "section": "병원/건강"}, {"num": 409, "es": "fiebre", "pron": "피에브레", "kr": "열", "ex": "Tengo fiebre. (열 있다)", "section": "병원/건강"}, {"num": 410, "es": "tos", "pron": "또스", "kr": "기침", "ex": "Tengo tos. (기침한다)", "section": "병원/건강"}, {"num": 411, "es": "resfriado", "pron": "레스프리아도", "kr": "감기", "ex": "Tengo resfriado. (감기 걸림)", "section": "병원/건강"}, {"num": 412, "es": "gripe", "pron": "그리뻬", "kr": "독감", "ex": "Tengo gripe.", "section": "병원/건강"}, {"num": 413, "es": "medicina", "pron": "메디씨나", "kr": "약", "ex": "Tomo medicina.", "section": "병원/건강"}, {"num": 414, "es": "pastilla", "pron": "빠스띠야", "kr": "알약", "ex": "Tomo pastilla.", "section": "병원/건강"}, {"num": 415, "es": "receta", "pron": "레쎄따", "kr": "처방전", "ex": "Necesito receta.", "section": "병원/건강"}, {"num": 416, "es": "farmacia", "pron": "파르마씨아", "kr": "약국", "ex": "Voy a farmacia.", "section": "병원/건강"}, {"num": 417, "es": "seguro", "pron": "세구로", "kr": "보험", "ex": "Tengo seguro.", "section": "병원/건강"}, {"num": 418, "es": "emergencia", "pron": "에메르헨씨아", "kr": "응급", "ex": "Es emergencia.", "section": "병원/건강"}, {"num": 419, "es": "herida", "pron": "에리다", "kr": "상처", "ex": "Tengo herida.", "section": "병원/건강"}, {"num": 420, "es": "sangrar", "pron": "상그라르", "kr": "피나다", "ex": "Sangra mucho.", "section": "병원/건강"}, {"num": 421, "es": "descansar", "pron": "데스깐사르", "kr": "쉬다", "ex": "Necesito descansar.", "section": "병원/건강"}, {"num": 422, "es": "mejorar", "pron": "메호라르", "kr": "회복하다", "ex": "Mejoro rápido.", "section": "병원/건강"}, {"num": 423, "es": "empeorar", "pron": "엠뻬오라르", "kr": "악화되다", "ex": "Empeora.", "section": "병원/건강"}, {"num": 424, "es": "doler", "pron": "돌레르", "kr": "아프다", "ex": "Me duele.", "section": "병원/건강"}, {"num": 425, "es": "cuidar", "pron": "꾸이다르", "kr": "돌보다", "ex": "Me cuido.", "section": "병원/건강"}, {"num": 426, "es": "curar", "pron": "꾸라르", "kr": "치료하다", "ex": "Cura rápido.", "section": "병원/건강"}, {"num": 427, "es": "revisar", "pron": "레비사르", "kr": "검사하다", "ex": "Revisan todo.", "section": "병원/건강"}, {"num": 428, "es": "operar", "pron": "오뻬라르", "kr": "수술하다", "ex": "Operan hoy.", "section": "병원/건강"}, {"num": 429, "es": "presión", "pron": "쁘레씨온", "kr": "혈압", "ex": "Presión alta.", "section": "병원/건강"}, {"num": 430, "es": "temperatura", "pron": "뗌뻬라뚜라", "kr": "체온", "ex": "Mido temperatura.", "section": "병원/건강"}, {"num": 431, "es": "síntoma", "pron": "씬또마", "kr": "증상", "ex": "Tengo síntomas.", "section": "병원/건강"}, {"num": 432, "es": "alergia", "pron": "알레르히아", "kr": "알레르기", "ex": "Tengo alergia.", "section": "병원/건강"}, {"num": 433, "es": "infección", "pron": "인펙씨온", "kr": "감염", "ex": "Hay infección.", "section": "병원/건강"}, {"num": 434, "es": "dolor de cabeza", "pron": "", "kr": "두통", "ex": "Me duele la cabeza.", "section": "병원/건강"}, {"num": 435, "es": "dolor de estómago", "pron": "", "kr": "복통", "ex": "Me duele el estómago.", "section": "병원/건강"}, {"num": 436, "es": "mareo", "pron": "마레오", "kr": "어지럼", "ex": "Tengo mareo.", "section": "병원/건강"}, {"num": 437, "es": "náusea", "pron": "나우세아", "kr": "메스꺼움", "ex": "Tengo náusea.", "section": "병원/건강"}, {"num": 438, "es": "vomitar", "pron": "보미따르", "kr": "토하다", "ex": "Vomito.", "section": "병원/건강"}, {"num": 439, "es": "respirar", "pron": "레스삐라르", "kr": "호흡하다", "ex": "Respiro mal.", "section": "병원/건강"}, {"num": 440, "es": "inhalar", "pron": "이날라르", "kr": "들이마시다", "ex": "Inhalo aire.", "section": "병원/건강"}, {"num": 441, "es": "exhalar", "pron": "엑살라르", "kr": "내쉬다", "ex": "Exhalo.", "section": "병원/건강"}, {"num": 442, "es": "fuerte", "pron": "푸에르떼", "kr": "심한", "ex": "Dolor fuerte.", "section": "병원/건강"}, {"num": 443, "es": "leve", "pron": "레베", "kr": "약한", "ex": "Dolor leve.", "section": "병원/건강"}, {"num": 444, "es": "urgente", "pron": "우르헨떼", "kr": "긴급한", "ex": "Caso urgente.", "section": "병원/건강"}, {"num": 445, "es": "normal", "pron": "노르말", "kr": "정상", "ex": "Todo normal.", "section": "병원/건강"}, {"num": 446, "es": "grave", "pron": "그라베", "kr": "심각한", "ex": "Es grave.", "section": "병원/건강"}, {"num": 447, "es": "sano", "pron": "사노", "kr": "건강한", "ex": "Estoy sano.", "section": "병원/건강"}, {"num": 448, "es": "débil", "pron": "데빌", "kr": "약한", "ex": "Estoy débil.", "section": "병원/건강"}, {"num": 449, "es": "energía", "pron": "에네르히아", "kr": "기력", "ex": "No tengo energía.", "section": "병원/건강"}, {"num": 450, "es": "recuperación", "pron": "레꾸뻬라씨온", "kr": "회복", "ex": "Buena recuperación.", "section": "병원/건강"}, {"num": 451, "es": "banco", "pron": "방꼬", "kr": "은행", "ex": "Voy al banco.", "section": "은행/금융"}, {"num": 452, "es": "cuenta", "pron": "꾸엔따", "kr": "계좌", "ex": "Tengo cuenta.", "section": "은행/금융"}, {"num": 453, "es": "dinero", "pron": "디네로", "kr": "돈", "ex": "Necesito dinero.", "section": "은행/금융"}, {"num": 454, "es": "depósito", "pron": "데뽀시또", "kr": "입금", "ex": "Hago depósito.", "section": "은행/금융"}, {"num": 455, "es": "retiro", "pron": "레띠로", "kr": "출금", "ex": "Hago retiro.", "section": "은행/금융"}, {"num": 456, "es": "transferencia", "pron": "뜨란스페렌씨아", "kr": "송금", "ex": "Transferencia hecha.", "section": "은행/금융"}, {"num": 457, "es": "saldo", "pron": "살도", "kr": "잔액", "ex": "Veo saldo.", "section": "은행/금융"}, {"num": 458, "es": "cajero automático", "pron": "", "kr": "ATM", "ex": "Uso cajero.", "section": "은행/금융"}, {"num": 459, "es": "tarjeta", "pron": "따르헤따", "kr": "카드", "ex": "Uso tarjeta.", "section": "은행/금융"}, {"num": 460, "es": "crédito", "pron": "끄레디또", "kr": "신용", "ex": "Pago crédito.", "section": "은행/금융"}, {"num": 461, "es": "débito", "pron": "데비또", "kr": "체크", "ex": "Tarjeta débito.", "section": "은행/금융"}, {"num": 462, "es": "préstamo", "pron": "쁘레스따모", "kr": "대출", "ex": "Solicito préstamo.", "section": "은행/금융"}, {"num": 463, "es": "interés", "pron": "인떼레스", "kr": "이자", "ex": "Interés alto.", "section": "은행/금융"}, {"num": 464, "es": "comisión", "pron": "꼬미씨온", "kr": "수수료", "ex": "Pago comisión.", "section": "은행/금융"}, {"num": 465, "es": "factura", "pron": "팍뚜라", "kr": "청구서", "ex": "Pago factura.", "section": "은행/금융"}, {"num": 466, "es": "pago", "pron": "빠고", "kr": "지불", "ex": "Hago pago.", "section": "은행/금융"}, {"num": 467, "es": "deuda", "pron": "데우다", "kr": "빚", "ex": "Tengo deuda.", "section": "은행/금융"}, {"num": 468, "es": "ahorro", "pron": "아오로", "kr": "저축", "ex": "Ahorro dinero.", "section": "은행/금융"}, {"num": 469, "es": "inversión", "pron": "인베르씨온", "kr": "투자", "ex": "Hago inversión.", "section": "은행/금융"}, {"num": 470, "es": "firma", "pron": "피르마", "kr": "서명", "ex": "Firma aquí.", "section": "은행/금융"}, {"num": 471, "es": "documento", "pron": "도꾸멘또", "kr": "서류", "ex": "Presento documento.", "section": "은행/금융"}, {"num": 472, "es": "identificación", "pron": "이덴띠피까씨온", "kr": "신분증", "ex": "Muestro identificación.", "section": "은행/금융"}, {"num": 473, "es": "abrir cuenta", "pron": "아브리르 꾸엔따", "kr": "계좌 개설", "ex": "Abro cuenta hoy. (오늘 계좌를 연다)", "section": "은행/금융"}, {"num": 474, "es": "cerrar cuenta", "pron": "쎄라르 꾸엔따", "kr": "계좌 해지", "ex": "Cierro cuenta. (계좌를 닫는다)", "section": "은행/금융"}, {"num": 475, "es": "verificar", "pron": "베리피까르", "kr": "확인하다", "ex": "Verifico datos. (정보를 확인한다)", "section": "은행/금융"}, {"num": 476, "es": "aprobar", "pron": "아쁘로바르", "kr": "승인하다", "ex": "Aprueban solicitud. (신청이 승인된다)", "section": "은행/금융"}, {"num": 477, "es": "rechazar", "pron": "레차사르", "kr": "거절하다", "ex": "Rechazan pago. (결제가 거절된다)", "section": "은행/금융"}, {"num": 478, "es": "límite", "pron": "리미떼", "kr": "한도", "ex": "Límite alto. (한도가 높다)", "section": "은행/금융"}, {"num": 479, "es": "disponible", "pron": "디스뽀니블레", "kr": "사용 가능한", "ex": "Dinero disponible. (사용 가능한 돈)", "section": "은행/금융"}, {"num": 480, "es": "retirar dinero", "pron": "레띠라르 디네로", "kr": "돈 인출", "ex": "Retiro dinero. (돈을 인출한다)", "section": "은행/금융"}, {"num": 481, "es": "ingresar dinero", "pron": "인그레사르 디네로", "kr": "돈 입금", "ex": "Ingreso dinero. (돈을 입금한다)", "section": "은행/금융"}, {"num": 482, "es": "pagar en efectivo", "pron": "빠가르 엔 에펙띠보", "kr": "현금 결제", "ex": "Pago en efectivo. (현금으로 결제한다)", "section": "은행/금융"}, {"num": 483, "es": "pagar con tarjeta", "pron": "빠가르 꼰 따르헤따", "kr": "카드 결제", "ex": "Pago con tarjeta. (카드로 결제한다)", "section": "은행/금융"}, {"num": 484, "es": "firmar contrato", "pron": "피르마르 꼰뜨라또", "kr": "계약 서명", "ex": "Firmo contrato. (계약에 서명한다)", "section": "은행/금융"}, {"num": 485, "es": "revisar saldo", "pron": "레비사르 살도", "kr": "잔액 확인", "ex": "Reviso saldo. (잔액을 확인한다)", "section": "은행/금융"}, {"num": 486, "es": "bloquear tarjeta", "pron": "블로께아르 따르헤따", "kr": "카드 정지", "ex": "Bloqueo tarjeta. (카드를 정지한다)", "section": "은행/금융"}, {"num": 487, "es": "activar tarjeta", "pron": "악띠바르 따르헤따", "kr": "카드 활성화", "ex": "Activo tarjeta. (카드를 활성화한다)", "section": "은행/금융"}, {"num": 488, "es": "cambiar PIN", "pron": "깜비아르 삔", "kr": "비밀번호 변경", "ex": "Cambio PIN. (PIN을 변경한다)", "section": "은행/금융"}, {"num": 489, "es": "número de cuenta", "pron": "누메로 데 꾸엔따", "kr": "계좌번호", "ex": "Doy número de cuenta. (계좌번호를 준다)", "section": "은행/금융"}, {"num": 490, "es": "cajero", "pron": "까헤로", "kr": "은행 직원", "ex": "El cajero ayuda. (직원이 도와준다)", "section": "은행/금융"}, {"num": 491, "es": "ventanilla", "pron": "벤따니야", "kr": "창구", "ex": "Voy a ventanilla. (창구로 간다)", "section": "은행/금융"}, {"num": 492, "es": "horario bancario", "pron": "오라리오 반까리오", "kr": "은행 업무시간", "ex": "Horario bancario corto. (은행 시간이 짧다)", "section": "은행/금융"}, {"num": 493, "es": "banco abierto", "pron": "방꼬 아비에르또", "kr": "은행 영업중", "ex": "El banco está abierto. (은행이 열려 있다)", "section": "은행/금융"}, {"num": 494, "es": "banco cerrado", "pron": "방꼬 쎄라도", "kr": "은행 영업종료", "ex": "El banco está cerrado. (은행이 닫혀 있다)", "section": "은행/금융"}, {"num": 495, "es": "transferencia internacional", "pron": "뜨란스페렌씨아 인터나씨오날", "kr": "해외", "ex": "송금 → Hago transferencia internacional. (해외 송금한다)", "section": "은행/금융"}, {"num": 496, "es": "moneda", "pron": "모네다", "kr": "화폐", "ex": "Cambio moneda. (환전한다)", "section": "은행/금융"}, {"num": 497, "es": "cambio", "pron": "깜비오", "kr": "환전", "ex": "Hago cambio. (환전한다)", "section": "은행/금융"}, {"num": 498, "es": "tipo de cambio", "pron": "띠뽀 데 깜비오", "kr": "환율", "ex": "Tipo de cambio alto. (환율이 높다)", "section": "은행/금융"}, {"num": 499, "es": "efectivo disponible", "pron": "에펙띠보 디스뽀니블레", "kr": "사용 가능한 현금", "ex": "Efectivo disponible. (현금 사용 가능)", "section": "은행/금융"}, {"num": 500, "es": "comprobante", "pron": "꼼쁘로반떼", "kr": "영수증", "ex": "Guardo comprobante. (영수증을 보관한다)", "section": "은행/금융"}, {"num": 501, "es": "problema", "pron": "쁘로블레마", "kr": "문제", "ex": "Tengo un problema. (문제가 있다)", "section": "문제/긴급 상황"}, {"num": 502, "es": "error", "pron": "에로르", "kr": "오류", "ex": "Hay un error. (오류가 있다)", "section": "문제/긴급 상황"}, {"num": 503, "es": "falla", "pron": "파야", "kr": "고장", "ex": "El sistema falla. (시스템이 고장났다)", "section": "문제/긴급 상황"}, {"num": 504, "es": "accidente", "pron": "악씨덴떼", "kr": "사고", "ex": "Hay un accidente. (사고가 있다)", "section": "문제/긴급 상황"}, {"num": 505, "es": "ayuda", "pron": "아유다", "kr": "도움", "ex": "Necesito ayuda. (도움이 필요하다)", "section": "문제/긴급 상황"}, {"num": 506, "es": "peligro", "pron": "뻬리그로", "kr": "위험", "ex": "Es peligroso. (위험하다)", "section": "문제/긴급 상황"}, {"num": 507, "es": "policía", "pron": "뽈리씨아", "kr": "경찰", "ex": "Llamo a la policía. (경찰을 부른다)", "section": "문제/긴급 상황"}, {"num": 508, "es": "emergencia", "pron": "에메르헨씨아", "kr": "응급", "ex": "Es una emergencia. (응급상황이다)", "section": "문제/긴급 상황"}, {"num": 509, "es": "fuego", "pron": "푸에고", "kr": "불", "ex": "Hay fuego. (불이 났다)", "section": "문제/긴급 상황"}, {"num": 510, "es": "robo", "pron": "로보", "kr": "도난", "ex": "Hubo robo. (도난이 있었다)", "section": "문제/긴급 상황"}, {"num": 511, "es": "perder", "pron": "뻬르데르", "kr": "잃다", "ex": "Perdí dinero. (돈을 잃었다)", "section": "문제/긴급 상황"}, {"num": 512, "es": "encontrar", "pron": "엔꼰뜨라르", "kr": "찾다", "ex": "Encuentro ayuda. (도움을 찾는다)", "section": "문제/긴급 상황"}, {"num": 513, "es": "llamar", "pron": "야마르", "kr": "전화하다", "ex": "Llamo ahora. (지금 전화한다)", "section": "문제/긴급 상황"}, {"num": 514, "es": "denunciar", "pron": "데눈씨아르", "kr": "신고하다", "ex": "Denuncio el caso. (사건을 신고한다)", "section": "문제/긴급 상황"}, {"num": 515, "es": "escapar", "pron": "에스까빠르", "kr": "도망치다", "ex": "Escapo rápido. (빨리 도망친다)", "section": "문제/긴급 상황"}, {"num": 516, "es": "detener", "pron": "데떼네르", "kr": "멈추다", "ex": "Detengo esto. (이것을 멈춘다)", "section": "문제/긴급 상황"}, {"num": 517, "es": "proteger", "pron": "쁘로떼헤르", "kr": "보호하다", "ex": "Protejo a mi familia. (가족을 보호한다)", "section": "문제/긴급 상황"}, {"num": 518, "es": "salvar", "pron": "살바르", "kr": "구하다", "ex": "Salvo a la persona. (사람을 구한다)", "section": "문제/긴급 상황"}, {"num": 519, "es": "urgente", "pron": "우르헨떼", "kr": "긴급한", "ex": "Es urgente. (긴급하다)", "section": "문제/긴급 상황"}, {"num": 520, "es": "rápido", "pron": "라삐도", "kr": "빠르게", "ex": "Ven rápido. (빨리 와라)", "section": "문제/긴급 상황"}, {"num": 521, "es": "ahora mismo", "pron": "아오라 미스모", "kr": "지금 당장", "ex": "Ven ahora mismo. (지금 당장 와라)", "section": "긴급 표현 + 행동"}, {"num": 522, "es": "inmediatamente", "pron": "인메디아따멘떼", "kr": "즉시", "ex": "Hazlo inmediatamente. (즉시 해라)", "section": "긴급 표현 + 행동"}, {"num": 523, "es": "cuidado", "pron": "꾸이다도", "kr": "조심", "ex": "Ten cuidado. (조심해라)", "section": "긴급 표현 + 행동"}, {"num": 524, "es": "atención", "pron": "아뗀씨온", "kr": "주의", "ex": "Presta atención. (주의해라)", "section": "긴급 표현 + 행동"}, {"num": 525, "es": "peligroso", "pron": "뻬리그로소", "kr": "위험한", "ex": "Es peligroso. (위험하다)", "section": "긴급 표현 + 행동"}, {"num": 526, "es": "seguro", "pron": "세구로", "kr": "안전한", "ex": "Es seguro. (안전하다)", "section": "긴급 표현 + 행동"}, {"num": 527, "es": "bloquear", "pron": "블로께아르", "kr": "막다", "ex": "Bloqueo acceso. (접근 차단)", "section": "긴급 표현 + 행동"}, {"num": 528, "es": "abrir", "pron": "아브리르", "kr": "열다", "ex": "Abro la puerta. (문을 연다)", "section": "긴급 표현 + 행동"}, {"num": 529, "es": "cerrar", "pron": "쎄라르", "kr": "닫다", "ex": "Cierro la puerta. (문을 닫는다)", "section": "긴급 표현 + 행동"}, {"num": 530, "es": "salir", "pron": "살리르", "kr": "나가다", "ex": "Salgo rápido. (빨리 나간다)", "section": "긴급 표현 + 행동"}, {"num": 531, "es": "entrar", "pron": "엔뜨라르", "kr": "들어가다", "ex": "Entro. (들어간다)", "section": "긴급 표현 + 행동"}, {"num": 532, "es": "llamar ayuda", "pron": "야마르 아유다", "kr": "도움 요청", "ex": "Llamo ayuda. (도움을 요청한다)", "section": "긴급 표현 + 행동"}, {"num": 533, "es": "pedir ayuda", "pron": "뻬디르 아유다", "kr": "도움 요청", "ex": "Pido ayuda. (도움을 요청한다)", "section": "긴급 표현 + 행동"}, {"num": 534, "es": "necesito ayuda urgente", "pron": "네쎄시또 아유다 우르헨떼", "kr": "긴급 도움이 필요하다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 535, "es": "no funciona", "pron": "노 푼씨오나", "kr": "작동하지 않는다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 536, "es": "está roto", "pron": "에스따 로또", "kr": "고장났다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 537, "es": "se perdió", "pron": "세 뻬르디오", "kr": "잃어버렸다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 538, "es": "no puedo", "pron": "노 뿌에도", "kr": "할 수 없다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 539, "es": "ayúdame", "pron": "아유다메", "kr": "나를 도와줘", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 540, "es": "por favor rápido", "pron": "뽀르 파보르 라삐도", "kr": "빨리 부탁한다", "ex": "", "section": "긴급 표현 + 행동"}, {"num": 541, "es": "calma", "pron": "깔마", "kr": "침착", "ex": "Mantén calma. (침착해라)", "section": "긴급 표현 + 행동"}, {"num": 542, "es": "tranquilo", "pron": "뜨란낄로", "kr": "차분한", "ex": "Está tranquilo. (차분하다)", "section": "긴급 표현 + 행동"}, {"num": 543, "es": "nervioso", "pron": "네르비오소", "kr": "긴장한", "ex": "Estoy nervioso. (긴장했다)", "section": "긴급 표현 + 행동"}, {"num": 544, "es": "pánico", "pron": "빠니꼬", "kr": "공황", "ex": "Tengo pánico. (공황 상태다)", "section": "긴급 표현 + 행동"}, {"num": 545, "es": "solución", "pron": "솔루씨온", "kr": "해결", "ex": "Busco solución. (해결 찾는다)", "section": "긴급 표현 + 행동"}, {"num": 546, "es": "resolver", "pron": "레솔베르", "kr": "해결하다", "ex": "Resuelvo problema. (문제 해결)", "section": "긴급 표현 + 행동"}, {"num": 547, "es": "intentar", "pron": "인텐따르", "kr": "시도하다", "ex": "Intento. (시도한다)", "section": "긴급 표현 + 행동"}, {"num": 548, "es": "fallar", "pron": "파야르", "kr": "실패하다", "ex": "Fallo. (실패한다)", "section": "긴급 표현 + 행동"}, {"num": 549, "es": "lograr", "pron": "로그라르", "kr": "성공하다", "ex": "Logro. (성공한다)", "section": "긴급 표현 + 행동"}, {"num": 550, "es": "terminar", "pron": "떼르미나르", "kr": "끝내다", "ex": "Termino. (끝낸다)", "section": "긴급 표현 + 행동"}, {"num": 551, "es": "situación", "pron": "씨뚜아씨온", "kr": "상황", "ex": "La situación es difícil. (상황이 어렵다)", "section": "상태/문장 확장"}, {"num": 552, "es": "condición", "pron": "꼰디씨온", "kr": "상태", "ex": "Buena condición. (좋은 상태)", "section": "상태/문장 확장"}, {"num": 553, "es": "problema serio", "pron": "쁘로블레마 세리오", "kr": "심각한 문제", "ex": "Es problema serio. (심각하다)", "section": "상태/문장 확장"}, {"num": 554, "es": "solución rápida", "pron": "솔루씨온 라삐다", "kr": "빠른 해결", "ex": "Necesito solución rápida.", "section": "상태/문장 확장"}, {"num": 555, "es": "ayuda inmediata", "pron": "아유다 인메디아따", "kr": "즉각 도움", "ex": "Necesito ayuda inmediata.", "section": "상태/문장 확장"}, {"num": 556, "es": "fuera de control", "pron": "푸에라 데 꼰뜨롤", "kr": "통제 불가", "ex": "Está fuera de control.", "section": "상태/문장 확장"}, {"num": 557, "es": "bajo control", "pron": "바호 꼰뜨롤", "kr": "통제 중", "ex": "Está bajo control.", "section": "상태/문장 확장"}, {"num": 558, "es": "en peligro", "pron": "엔 뻬리그로", "kr": "위험 상태", "ex": "Estoy en peligro.", "section": "상태/문장 확장"}, {"num": 559, "es": "fuera de peligro", "pron": "푸에라 데 뻬리그로", "kr": "위험 벗어남", "ex": "Está fuera de peligro.", "section": "상태/문장 확장"}, {"num": 560, "es": "en proceso", "pron": "엔 쁘로쎄소", "kr": "진행 중", "ex": "Está en proceso.", "section": "상태/문장 확장"}, {"num": 561, "es": "terminado", "pron": "떼르미나도", "kr": "완료", "ex": "Está terminado.", "section": "상태/문장 확장"}, {"num": 562, "es": "pendiente", "pron": "뻰디엔떼", "kr": "보류", "ex": "Está pendiente.", "section": "상태/문장 확장"}, {"num": 563, "es": "confirmado", "pron": "꼰피르마도", "kr": "확인됨", "ex": "Está confirmado.", "section": "상태/문장 확장"}, {"num": 564, "es": "cancelado", "pron": "깐셀라도", "kr": "취소됨", "ex": "Está cancelado.", "section": "상태/문장 확장"}, {"num": 565, "es": "disponible", "pron": "디스뽀니블레", "kr": "사용 가능", "ex": "Está disponible.", "section": "상태/문장 확장"}, {"num": 566, "es": "ocupado", "pron": "오꾸빠도", "kr": "사용 중", "ex": "Está ocupado.", "section": "상태/문장 확장"}, {"num": 567, "es": "libre", "pron": "리브레", "kr": "비어 있음", "ex": "Está libre.", "section": "상태/문장 확장"}, {"num": 568, "es": "lleno", "pron": "예노", "kr": "가득 찬", "ex": "Está lleno.", "section": "상태/문장 확장"}, {"num": 569, "es": "vacío", "pron": "바씨오", "kr": "빈", "ex": "Está vacío.", "section": "상태/문장 확장"}, {"num": 570, "es": "listo", "pron": "리스또", "kr": "준비됨", "ex": "Está listo.", "section": "상태/문장 확장"}, {"num": 571, "es": "no está listo", "pron": "노 에스따 리스또", "kr": "준비 안 됨", "ex": "", "section": "상태/문장 확장"}, {"num": 572, "es": "casi listo", "pron": "까시 리스또", "kr": "거의 준비됨", "ex": "", "section": "상태/문장 확장"}, {"num": 573, "es": "ya está hecho", "pron": "야 에스따 에초", "kr": "이미 완료됨", "ex": "", "section": "상태/문장 확장"}, {"num": 574, "es": "falta mucho", "pron": "팔따 무초", "kr": "많이 남았다", "ex": "", "section": "상태/문장 확장"}, {"num": 575, "es": "falta poco", "pron": "팔따 뽀꼬", "kr": "조금 남았다", "ex": "", "section": "상태/문장 확장"}, {"num": 576, "es": "estamos trabajando", "pron": "에스따모스 뜨라바한도", "kr": "작업 중이다", "ex": "", "section": "상태/문장 확장"}, {"num": 577, "es": "estamos revisando", "pron": "에스따모스 레비산도", "kr": "검토 중이다", "ex": "", "section": "상태/문장 확장"}, {"num": 578, "es": "estamos solucionando", "pron": "에스따모스 솔루씨오난도", "kr": "해결 중이다", "ex": "", "section": "상태/문장 확장"}, {"num": 579, "es": "estamos esperando", "pron": "에스따모스 에스뻬란도", "kr": "기다리는 중이다", "ex": "", "section": "상태/문장 확장"}, {"num": 580, "es": "estamos listos", "pron": "에스따모스 리스또스", "kr": "준비 완료", "ex": "", "section": "상태/문장 확장"}, {"num": 581, "es": "todo está bajo control", "pron": "또도 에스따 바호 꼰뜨롤", "kr": "모든 것이 통제 중이다", "ex": "", "section": "상태/문장 확장"}, {"num": 582, "es": "no hay problema", "pron": "노 아이 쁘로블레마", "kr": "문제 없다", "ex": "", "section": "상태/문장 확장"}, {"num": 583, "es": "todo está bien", "pron": "또도 에스따 비엔", "kr": "모두 괜찮다", "ex": "", "section": "상태/문장 확장"}, {"num": 584, "es": "todo está mal", "pron": "또도 에스따 말", "kr": "상황이 안 좋다", "ex": "", "section": "상태/문장 확장"}, {"num": 585, "es": "necesitamos ayuda", "pron": "네쎄시따모스 아유다", "kr": "도움이 필요하다", "ex": "", "section": "상태/문장 확장"}, {"num": 586, "es": "estamos en problema", "pron": "에스따모스 엔 쁘로블레마", "kr": "문제가 있다", "ex": "", "section": "상태/문장 확장"}, {"num": 587, "es": "todo se arregla", "pron": "또도 세 아레글라", "kr": "다 해결된다", "ex": "", "section": "상태/문장 확장"}, {"num": 588, "es": "vamos a solucionarlo", "pron": "바모스 아 솔루씨오날로", "kr": "해결하자", "ex": "", "section": "상태/문장 확장"}, {"num": 589, "es": "todo estará bien", "pron": "또도 에스따라 비엔", "kr": "다 괜찮아질 것이다", "ex": "", "section": "상태/문장 확장"}, {"num": 590, "es": "ya pasó", "pron": "야 빠소", "kr": "이미 지나갔다", "ex": "", "section": "상태/문장 확장"}, {"num": 591, "es": "no pasó nada", "pron": "노 빠소 나다", "kr": "아무 일도 없었다", "ex": "", "section": "상태/문장 확장"}, {"num": 592, "es": "todo sigue", "pron": "또도 씨게", "kr": "계속된다", "ex": "", "section": "상태/문장 확장"}, {"num": 593, "es": "seguimos adelante", "pron": "세기모스 아델란떼", "kr": "계속 나아간다", "ex": "", "section": "상태/문장 확장"}, {"num": 594, "es": "no nos rendimos", "pron": "노 노스 렌디모스", "kr": "포기하지 않는다", "ex": "", "section": "상태/문장 확장"}, {"num": 595, "es": "lo intentamos", "pron": "로 인텐따모스", "kr": "시도한다", "ex": "", "section": "상태/문장 확장"}, {"num": 596, "es": "lo logramos", "pron": "로 로그라모스", "kr": "성공했다", "ex": "", "section": "상태/문장 확장"}, {"num": 597, "es": "fallamos", "pron": "파야모스", "kr": "실패했다", "ex": "", "section": "상태/문장 확장"}, {"num": 598, "es": "aprendemos", "pron": "아쁘렌데모스", "kr": "배운다", "ex": "", "section": "상태/문장 확장"}, {"num": 599, "es": "mejoramos", "pron": "메호라모스", "kr": "개선한다", "ex": "", "section": "상태/문장 확장"}, {"num": 600, "es": "seguimos intentando", "pron": "세기모스 인텐딴도", "kr": "계속 시도한다", "ex": "", "section": "상태/문장 확장"}, {"num": 601, "es": "amor", "pron": "아모르", "kr": "사랑", "ex": "Siento amor. (사랑을 느낀다)", "section": "감정/관계 명사·동사"}, {"num": 602, "es": "amistad", "pron": "아미스따드", "kr": "우정", "ex": "Nuestra amistad es fuerte. (우리 우정은 강하다)", "section": "감정/관계 명사·동사"}, {"num": 603, "es": "confianza", "pron": "꼰피안사", "kr": "신뢰", "ex": "Tengo confianza en ti. (너를 믿는다)", "section": "감정/관계 명사·동사"}, {"num": 604, "es": "respeto", "pron": "레스뻬또", "kr": "존중", "ex": "Muestro respeto. (존중을 보인다)", "section": "감정/관계 명사·동사"}, {"num": 605, "es": "felicidad", "pron": "펠리씨닫", "kr": "행복", "ex": "Siento felicidad. (행복하다)", "section": "감정/관계 명사·동사"}, {"num": 606, "es": "tristeza", "pron": "뜨리스떼사", "kr": "슬픔", "ex": "Tengo tristeza. (슬프다)", "section": "감정/관계 명사·동사"}, {"num": 607, "es": "enojo", "pron": "에노호", "kr": "분노", "ex": "Siento enojo. (화난다)", "section": "감정/관계 명사·동사"}, {"num": 608, "es": "alegría", "pron": "알레그리아", "kr": "기쁨", "ex": "Tengo alegría. (기쁘다)", "section": "감정/관계 명사·동사"}, {"num": 609, "es": "miedo", "pron": "미에도", "kr": "두려움", "ex": "Tengo miedo. (두렵다)", "section": "감정/관계 명사·동사"}, {"num": 610, "es": "sorpresa", "pron": "쏘르쁘레사", "kr": "놀람", "ex": "Es sorpresa. (놀라움이다)", "section": "감정/관계 명사·동사"}, {"num": 611, "es": "confiar", "pron": "꼰피아르", "kr": "신뢰하다", "ex": "Confío en ti. (너를 믿는다)", "section": "감정/관계 명사·동사"}, {"num": 612, "es": "respetar", "pron": "레스뻬따르", "kr": "존중하다", "ex": "Respeto a todos. (모두 존중한다)", "section": "감정/관계 명사·동사"}, {"num": 613, "es": "amar", "pron": "아마르", "kr": "사랑하다", "ex": "Amo a mi familia. (가족을 사랑한다)", "section": "감정/관계 명사·동사"}, {"num": 614, "es": "odiar", "pron": "오디아르", "kr": "미워하다", "ex": "Odio eso. (그것을 싫어한다)", "section": "감정/관계 명사·동사"}, {"num": 615, "es": "perdonar", "pron": "뻬르도나르", "kr": "용서하다", "ex": "Te perdono. (너를 용서한다)", "section": "감정/관계 명사·동사"}, {"num": 616, "es": "apoyar", "pron": "아뽀야르", "kr": "지지하다", "ex": "Te apoyo. (지지한다)", "section": "감정/관계 명사·동사"}, {"num": 617, "es": "ayudar", "pron": "아유다르", "kr": "돕다", "ex": "Ayudo mucho. (많이 돕는다)", "section": "감정/관계 명사·동사"}, {"num": 618, "es": "escuchar", "pron": "에스꾸차르", "kr": "듣다", "ex": "Escucho bien. (잘 듣는다)", "section": "감정/관계 명사·동사"}, {"num": 619, "es": "comprender", "pron": "꼼쁘렌데르", "kr": "이해하다", "ex": "Comprendo. (이해한다)", "section": "감정/관계 명사·동사"}, {"num": 620, "es": "compartir", "pron": "꼼빠르띠르", "kr": "나누다", "ex": "Compartimos. (나눈다)", "section": "감정/관계 명사·동사"}, {"num": 621, "es": "discutir", "pron": "디스꾸띠르", "kr": "논쟁하다", "ex": "Discutimos. (논쟁한다)", "section": "관계/표현"}, {"num": 622, "es": "pelear", "pron": "뻬레아르", "kr": "싸우다", "ex": "Peleamos. (싸운다)", "section": "관계/표현"}, {"num": 623, "es": "reconciliar", "pron": "레꼰씰리아르", "kr": "화해하다", "ex": "Nos reconciliamos. (화해한다)", "section": "관계/표현"}, {"num": 624, "es": "hablar", "pron": "아블라르", "kr": "말하다", "ex": "Hablamos. (이야기한다)", "section": "관계/표현"}, {"num": 625, "es": "expresar", "pron": "엑스쁘레사르", "kr": "표현하다", "ex": "Expreso emoción. (감정 표현)", "section": "관계/표현"}, {"num": 626, "es": "sentimiento", "pron": "센띠미엔또", "kr": "감정", "ex": "Expreso sentimiento. (감정 표현)", "section": "관계/표현"}, {"num": 627, "es": "emoción", "pron": "에모씨온", "kr": "감정", "ex": "Siento emoción. (감정 느낀다)", "section": "관계/표현"}, {"num": 628, "es": "opinión", "pron": "오삐니온", "kr": "의견", "ex": "Doy opinión. (의견 말한다)", "section": "관계/표현"}, {"num": 629, "es": "verdad", "pron": "베르닫", "kr": "진실", "ex": "Digo verdad. (진실 말한다)", "section": "관계/표현"}, {"num": 630, "es": "mentira", "pron": "멘띠라", "kr": "거짓", "ex": "Es mentira. (거짓이다)", "section": "관계/표현"}, {"num": 631, "es": "sincero", "pron": "씬쎄로", "kr": "진실한", "ex": "Soy sincero. (나는 진실하다)", "section": "관계/표현"}, {"num": 632, "es": "honesto", "pron": "오네스또", "kr": "정직한", "ex": "Es honesto. (정직하다)", "section": "관계/표현"}, {"num": 633, "es": "amable", "pron": "아마블레", "kr": "친절한", "ex": "Es amable. (친절하다)", "section": "관계/표현"}, {"num": 634, "es": "frío", "pron": "프리오", "kr": "냉정한", "ex": "Es frío. (냉정하다)", "section": "관계/표현"}, {"num": 635, "es": "duro", "pron": "두로", "kr": "कठ कठ → ❌ 오류였음", "ex": "(두로) --- 단단한/냉정한 → Es duro. (냉정하다)", "section": "관계/표현"}, {"num": 636, "es": "abierto", "pron": "아비에르또", "kr": "열린", "ex": "Está abierto. (열려 있다)", "section": "관계/표현"}, {"num": 637, "es": "cerrado", "pron": "쎄라도", "kr": "닫힌", "ex": "Está cerrado. (닫혀 있다)", "section": "관계/표현"}, {"num": 638, "es": "positivo", "pron": "뽀시띠보", "kr": "긍정적인", "ex": "Es positivo. (긍정적이다)", "section": "관계/표현"}, {"num": 639, "es": "negativo", "pron": "네가띠보", "kr": "부정적인", "ex": "Es negativo. (부정적이다)", "section": "관계/표현"}, {"num": 640, "es": "fuerte", "pron": "푸에르떼", "kr": "강한", "ex": "Es fuerte. (강하다)", "section": "관계/표현"}, {"num": 641, "es": "débil", "pron": "데빌", "kr": "약한", "ex": "Es débil. (약하다)", "section": "관계/표현"}, {"num": 642, "es": "cercano", "pron": "쎄르까노", "kr": "가까운", "ex": "Es cercano. (가깝다)", "section": "관계/표현"}, {"num": 643, "es": "distante", "pron": "디스딴떼", "kr": "먼", "ex": "Es distante. (멀다)", "section": "관계/표현"}, {"num": 644, "es": "importante", "pron": "임뽀르딴떼", "kr": "중요한", "ex": "Es importante. (중요하다)", "section": "관계/표현"}, {"num": 645, "es": "especial", "pron": "에스뻬씨알", "kr": "특별한", "ex": "Es especial. (특별하다)", "section": "관계/표현"}, {"num": 646, "es": "necesito hablar contigo", "pron": "네쎄시또 아블라르 꼰띠고", "kr": "너와 이야기할 필요가 있다", "ex": "", "section": "관계/표현"}, {"num": 647, "es": "te entiendo", "pron": "떼 엔띠엔도", "kr": "이해한다", "ex": "", "section": "관계/표현"}, {"num": 648, "es": "no entiendo tus sentimientos", "pron": "노 엔띠엔도 뚜스 센띠미엔또스", "kr": "네 감정을 이해 못한다", "ex": "", "section": "관계/표현"}, {"num": 649, "es": "confío en ti", "pron": "꼰피오 엔 띠", "kr": "너를 믿는다", "ex": "", "section": "관계/표현"}, {"num": 650, "es": "no confío", "pron": "노 꼰피오", "kr": "믿지 않는다", "ex": "", "section": "관계/표현"}, {"num": 651, "es": "lo siento mucho", "pron": "로 씨엔또 무초", "kr": "정말 미안하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 652, "es": "te perdono", "pron": "떼 뻬르도노", "kr": "너를 용서한다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 653, "es": "gracias por todo", "pron": "그라씨아스 뽀르 또도", "kr": "모든 것에 감사", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 654, "es": "te apoyo", "pron": "떼 아뽀요", "kr": "너를 지지한다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 655, "es": "estoy contigo", "pron": "에스또이 꼰띠고", "kr": "너와 함께 있다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 656, "es": "me alegra", "pron": "메 알레그라", "kr": "기쁘다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 657, "es": "me duele", "pron": "메 두엘레", "kr": "마음이 아프다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 658, "es": "me molesta", "pron": "메 몰레스타", "kr": "짜증난다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 659, "es": "me preocupa", "pron": "메 쁘레오꾸빠", "kr": "걱정된다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 660, "es": "me importa", "pron": "메 임뽀르따", "kr": "중요하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 661, "es": "no me importa", "pron": "노 메 임뽀르따", "kr": "상관없다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 662, "es": "estoy feliz contigo", "pron": "에스또이 펠리스 꼰띠고", "kr": "너와 함께 행복하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 663, "es": "estoy triste", "pron": "에스또이 뜨리스떼", "kr": "슬프다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 664, "es": "estoy enojado", "pron": "에스또이 에노하도", "kr": "화났다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 665, "es": "estoy calmado", "pron": "에스또이 깔마도", "kr": "차분하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 666, "es": "quiero hablar", "pron": "끼에로 아블라르", "kr": "이야기하고 싶다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 667, "es": "necesito tiempo", "pron": "네쎄시또 띠엠뽀", "kr": "시간이 필요하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 668, "es": "dame espacio", "pron": "다메 에스빠씨오", "kr": "공간이 필요하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 669, "es": "volvemos a hablar", "pron": "볼베모스 아 아블라르", "kr": "다시 이야기하자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 670, "es": "arreglamos esto", "pron": "아레글라모스 에스또", "kr": "이것을 해결하자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 671, "es": "seguimos adelante", "pron": "세기모스 아델란떼", "kr": "계속 나아가자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 672, "es": "todo está bien", "pron": "또도 에스따 비엔", "kr": "다 괜찮다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 673, "es": "no pasa nada", "pron": "노 빠사 나다", "kr": "아무 문제 없다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 674, "es": "gracias por entender", "pron": "그라씨아스 뽀르 엔뗀데르", "kr": "이해해줘서 고마워", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 675, "es": "estoy orgulloso", "pron": "에스또이 오르구요소", "kr": "자랑스럽다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 676, "es": "confía en mí", "pron": "꼰피아 엔 미", "kr": "나를 믿어라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 677, "es": "no te preocupes", "pron": "노 떼 쁘레오꾸뻬스", "kr": "걱정하지 마라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 678, "es": "todo mejorará", "pron": "또도 메호라라", "kr": "다 좋아질 것이다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 679, "es": "estoy agradecido", "pron": "에스또이 아그라데씨도", "kr": "감사하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 680, "es": "eres importante", "pron": "에레스 임뽀르딴떼", "kr": "너는 중요하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 681, "es": "eres especial", "pron": "에레스 에스뻬씨알", "kr": "너는 특별하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 682, "es": "te quiero", "pron": "떼 끼에로", "kr": "너를 좋아한다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 683, "es": "te amo", "pron": "떼 아모", "kr": "사랑한다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 684, "es": "me importas", "pron": "메 임뽀르따스", "kr": "너는 중요하다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 685, "es": "cuenta conmigo", "pron": "꾸엔따 꼰미고", "kr": "나를 믿어라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 686, "es": "estoy aquí para ti", "pron": "에스또이 아끼 빠라 띠", "kr": "너를 위해 여기 있다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 687, "es": "siempre contigo", "pron": "씨엠쁘레 꼰띠고", "kr": "항상 함께", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 688, "es": "nunca te dejo", "pron": "눈까 떼 데호", "kr": "절대 떠나지 않는다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 689, "es": "hablamos luego", "pron": "아블라모스 루에고", "kr": "나중에 이야기", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 690, "es": "descansa", "pron": "데스깐사", "kr": "쉬어라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 691, "es": "cuídate", "pron": "꾸이다떼", "kr": "몸조심해라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 692, "es": "nos vemos pronto", "pron": "노스 베모스 쁘론또", "kr": "곧 보자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 693, "es": "hasta luego", "pron": "아스타 루에고", "kr": "나중에 보자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 694, "es": "hasta mañana", "pron": "아스타 마냐나", "kr": "내일 보자", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 695, "es": "buenas noches", "pron": "부에나스 노체스", "kr": "잘 자라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 696, "es": "buen día", "pron": "부엔 디아", "kr": "좋은 하루", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 697, "es": "buena suerte", "pron": "부에나 수에르떼", "kr": "행운을 빈다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 698, "es": "ánimo", "pron": "아니모", "kr": "힘내라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 699, "es": "sigue adelante", "pron": "씨게 아델란떼", "kr": "계속 나아가라", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 700, "es": "todo irá bien", "pron": "또도 이라 비엔", "kr": "다 잘 될 것이다", "ex": "", "section": "실전 감정 표현 문장"}, {"num": 701, "es": "¿Qué tal?", "pron": "께 딸", "kr": "어때?", "ex": "¿Qué tal hoy?", "section": "자연 회화 핵심 표현"}, {"num": 702, "es": "¿Qué pasa?", "pron": "께 빠사", "kr": "무슨 일이야?", "ex": "¿Qué pasa aquí?", "section": "자연 회화 핵심 표현"}, {"num": 703, "es": "¿Qué onda?", "pron": "께 온다", "kr": "요즘 어때? (구어)", "ex": "¿Qué onda, amigo?", "section": "자연 회화 핵심 표현"}, {"num": 704, "es": "¿Cómo te va?", "pron": "꼬모 떼 바", "kr": "어떻게 지내?", "ex": "¿Cómo te va?", "section": "자연 회화 핵심 표현"}, {"num": 705, "es": "¡Qué bien!", "pron": "께 비엔", "kr": "좋다!", "ex": "¡Qué bien!", "section": "자연 회화 핵심 표현"}, {"num": 706, "es": "¡Qué mal!", "pron": "께 말", "kr": "안 좋다", "ex": "¡Qué mal!", "section": "자연 회화 핵심 표현"}, {"num": 707, "es": "¡Claro que sí!", "pron": "끌라로 께 씨", "kr": "물론이지", "ex": "¡Claro que sí!", "section": "자연 회화 핵심 표현"}, {"num": 708, "es": "¡Por supuesto!", "pron": "뽀르 수뿌에스또", "kr": "당연하지", "ex": "¡Por supuesto!", "section": "자연 회화 핵심 표현"}, {"num": 709, "es": "Ni idea", "pron": "니 이데아", "kr": "전혀 모르겠다", "ex": "No sé, ni idea.", "section": "자연 회화 핵심 표현"}, {"num": 710, "es": "Tal cual", "pron": "딸 꾸알", "kr": "완전 맞다", "ex": "Es tal cual.", "section": "자연 회화 핵심 표현"}, {"num": 711, "es": "Más o menos", "pron": "마스 오 메노스", "kr": "그럭저럭", "ex": "Estoy más o menos.", "section": "자연 회화 핵심 표현"}, {"num": 712, "es": "Ya veo", "pron": "야 베오", "kr": "알겠다", "ex": "Ya veo.", "section": "자연 회화 핵심 표현"}, {"num": 713, "es": "Entiendo", "pron": "엔띠엔도", "kr": "이해한다", "ex": "Entiendo.", "section": "자연 회화 핵심 표현"}, {"num": 714, "es": "No importa", "pron": "노 임뽀르따", "kr": "괜찮다", "ex": "No importa.", "section": "자연 회화 핵심 표현"}, {"num": 715, "es": "Da igual", "pron": "다 이괄", "kr": "상관없다", "ex": "Da igual.", "section": "자연 회화 핵심 표현"}, {"num": 716, "es": "Me da igual", "pron": "메 다 이괄", "kr": "나 상관없다", "ex": "Me da igual.", "section": "자연 회화 핵심 표현"}, {"num": 717, "es": "Ni hablar", "pron": "니 아블라르", "kr": "절대 안 돼", "ex": "Ni hablar.", "section": "자연 회화 핵심 표현"}, {"num": 718, "es": "De acuerdo", "pron": "데 아꾸에르도", "kr": "동의", "ex": "Estoy de acuerdo.", "section": "자연 회화 핵심 표현"}, {"num": 719, "es": "Vale", "pron": "발레", "kr": "좋아/오케이", "ex": "Vale, vamos.", "section": "자연 회화 핵심 표현"}, {"num": 720, "es": "Bueno", "pron": "부에노", "kr": "음/그럼", "ex": "Bueno, seguimos.", "section": "자연 회화 핵심 표현"}, {"num": 721, "es": "eso creo", "pron": "에소 끄레오", "kr": "그런 것 같아", "ex": "Eso creo.", "section": "자연 회화 핵심 표현"}, {"num": 722, "es": "yo creo que sí", "pron": "요 끄레오 께 씨", "kr": "내 생각엔 맞아", "ex": "Yo creo que sí.", "section": "자연 회화 핵심 표현"}, {"num": 723, "es": "veamos", "pron": "베아모스", "kr": "보자", "ex": "Veamos qué pasa.", "section": "자연 회화 핵심 표현"}, {"num": 724, "es": "fíjate", "pron": "피하떼", "kr": "이거 봐, 봐봐", "ex": "Fíjate en esto.", "section": "자연 회화 핵심 표현"}, {"num": 725, "es": "imagínate", "pron": "이마히나떼", "kr": "상상해봐", "ex": "Imagínate eso.", "section": "자연 회화 핵심 표현"}, {"num": 726, "es": "qué va", "pron": "께 바", "kr": "아니, 무슨", "ex": "Qué va, no es cierto.", "section": "자연 회화 핵심 표현"}, {"num": 727, "es": "ni de broma", "pron": "니 데 브로마", "kr": "절대 아니야", "ex": "Ni de broma.", "section": "자연 회화 핵심 표현"}, {"num": 728, "es": "para nada", "pron": "빠라 나다", "kr": "전혀 아니야", "ex": "No me gusta, para nada.", "section": "자연 회화 핵심 표현"}, {"num": 729, "es": "en absoluto", "pron": "엔 압솔루또", "kr": "전혀", "ex": "No, en absoluto.", "section": "자연 회화 핵심 표현"}, {"num": 730, "es": "seguramente", "pron": "세구라멘떼", "kr": "아마도 확실히", "ex": "Seguramente viene.", "section": "자연 회화 핵심 표현"}, {"num": 731, "es": "puede que sí", "pron": "뿌에데 께 씨", "kr": "그럴 수도 있어", "ex": "Puede que sí.", "section": "자연 회화 핵심 표현"}, {"num": 732, "es": "puede que no", "pron": "뿌에데 께 노", "kr": "아닐 수도 있어", "ex": "Puede que no.", "section": "자연 회화 핵심 표현"}, {"num": 733, "es": "ojalá", "pron": "오할라", "kr": "그랬으면 좋겠다", "ex": "Ojalá venga.", "section": "자연 회화 핵심 표현"}, {"num": 734, "es": "qué pena", "pron": "께 뻬나", "kr": "아쉽다", "ex": "Qué pena que no vengas.", "section": "자연 회화 핵심 표현"}, {"num": 735, "es": "qué lástima", "pron": "께 라스띠마", "kr": "안타깝다", "ex": "Qué lástima.", "section": "자연 회화 핵심 표현"}, {"num": 736, "es": "qué suerte", "pron": "께 수에르떼", "kr": "운이 좋다", "ex": "Qué suerte tienes.", "section": "자연 회화 핵심 표현"}, {"num": 737, "es": "qué casualidad", "pron": "께 까수알리닫", "kr": "우연이네", "ex": "Qué casualidad verte aquí.", "section": "자연 회화 핵심 표현"}, {"num": 738, "es": "eso es", "pron": "에소 에스", "kr": "바로 그거야", "ex": "Eso es.", "section": "자연 회화 핵심 표현"}, {"num": 739, "es": "vaya", "pron": "바야", "kr": "이런, 저런", "ex": "¡Vaya sorpresa!", "section": "자연 회화 핵심 표현"}, {"num": 740, "es": "qué remedio", "pron": "께 레메디오", "kr": "어쩔 수 없지", "ex": "Qué remedio, hay que hacerlo.", "section": "자연 회화 핵심 표현"}, {"num": 741, "es": "entonces", "pron": "엔또ㄴ쎄스", "kr": "그래서", "ex": "Entonces vamos.", "section": "원어민 연결 표현"}, {"num": 742, "es": "así que", "pron": "아씨 께", "kr": "그래서", "ex": "Así que hago esto.", "section": "원어민 연결 표현"}, {"num": 743, "es": "por eso", "pron": "뽀르 에소", "kr": "그래서", "ex": "Por eso vine.", "section": "원어민 연결 표현"}, {"num": 744, "es": "sin embargo", "pron": "씬 엠바르고", "kr": "그러나", "ex": "Sin embargo, sigo.", "section": "원어민 연결 표현"}, {"num": 745, "es": "además", "pron": "아데마스", "kr": "게다가", "ex": "Además, es fácil.", "section": "원어민 연결 표현"}, {"num": 746, "es": "incluso", "pron": "인끌루소", "kr": "심지어", "ex": "Incluso mejor.", "section": "원어민 연결 표현"}, {"num": 747, "es": "todavía", "pron": "또다비아", "kr": "아직", "ex": "Todavía no.", "section": "원어민 연결 표현"}, {"num": 748, "es": "ya", "pron": "야", "kr": "이미", "ex": "Ya terminé.", "section": "원어민 연결 표현"}, {"num": 749, "es": "aún", "pron": "아운", "kr": "아직도", "ex": "Aún espero.", "section": "원어민 연결 표현"}, {"num": 750, "es": "apenas", "pron": "아뻬나스", "kr": "거의 안", "ex": "Apenas hablo.", "section": "원어민 연결 표현"}, {"num": 751, "es": "casi", "pron": "까시", "kr": "거의", "ex": "Casi listo.", "section": "원어민 연결 표현"}, {"num": 752, "es": "totalmente", "pron": "또딸멘떼", "kr": "완전히", "ex": "Totalmente cierto.", "section": "원어민 연결 표현"}, {"num": 753, "es": "realmente", "pron": "레알멘떼", "kr": "정말로", "ex": "Realmente bueno.", "section": "원어민 연결 표현"}, {"num": 754, "es": "básicamente", "pron": "바시까멘떼", "kr": "기본적으로", "ex": "Básicamente sí.", "section": "원어민 연결 표현"}, {"num": 755, "es": "generalmente", "pron": "헤네랄멘떼", "kr": "보통", "ex": "Generalmente trabajo.", "section": "원어민 연결 표현"}, {"num": 756, "es": "normalmente", "pron": "노르말멘떼", "kr": "일반적으로", "ex": "Normalmente voy.", "section": "원어민 연결 표현"}, {"num": 757, "es": "exactamente", "pron": "엑싹따멘떼", "kr": "정확히", "ex": "Exactamente.", "section": "원어민 연결 표현"}, {"num": 758, "es": "probablemente", "pron": "쁘로바블멘떼", "kr": "아마", "ex": "Probablemente sí.", "section": "원어민 연결 표현"}, {"num": 759, "es": "posiblemente", "pron": "뽀시블멘떼", "kr": "가능하게", "ex": "Posiblemente.", "section": "원어민 연결 표현"}, {"num": 760, "es": "definitivamente", "pron": "데피니띠바멘떼", "kr": "확실히", "ex": "Definitivamente sí.", "section": "원어민 연결 표현"}, {"num": 761, "es": "mientras", "pron": "미엔뜨라스", "kr": "~하는 동안", "ex": "Mientras trabajo, escucho música.", "section": "원어민 연결 표현"}, {"num": 762, "es": "mientras tanto", "pron": "미엔뜨라스 딴또", "kr": "그동안", "ex": "Mientras tanto, espera aquí.", "section": "원어민 연결 표현"}, {"num": 763, "es": "aunque", "pron": "아운께", "kr": "비록 ~이지만", "ex": "Aunque llueve, salgo.", "section": "원어민 연결 표현"}, {"num": 764, "es": "a pesar de", "pron": "아 뻬사르 데", "kr": "~에도 불구하고", "ex": "A pesar de todo, sigo.", "section": "원어민 연결 표현"}, {"num": 765, "es": "no obstante", "pron": "노 옵스딴떼", "kr": "그럼에도 불구하고", "ex": "No obstante, lo intento.", "section": "원어민 연결 표현"}, {"num": 766, "es": "por lo tanto", "pron": "뽀르 로 딴또", "kr": "따라서", "ex": "Por lo tanto, me voy.", "section": "원어민 연결 표현"}, {"num": 767, "es": "por consiguiente", "pron": "뽀르 꼰시기엔떼", "kr": "결과적으로", "ex": "Por consiguiente, cambio de plan.", "section": "원어민 연결 표현"}, {"num": 768, "es": "en cambio", "pron": "엔 깜비오", "kr": "반면에", "ex": "Yo trabajo, en cambio él descansa.", "section": "원어민 연결 표현"}, {"num": 769, "es": "la verdad es que", "pron": "라 베르닫 에스 께", "kr": "사실은", "ex": "La verdad es que no lo sé.", "section": "원어민 연결 표현"}, {"num": 770, "es": "dicho de otro modo", "pron": "디초 데 오뜨로 모도", "kr": "다른 방식으로 말하면", "ex": "Dicho de otro modo, no funciona.", "section": "원어민 연결 표현"}, {"num": 771, "es": "en pocas palabras", "pron": "엔 뽀까스 빨라브라스", "kr": "간단히 말하면", "ex": "En pocas palabras, no puedo.", "section": "원어민 연결 표현"}, {"num": 772, "es": "en resumen", "pron": "엔 레수멘", "kr": "요약하면", "ex": "En resumen, todo va bien.", "section": "원어민 연결 표현"}, {"num": 773, "es": "por un lado", "pron": "뽀르 운 라도", "kr": "한편으로는", "ex": "Por un lado, quiero ir.", "section": "원어민 연결 표현"}, {"num": 774, "es": "por otro lado", "pron": "뽀르 오뜨로 라도", "kr": "다른 한편으로는", "ex": "Por otro lado, no tengo tiempo.", "section": "원어민 연결 표현"}, {"num": 775, "es": "en conclusión", "pron": "엔 꼰끌루시온", "kr": "결론적으로", "ex": "En conclusión, aceptamos.", "section": "원어민 연결 표현"}, {"num": 776, "es": "finalmente", "pron": "피날멘떼", "kr": "마지막으로", "ex": "Finalmente, terminamos.", "section": "원어민 연결 표현"}, {"num": 777, "es": "para terminar", "pron": "빠라 떼르미나르", "kr": "마무리하자면", "ex": "Para terminar, gracias a todos.", "section": "원어민 연결 표현"}, {"num": 778, "es": "hablando de eso", "pron": "아블란도 데 에소", "kr": "그 얘기가 나와서 말인데", "ex": "Hablando de eso, ¿ya lo viste?", "section": "원어민 연결 표현"}, {"num": 779, "es": "a propósito", "pron": "아 쁘로뽀시또", "kr": "말 나온 김에", "ex": "A propósito, tengo una pregunta.", "section": "원어민 연결 표현"}, {"num": 780, "es": "total", "pron": "또딸", "kr": "결국, 어차피", "ex": "Total, hay que hacerlo.", "section": "원어민 연결 표현"}, {"num": 781, "es": "darse cuenta", "pron": "다르쎄 꾸엔따", "kr": "깨닫다", "ex": "Me doy cuenta.", "section": "고급 동사 표현"}, {"num": 782, "es": "tener en cuenta", "pron": "떼네르 엔 꾸엔따", "kr": "고려하다", "ex": "Ten en cuenta esto.", "section": "고급 동사 표현"}, {"num": 783, "es": "echar de menos", "pron": "에차르 데 메노스", "kr": "그리워하다", "ex": "Te echo de menos.", "section": "고급 동사 표현"}, {"num": 784, "es": "llevar a cabo", "pron": "예바르 아 까보", "kr": "수행하다", "ex": "Llevo a cabo plan.", "section": "고급 동사 표현"}, {"num": 785, "es": "salir bien", "pron": "살리르 비엔", "kr": "잘 되다", "ex": "Sale bien.", "section": "고급 동사 표현"}, {"num": 786, "es": "salir mal", "pron": "살리르 말", "kr": "망하다", "ex": "Sale mal.", "section": "고급 동사 표현"}, {"num": 787, "es": "ponerse de acuerdo", "pron": "뽀네르쎄 데 아꾸에르도", "kr": "합의하다", "ex": "Nos ponemos de acuerdo.", "section": "고급 동사 표현"}, {"num": 788, "es": "quedarse", "pron": "께다르쎄", "kr": "머무르다", "ex": "Me quedo aquí.", "section": "고급 동사 표현"}, {"num": 789, "es": "seguir adelante", "pron": "세기르 아델란떼", "kr": "계속하다", "ex": "Sigo adelante.", "section": "고급 동사 표현"}, {"num": 790, "es": "dejar de", "pron": "데하르 데", "kr": "그만두다", "ex": "Dejo de fumar.", "section": "고급 동사 표현"}, {"num": 791, "es": "empezar a", "pron": "엠뻬사르 아", "kr": "시작하다", "ex": "Empiezo a trabajar.", "section": "고급 동사 표현"}, {"num": 792, "es": "volver a", "pron": "볼베르 아", "kr": "다시 하다", "ex": "Vuelvo a intentar.", "section": "고급 동사 표현"}, {"num": 793, "es": "acabar de", "pron": "아까바르 데", "kr": "막 ~하다", "ex": "Acabo de llegar.", "section": "고급 동사 표현"}, {"num": 794, "es": "tratar de", "pron": "뜨라따르 데", "kr": "노력하다", "ex": "Trato de entender.", "section": "고급 동사 표현"}, {"num": 795, "es": "intentar", "pron": "인텐따르", "kr": "시도하다", "ex": "Intento otra vez.", "section": "고급 동사 표현"}, {"num": 796, "es": "lograr", "pron": "로그라르", "kr": "달성하다", "ex": "Logro meta.", "section": "고급 동사 표현"}, {"num": 797, "es": "fallar", "pron": "파야르", "kr": "실패하다", "ex": "Fallo.", "section": "고급 동사 표현"}, {"num": 798, "es": "mejorar", "pron": "메호라르", "kr": "개선하다", "ex": "Mejoro.", "section": "고급 동사 표현"}, {"num": 799, "es": "empeorar", "pron": "엠뻬오라르", "kr": "악화", "ex": "Empeora.", "section": "고급 동사 표현"}, {"num": 800, "es": "mantener", "pron": "만떼네르", "kr": "유지하다", "ex": "Mantengo ritmo.", "section": "고급 동사 표현"}, {"num": 801, "es": "darse prisa", "pron": "다르세 프리사", "kr": "서두르다", "ex": "Me doy prisa.", "section": "고급 동사 표현"}, {"num": 802, "es": "tener ganas de", "pron": "떼네르 간나스 데", "kr": "~하고 싶다", "ex": "Tengo ganas de comer.", "section": "고급 동사 표현"}, {"num": 803, "es": "tener que ver con", "pron": "떼네르 께 베르 꼰", "kr": "~와 관련이 있다", "ex": "No tiene que ver conmigo.", "section": "고급 동사 표현"}, {"num": 804, "es": "hacer falta", "pron": "아쎄르 팔따", "kr": "필요하다", "ex": "Hace falta tiempo.", "section": "고급 동사 표현"}, {"num": 805, "es": "ponerse a", "pron": "뽀네르세 아", "kr": "~하기 시작하다", "ex": "Me pongo a trabajar.", "section": "고급 동사 표현"}, {"num": 806, "es": "acostumbrarse a", "pron": "아꼬스뚬브라르세 아", "kr": "~에 익숙해지다", "ex": "Me acostumbro a esto.", "section": "고급 동사 표현"}, {"num": 807, "es": "encargarse de", "pron": "엔까르가르세 데", "kr": "~을 맡다", "ex": "Me encargo de eso.", "section": "고급 동사 표현"}, {"num": 808, "es": "fijarse en", "pron": "피하르세 엔", "kr": "~에 주목하다", "ex": "Me fijo en los detalles.", "section": "고급 동사 표현"}, {"num": 809, "es": "darse por vencido", "pron": "다르세 뽀르 벤시도", "kr": "포기하다", "ex": "No me doy por vencido.", "section": "고급 동사 표현"}, {"num": 810, "es": "hacer caso", "pron": "아쎄르 까소", "kr": "신경 쓰다", "ex": "Hazme caso.", "section": "고급 동사 표현"}, {"num": 811, "es": "tomar en serio", "pron": "또마르 엔 세리오", "kr": "진지하게 받아들이다", "ex": "Tómalo en serio.", "section": "고급 동사 표현"}, {"num": 812, "es": "llevarse bien", "pron": "예바르세 비엔", "kr": "사이가 좋다", "ex": "Nos llevamos bien.", "section": "고급 동사 표현"}, {"num": 813, "es": "llevarse mal", "pron": "예바르세 말", "kr": "사이가 나쁘다", "ex": "Nos llevamos mal.", "section": "고급 동사 표현"}, {"num": 814, "es": "contar con", "pron": "꼰따르 꼰", "kr": "~을 믿고 의지하다", "ex": "Cuento contigo.", "section": "고급 동사 표현"}, {"num": 815, "es": "depender de", "pron": "데뻰데르 데", "kr": "~에 달려 있다", "ex": "Depende de ti.", "section": "고급 동사 표현"}, {"num": 816, "es": "arrepentirse de", "pron": "아레뻰띠르세 데", "kr": "후회하다", "ex": "Me arrepiento de eso.", "section": "고급 동사 표현"}, {"num": 817, "es": "quejarse de", "pron": "께하르세 데", "kr": "불평하다", "ex": "Se queja de todo.", "section": "고급 동사 표현"}, {"num": 818, "es": "sorprenderse de", "pron": "소르쁘렌데르세 데", "kr": "놀라다", "ex": "Me sorprendo de esto.", "section": "고급 동사 표현"}, {"num": 819, "es": "acabar por", "pron": "아까바르 뽀르", "kr": "결국 ~하게 되다", "ex": "Acabo por aceptar.", "section": "고급 동사 표현"}, {"num": 820, "es": "valer la pena", "pron": "발레르 라 뻬나", "kr": "가치가 있다", "ex": "Vale la pena intentarlo.", "section": "고급 동사 표현"}, {"num": 821, "es": "no tiene sentido", "pron": "노 띠에네 센띠도", "kr": "말이 안 된다", "ex": "", "section": "고급 회화 문장"}, {"num": 822, "es": "tiene sentido", "pron": "띠에네 센띠도", "kr": "말이 된다", "ex": "", "section": "고급 회화 문장"}, {"num": 823, "es": "es lo mismo", "pron": "에스 로 미스모", "kr": "같은 것이다", "ex": "", "section": "고급 회화 문장"}, {"num": 824, "es": "no es lo mismo", "pron": "노 에스 로 미스모", "kr": "다르다", "ex": "", "section": "고급 회화 문장"}, {"num": 825, "es": "depende", "pron": "데뻰데", "kr": "상황에 따라 다르다", "ex": "", "section": "고급 회화 문장"}, {"num": 826, "es": "todo depende", "pron": "또도 데뻰데", "kr": "다 상황에 달렸다", "ex": "", "section": "고급 회화 문장"}, {"num": 827, "es": "ya veremos", "pron": "야 베레모스", "kr": "두고 보자", "ex": "", "section": "고급 회화 문장"}, {"num": 828, "es": "veremos", "pron": "베레모스", "kr": "보자", "ex": "", "section": "고급 회화 문장"}, {"num": 829, "es": "a ver", "pron": "아 베르", "kr": "어디 보자", "ex": "", "section": "고급 회화 문장"}, {"num": 830, "es": "vamos a ver", "pron": "바모스 아 베르", "kr": "한번 보자", "ex": "", "section": "고급 회화 문장"}, {"num": 831, "es": "no hay duda", "pron": "노 아이 두다", "kr": "의심 없다", "ex": "", "section": "고급 회화 문장"}, {"num": 832, "es": "sin duda", "pron": "씬 두다", "kr": "틀림없이", "ex": "", "section": "고급 회화 문장"}, {"num": 833, "es": "claro está", "pron": "끌라로 에스따", "kr": "당연하다", "ex": "", "section": "고급 회화 문장"}, {"num": 834, "es": "como siempre", "pron": "꼬모 씨엠쁘레", "kr": "늘 그렇듯", "ex": "", "section": "고급 회화 문장"}, {"num": 835, "es": "como nunca", "pron": "꼬모 눈까", "kr": "지금까지 없던", "ex": "", "section": "고급 회화 문장"}, {"num": 836, "es": "mejor dicho", "pron": "메호르 디초", "kr": "다시 말해", "ex": "", "section": "고급 회화 문장"}, {"num": 837, "es": "es decir", "pron": "에스 데씨르", "kr": "즉", "ex": "", "section": "고급 회화 문장"}, {"num": 838, "es": "en otras palabras", "pron": "엔 오뜨라스 빨라브라스", "kr": "다른 말로", "ex": "", "section": "고급 회화 문장"}, {"num": 839, "es": "al final", "pron": "알 피날", "kr": "결국", "ex": "", "section": "고급 회화 문장"}, {"num": 840, "es": "en fin", "pron": "엔 핀", "kr": "어쨌든", "ex": "", "section": "고급 회화 문장"}, {"num": 841, "es": "por cierto", "pron": "뽀르 씨에르또", "kr": "그런데", "ex": "", "section": "고급 회화 문장"}, {"num": 842, "es": "de hecho", "pron": "데 에초", "kr": "사실은", "ex": "", "section": "고급 회화 문장"}, {"num": 843, "es": "en realidad", "pron": "엔 레알리닫", "kr": "실제로", "ex": "", "section": "고급 회화 문장"}, {"num": 844, "es": "la verdad", "pron": "라 베르닫", "kr": "사실은", "ex": "", "section": "고급 회화 문장"}, {"num": 845, "es": "sinceramente", "pron": "씬쎄라멘떼", "kr": "솔직히", "ex": "", "section": "고급 회화 문장"}, {"num": 846, "es": "honestamente", "pron": "오네스따멘떼", "kr": "솔직히", "ex": "", "section": "고급 회화 문장"}, {"num": 847, "es": "para ser sincero", "pron": "빠라 세르 씬쎄로", "kr": "솔직히 말하면", "ex": "", "section": "고급 회화 문장"}, {"num": 848, "es": "en serio", "pron": "엔 세리오", "kr": "진심으로", "ex": "", "section": "고급 회화 문장"}, {"num": 849, "es": "de verdad", "pron": "데 베르닫", "kr": "진짜로", "ex": "", "section": "고급 회화 문장"}, {"num": 850, "es": "no lo creo", "pron": "노 로 끄레오", "kr": "믿지 않는다", "ex": "", "section": "고급 회화 문장"}, {"num": 851, "es": "lo dudo", "pron": "로 두도", "kr": "의심된다", "ex": "", "section": "고급 회화 문장"}, {"num": 852, "es": "puede ser", "pron": "뿌에데 세르", "kr": "그럴 수도 있다", "ex": "", "section": "고급 회화 문장"}, {"num": 853, "es": "es posible", "pron": "에스 뽀시블레", "kr": "가능하다", "ex": "", "section": "고급 회화 문장"}, {"num": 854, "es": "es probable", "pron": "에스 쁘로바블레", "kr": "아마 그렇다", "ex": "", "section": "고급 회화 문장"}, {"num": 855, "es": "es evidente", "pron": "에스 에비덴떼", "kr": "명확하다", "ex": "", "section": "고급 회화 문장"}, {"num": 856, "es": "está claro", "pron": "에스따 끌라로", "kr": "분명하다", "ex": "", "section": "고급 회화 문장"}, {"num": 857, "es": "no está claro", "pron": "노 에스따 끌라로", "kr": "불분명하다", "ex": "", "section": "고급 회화 문장"}, {"num": 858, "es": "queda claro", "pron": "께다 끌라로", "kr": "이해된다", "ex": "", "section": "고급 회화 문장"}, {"num": 859, "es": "no queda claro", "pron": "노 께다 끌라로", "kr": "이해 안 된다", "ex": "", "section": "고급 회화 문장"}, {"num": 860, "es": "ahora entiendo", "pron": "아오라 엔띠엔도", "kr": "이제 이해", "ex": "", "section": "고급 회화 문장"}, {"num": 861, "es": "ya entiendo", "pron": "야 엔띠엔도", "kr": "이제 알겠다", "ex": "", "section": "고급 회화 문장"}, {"num": 862, "es": "no entiendo nada", "pron": "노 엔띠엔도 나다", "kr": "전혀 모르겠다", "ex": "", "section": "고급 회화 문장"}, {"num": 863, "es": "explícame", "pron": "엑스쁠리까메", "kr": "설명해줘", "ex": "", "section": "고급 회화 문장"}, {"num": 864, "es": "dime", "pron": "디메", "kr": "말해줘", "ex": "", "section": "고급 회화 문장"}, {"num": 865, "es": "cuéntame", "pron": "꾸엔따메", "kr": "이야기해줘", "ex": "", "section": "고급 회화 문장"}, {"num": 866, "es": "escúchame", "pron": "에스꾸차메", "kr": "내 말 들어", "ex": "", "section": "고급 회화 문장"}, {"num": 867, "es": "mírame", "pron": "미라메", "kr": "나를 봐", "ex": "", "section": "고급 회화 문장"}, {"num": 868, "es": "espera", "pron": "에스뻬라", "kr": "기다려", "ex": "", "section": "고급 회화 문장"}, {"num": 869, "es": "tranquilo", "pron": "뜨란낄로", "kr": "진정해", "ex": "", "section": "고급 회화 문장"}, {"num": 870, "es": "relájate", "pron": "렐라하떼", "kr": "긴장 풀어", "ex": "", "section": "고급 회화 문장"}, {"num": 871, "es": "confía en mí", "pron": "꼰피아 엔 미", "kr": "나를 믿어", "ex": "", "section": "고급 회화 문장"}, {"num": 872, "es": "todo está bajo control", "pron": "또도 에스따 바호 꼰뜨롤", "kr": "다 통제 중", "ex": "", "section": "고급 회화 문장"}, {"num": 873, "es": "no pasa nada", "pron": "노 빠사 나다", "kr": "괜찮다", "ex": "", "section": "고급 회화 문장"}, {"num": 874, "es": "todo va bien", "pron": "또도 바 비엔", "kr": "잘 되고 있다", "ex": "", "section": "고급 회화 문장"}, {"num": 875, "es": "vamos bien", "pron": "바모스 비엔", "kr": "잘 가고 있다", "ex": "", "section": "고급 회화 문장"}, {"num": 876, "es": "estamos listos", "pron": "에스따모스 리스또스", "kr": "준비됐다", "ex": "", "section": "고급 회화 문장"}, {"num": 877, "es": "ya casi", "pron": "야 까시", "kr": "거의 다 됐다", "ex": "", "section": "고급 회화 문장"}, {"num": 878, "es": "falta poco", "pron": "팔따 뽀꼬", "kr": "조금 남았다", "ex": "", "section": "고급 회화 문장"}, {"num": 879, "es": "ya está listo", "pron": "야 에스따 리스또", "kr": "준비 완료", "ex": "", "section": "고급 회화 문장"}, {"num": 880, "es": "terminó", "pron": "떼르미노", "kr": "끝났다", "ex": "", "section": "고급 회화 문장"}, {"num": 881, "es": "seguimos", "pron": "세기모스", "kr": "계속한다", "ex": "", "section": "고급 회화 문장"}, {"num": 882, "es": "avanzamos", "pron": "아반사모스", "kr": "진행한다", "ex": "", "section": "고급 회화 문장"}, {"num": 883, "es": "paramos", "pron": "빠라모스", "kr": "멈춘다", "ex": "", "section": "고급 회화 문장"}, {"num": 884, "es": "volvemos", "pron": "볼베모스", "kr": "돌아온다", "ex": "", "section": "고급 회화 문장"}, {"num": 885, "es": "empezamos", "pron": "엠뻬사모스", "kr": "시작한다", "ex": "", "section": "고급 회화 문장"}, {"num": 886, "es": "terminamos", "pron": "떼르미나모스", "kr": "끝낸다", "ex": "", "section": "고급 회화 문장"}, {"num": 887, "es": "lo hacemos", "pron": "로 아쎄모스", "kr": "우리가 한다", "ex": "", "section": "고급 회화 문장"}, {"num": 888, "es": "lo intento", "pron": "로 인텐또", "kr": "시도한다", "ex": "", "section": "고급 회화 문장"}, {"num": 889, "es": "lo logro", "pron": "로 로그로", "kr": "성공한다", "ex": "", "section": "고급 회화 문장"}, {"num": 890, "es": "no puedo", "pron": "노 뿌에도", "kr": "못한다", "ex": "", "section": "고급 회화 문장"}, {"num": 891, "es": "sí puedo", "pron": "씨 뿌에도", "kr": "할 수 있다", "ex": "", "section": "고급 회화 문장"}, {"num": 892, "es": "claro que puedo", "pron": "끌라로 께 뿌에도", "kr": "당연히 할 수 있다", "ex": "", "section": "고급 회화 문장"}, {"num": 893, "es": "no quiero", "pron": "노 끼에로", "kr": "원하지 않는다", "ex": "", "section": "고급 회화 문장"}, {"num": 894, "es": "sí quiero", "pron": "씨 끼에로", "kr": "원한다", "ex": "", "section": "고급 회화 문장"}, {"num": 895, "es": "no sé", "pron": "노 세", "kr": "모르겠다", "ex": "", "section": "고급 회화 문장"}, {"num": 896, "es": "ya sé", "pron": "야 세", "kr": "알겠다", "ex": "", "section": "고급 회화 문장"}, {"num": 897, "es": "ahora sé", "pron": "아오라 세", "kr": "이제 안다", "ex": "", "section": "고급 회화 문장"}, {"num": 898, "es": "nunca sé", "pron": "눈까 세", "kr": "항상 모른다", "ex": "", "section": "고급 회화 문장"}, {"num": 899, "es": "siempre sé", "pron": "씨엠쁘레 세", "kr": "항상 안다", "ex": "", "section": "고급 회화 문장"}, {"num": 900, "es": "quién sabe", "pron": "끼엔 사베", "kr": "누가 알겠어", "ex": "", "section": "고급 회화 문장"}, {"num": 901, "es": "todo tiene solución", "pron": "또도 띠에네 솔루씨온", "kr": "모든 문제는 해결된다", "ex": "", "section": "완성형 자연 회화"}, {"num": 902, "es": "nada es imposible", "pron": "나다 에스 임뽀시블레", "kr": "불가능은 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 903, "es": "paso a paso", "pron": "빠소 아 빠소", "kr": "한 걸음씩", "ex": "", "section": "완성형 자연 회화"}, {"num": 904, "es": "poco a poco", "pron": "뽀꼬 아 뽀꼬", "kr": "조금씩", "ex": "", "section": "완성형 자연 회화"}, {"num": 905, "es": "sin prisa", "pron": "씬 쁘리사", "kr": "서두르지 말고", "ex": "", "section": "완성형 자연 회화"}, {"num": 906, "es": "con calma", "pron": "꼰 깔마", "kr": "차분히", "ex": "", "section": "완성형 자연 회화"}, {"num": 907, "es": "a tiempo", "pron": "아 띠엠뽀", "kr": "제시간에", "ex": "", "section": "완성형 자연 회화"}, {"num": 908, "es": "fuera de tiempo", "pron": "푸에라 데 띠엠뽀", "kr": "늦게", "ex": "", "section": "완성형 자연 회화"}, {"num": 909, "es": "en el momento", "pron": "엔 엘 모멘또", "kr": "그 순간", "ex": "", "section": "완성형 자연 회화"}, {"num": 910, "es": "en este momento", "pron": "엔 에스떼 모멘또", "kr": "지금 이 순간", "ex": "", "section": "완성형 자연 회화"}, {"num": 911, "es": "lo importante es", "pron": "로 임뽀르딴떼 에스", "kr": "중요한 것은", "ex": "", "section": "완성형 자연 회화"}, {"num": 912, "es": "lo mejor es", "pron": "로 메호르 에스", "kr": "가장 좋은 것은", "ex": "", "section": "완성형 자연 회화"}, {"num": 913, "es": "lo peor es", "pron": "로 뻬오르 에스", "kr": "가장 나쁜 것은", "ex": "", "section": "완성형 자연 회화"}, {"num": 914, "es": "lo bueno es", "pron": "로 부에노 에스", "kr": "좋은 점은", "ex": "", "section": "완성형 자연 회화"}, {"num": 915, "es": "lo malo es", "pron": "로 말로 에스", "kr": "나쁜 점은", "ex": "", "section": "완성형 자연 회화"}, {"num": 916, "es": "hay que", "pron": "아이 께", "kr": "~해야 한다", "ex": "", "section": "완성형 자연 회화"}, {"num": 917, "es": "tengo que", "pron": "뗑고 께", "kr": "나는 해야 한다", "ex": "", "section": "완성형 자연 회화"}, {"num": 918, "es": "tienes que", "pron": "띠에네스 께", "kr": "너는 해야 한다", "ex": "", "section": "완성형 자연 회화"}, {"num": 919, "es": "debemos", "pron": "데베모스", "kr": "우리는 해야 한다", "ex": "", "section": "완성형 자연 회화"}, {"num": 920, "es": "es necesario", "pron": "에스 네쎄사리오", "kr": "필요하다", "ex": "", "section": "완성형 자연 회화"}, {"num": 921, "es": "es importante", "pron": "에스 임뽀르딴떼", "kr": "중요하다", "ex": "", "section": "완성형 자연 회화"}, {"num": 922, "es": "vale la pena", "pron": "발레 라 뻬나", "kr": "가치 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 923, "es": "no vale la pena", "pron": "노 발레 라 뻬나", "kr": "가치 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 924, "es": "merece la pena", "pron": "메레쎄 라 뻬나", "kr": "할 가치 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 925, "es": "no merece la pena", "pron": "노 메레쎄 라 뻬나", "kr": "할 가치 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 926, "es": "depende de ti", "pron": "데뻰데 데 띠", "kr": "너에게 달렸다", "ex": "", "section": "완성형 자연 회화"}, {"num": 927, "es": "depende de mí", "pron": "데뻰데 데 미", "kr": "나에게 달렸다", "ex": "", "section": "완성형 자연 회화"}, {"num": 928, "es": "depende de nosotros", "pron": "데뻰데 데 노소뜨로스", "kr": "우리에게 달렸다", "ex": "", "section": "완성형 자연 회화"}, {"num": 929, "es": "todo depende", "pron": "또도 데뻰데", "kr": "모든 것은 상황에 따라", "ex": "", "section": "완성형 자연 회화"}, {"num": 930, "es": "está en tus manos", "pron": "에스따 엔 뚜스 마노스", "kr": "네 손에 달렸다", "ex": "", "section": "완성형 자연 회화"}, {"num": 931, "es": "hazlo", "pron": "아슬로", "kr": "해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 932, "es": "inténtalo", "pron": "인텐딸로", "kr": "시도해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 933, "es": "piénsalo", "pron": "삐엔사로", "kr": "생각해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 934, "es": "dímelo", "pron": "디멜로", "kr": "나에게 말해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 935, "es": "créeme", "pron": "끄레에메", "kr": "나를 믿어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 936, "es": "escúchame bien", "pron": "에스꾸차메 비엔", "kr": "잘 들어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 937, "es": "mírame bien", "pron": "미라메 비엔", "kr": "잘 봐라", "ex": "", "section": "완성형 자연 회화"}, {"num": 938, "es": "no lo olvides", "pron": "노 로 올비데스", "kr": "잊지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 939, "es": "recuérdalo", "pron": "레꾸에르달로", "kr": "기억해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 940, "es": "nunca lo olvides", "pron": "눈까 로 올비데스", "kr": "절대 잊지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 941, "es": "todo está en orden", "pron": "또도 에스따 엔 오르덴", "kr": "모든 것이 정상", "ex": "", "section": "완성형 자연 회화"}, {"num": 942, "es": "todo está listo", "pron": "또도 에스따 리스또", "kr": "준비 완료", "ex": "", "section": "완성형 자연 회화"}, {"num": 943, "es": "todo está perfecto", "pron": "또도 에스따 뻬르펙또", "kr": "완벽하다", "ex": "", "section": "완성형 자연 회화"}, {"num": 944, "es": "todo está claro", "pron": "또도 에스따 끌라로", "kr": "모든 것이 명확", "ex": "", "section": "완성형 자연 회화"}, {"num": 945, "es": "todo está bien", "pron": "또도 에스따 비엔", "kr": "모든 것이 좋다", "ex": "", "section": "완성형 자연 회화"}, {"num": 946, "es": "no hay problema", "pron": "노 아이 쁘로블레마", "kr": "문제 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 947, "es": "no pasa nada", "pron": "노 빠사 나다", "kr": "괜찮다", "ex": "", "section": "완성형 자연 회화"}, {"num": 948, "es": "todo saldrá bien", "pron": "또도 살드라 비엔", "kr": "다 잘 될 것이다", "ex": "", "section": "완성형 자연 회화"}, {"num": 949, "es": "confía", "pron": "꼰피아", "kr": "믿어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 950, "es": "sigue", "pron": "씨게", "kr": "계속해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 951, "es": "continúa", "pron": "꼰띠누아", "kr": "계속하라", "ex": "", "section": "완성형 자연 회화"}, {"num": 952, "es": "avanza", "pron": "아반사", "kr": "나아가라", "ex": "", "section": "완성형 자연 회화"}, {"num": 953, "es": "no te rindas", "pron": "노 떼 린다스", "kr": "포기하지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 954, "es": "nunca pares", "pron": "눈까 빠레스", "kr": "절대 멈추지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 955, "es": "sigue intentando", "pron": "씨게 인텐딴도", "kr": "계속 시도하라", "ex": "", "section": "완성형 자연 회화"}, {"num": 956, "es": "todo mejora", "pron": "또도 메호라", "kr": "모든 것은 좋아진다", "ex": "", "section": "완성형 자연 회화"}, {"num": 957, "es": "todo cambia", "pron": "또도 깜비아", "kr": "모든 것은 변한다", "ex": "", "section": "완성형 자연 회화"}, {"num": 958, "es": "la vida sigue", "pron": "라 비다 씨게", "kr": "삶은 계속된다", "ex": "", "section": "완성형 자연 회화"}, {"num": 959, "es": "todo pasa", "pron": "또도 빠사", "kr": "모든 것은 지나간다", "ex": "", "section": "완성형 자연 회화"}, {"num": 960, "es": "nada dura para siempre", "pron": "나다 두라 빠라 씨엠쁘레", "kr": "영원한 것은 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 961, "es": "disfruta la vida", "pron": "디스프루따 라 비다", "kr": "삶을 즐겨라", "ex": "", "section": "완성형 자연 회화"}, {"num": 962, "es": "vive el momento", "pron": "비베 엘 모멘또", "kr": "지금을 살아라", "ex": "", "section": "완성형 자연 회화"}, {"num": 963, "es": "haz lo mejor", "pron": "아스 로 메호르", "kr": "최선을 다하라", "ex": "", "section": "완성형 자연 회화"}, {"num": 964, "es": "da lo mejor", "pron": "다 로 메호르", "kr": "최고의 것을 줘라", "ex": "", "section": "완성형 자연 회화"}, {"num": 965, "es": "sé fuerte", "pron": "세 푸에르떼", "kr": "강해져라", "ex": "", "section": "완성형 자연 회화"}, {"num": 966, "es": "sé valiente", "pron": "세 발리엔떼", "kr": "용감해라", "ex": "", "section": "완성형 자연 회화"}, {"num": 967, "es": "sé tú mismo", "pron": "세 뚜 미스모", "kr": "너 자신이 되어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 968, "es": "cree en ti", "pron": "끄레에 엔 띠", "kr": "너를 믿어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 969, "es": "confía en ti", "pron": "꼰피아 엔 띠", "kr": "자신을 믿어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 970, "es": "todo es posible", "pron": "또도 에스 뽀시블레", "kr": "모든 것은 가능하다", "ex": "", "section": "완성형 자연 회화"}, {"num": 971, "es": "nada es fácil", "pron": "나다 에스 파실", "kr": "쉬운 것은 없다", "ex": "", "section": "완성형 자연 회화"}, {"num": 972, "es": "todo cuesta", "pron": "또도 꾸에스따", "kr": "모든 것은 대가가 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 973, "es": "vale la pena luchar", "pron": "발레 라 뻬나 루차르", "kr": "싸울 가치 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 974, "es": "sigue soñando", "pron": "씨게 소냔도", "kr": "계속 꿈꿔라", "ex": "", "section": "완성형 자연 회화"}, {"num": 975, "es": "nunca dejes de intentar", "pron": "눈까 데헤스 데 인텐따르", "kr": "절대 포기하지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 976, "es": "todo llega", "pron": "또도 예가", "kr": "결국 온다", "ex": "", "section": "완성형 자연 회화"}, {"num": 977, "es": "el tiempo dirá", "pron": "엘 띠엠뽀 디라", "kr": "시간이 말해준다", "ex": "", "section": "완성형 자연 회화"}, {"num": 978, "es": "veremos qué pasa", "pron": "베레모스 께 빠사", "kr": "어떻게 될지 보자", "ex": "", "section": "완성형 자연 회화"}, {"num": 979, "es": "todo depende", "pron": "또도 데뻰데", "kr": "상황에 달렸다", "ex": "", "section": "완성형 자연 회화"}, {"num": 980, "es": "lo importante es seguir", "pron": "로 임뽀르딴떼 에스 세기르", "kr": "중요한 것은 계속하는 것", "ex": "", "section": "완성형 자연 회화"}, {"num": 981, "es": "sigue adelante siempre", "pron": "씨게 아델란떼 씨엠쁘레", "kr": "계속 나아가라", "ex": "", "section": "완성형 자연 회화"}, {"num": 982, "es": "nunca mires atrás", "pron": "눈까 미레스 아뜨라스", "kr": "뒤돌아보지 마라", "ex": "", "section": "완성형 자연 회화"}, {"num": 983, "es": "mira adelante", "pron": "미라 아델란떼", "kr": "앞을 봐라", "ex": "", "section": "완성형 자연 회화"}, {"num": 984, "es": "confía en el proceso", "pron": "꼰피아 엔 엘 쁘로쎄소", "kr": "과정 믿어라", "ex": "", "section": "완성형 자연 회화"}, {"num": 985, "es": "todo tiene su tiempo", "pron": "또도 띠에네 수 띠엠뽀", "kr": "모든 것에는 때가 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 986, "es": "cada cosa a su tiempo", "pron": "까다 꼬사 아 수 띠엠뽀", "kr": "모든 것은 때가 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 987, "es": "paso firme", "pron": "빠소 피르메", "kr": "확실한 한 걸음", "ex": "", "section": "완성형 자연 회화"}, {"num": 988, "es": "sin miedo", "pron": "씬 미에도", "kr": "두려움 없이", "ex": "", "section": "완성형 자연 회화"}, {"num": 989, "es": "con fuerza", "pron": "꼰 푸에르사", "kr": "힘 있게", "ex": "", "section": "완성형 자연 회화"}, {"num": 990, "es": "con fe", "pron": "꼰 페", "kr": "믿음으로", "ex": "", "section": "완성형 자연 회화"}, {"num": 991, "es": "con esperanza", "pron": "꼰 에스뻬란사", "kr": "희망으로", "ex": "", "section": "완성형 자연 회화"}, {"num": 992, "es": "todo es cuestión de tiempo", "pron": "또도 에스 꾸에스띠온 데 띠엠뽀", "kr": "시간 문제다", "ex": "", "section": "완성형 자연 회화"}, {"num": 993, "es": "lo lograrás", "pron": "로 로그라라스", "kr": "너는 해낼 것이다", "ex": "", "section": "완성형 자연 회화"}, {"num": 994, "es": "confío en ti", "pron": "꼰피오 엔 띠", "kr": "너를 믿는다", "ex": "", "section": "완성형 자연 회화"}, {"num": 995, "es": "eres capaz", "pron": "에레스 까빠스", "kr": "너는 할 수 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 996, "es": "tú puedes", "pron": "뚜 뿌에데스", "kr": "너는 할 수 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 997, "es": "sí se puede", "pron": "씨 세 뿌에데", "kr": "할 수 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 998, "es": "vamos juntos", "pron": "바모스 훈또스", "kr": "함께 가자", "ex": "", "section": "완성형 자연 회화"}, {"num": 999, "es": "estamos contigo", "pron": "에스따모스 꼰띠고", "kr": "함께 있다", "ex": "", "section": "완성형 자연 회화"}, {"num": 1000, "es": "todo irá bien", "pron": "또도 이라 비엔", "kr": "다 잘 될 것이다", "ex": "", "section": "완성형 자연 회화"}];
+const SECTIONS = ["기본 명사/사람/사물", "기본 동사", "형용사", "일상 표현", "생활 필수", "식당 기본", "식당 표현", "쇼핑 기본", "여행 기본", "여행 표현 확장", "직장 기본 명사", "직장 동사", "일상 회화 기본", "감정/상태", "일상 표현 확장", "문제/계획/행동", "형용사 + 핵심 표현", "행동/상황 표현", "실전 회화 문장", "병원/건강", "은행/금융", "문제/긴급 상황", "긴급 표현 + 행동", "상태/문장 확장", "감정/관계 명사·동사", "관계/표현", "실전 감정 표현 문장", "자연 회화 핵심 표현", "원어민 연결 표현", "고급 동사 표현", "고급 회화 문장", "완성형 자연 회화"];
+const STORAGE_KEY = 'sp1000-known-v1';
+const POS_KEY = 'sp1000-flashpos-v1';
+
+function loadKnown() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch (e) { return new Set(); }
+}
+function saveKnown(set) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...set])); } catch (e) {}
+}
+
+let known = loadKnown();
+let activeSection = 'all';
+let searchTerm = '';
+
+function updateProgress() {
+  const label = document.getElementById('progressLabel');
+  const fill = document.getElementById('progressFill');
+  const pct = Math.round((known.size / WORDS.length) * 100);
+  label.textContent = known.size + ' / ' + WORDS.length + ' 암기';
+  fill.style.width = pct + '%';
+}
+
+function toggleKnown(num) {
+  if (known.has(num)) known.delete(num); else known.add(num);
+  saveKnown(known);
+  updateProgress();
+}
+
+/* ---------- List view ---------- */
+function buildChips() {
+  const container = document.getElementById('sectionChips');
+  const chip = document.createElement('button');
+  chip.className = 'chip active';
+  chip.textContent = '전체';
+  chip.dataset.section = 'all';
+  container.appendChild(chip);
+  SECTIONS.forEach(sec => {
+    const c = document.createElement('button');
+    c.className = 'chip';
+    c.textContent = sec;
+    c.dataset.section = sec;
+    container.appendChild(c);
+  });
+  container.addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    activeSection = btn.dataset.section;
+    [...container.children].forEach(c => c.classList.toggle('active', c === btn));
+    renderList();
+  });
+}
+
+function filteredWords() {
+  const term = searchTerm.trim().toLowerCase();
+  return WORDS.filter(w => {
+    if (activeSection !== 'all' && w.section !== activeSection) return false;
+    if (!term) return true;
+    return w.es.toLowerCase().includes(term) ||
+           w.kr.toLowerCase().includes(term) ||
+           w.pron.toLowerCase().includes(term) ||
+           (w.ex && w.ex.toLowerCase().includes(term));
+  });
+}
+
+function renderList() {
+  const container = document.getElementById('listContainer');
+  const items = filteredWords();
+  document.getElementById('countLine').textContent = items.length + '개 단어/표현';
+  if (items.length === 0) {
+    container.innerHTML = '<div class="empty-state">검색 결과가 없습니다.</div>';
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  items.forEach(w => {
+    const row = document.createElement('div');
+    row.className = 'row' + (known.has(w.num) ? ' known' : '');
+    row.innerHTML =
+      '<div class="num">' + w.num + '</div>' +
+      '<div class="body">' +
+        '<div class="es-line"><span class="es">' + escapeHtml(w.es) + '</span>' +
+        (w.pron ? '<span class="pron">(' + escapeHtml(w.pron) + ')</span>' : '') + '</div>' +
+        '<div class="kr">' + escapeHtml(w.kr) + '</div>' +
+        (w.ex ? '<div class="ex">→ ' + escapeHtml(w.ex) + '</div>' : '') +
+      '</div>' +
+      '<button class="copy-btn" aria-label="복사" title="복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>' +
+      '<button class="know-btn" aria-label="암기 표시">' + (known.has(w.num) ? '●' : '○') + '</button>';
+    row.querySelector('.know-btn').addEventListener('click', () => {
+      toggleKnown(w.num);
+      renderList();
+    });
+    row.querySelector('.copy-btn').addEventListener('click', (e) => {
+      copyWordToClipboard(w, e.currentTarget);
+    });
+    frag.appendChild(row);
+  });
+  container.innerHTML = '';
+  container.appendChild(frag);
+}
+
+function copyWordToClipboard(w, btnEl) {
+  let text = w.es + (w.pron ? ' (' + w.pron + ')' : '') + ' — ' + w.kr;
+  if (w.ex) text += '\n' + w.ex;
+  const done = () => {
+    if (!btnEl) return;
+    btnEl.classList.add('copied');
+    const original = btnEl.innerHTML;
+    btnEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    setTimeout(() => {
+      btnEl.classList.remove('copied');
+      btnEl.innerHTML = original;
+    }, 1200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (cb) cb();
+  } catch (e) {}
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  renderList();
+});
+
+/* ---------- Flashcard view ---------- */
+let flashDeck = [...WORDS];
+let flashIndex = 0;
+let flashSection = 'all';
+let unknownOnly = false;
+
+function buildFlashChips() {
+  const container = document.getElementById('flashChips');
+  const chip = document.createElement('button');
+  chip.className = 'chip active';
+  chip.textContent = '전체';
+  chip.dataset.section = 'all';
+  container.appendChild(chip);
+  SECTIONS.forEach(sec => {
+    const c = document.createElement('button');
+    c.className = 'chip';
+    c.textContent = sec;
+    c.dataset.section = sec;
+    container.appendChild(c);
+  });
+  container.addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    flashSection = btn.dataset.section;
+    [...container.children].forEach(c => c.classList.toggle('active', c === btn));
+    rebuildDeck();
+  });
+}
+
+function rebuildDeck() {
+  flashDeck = WORDS.filter(w => {
+    if (flashSection !== 'all' && w.section !== flashSection) return false;
+    if (unknownOnly && known.has(w.num)) return false;
+    return true;
+  });
+  flashIndex = 0;
+  renderFlashCard();
+}
+
+function shuffleDeck() {
+  for (let i = flashDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashDeck[i], flashDeck[j]] = [flashDeck[j], flashDeck[i]];
+  }
+  flashIndex = 0;
+  renderFlashCard();
+}
+
+function renderFlashCard() {
+  const progressEl = document.getElementById('flashProgress');
+  const cardEl = document.getElementById('flipCard');
+  cardEl.classList.remove('flipped');
+  if (flashDeck.length === 0) {
+    progressEl.textContent = '해당하는 단어가 없습니다';
+    document.getElementById('frontEs').textContent = '';
+    document.getElementById('frontPron').textContent = '';
+    document.getElementById('frontTag').textContent = '';
+    document.getElementById('backKr').textContent = '';
+    document.getElementById('backEx').textContent = '';
+    return;
+  }
+  const w = flashDeck[flashIndex];
+  progressEl.textContent = (flashIndex + 1) + ' / ' + flashDeck.length + '  ·  ' + w.section;
+  document.getElementById('frontTag').textContent = '#' + w.num;
+  document.getElementById('frontEs').textContent = w.es;
+  document.getElementById('frontPron').textContent = w.pron ? '(' + w.pron + ')' : '';
+  document.getElementById('backKr').textContent = w.kr;
+  document.getElementById('backEx').textContent = w.ex || '';
+  document.getElementById('knowBtn').textContent = known.has(w.num) ? '암기 취소' : '암기 완료';
+  savePos();
+}
+
+function savePos() {
+  try { localStorage.setItem(POS_KEY, JSON.stringify({section: flashSection, index: flashIndex})); } catch(e) {}
+}
+function loadPos() {
+  try {
+    const raw = localStorage.getItem(POS_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+document.getElementById('flipCard').addEventListener('click', () => {
+  document.getElementById('flipCard').classList.toggle('flipped');
+});
+document.getElementById('copyFrontBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (flashDeck.length === 0) return;
+  copyWordToClipboard(flashDeck[flashIndex], e.currentTarget);
+});
+document.getElementById('copyBackBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (flashDeck.length === 0) return;
+  copyWordToClipboard(flashDeck[flashIndex], e.currentTarget);
+});
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (flashDeck.length === 0) return;
+  flashIndex = (flashIndex + 1) % flashDeck.length;
+  renderFlashCard();
+});
+document.getElementById('prevBtn').addEventListener('click', () => {
+  if (flashDeck.length === 0) return;
+  flashIndex = (flashIndex - 1 + flashDeck.length) % flashDeck.length;
+  renderFlashCard();
+});
+document.getElementById('knowBtn').addEventListener('click', () => {
+  if (flashDeck.length === 0) return;
+  toggleKnown(flashDeck[flashIndex].num);
+  renderFlashCard();
+});
+document.getElementById('shuffleBtn').addEventListener('click', shuffleDeck);
+document.getElementById('unknownOnlyBtn').addEventListener('click', (e) => {
+  unknownOnly = !unknownOnly;
+  e.target.style.color = unknownOnly ? 'var(--clavel)' : '';
+  rebuildDeck();
+});
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById('listView').style.display = tab === 'list' ? 'block' : 'none';
+    document.getElementById('flashView').style.display = tab === 'flash' ? 'block' : 'none';
+  });
+});
+
+/* ---------- Init ---------- */
+buildChips();
+buildFlashChips();
+renderList();
+const savedPos = loadPos();
+if (savedPos && SECTIONS.includes(savedPos.section)) {
+  flashSection = savedPos.section;
+  [...document.getElementById('flashChips').children].forEach(c => c.classList.toggle('active', c.dataset.section === flashSection));
+}
+rebuildDeck();
+if (savedPos && savedPos.index < flashDeck.length) {
+  flashIndex = savedPos.index;
+  renderFlashCard();
+}
+updateProgress();
+</script>
+</body>
+</html>
