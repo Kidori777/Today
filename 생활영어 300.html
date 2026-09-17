@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>생활영어 핵심 300선 - 카드 학습</title>
+<style>
+:root{
+  --bg:#f4f7f6;
+  --bg-elev:#ffffff;
+  --ink:#1a1a1a;
+  --ink-soft:#555;
+  --muted:#8a8f98;
+  --accent:#2c5edb;
+  --accent-soft:#e8edfc;
+  --accent-ink:#1f3f9e;
+  --good:#1f9d55;
+  --good-soft:#e5f6ec;
+  --bad:#d64545;
+  --bad-soft:#fbe9e9;
+  --card-front:#ffffff;
+  --card-back:#2c3e50;
+  --card-back-ink:#ffffff;
+  --border:#e4e7ec;
+  --shadow:0 6px 20px rgba(20,25,40,0.08);
+  --radius:18px;
+  --font-kr:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#14161a;
+    --bg-elev:#1d2026;
+    --ink:#eef0f3;
+    --ink-soft:#c3c7ce;
+    --muted:#8a8f98;
+    --accent:#6d8dff;
+    --accent-soft:#232a45;
+    --accent-ink:#b7c4ff;
+    --good:#4bd07e;
+    --good-soft:#173425;
+    --bad:#ff7a7a;
+    --bad-soft:#3a1f21;
+    --card-front:#1d2026;
+    --card-back:#0f2a4a;
+    --card-back-ink:#eef0f3;
+    --border:#2c313a;
+    --shadow:0 6px 24px rgba(0,0,0,0.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161a;
+  --bg-elev:#1d2026;
+  --ink:#eef0f3;
+  --ink-soft:#c3c7ce;
+  --muted:#8a8f98;
+  --accent:#6d8dff;
+  --accent-soft:#232a45;
+  --accent-ink:#b7c4ff;
+  --good:#4bd07e;
+  --good-soft:#173425;
+  --bad:#ff7a7a;
+  --bad-soft:#3a1f21;
+  --card-front:#1d2026;
+  --card-back:#0f2a4a;
+  --card-back-ink:#eef0f3;
+  --border:#2c313a;
+  --shadow:0 6px 24px rgba(0,0,0,0.4);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:var(--font-kr);
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  padding-bottom:40px;
+}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 8px;}
+
+header.top{
+  text-align:center;
+  margin-bottom:14px;
+}
+header.top h1{
+  font-size:1.5rem;
+  font-weight:800;
+  margin:0 0 4px;
+  word-break:keep-all;
+}
+header.top p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+.mode-toggle{
+  display:flex;
+  gap:6px;
+  background:var(--bg-elev);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:5px;
+  margin:14px 0;
+  box-shadow:var(--shadow);
+}
+.mode-toggle button{
+  flex:1;
+  border:none;
+  background:transparent;
+  padding:10px 8px;
+  border-radius:10px;
+  font-size:0.92rem;
+  font-weight:700;
+  color:var(--muted);
+  cursor:pointer;
+  font-family:inherit;
+  transition:background .15s, color .15s;
+}
+.mode-toggle button.active{
+  background:var(--accent);
+  color:#fff;
+}
+
+.search-box{
+  width:100%;
+  padding:11px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg-elev);
+  color:var(--ink);
+  font-size:0.95rem;
+  margin-bottom:12px;
+  font-family:inherit;
+}
+.search-box::placeholder{color:var(--muted);}
+
+.chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:10px;
+}
+.chip{
+  flex:0 0 auto;
+  padding:8px 14px;
+  border-radius:20px;
+  background:var(--bg-elev);
+  border:1px solid var(--border);
+  color:var(--ink-soft);
+  font-size:0.85rem;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+  font-family:inherit;
+}
+.chip.active{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+  color:var(--accent-ink);
+}
+
+/* ---------- Flashcard mode ---------- */
+.flash-stage{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:6px;
+}
+.progress-line{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:0.82rem;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.progress-bar-track{
+  flex:1;
+  height:5px;
+  background:var(--border);
+  border-radius:3px;
+  margin:0 10px;
+  overflow:hidden;
+}
+.progress-bar-fill{
+  height:100%;
+  background:var(--accent);
+  border-radius:3px;
+  transition:width .2s;
+}
+
+.card-scene{
+  width:100%;
+  max-width:480px;
+  aspect-ratio:4/3;
+  perspective:1400px;
+  margin-bottom:16px;
+}
+@media (max-width:420px){
+  .card-scene{aspect-ratio:3/3.1;}
+}
+.flip-card{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .45s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+.flip-card.flipped{transform:rotateY(180deg);}
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:26px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+}
+.face-front{
+  background:var(--card-front);
+  border:1px solid var(--border);
+}
+.face-back{
+  background:var(--card-back);
+  color:var(--card-back-ink);
+  transform:rotateY(180deg);
+}
+.card-num{
+  position:absolute;
+  top:14px;
+  left:16px;
+  font-size:0.75rem;
+  font-weight:800;
+  color:var(--accent);
+  background:var(--accent-soft);
+  padding:3px 9px;
+  border-radius:10px;
+}
+.face-back .card-num{
+  color:#cfe0ff;
+  background:rgba(255,255,255,0.12);
+}
+.card-hint{
+  position:absolute;
+  bottom:14px;
+  font-size:0.72rem;
+  color:var(--muted);
+}
+.face-back .card-hint{color:rgba(255,255,255,0.55);}
+.eng-text{
+  font-size:1.5rem;
+  font-weight:800;
+  line-height:1.35;
+  word-break:keep-all;
+}
+.ipa-text{
+  font-size:0.9rem;
+  color:var(--muted);
+  font-family:'Courier New',monospace;
+}
+.kor-text{
+  font-size:1.4rem;
+  font-weight:800;
+  line-height:1.4;
+  word-break:keep-all;
+}
+.ex-text{
+  font-size:0.92rem;
+  color:rgba(255,255,255,0.85);
+  white-space:pre-line;
+  line-height:1.5;
+  border-top:1px solid rgba(255,255,255,0.2);
+  padding-top:10px;
+  margin-top:4px;
+}
+
+.nav-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  max-width:480px;
+}
+.nav-btn{
+  flex:0 0 auto;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--bg-elev);
+  color:var(--ink);
+  font-size:1.2rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--shadow);
+}
+.nav-btn:active{transform:scale(0.94);}
+.mark-btns{
+  flex:1;
+  display:flex;
+  gap:8px;
+}
+.mark-btn{
+  flex:1;
+  padding:12px 4px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg-elev);
+  font-weight:800;
+  font-size:0.85rem;
+  cursor:pointer;
+  font-family:inherit;
+  color:var(--ink-soft);
+}
+.mark-btn.know{color:var(--good);}
+.mark-btn.dont{color:var(--bad);}
+.mark-btn.know.active{background:var(--good-soft);border-color:var(--good);}
+.mark-btn.dont.active{background:var(--bad-soft);border-color:var(--bad);}
+
+.util-row{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:14px;
+}
+.util-btn{
+  padding:9px 16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg-elev);
+  color:var(--ink-soft);
+  font-size:0.85rem;
+  font-weight:700;
+  cursor:pointer;
+  font-family:inherit;
+}
+.util-btn.warn{color:var(--bad);}
+
+/* ---------- List mode ---------- */
+.list-view{display:flex;flex-direction:column;gap:10px;}
+.list-item{
+  background:var(--bg-elev);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+.list-item .row1{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+}
+.list-item .num{
+  font-size:0.72rem;
+  font-weight:800;
+  color:var(--accent);
+  background:var(--accent-soft);
+  padding:2px 8px;
+  border-radius:9px;
+  flex:0 0 auto;
+}
+.list-item .eng{
+  font-size:1.05rem;
+  font-weight:700;
+  flex:1;
+}
+.list-item .ipa{
+  font-size:0.8rem;
+  color:var(--muted);
+  font-family:'Courier New',monospace;
+  margin-top:2px;
+}
+.list-item .kor{
+  font-size:0.95rem;
+  color:var(--ink-soft);
+  margin-top:6px;
+  font-weight:600;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .2s;
+}
+.list-item .ex{
+  font-size:0.85rem;
+  color:var(--muted);
+  white-space:pre-line;
+  margin-top:6px;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .2s;
+}
+.list-item.open .kor,.list-item.open .ex{max-height:200px;}
+.list-item.open{border-color:var(--accent);}
+
+.section-title{
+  font-size:0.85rem;
+  font-weight:800;
+  color:var(--muted);
+  margin:18px 0 8px 4px;
+}
+
+.empty-msg{
+  text-align:center;
+  color:var(--muted);
+  padding:40px 10px;
+}
+
+.done-banner{
+  text-align:center;
+  background:var(--good-soft);
+  color:var(--good);
+  border-radius:14px;
+  padding:20px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>생활영어 핵심 300선</h1>
+    <p>카드로 넘기며 익히는 실전 표현 300개</p>
+  </header>
+
+  <div class="mode-toggle">
+    <button id="tabFlash" class="active">🃏 카드 학습</button>
+    <button id="tabList">📋 목록 보기</button>
+  </div>
+
+  <input id="searchBox" class="search-box" type="text" placeholder="영어 또는 한글 표현 검색... (예: 도와주세요, help)">
+
+  <div id="chipRow" class="chip-row"></div>
+
+  <div id="flashSection" class="flash-stage">
+    <div class="progress-line">
+      <span id="progressLabel">1 / 300</span>
+      <div class="progress-bar-track"><div id="progressFill" class="progress-bar-fill" style="width:0%"></div></div>
+      <span id="markSummary">✅0 ❌0</span>
+    </div>
+
+    <div class="card-scene">
+      <div id="flipCard" class="flip-card">
+        <div class="face face-front">
+          <span id="numFront" class="card-num">#1</span>
+          <div id="engText" class="eng-text"></div>
+          <div id="ipaText" class="ipa-text"></div>
+          <div class="card-hint">탭하면 뜻이 보여요 👆</div>
+        </div>
+        <div class="face face-back">
+          <span id="numBack" class="card-num">#1</span>
+          <div id="korText" class="kor-text"></div>
+          <div id="exText" class="ex-text"></div>
+          <div class="card-hint">다시 탭하면 앞면으로</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <button id="prevBtn" class="nav-btn">‹</button>
+      <div class="mark-btns">
+        <button id="dontKnowBtn" class="mark-btn dont">❌ 모르겠음</button>
+        <button id="knowBtn" class="mark-btn know">✅ 외웠음</button>
+      </div>
+      <button id="nextBtn" class="nav-btn">›</button>
+    </div>
+
+    <div class="util-row">
+      <button id="shuffleBtn" class="util-btn">🔀 랜덤 섞기</button>
+      <button id="unknownOnlyBtn" class="util-btn">🎯 모르는 것만</button>
+      <button id="resetBtn" class="util-btn warn">↺ 기록 초기화</button>
+    </div>
+  </div>
+
+  <div id="listSection" class="list-view" style="display:none;"></div>
+</div>
+
+<script id="data-payload" type="application/json"></script>
+<script>
+const DATA = [{"title": "1. 기본 일상 표현 (1~50)", "items": [{"num": 1, "eng": "What’s up?", "ipa": "(wʌts ʌp)", "kor": "무슨 일이야? / 안녕?", "ex": "A: Hey, what's up?\nB: Not much, just relaxing."}, {"num": 2, "eng": "How’s it going?", "ipa": "(haʊz ɪt goʊɪŋ)", "kor": "어떻게 지내?", "ex": "A: How's it going?\nB: Pretty good, thanks."}, {"num": 3, "eng": "Not much.", "ipa": "(nɑt mʌtʃ)", "kor": "별일 없어", "ex": "A: What are you doing?\nB: Not much, just watching TV."}, {"num": 4, "eng": "Long time no see.", "ipa": "(lɔːŋ taɪm noʊ siː)", "kor": "오랜만이야", "ex": "A: Long time no see!\nB: I know! It's been ages."}, {"num": 5, "eng": "Take your time.", "ipa": "(teɪk jər taɪm)", "kor": "천천히 해", "ex": "We have plenty of time.\nPlease take your time."}, {"num": 6, "eng": "I’m on my way.", "ipa": "(aɪm ɑn maɪ weɪ)", "kor": "가는 중이야", "ex": "Don't worry.\nI'm on my way right now."}, {"num": 7, "eng": "I’m almost there.", "ipa": "(ɔːlmoʊst ðer)", "kor": "거의 다 왔어", "ex": "Wait for me.\nI'm almost there."}, {"num": 8, "eng": "It’s up to you.", "ipa": "(ɪts ʌp tə juː)", "kor": "네가 결정해", "ex": "I don't care where we eat.\nIt's up to you."}, {"num": 9, "eng": "That works for me.", "ipa": "(ðæt wɜːrks fər miː)", "kor": "그거 좋아 / 괜찮아", "ex": "A: Can we meet at 3?\nB: That works for me."}, {"num": 10, "eng": "Sounds good.", "ipa": "(saʊndz gʊd)", "kor": "좋아", "ex": "A: Let's go for pizza.\nB: Sounds good!"}, {"num": 11, "eng": "Let me think.", "ipa": "(lɛt mi θɪŋk)", "kor": "생각 좀 해볼게", "ex": "I'm not sure yet.\nLet me think about it."}, {"num": 12, "eng": "Let’s call it a day.", "ipa": "(lɛts kɔːl ɪt ə deɪ)", "kor": "오늘은 여기까지 하자", "ex": "We worked hard.\nLet's call it a day."}, {"num": 13, "eng": "I’m starving.", "ipa": "(aɪm stɑːrvɪŋ)", "kor": "배고파 죽겠어", "ex": "I haven't eaten all day.\nI'm starving."}, {"num": 14, "eng": "I’m broke.", "ipa": "(aɪm broʊk)", "kor": "돈 없어", "ex": "I can't buy that.\nI'm totally broke."}, {"num": 15, "eng": "It’s on me.", "ipa": "(ɪts ɑn miː)", "kor": "내가 낼게", "ex": "Put your wallet away.\nLunch is on me today."}, {"num": 16, "eng": "I’m good.", "ipa": "(aɪm gʊd)", "kor": "괜찮아 (사양)", "ex": "A: Do you want more coffee?\nB: No, I'm good. Thanks."}, {"num": 17, "eng": "No worries.", "ipa": "(noʊ wɜːriz)", "kor": "걱정 마", "ex": "A: Sorry for being late.\nB: No worries."}, {"num": 18, "eng": "You got this.", "ipa": "(ju gɑt ðɪs)", "kor": "넌 할 수 있어", "ex": "Don't be nervous.\nYou got this!"}, {"num": 19, "eng": "I knew it!", "ipa": "(aɪ nuː ɪt)", "kor": "그럴 줄 알았어!", "ex": "He is late again?\nI knew it!"}, {"num": 20, "eng": "Make yourself at home.", "ipa": "(meɪk jərsɛlf æt hoʊm)", "kor": "편하게 있어", "ex": "Welcome! Please come in and make yourself at home."}, {"num": 21, "eng": "Help yourself.", "ipa": "(hɛlp jərsɛlf)", "kor": "마음껏 해 (드세요)", "ex": "There is plenty of food.\nPlease help yourself."}, {"num": 22, "eng": "Let’s grab a bite.", "ipa": "(lɛts græb ə baɪt)", "kor": "뭐 좀 먹으러 가자", "ex": "I'm hungry.\nLet's grab a bite."}, {"num": 23, "eng": "I’m all ears.", "ipa": "(aɪm ɔːl ɪrz)", "kor": "잘 듣고 있어", "ex": "Tell me what happened.\nI'm all ears."}, {"num": 24, "eng": "Hang on a second.", "ipa": "(hæŋ ɑn ə sɛkənd)", "kor": "잠깐만", "ex": "Hang on a second.\nI need to find my keys."}, {"num": 25, "eng": "I’m used to it.", "ipa": "(aɪm juːst tə ɪt)", "kor": "익숙해졌어", "ex": "The noise doesn't bother me.\nI'm used to it."}, {"num": 26, "eng": "That makes sense.", "ipa": "(ðæt meɪks sɛns)", "kor": "말 되네 / 이해돼", "ex": "A: He missed the bus.\nB: Ah, that makes sense."}, {"num": 27, "eng": "I don’t get it.", "ipa": "(aɪ doʊnt gɛt ɪt)", "kor": "이해가 안 돼", "ex": "Why did he do that?\nI don't get it."}, {"num": 28, "eng": "It depends.", "ipa": "(ɪt dɪpɛndz)", "kor": "상황에 따라 달라", "ex": "A: Are you going out?\nB: It depends on the weather."}, {"num": 29, "eng": "Kind of.", "ipa": "(kaɪnd əv)", "kor": "약간… 뭐 그런", "ex": "A: Are you tired?\nB: Kind of."}, {"num": 30, "eng": "Sort of.", "ipa": "(sɔːrt əv)", "kor": "그런 셈이야", "ex": "A: Is this your first time?\nB: Sort of."}, {"num": 31, "eng": "Give me a second.", "ipa": "(gɪv mi ə sɛkənd)", "kor": "잠깐만", "ex": "I'm busy right now.\nGive me a second."}, {"num": 32, "eng": "I’m on it.", "ipa": "(aɪm ɑn ɪt)", "kor": "지금 할게", "ex": "A: Can you fix this?\nB: I'm on it."}, {"num": 33, "eng": "No big deal.", "ipa": "(noʊ bɪg diːl)", "kor": "별일 아니야", "ex": "You broke a glass?\nIt's no big deal."}, {"num": 34, "eng": "Come on.", "ipa": "(kʌm ɑn)", "kor": "설마? / 그러지 마", "ex": "Come on!\nYou can't be serious."}, {"num": 35, "eng": "For real?", "ipa": "(fər riːəl)", "kor": "진짜로?", "ex": "A: I won the lottery.\nB: For real?"}, {"num": 36, "eng": "You never know.", "ipa": "(ju nɛvər noʊ)", "kor": "어떻게 될지 몰라", "ex": "Try it.\nYou never know."}, {"num": 37, "eng": "It happens.", "ipa": "(ɪt hæpənz)", "kor": "그럴 수도 있지", "ex": "Don't be sad.\nIt happens to everyone."}, {"num": 38, "eng": "I can tell.", "ipa": "(aɪ kæn tɛl)", "kor": "보니까 그렇네 / 딱 알겠어", "ex": "You are happy today.\nI can tell."}, {"num": 39, "eng": "You’ve got to be kidding me.", "ipa": "(juːv gɑtə bi kɪdɪŋ mi)", "kor": "농담이지? (믿을 수 없어)", "ex": "The flight is canceled?\nYou've got to be kidding me."}, {"num": 40, "eng": "I’ll take it.", "ipa": "(aɪl teɪk ɪt)", "kor": "그걸로 할게 (구매)", "ex": "This shirt looks great.\nI'll take it."}, {"num": 41, "eng": "I’ll think about it.", "ipa": "(aɪl θɪŋk əbaʊt ɪt)", "kor": "생각해볼게 (거절 뉘앙스)", "ex": "It's a bit expensive.\nI'll think about it."}, {"num": 42, "eng": "Be my guest.", "ipa": "(bi maɪ gɛst)", "kor": "그러세요 (허락)", "ex": "A: Can I sit here?\nB: Be my guest."}, {"num": 43, "eng": "After you.", "ipa": "(æftər ju)", "kor": "먼저 가세요", "ex": "(Opening the door)\nPlease, after you."}, {"num": 44, "eng": "You bet.", "ipa": "(ju bɛt)", "kor": "물론이지 / 천만에", "ex": "A: Thanks for your help.\nB: You bet!"}, {"num": 45, "eng": "I don’t mind.", "ipa": "(aɪ doʊnt maɪnd)", "kor": "상관없어", "ex": "A: Can I open the window?\nB: I don't mind."}, {"num": 46, "eng": "I can’t wait.", "ipa": "(aɪ kænt weɪt)", "kor": "기대돼", "ex": "The concert is tomorrow.\nI can't wait!"}, {"num": 47, "eng": "Good for you.", "ipa": "(gʊd fər ju)", "kor": "잘됐네", "ex": "You passed the exam?\nGood for you!"}, {"num": 48, "eng": "Lucky you.", "ipa": "(lʌki ju)", "kor": "좋겠다", "ex": "You have a holiday tomorrow?\nLucky you."}, {"num": 49, "eng": "I’m not sure.", "ipa": "(aɪm nɑt ʃʊr)", "kor": "잘 모르겠어", "ex": "A: Is he coming?\nB: I'm not sure."}, {"num": 50, "eng": "That’s the point.", "ipa": "(ðæts ðə pɔɪnt)", "kor": "그게 핵심이야", "ex": "You need to practice more.\nThat's the point."}]}, {"title": "2. 감정·기분 표현 (51~100)", "items": [{"num": 51, "eng": "I’m touched.", "ipa": "(aɪm tʌʧt)", "kor": "감동했어", "ex": "Thank you for the gift.\nI'm really touched."}, {"num": 52, "eng": "I’m impressed.", "ipa": "(aɪm ɪmˈprɛst)", "kor": "감명받았어 / 놀랐어", "ex": "Did you make this?\nI'm impressed."}, {"num": 53, "eng": "I’m relieved.", "ipa": "(aɪm rɪˈlivd)", "kor": "안심했어", "ex": "Everyone is safe?\nI'm relieved."}, {"num": 54, "eng": "I’m exhausted.", "ipa": "(aɪm ɪgˈzɔːstɪd)", "kor": "완전 지쳤어", "ex": "I worked for 12 hours.\nI'm exhausted."}, {"num": 55, "eng": "I’m overwhelmed.", "ipa": "(aɪm oʊvərˈwɛlmd)", "kor": "벅차 / 압도됨", "ex": "There is too much work.\nI'm overwhelmed."}, {"num": 56, "eng": "I’m confused.", "ipa": "(aɪm kənˈfjuzd)", "kor": "헷갈려", "ex": "The instructions are unclear.\nI'm confused."}, {"num": 57, "eng": "I’m frustrated.", "ipa": "(aɪm ˈfrʌstreɪtɪd)", "kor": "답답해 / 짜증나", "ex": "It's not working.\nI'm so frustrated."}, {"num": 58, "eng": "I’m disappointed.", "ipa": "(aɪm ˌdɪsəˈpɔɪntɪd)", "kor": "실망했어", "ex": "He lied to me.\nI'm disappointed."}, {"num": 59, "eng": "I’m speechless.", "ipa": "(aɪm ˈspitʃləs)", "kor": "할 말이 없어 (기가 막혀/감동)", "ex": "This view is amazing.\nI'm speechless."}, {"num": 60, "eng": "I’m freezing.", "ipa": "(aɪm ˈfrizɪŋ)", "kor": "너무 추워", "ex": "Turn on the heater.\nI'm freezing."}, {"num": 61, "eng": "I’m boiling.", "ipa": "(aɪm ˈbɔɪlɪŋ)", "kor": "너무 더워", "ex": "It's 35 degrees today.\nI'm boiling!"}, {"num": 62, "eng": "I’m stressed out.", "ipa": "(aɪm strɛst aʊt)", "kor": "스트레스 받아", "ex": "Exams are coming up.\nI'm stressed out."}, {"num": 63, "eng": "I’m proud of you.", "ipa": "(aɪm praʊd əv ju)", "kor": "자랑스러워", "ex": "You did a great job.\nI'm proud of you."}, {"num": 64, "eng": "I’m worried about you.", "ipa": "(aɪm ˈwʌrid əˈbaʊt ju)", "kor": "걱정돼", "ex": "You look sick.\nI'm worried about you."}, {"num": 65, "eng": "I’m bored to death.", "ipa": "(aɪm bɔrd tə dɛθ)", "kor": "너무 심심해 죽겠어", "ex": "There is nothing to do.\nI'm bored to death."}, {"num": 66, "eng": "I’m homesick.", "ipa": "(aɪm ˈhoʊmsɪk)", "kor": "집이 그리워", "ex": "I miss my family.\nI'm homesick."}, {"num": 67, "eng": "I’m pissed off.", "ipa": "(aɪm pɪst ɔf)", "kor": "너무 화났어 (비속어 주의)", "ex": "He stole my idea.\nI'm pissed off."}, {"num": 68, "eng": "I feel you.", "ipa": "(aɪ fil ju)", "kor": "공감해 / 이해해", "ex": "A: Work is so hard today.\nB: I feel you."}, {"num": 69, "eng": "I’m not in the mood.", "ipa": "(aɪm nɑt ɪn ðə mud)", "kor": "기분이 아니야", "ex": "Let's go to a party.\nNo, I'm not in the mood."}, {"num": 70, "eng": "I’m good to go.", "ipa": "(aɪm gʊd tə goʊ)", "kor": "준비됐어", "ex": "My bags are packed.\nI'm good to go."}, {"num": 71, "eng": "I’m fed up.", "ipa": "(aɪm fɛd ʌp)", "kor": "진절머리 나", "ex": "I'm fed up with this traffic.\nIt's terrible."}, {"num": 72, "eng": "I’m concerned.", "ipa": "(aɪm kənˈsɜrnd)", "kor": "걱정돼 / 우려돼", "ex": "I'm concerned about the results.\nAre they bad?"}, {"num": 73, "eng": "I’m thrilled.", "ipa": "(aɪm θrɪld)", "kor": "너무 신나 / 짜릿해", "ex": "We are going to Hawaii!\nI'm thrilled."}, {"num": 74, "eng": "I’m curious.", "ipa": "(aɪm ˈkjʊriəs)", "kor": "궁금해", "ex": "What is inside the box?\nI'm curious."}, {"num": 75, "eng": "I’m jealous.", "ipa": "(aɪm ˈʤɛləs)", "kor": "질투나 / 부러워", "ex": "You bought a new car?\nI'm jealous."}, {"num": 76, "eng": "I’m flattered.", "ipa": "(aɪm ˈflætərd)", "kor": "과찬이예요", "ex": "A: You look like a movie star.\nB: Oh, I'm flattered."}, {"num": 77, "eng": "I’m in trouble.", "ipa": "(aɪm ɪn ˈtrʌbl)", "kor": "큰일 났어", "ex": "I lost my passport.\nI'm in trouble."}, {"num": 78, "eng": "I’m terrified.", "ipa": "(aɪm ˈtɛrɪfaɪd)", "kor": "엄청 무서워", "ex": "I saw a ghost.\nI'm terrified."}, {"num": 79, "eng": "I’m shocked.", "ipa": "(aɪm ʃɑkt)", "kor": "충격받았어", "ex": "Did you hear the news?\nI'm shocked."}, {"num": 80, "eng": "I’m confused.", "ipa": "(aɪm kənˈfjuzd)", "kor": "헷갈려", "ex": "This map is wrong.\nI'm confused."}, {"num": 81, "eng": "I’m excited.", "ipa": "(aɪm ɪkˈsaɪtɪd)", "kor": "신나", "ex": "The trip is tomorrow.\nI'm so excited!"}, {"num": 82, "eng": "I’m anxious.", "ipa": "(aɪm ˈæŋkʃəs)", "kor": "불안해", "ex": "Waiting for the results makes me anxious."}, {"num": 83, "eng": "I’m grateful.", "ipa": "(aɪm ˈgreɪtfəl)", "kor": "감사해", "ex": "Thank you for your help.\nI'm grateful."}, {"num": 84, "eng": "I’m lonely.", "ipa": "(aɪm ˈloʊnli)", "kor": "외로워", "ex": "I am alone in this city.\nI'm lonely."}, {"num": 85, "eng": "I’m overwhelmed with joy.", "ipa": "(aɪm oʊvərˈwɛlmd wɪð ʤɔɪ)", "kor": "기쁨에 벅차", "ex": "When she said yes,\nI was overwhelmed with joy."}, {"num": 86, "eng": "I’m nervous.", "ipa": "(aɪm ˈnɜrvəs)", "kor": "긴장돼", "ex": "I have an interview.\nI'm nervous."}, {"num": 87, "eng": "I’m frustrated.", "ipa": "(aɪm ˈfrʌstreɪtɪd)", "kor": "답답해", "ex": "I can't solve this problem.\nI'm frustrated."}, {"num": 88, "eng": "I’m amazed.", "ipa": "(aɪm əˈmeɪzd)", "kor": "놀랐어 / 감탄했어", "ex": "Your skill is incredible.\nI'm amazed."}, {"num": 89, "eng": "I’m confident.", "ipa": "(aɪm ˈkɑnfɪdənt)", "kor": "자신 있어", "ex": "I can win this game.\nI'm confident."}, {"num": 90, "eng": "I’m lazy.", "ipa": "(aɪm ˈleɪzi)", "kor": "게을러 (나른해)", "ex": "I don't want to move.\nI'm feeling lazy today."}, {"num": 91, "eng": "I’m energetic.", "ipa": "(aɪm ˌɛnərˈʤɛtɪk)", "kor": "에너지가 넘쳐", "ex": "I slept well.\nI'm energetic today!"}, {"num": 92, "eng": "I’m scared.", "ipa": "(aɪm skɛrd)", "kor": "무서워", "ex": "I hate spiders.\nI'm scared."}, {"num": 93, "eng": "I’m bored.", "ipa": "(aɪm bɔrd)", "kor": "심심해", "ex": "This movie is slow.\nI'm bored."}, {"num": 94, "eng": "I’m optimistic.", "ipa": "(aɪm ˌɑptɪˈmɪstɪk)", "kor": "낙관적이야", "ex": "Everything will be fine.\nI'm optimistic."}, {"num": 95, "eng": "I’m pessimistic.", "ipa": "(aɪm ˌpɛsɪˈmɪstɪk)", "kor": "비관적이야", "ex": "He always thinks the worst.\nHe is pessimistic."}, {"num": 96, "eng": "I’m shy.", "ipa": "(aɪm ʃaɪ)", "kor": "수줍어", "ex": "She doesn't talk much.\nShe is shy."}, {"num": 97, "eng": "I’m stubborn.", "ipa": "(aɪm ˈstʌbərn)", "kor": "고집이 세", "ex": "He never listens to others.\nHe is stubborn."}, {"num": 98, "eng": "I’m proud.", "ipa": "(aɪm praʊd)", "kor": "자랑스러워", "ex": "I finished the project.\nI'm proud."}, {"num": 99, "eng": "I’m upset.", "ipa": "(aɪm ʌpˈsɛt)", "kor": "속상해", "ex": "Why are you crying?\nI'm upset about the news."}, {"num": 100, "eng": "I’m satisfied.", "ipa": "(aɪm ˈsætɪsfaɪd)", "kor": "만족스러워", "ex": "The meal was delicious.\nI'm satisfied."}]}, {"title": "3. 일상 행동·요청 표현 (101~150)", "items": [{"num": 101, "eng": "Can you help me?", "ipa": "(kæn ju hɛlp mi)", "kor": "도와줄 수 있어?", "ex": "This box is heavy.\nCan you help me?"}, {"num": 102, "eng": "Could you please...?", "ipa": "(kʊd ju pliz)", "kor": "…해 주시겠어요?", "ex": "Could you please open the door?"}, {"num": 103, "eng": "Would you mind...?", "ipa": "(wʊd ju maɪnd)", "kor": "…해 주실 수 있나요? (정중)", "ex": "Would you mind moving your car?"}, {"num": 104, "eng": "I need a hand.", "ipa": "(aɪ nid ə hænd)", "kor": "도움 필요해", "ex": "I'm moving furniture.\nI need a hand."}, {"num": 105, "eng": "I’m looking for…", "ipa": "(aɪm ˈlʊkɪŋ fɔr)", "kor": "…을 찾고 있어요", "ex": "Excuse me.\nI'm looking for the exit."}, {"num": 106, "eng": "I’d like…", "ipa": "(aɪd laɪk)", "kor": "…하고 싶어요 / 주세요", "ex": "I'd like a cup of coffee, please."}, {"num": 107, "eng": "Can I have…?", "ipa": "(kæn aɪ hæv)", "kor": "…을 받을 수 있을까요?", "ex": "Can I have some water?"}, {"num": 108, "eng": "I want…", "ipa": "(aɪ wɑnt)", "kor": "…원해", "ex": "I want to go home now."}, {"num": 109, "eng": "Do you have…?", "ipa": "(du ju hæv)", "kor": "…있나요?", "ex": "Do you have a pen?"}, {"num": 110, "eng": "I’m trying to…", "ipa": "(aɪm ˈtraɪɪŋ tə)", "kor": "…하려고 해", "ex": "Quiet please.\nI'm trying to sleep."}, {"num": 111, "eng": "Let me know.", "ipa": "(lɛt mi noʊ)", "kor": "알려줘", "ex": "If you finish early,\nlet me know."}, {"num": 112, "eng": "Tell me about it.", "ipa": "(tɛl mi əˈbaʊt ɪt)", "kor": "그 얘기 좀 해봐 / 내 말이! (동의)", "ex": "A: The traffic is terrible.\nB: Tell me about it!"}, {"num": 113, "eng": "Could you repeat that?", "ipa": "(kʊd ju rɪˈpit ðæt)", "kor": "다시 말씀해 주시겠어요?", "ex": "It was too fast.\nCould you repeat that?"}, {"num": 114, "eng": "Say that again?", "ipa": "(seɪ ðæt əˈgɛn)", "kor": "다시 말해줄래?", "ex": "I missed that.\nSay that again?"}, {"num": 115, "eng": "I didn’t catch that.", "ipa": "(aɪ dɪdnt kæʧ ðæt)", "kor": "잘 못 들었어", "ex": "Sorry, it's noisy here.\nI didn't catch that."}, {"num": 116, "eng": "I’m sorry.", "ipa": "(aɪm ˈsɑri)", "kor": "미안해", "ex": "I broke your cup.\nI'm sorry."}, {"num": 117, "eng": "My apologies.", "ipa": "(maɪ əˈpɑlədʒiz)", "kor": "사과드립니다 (격식)", "ex": "I made a mistake.\nMy apologies."}, {"num": 118, "eng": "Excuse me.", "ipa": "(ɪkˈskjus mi)", "kor": "실례합니다", "ex": "Excuse me,\nwhere is the bathroom?"}, {"num": 119, "eng": "Pardon me?", "ipa": "(ˈpɑrdən mi)", "kor": "뭐라고요?", "ex": "Pardon me?\nI didn't hear you."}, {"num": 120, "eng": "I’m afraid…", "ipa": "(aɪm əˈfreɪd)", "kor": "유감이지만 …인 것 같아요", "ex": "I'm afraid I can't come today."}, {"num": 121, "eng": "I’d appreciate it.", "ipa": "(aɪd əˈpriʃieɪt ɪt)", "kor": "감사하겠습니다", "ex": "If you could help,\nI'd appreciate it."}, {"num": 122, "eng": "I owe you one.", "ipa": "(aɪ oʊ ju wʌn)", "kor": "신세졌어", "ex": "Thanks for the money.\nI owe you one."}, {"num": 123, "eng": "No problem.", "ipa": "(noʊ ˈprɑbləm)", "kor": "문제없어", "ex": "A: Can you do this?\nB: No problem."}, {"num": 124, "eng": "Anytime.", "ipa": "(ˈɛniˌtaɪm)", "kor": "언제든지 (천만에요)", "ex": "A: Thanks for driving me.\nB: Anytime."}, {"num": 125, "eng": "I’m in.", "ipa": "(aɪm ɪn)", "kor": "나도 할게 (참여)", "ex": "A: We are going for pizza.\nB: I'm in!"}, {"num": 126, "eng": "Count me in.", "ipa": "(kaʊnt mi ɪn)", "kor": "나도 끼워줘", "ex": "A: Who wants to join?\nB: Count me in."}, {"num": 127, "eng": "I’m out.", "ipa": "(aɪm aʊt)", "kor": "나는 빠질게", "ex": "It's too late for me.\nI'm out."}, {"num": 128, "eng": "Let’s get started.", "ipa": "(lɛts gɛt ˈstɑrtɪd)", "kor": "시작하자", "ex": "Everyone is here.\nLet's get started."}, {"num": 129, "eng": "Let’s do it.", "ipa": "(lɛts du ɪt)", "kor": "해보자", "ex": "Are you ready?\nLet's do it."}, {"num": 130, "eng": "I’ll handle it.", "ipa": "(aɪl ˈhændəl ɪt)", "kor": "내가 처리할게", "ex": "Don't worry about the mess.\nI'll handle it."}, {"num": 131, "eng": "I’ll take care of it.", "ipa": "(aɪl teɪk kɛr əv ɪt)", "kor": "내가 맡을게", "ex": "Go home.\nI'll take care of it."}, {"num": 132, "eng": "Can I help you?", "ipa": "(kæn aɪ hɛlp ju)", "kor": "도와드릴까요?", "ex": "You look lost.\nCan I help you?"}, {"num": 133, "eng": "Do you need help?", "ipa": "(du ju nid hɛlp)", "kor": "도움이 필요해요?", "ex": "Those bags look heavy.\nDo you need help?"}, {"num": 134, "eng": "I’d be happy to.", "ipa": "(aɪd bi ˈhæpi tə)", "kor": "기꺼이 할게요", "ex": "A: Can you join us?\nB: I'd be happy to."}, {"num": 135, "eng": "That would be great.", "ipa": "(ðæt wʊd bi greɪt)", "kor": "그거 좋겠네요", "ex": "A: Shall I bring dessert?\nB: That would be great."}, {"num": 136, "eng": "I couldn’t agree more.", "ipa": "(aɪ ˈkʊdnt əˈgri mɔr)", "kor": "전적으로 동의해요", "ex": "A: This place is amazing.\nB: I couldn't agree more."}, {"num": 137, "eng": "You’re welcome.", "ipa": "(jʊr ˈwɛlkəm)", "kor": "천만에요", "ex": "A: Thank you.\nB: You're welcome."}, {"num": 138, "eng": "It’s my pleasure.", "ipa": "(ɪts maɪ ˈplɛʒər)", "kor": "제가 기쁘죠 (천만에요)", "ex": "A: Thanks for the gift.\nB: It's my pleasure."}, {"num": 139, "eng": "No worries.", "ipa": "(noʊ ˈwɜːriz)", "kor": "걱정 마세요", "ex": "A: I forgot the keys.\nB: No worries."}, {"num": 140, "eng": "Don’t mention it.", "ipa": "(doʊnt ˈmɛnʃən ɪt)", "kor": "별말씀을요", "ex": "A: You saved me.\nB: Don't mention it."}, {"num": 141, "eng": "I’m at your service.", "ipa": "(aɪm æt jʊr ˈsɜrvɪs)", "kor": "언제든지 도와드릴게요", "ex": "If you need anything,\nI'm at your service."}, {"num": 142, "eng": "I owe you.", "ipa": "(aɪ oʊ ju)", "kor": "신세졌어", "ex": "Thanks for paying.\nI owe you."}, {"num": 143, "eng": "Can’t complain.", "ipa": "(kænt kəmˈpleɪn)", "kor": "그저 그래요 (불만 없어요)", "ex": "A: How is work?\nB: Can't complain."}, {"num": 144, "eng": "I’ll be right back.", "ipa": "(aɪl bi raɪt bæk)", "kor": "금방 돌아올게", "ex": "Stay here.\nI'll be right back."}, {"num": 145, "eng": "Hold on.", "ipa": "(hoʊld ɑn)", "kor": "기다려 / 잠깐만", "ex": "Hold on.\nI'm getting a call."}, {"num": 146, "eng": "Hang tight.", "ipa": "(hæŋ taɪt)", "kor": "꼭 잡고 있어 (버텨)", "ex": "It's going to be bumpy.\nHang tight."}, {"num": 147, "eng": "I’m on it.", "ipa": "(aɪm ɑn ɪt)", "kor": "바로 할게", "ex": "A: Clean this mess.\nB: I'm on it."}, {"num": 148, "eng": "Let me handle it.", "ipa": "(lɛt mi ˈhændəl ɪt)", "kor": "내가 처리할게", "ex": "This customer is angry.\nLet me handle it."}, {"num": 149, "eng": "I’ll sort it out.", "ipa": "(aɪl sɔrt ɪt aʊt)", "kor": "내가 해결할게 (정리할게)", "ex": "There is a problem,\nbut I'll sort it out."}, {"num": 150, "eng": "I’ll get back to you.", "ipa": "(aɪl gɛt bæk tə ju)", "kor": "나중에 다시 연락할게요", "ex": "I don't know yet.\nI'll get back to you."}]}, {"title": "4. 쇼핑·외식·교통 표현 (151~200)", "items": [{"num": 151, "eng": "How much is this?", "ipa": "(haʊ mʌʧ ɪz ðɪs)", "kor": "이거 얼마예요?", "ex": "I like this bag.\nHow much is this?"}, {"num": 152, "eng": "How much does it cost?", "ipa": "(haʊ mʌʧ dəz ɪt kɔst)", "kor": "비용이 얼마인가요?", "ex": "How much does it cost to repair?"}, {"num": 153, "eng": "Do you take credit cards?", "ipa": "(du ju teɪk ˈkrɛdɪt kɑrdz)", "kor": "신용카드 받나요?", "ex": "I don't have cash.\nDo you take credit cards?"}, {"num": 154, "eng": "Can I try it on?", "ipa": "(kæn aɪ traɪ ɪt ɑn)", "kor": "입어봐도 될까요?", "ex": "Where is the fitting room?\nCan I try it on?"}, {"num": 155, "eng": "I’ll take it.", "ipa": "(aɪl teɪk ɪt)", "kor": "이걸로 할게요", "ex": "It fits perfectly.\nI'll take it."}, {"num": 156, "eng": "Do you have it in a different size?", "ipa": "(du ju hæv ɪt ɪn ə ˈdɪfərənt saɪz)", "kor": "다른 사이즈 있나요?", "ex": "This is too small.\nDo you have it in a different size?"}, {"num": 157, "eng": "Do you have it in another color?", "ipa": "(du ju hæv ɪt ɪn əˈnʌðər ˈkʌlər)", "kor": "다른 색상 있나요?", "ex": "I don't like red.\nDo you have it in another color?"}, {"num": 158, "eng": "I’m just looking.", "ipa": "(aɪm ʤʌst ˈlʊkɪŋ)", "kor": "그냥 둘러보고 있어요", "ex": "Clerk: Can I help you?\nMe: Thanks, I'm just looking."}, {"num": 159, "eng": "Can I get a receipt?", "ipa": "(kæn aɪ gɛt ə rɪˈsit)", "kor": "영수증 받을 수 있을까요?", "ex": "I need it for tax.\nCan I get a receipt?"}, {"num": 160, "eng": "Do you have any specials?", "ipa": "(du ju hæv ˈɛni ˈspɛʃəlz)", "kor": "오늘의 특선 메뉴 있나요?", "ex": "I'm hungry.\nDo you have any specials today?"}, {"num": 161, "eng": "I’d like to order…", "ipa": "(aɪd laɪk tə ˈɔrdər)", "kor": "…주문하고 싶어요", "ex": "Excuse me.\nI'd like to order now."}, {"num": 162, "eng": "Could I have the bill, please?", "ipa": "(kʊd aɪ hæv ðə bɪl pliz)", "kor": "계산서 부탁드립니다", "ex": "We are finished.\nCould I have the bill, please?"}, {"num": 163, "eng": "Can I get this to go?", "ipa": "(kæn aɪ gɛt ðɪs tə goʊ)", "kor": "이거 포장할 수 있을까요?", "ex": "I'm in a hurry.\nCan I get this to go?"}, {"num": 164, "eng": "I’ll have…", "ipa": "(aɪl hæv)", "kor": "…로 할게요 (주문)", "ex": "I'll have the steak, please."}, {"num": 165, "eng": "Table for two, please.", "ipa": "(ˈteɪbəl fər tu pliz)", "kor": "두 명 자리 부탁드립니다", "ex": "Hi, table for two, please."}, {"num": 166, "eng": "Do you have a menu in English?", "ipa": "(du ju hæv ə ˈmɛnju ɪn ˈɪŋglɪʃ)", "kor": "영어 메뉴 있나요?", "ex": "I can't read this.\nDo you have a menu in English?"}, {"num": 167, "eng": "I’m allergic to…", "ipa": "(aɪm əˈlɜrʤɪk tə)", "kor": "…알레르기가 있어요", "ex": "I'm allergic to peanuts."}, {"num": 168, "eng": "Can I have it without…?", "ipa": "(kæn aɪ hæv ɪt wɪˈðaʊt)", "kor": "…빼고 해주실 수 있나요?", "ex": "Can I have it without onions?"}, {"num": 169, "eng": "I’ll take the same.", "ipa": "(aɪl teɪk ðə seɪm)", "kor": "같은 걸로 할게요", "ex": "That looks good.\nI'll take the same."}, {"num": 170, "eng": "Can you recommend something?", "ipa": "(kæn ju ˌrɛkəˈmɛnd ˈsʌmθɪŋ)", "kor": "추천해 주시겠어요?", "ex": "It's my first time here.\nCan you recommend something?"}, {"num": 171, "eng": "Where is the bus stop?", "ipa": "(wɛr ɪz ðə bʌs stɑp)", "kor": "버스 정류장이 어디예요?", "ex": "I need to catch a bus.\nWhere is the bus stop?"}, {"num": 172, "eng": "When does the train leave?", "ipa": "(wɛn dəz ðə treɪn liv)", "kor": "기차 언제 출발해요?", "ex": "What time is it?\nWhen does the train leave?"}, {"num": 173, "eng": "Which platform?", "ipa": "(wɪʧ ˈplætˌfɔrm)", "kor": "어느 플랫폼인가요?", "ex": "My train is here.\nWhich platform?"}, {"num": 174, "eng": "I’m looking for this address.", "ipa": "(aɪm ˈlʊkɪŋ fɔr ðɪs əˈdrɛs)", "kor": "이 주소를 찾고 있어요", "ex": "Excuse me.\nI'm looking for this address."}, {"num": 175, "eng": "How far is it?", "ipa": "(haʊ fɑr ɪz ɪt)", "kor": "얼마나 먼가요?", "ex": "Can I walk there?\nHow far is it?"}, {"num": 176, "eng": "Could you show me on the map?", "ipa": "(kʊd ju ʃoʊ mi ɑn ðə mæp)", "kor": "지도에서 보여주실 수 있나요?", "ex": "I'm lost.\nCould you show me on the map?"}, {"num": 177, "eng": "I’d like a ticket to…", "ipa": "(aɪd laɪk ə ˈtɪkɪt tə)", "kor": "…행 티켓 주세요", "ex": "I'd like a ticket to London."}, {"num": 178, "eng": "One-way or round trip?", "ipa": "(wʌn weɪ ɔr raʊnd trɪp)", "kor": "편도요, 왕복요?", "ex": "A: A ticket to Paris, please.\nB: One-way or round trip?"}, {"num": 179, "eng": "Can I pay by card?", "ipa": "(kæn aɪ peɪ baɪ kɑrd)", "kor": "카드로 결제할 수 있나요?", "ex": "I don't have cash.\nCan I pay by card?"}, {"num": 180, "eng": "Where is the taxi stand?", "ipa": "(wɛr ɪz ðə ˈtæksi stænd)", "kor": "택시 승강장이 어디예요?", "ex": "I have heavy bags.\nWhere is the taxi stand?"}, {"num": 181, "eng": "How long does it take?", "ipa": "(haʊ lɔŋ dəz ɪt teɪk)", "kor": "얼마나 걸려요?", "ex": "To the airport,\nhow long does it take?"}, {"num": 182, "eng": "Is it far from here?", "ipa": "(ɪz ɪt fɑr frəm hɪr)", "kor": "여기서 먼가요?", "ex": "A: I'm walking to the hotel.\nB: Is it far from here?"}, {"num": 183, "eng": "I’m lost.", "ipa": "(aɪm lɔst)", "kor": "길을 잃었어요", "ex": "Help me.\nI'm lost."}, {"num": 184, "eng": "Could you take me to…?", "ipa": "(kʊd ju teɪk mi tə)", "kor": "…로 데려다주실 수 있나요?", "ex": "Could you take me to the station?"}, {"num": 185, "eng": "Drop me off here, please.", "ipa": "(drɑp mi ɔf hɪr pliz)", "kor": "여기서 내려주세요", "ex": "This is my house.\nDrop me off here, please."}, {"num": 186, "eng": "How much is the fare?", "ipa": "(haʊ mʌʧ ɪz ðə fɛr)", "kor": "요금이 얼마예요?", "ex": "We arrived.\nHow much is the fare?"}, {"num": 187, "eng": "Is there a discount?", "ipa": "(ɪz ðɛr ə ˈdɪskaʊnt)", "kor": "할인 있나요?", "ex": "I am a student.\nIs there a discount?"}, {"num": 188, "eng": "Do you have a reservation?", "ipa": "(du ju hæv ə ˌrɛzərˈveɪʃən)", "kor": "예약하셨나요?", "ex": "Welcome to the hotel.\nDo you have a reservation?"}, {"num": 189, "eng": "I have a reservation.", "ipa": "(aɪ hæv ə ˌrɛzərˈveɪʃən)", "kor": "예약했어요", "ex": "My name is Kim.\nI have a reservation."}, {"num": 190, "eng": "I’d like to check in.", "ipa": "(aɪd laɪk tə ʧɛk ɪn)", "kor": "체크인하고 싶어요", "ex": "Hello,\nI'd like to check in."}, {"num": 191, "eng": "I’d like to check out.", "ipa": "(aɪd laɪk tə ʧɛk aʊt)", "kor": "체크아웃하고 싶어요", "ex": "Here is the key.\nI'd like to check out."}, {"num": 192, "eng": "Could I have a room with a view?", "ipa": "(kʊd aɪ hæv ə rum wɪð ə vju)", "kor": "전망 있는 방으로 해주실 수 있나요?", "ex": "It's my honeymoon.\nCould I have a room with a view?"}, {"num": 193, "eng": "Is breakfast included?", "ipa": "(ɪz ˈbrɛkfəst ɪnˈkludəd)", "kor": "조식 포함인가요?", "ex": "The room is $100.\nIs breakfast included?"}, {"num": 194, "eng": "Can I get a wake-up call?", "ipa": "(kæn aɪ gɛt ə ˈweɪk ʌp kɔl)", "kor": "모닝콜 부탁드려도 될까요?", "ex": "I need to wake up at 6.\nCan I get a wake-up call?"}, {"num": 195, "eng": "I need a taxi.", "ipa": "(aɪ nid ə ˈtæksi)", "kor": "택시 필요해요", "ex": "Please call the front desk.\nI need a taxi."}, {"num": 196, "eng": "Where can I buy a ticket?", "ipa": "(wɛr kæn aɪ baɪ ə ˈtɪkɪt)", "kor": "어디서 티켓 살 수 있나요?", "ex": "I want to take the subway.\nWhere can I buy a ticket?"}, {"num": 197, "eng": "Is this seat taken?", "ipa": "(ɪz ðɪs sit ˈteɪkən)", "kor": "이 자리 비었나요?", "ex": "Excuse me.\nIs this seat taken?"}, {"num": 198, "eng": "Do I need to change trains?", "ipa": "(du aɪ nid tə ʧeɪnʤ treɪnz)", "kor": "환승해야 하나요?", "ex": "I'm going to downtown.\nDo I need to change trains?"}, {"num": 199, "eng": "What time does it arrive?", "ipa": "(wʌt taɪm dəz ɪt əˈraɪv)", "kor": "몇 시에 도착하나요?", "ex": "I'm meeting a friend.\nWhat time does it arrive?"}, {"num": 200, "eng": "Is it on schedule?", "ipa": "(ɪz ɪt ɑn ˈskɛʤʊl)", "kor": "제시간에 도착하나요?", "ex": "The weather is bad.\nIs it on schedule?"}]}, {"title": "5. 전화·인터넷·일 관련 표현 (201~250)", "items": [{"num": 201, "eng": "Can I speak to…?", "ipa": "(kæn aɪ spiːk tə)", "kor": "…와 통화할 수 있을까요?", "ex": "Hello.\nCan I speak to John?"}, {"num": 202, "eng": "May I speak with…?", "ipa": "(meɪ aɪ spiːk wɪð)", "kor": "…와 통화할 수 있을까요? (정중)", "ex": "May I speak with the manager?"}, {"num": 203, "eng": "I’ll call back later.", "ipa": "(aɪl kɔl bæk ˈleɪtər)", "kor": "나중에 다시 전화할게요", "ex": "He is busy?\nI'll call back later."}, {"num": 204, "eng": "Could you hold, please?", "ipa": "(kʊd ju hoʊld pliz)", "kor": "잠시만 기다려 주시겠어요?", "ex": "Let me check.\nCould you hold, please?"}, {"num": 205, "eng": "This is… speaking.", "ipa": "(ðɪs ɪz ˈspiːkɪŋ)", "kor": "…입니다 (전화)", "ex": "Hello, this is Mike speaking."}, {"num": 206, "eng": "I’m returning your call.", "ipa": "(aɪm rɪˈtɜrnɪŋ jʊr kɔl)", "kor": "전화 주셔서 연락드립니다", "ex": "Hi, this is Jane.\nI'm returning your call."}, {"num": 207, "eng": "Could you spell that?", "ipa": "(kʊd ju spɛl ðæt)", "kor": "철자를 말해 주시겠어요?", "ex": "I can't write your name.\nCould you spell that?"}, {"num": 208, "eng": "I’m having trouble with…", "ipa": "(aɪm ˈhævɪŋ ˈtrʌbl wɪð)", "kor": "…에 문제가 있어요", "ex": "I'm having trouble with the internet."}, {"num": 209, "eng": "It’s not working.", "ipa": "(ɪts nɑt ˈwɜrkɪŋ)", "kor": "작동하지 않아요", "ex": "The printer is broken.\nIt's not working."}, {"num": 210, "eng": "Can you send me an email?", "ipa": "(kæn ju sɛnd mi ən ˈiˌmeɪl)", "kor": "이메일 보내주실 수 있나요?", "ex": "Send the details.\nCan you send me an email?"}, {"num": 211, "eng": "I’ll forward it to you.", "ipa": "(aɪl ˈfɔrwərd ɪt tə ju)", "kor": "전달해 드릴게요", "ex": "I got the file.\nI'll forward it to you."}, {"num": 212, "eng": "Let’s schedule a meeting.", "ipa": "(lɛts ˈskɛʤʊl ə ˈmitɪŋ)", "kor": "회의를 잡읍시다", "ex": "We need to talk.\nLet's schedule a meeting."}, {"num": 213, "eng": "I’m running late.", "ipa": "(aɪm ˈrʌnɪŋ leɪt)", "kor": "늦을 것 같아요", "ex": "Traffic is bad.\nI'm running late."}, {"num": 214, "eng": "Can we reschedule?", "ipa": "(kæn wi ˌriˈskɛʤʊl)", "kor": "일정 다시 잡을 수 있을까요?", "ex": "Something came up.\nCan we reschedule?"}, {"num": 215, "eng": "I’ll be there in 10 minutes.", "ipa": "(aɪl bi ðɛr ɪn tɛn ˈmɪnəts)", "kor": "10분 후에 도착할게요", "ex": "Wait for me.\nI'll be there in 10 minutes."}, {"num": 216, "eng": "I need an update.", "ipa": "(aɪ nid ən ˈʌpˌdeɪt)", "kor": "업데이트 필요해요", "ex": "How is the project?\nI need an update."}, {"num": 217, "eng": "Can you clarify?", "ipa": "(kæn ju ˈklærəˌfaɪ)", "kor": "명확히 해주실 수 있나요?", "ex": "I don't understand.\nCan you clarify?"}, {"num": 218, "eng": "I’m confirming…", "ipa": "(aɪm kənˈfɜrmɪŋ)", "kor": "…을 확인하고 있어요", "ex": "I'm confirming our appointment."}, {"num": 219, "eng": "I’m following up on…", "ipa": "(aɪm ˈfɑloʊɪŋ ʌp ɑn)", "kor": "…에 대해 후속 조치 중입니다", "ex": "I'm following up on your email."}, {"num": 220, "eng": "Please find attached…", "ipa": "(pliz faɪnd əˈtæʧt)", "kor": "첨부파일 확인해주세요", "ex": "Please find attached the report."}, {"num": 221, "eng": "I’ll get back to you soon.", "ipa": "(aɪl gɛt bæk tə ju sun)", "kor": "곧 답변 드릴게요", "ex": "I'm checking now.\nI'll get back to you soon."}, {"num": 222, "eng": "I’m available.", "ipa": "(aɪm əˈveɪləbl)", "kor": "시간 돼요 / 가능해요", "ex": "A: Can we meet at 2?\nB: Yes, I'm available."}, {"num": 223, "eng": "I’m busy at the moment.", "ipa": "(aɪm ˈbɪzi æt ðə ˈmoʊmənt)", "kor": "지금 바빠요", "ex": "Can we talk later?\nI'm busy at the moment."}, {"num": 224, "eng": "Can you cover for me?", "ipa": "(kæn ju ˈkʌvər fər mi)", "kor": "대신 좀 해줄 수 있나요?", "ex": "I need to leave early.\nCan you cover for me?"}, {"num": 225, "eng": "I’ll handle it.", "ipa": "(aɪl ˈhændəl ɪt)", "kor": "내가 처리할게요", "ex": "It's a difficult client.\nI'll handle it."}, {"num": 226, "eng": "It’s urgent.", "ipa": "(ɪts ˈɜrdʒənt)", "kor": "긴급해요", "ex": "Please reply fast.\nIt's urgent."}, {"num": 227, "eng": "I’ll check on that.", "ipa": "(aɪl ʧɛk ɑn ðæt)", "kor": "확인해볼게요", "ex": "Is it in stock?\nI'll check on that."}, {"num": 228, "eng": "Let’s touch base.", "ipa": "(lɛts tʌʧ beɪs)", "kor": "상황 점검합시다 (연락하자)", "ex": "Let's touch base next week."}, {"num": 229, "eng": "Keep me posted.", "ipa": "(kip mi ˈpoʊstɪd)", "kor": "계속 알려주세요", "ex": "If anything changes,\nkeep me posted."}, {"num": 230, "eng": "I’m looking forward to it.", "ipa": "(aɪm ˈlʊkɪŋ ˈfɔrwərd tə ɪt)", "kor": "기대하고 있어요", "ex": "See you at the party.\nI'm looking forward to it."}, {"num": 231, "eng": "I’m on it.", "ipa": "(aɪm ɑn ɪt)", "kor": "바로 처리할게요", "ex": "Boss: Fix this error.\nMe: I'm on it."}, {"num": 232, "eng": "I’ll get right on it.", "ipa": "(aɪl gɛt raɪt ɑn ɪt)", "kor": "바로 처리하겠습니다 (강조)", "ex": "Send the email now.\nI'll get right on it."}, {"num": 233, "eng": "Please let me know.", "ipa": "(pliz lɛt mi noʊ)", "kor": "알려주세요", "ex": "If you decide,\nplease let me know."}, {"num": 234, "eng": "Can we discuss this?", "ipa": "(kæn wi dɪˈskʌs ðɪs)", "kor": "논의할 수 있을까요?", "ex": "I have an idea.\nCan we discuss this?"}, {"num": 235, "eng": "I need some assistance.", "ipa": "(aɪ nid sʌm əˈsɪstəns)", "kor": "도움이 필요해요 (격식)", "ex": "I can't lift this.\nI need some assistance."}, {"num": 236, "eng": "Could you take a look?", "ipa": "(kʊd ju teɪk ə lʊk)", "kor": "살펴봐 주실 수 있나요?", "ex": "The engine is weird.\nCould you take a look?"}, {"num": 237, "eng": "I’ll handle the details.", "ipa": "(aɪl ˈhændəl ðə ˈdiˌteɪlz)", "kor": "세부사항은 제가 처리할게요", "ex": "You plan the big picture.\nI'll handle the details."}, {"num": 238, "eng": "I’m tied up right now.", "ipa": "(aɪm taɪd ʌp raɪt naʊ)", "kor": "지금 꼼짝 못해 (바빠)", "ex": "Can you talk?\nSorry, I'm tied up right now."}, {"num": 239, "eng": "Let’s finalize this.", "ipa": "(lɛts ˈfaɪnəlˌaɪz ðɪs)", "kor": "이거 마무리합시다", "ex": "We have been talking for hours.\nLet's finalize this."}, {"num": 240, "eng": "Can we postpone?", "ipa": "(kæn wi poʊsˈpoʊn)", "kor": "연기할 수 있을까요?", "ex": "I am sick.\nCan we postpone?"}, {"num": 241, "eng": "I’ll get in touch.", "ipa": "(aɪl gɛt ɪn tʌʧ)", "kor": "연락드릴게요", "ex": "I have your number.\nI'll get in touch."}, {"num": 242, "eng": "Please confirm.", "ipa": "(pliz kənˈfɜrm)", "kor": "확인 부탁드립니다", "ex": "Check the date and\nplease confirm."}, {"num": 243, "eng": "I’ll follow up.", "ipa": "(aɪl ˈfɑloʊ ʌp)", "kor": "후속 조치하겠습니다", "ex": "I sent the email.\nI'll follow up tomorrow."}, {"num": 244, "eng": "I need clarification.", "ipa": "(aɪ nid ˌklærəfəˈkeɪʃən)", "kor": "설명이 필요해요", "ex": "This rule is vague.\nI need clarification."}, {"num": 245, "eng": "Let’s brainstorm.", "ipa": "(lɛts ˈbreɪnˌstɔrm)", "kor": "아이디어 회의를 합시다", "ex": "We need new ideas.\nLet's brainstorm."}, {"num": 246, "eng": "I’ll get back to you shortly.", "ipa": "(aɪl gɛt bæk tə ju ˈʃɔrtli)", "kor": "곧 다시 연락드릴게요", "ex": "Let me check the schedule.\nI'll get back to you shortly."}, {"num": 247, "eng": "Can we talk?", "ipa": "(kæn wi tɔk)", "kor": "얘기 좀 할 수 있을까요?", "ex": "It's important.\nCan we talk?"}, {"num": 248, "eng": "I need to discuss something.", "ipa": "(aɪ nid tə dɪˈskʌs ˈsʌmθɪŋ)", "kor": "논의할 일이 있어요", "ex": "Do you have a minute?\nI need to discuss something."}, {"num": 249, "eng": "I’ll keep you updated.", "ipa": "(aɪl kip ju ˈʌpˌdeɪtɪd)", "kor": "계속 업데이트 해드릴게요", "ex": "Don't worry.\nI'll keep you updated."}, {"num": 250, "eng": "Let’s coordinate.", "ipa": "(lɛts kəʊˈɔrdəˌneɪt)", "kor": "협조해서 진행합시다", "ex": "It's a big team.\nLet's coordinate."}]}, {"title": "6. 감정·응급·기타 상황 표현 (251~300)", "items": [{"num": 251, "eng": "I’m tired.", "ipa": "(aɪm taɪərd)", "kor": "피곤해요", "ex": "I want to sleep.\nI'm tired."}, {"num": 252, "eng": "I’m hungry.", "ipa": "(aɪm ˈhʌŋgri)", "kor": "배고파요", "ex": "Is it lunch time?\nI'm hungry."}, {"num": 253, "eng": "I’m thirsty.", "ipa": "(aɪm ˈθɜrsti)", "kor": "목말라요", "ex": "I need water.\nI'm thirsty."}, {"num": 254, "eng": "I’m sick.", "ipa": "(aɪm sɪk)", "kor": "몸이 안 좋아요", "ex": "I can't go to school.\nI'm sick."}, {"num": 255, "eng": "I’m worried.", "ipa": "(aɪm ˈwɜrid)", "kor": "걱정돼요", "ex": "He is not answering.\nI'm worried."}, {"num": 256, "eng": "I’m excited.", "ipa": "(aɪm ɪkˈsaɪtɪd)", "kor": "신나요", "ex": "It's my birthday!\nI'm excited."}, {"num": 257, "eng": "I’m bored.", "ipa": "(aɪm bɔrd)", "kor": "심심해요", "ex": "This game is not fun.\nI'm bored."}, {"num": 258, "eng": "I’m frustrated.", "ipa": "(aɪm frʌˈstreɪtɪd)", "kor": "답답해요", "ex": "I lost again.\nI'm frustrated."}, {"num": 259, "eng": "I’m happy.", "ipa": "(aɪm ˈhæpi)", "kor": "행복해요", "ex": "I got a promotion.\nI'm happy."}, {"num": 260, "eng": "I’m sad.", "ipa": "(aɪm sæd)", "kor": "슬퍼요", "ex": "My dog died.\nI'm sad."}, {"num": 261, "eng": "Call the police!", "ipa": "(kɔl ðə pəˈlis)", "kor": "경찰을 불러주세요!", "ex": "There is a thief!\nCall the police!"}, {"num": 262, "eng": "Call an ambulance!", "ipa": "(kɔl ən ˈæmbjʊləns)", "kor": "구급차를 불러주세요!", "ex": "He is not breathing.\nCall an ambulance!"}, {"num": 263, "eng": "I need help!", "ipa": "(aɪ nid hɛlp)", "kor": "도와주세요!", "ex": "I'm trapped.\nI need help!"}, {"num": 264, "eng": "I feel sick.", "ipa": "(aɪ fil sɪk)", "kor": "토할 것 같아 / 아파", "ex": "Stop the car.\nI feel sick."}, {"num": 265, "eng": "I lost my wallet.", "ipa": "(aɪ lɔst maɪ ˈwɑlɪt)", "kor": "지갑을 잃어버렸어요", "ex": "I can't pay.\nI lost my wallet."}, {"num": 266, "eng": "I lost my phone.", "ipa": "(aɪ lɔst maɪ foʊn)", "kor": "핸드폰을 잃어버렸어요", "ex": "Can you call my number?\nI lost my phone."}, {"num": 267, "eng": "I need a doctor.", "ipa": "(aɪ nid ə ˈdɑktər)", "kor": "의사가 필요해요", "ex": "It hurts a lot.\nI need a doctor."}, {"num": 268, "eng": "I need medicine.", "ipa": "(aɪ nid ˈmɛdsən)", "kor": "약이 필요해요", "ex": "I have a headache.\nI need medicine."}, {"num": 269, "eng": "It’s an emergency.", "ipa": "(ɪts ən ɪˈmɜrdʒənsi)", "kor": "긴급 상황이에요", "ex": "Please move.\nIt's an emergency."}, {"num": 270, "eng": "I’m lost.", "ipa": "(aɪm lɔst)", "kor": "길을 잃었어요", "ex": "Where am I?\nI'm lost."}, {"num": 271, "eng": "Where is the hospital?", "ipa": "(wɛr ɪz ðə ˈhɑspɪtl)", "kor": "병원이 어디예요?", "ex": "My friend is hurt.\nWhere is the hospital?"}, {"num": 272, "eng": "Where is the pharmacy?", "ipa": "(wɛr ɪz ðə ˈfɑrməsi)", "kor": "약국이 어디예요?", "ex": "I need aspirin.\nWhere is the pharmacy?"}, {"num": 273, "eng": "I need a map.", "ipa": "(aɪ nid ə mæp)", "kor": "지도가 필요해요", "ex": "My phone died.\nI need a map."}, {"num": 274, "eng": "I’m lost, can you help me?", "ipa": "(aɪm lɔst, kæn ju hɛlp mi)", "kor": "길을 잃었는데 도와주세요", "ex": "I don't know this area.\nI'm lost, can you help me?"}, {"num": 275, "eng": "I don’t feel well.", "ipa": "(aɪ doʊnt fil wɛl)", "kor": "몸이 좋지 않아요", "ex": "I'm going home early.\nI don't feel well."}, {"num": 276, "eng": "I need water.", "ipa": "(aɪ nid ˈwɔtər)", "kor": "물이 필요해요", "ex": "I'm dizzy.\nI need water."}, {"num": 277, "eng": "I’m cold.", "ipa": "(aɪm koʊld)", "kor": "추워요", "ex": "Close the window.\nI'm cold."}, {"num": 278, "eng": "I’m hot.", "ipa": "(aɪm hɑt)", "kor": "더워요", "ex": "Turn on the AC.\nI'm hot."}, {"num": 279, "eng": "I’m lost my way.", "ipa": "(aɪm lɔst maɪ weɪ)", "kor": "길을 잃었어요", "ex": "I can't find the hotel.\nI lost my way."}, {"num": 280, "eng": "I need directions.", "ipa": "(aɪ nid dəˈrɛkʃənz)", "kor": "길 안내가 필요해요", "ex": "How do I get to the park?\nI need directions."}, {"num": 281, "eng": "I’m in trouble.", "ipa": "(aɪm ɪn ˈtrʌbl)", "kor": "곤란해요 / 문제가 있어요", "ex": "I broke the window.\nI'm in trouble."}, {"num": 282, "eng": "Call for help!", "ipa": "(kɔl fɔr hɛlp)", "kor": "도움을 요청하세요!", "ex": "Someone is drowning.\nCall for help!"}, {"num": 283, "eng": "Fire!", "ipa": "(ˈfaɪər)", "kor": "불이야!", "ex": "Get out of the building!\nFire!"}, {"num": 284, "eng": "Watch out!", "ipa": "(wɑʧ aʊt)", "kor": "조심해!", "ex": "A car is coming!\nWatch out!"}, {"num": 285, "eng": "Be careful!", "ipa": "(bi ˈkɛrfəl)", "kor": "조심하세요!", "ex": "The floor is wet.\nBe careful!"}, {"num": 286, "eng": "Don’t panic.", "ipa": "(doʊnt ˈpænɪk)", "kor": "당황하지 마세요", "ex": "Stay calm.\nDon't panic."}, {"num": 287, "eng": "Stay calm.", "ipa": "(steɪ kɑm)", "kor": "진정하세요", "ex": "Everything is okay.\nStay calm."}, {"num": 288, "eng": "It’s okay.", "ipa": "(ɪts oʊˈkeɪ)", "kor": "괜찮아요", "ex": "Don't cry.\nIt's okay."}, {"num": 289, "eng": "No problem.", "ipa": "(noʊ ˈprɑbləm)", "kor": "문제없어요", "ex": "I can fix it.\nNo problem."}, {"num": 290, "eng": "I’m fine.", "ipa": "(aɪm faɪn)", "kor": "괜찮아요", "ex": "I'm not hurt.\nI'm fine."}, {"num": 291, "eng": "I’m safe.", "ipa": "(aɪm seɪf)", "kor": "안전해요", "ex": "I'm at home now.\nI'm safe."}, {"num": 292, "eng": "Can you help me, please?", "ipa": "(kæn ju hɛlp mi pliz)", "kor": "도와주실 수 있나요?", "ex": "I fell down.\nCan you help me, please?"}, {"num": 293, "eng": "I need a taxi.", "ipa": "(aɪ nid ə ˈtæksi)", "kor": "택시가 필요해요", "ex": "I'm late for the airport.\nI need a taxi."}, {"num": 294, "eng": "I’m looking for…", "ipa": "(aɪm ˈlʊkɪŋ fɔr)", "kor": "…을 찾고 있어요", "ex": "I'm looking for my dog."}, {"num": 295, "eng": "I can’t find…", "ipa": "(aɪ kænt faɪnd)", "kor": "…을 찾을 수 없어요", "ex": "I can't find my passport."}, {"num": 296, "eng": "Please help me.", "ipa": "(pliz hɛlp mi)", "kor": "제발 도와주세요", "ex": "Someone is following me.\nPlease help me."}, {"num": 297, "eng": "I need a doctor immediately.", "ipa": "(aɪ nid ə ˈdɑktər ɪˈmidɪətli)", "kor": "즉시 의사가 필요해요", "ex": "He is bleeding.\nI need a doctor immediately."}, {"num": 298, "eng": "I’m hurt.", "ipa": "(aɪm hɜrt)", "kor": "다쳤어요", "ex": "I broke my leg.\nI'm hurt."}, {"num": 299, "eng": "Call the fire department!", "ipa": "(kɔl ðə ˈfaɪər dɪˌpɑrtmənt)", "kor": "소방서에 전화하세요!", "ex": "Smoke is coming out.\nCall the fire department!"}, {"num": 300, "eng": "Help!", "ipa": "(hɛlp)", "kor": "도와주세요!", "ex": "Help! Help!\nI'm drowning!"}]}];
+</script>
+<script>
+(function(){
+  // Flatten all cards with section index
+  const sections = DATA.map((s,i)=>({title:s.title, items:s.items}));
+  const allCards = [];
+  sections.forEach((s, si)=>{
+    s.items.forEach(it=>{
+      allCards.push(Object.assign({}, it, {sectionIndex:si, sectionTitle:s.title}));
+    });
+  });
+
+  const STORE_KEY = 'life-eng-300-progress-v1';
+  let progress = {}; // num -> 'know' | 'dont'
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw) progress = JSON.parse(raw);
+  }catch(e){ progress = {}; }
+  function saveProgress(){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(progress)); }catch(e){}
+  }
+
+  let currentFilterSection = 'all'; // 'all' or index
+  let searchTerm = '';
+  let unknownOnly = false;
+  let deck = []; // current working list of cards (respect filter/search/unknownOnly), possibly shuffled
+  let flashIndex = 0;
+  let flipped = false;
+
+  const chipRow = document.getElementById('chipRow');
+  const searchBox = document.getElementById('searchBox');
+  const tabFlash = document.getElementById('tabFlash');
+  const tabList = document.getElementById('tabList');
+  const flashSection = document.getElementById('flashSection');
+  const listSection = document.getElementById('listSection');
+
+  function buildChips(){
+    chipRow.innerHTML = '';
+    const allChip = document.createElement('div');
+    allChip.className = 'chip active';
+    allChip.textContent = '전체 300';
+    allChip.onclick = ()=>{ currentFilterSection='all'; refreshChipActive(); rebuildDeck(); };
+    chipRow.appendChild(allChip);
+    sections.forEach((s, si)=>{
+      const c = document.createElement('div');
+      c.className = 'chip';
+      const shortTitle = s.title.replace(/^\d+\.\s*/, '');
+      c.textContent = shortTitle;
+      c.onclick = ()=>{ currentFilterSection = si; refreshChipActive(); rebuildDeck(); };
+      c.dataset.section = si;
+      chipRow.appendChild(c);
+    });
+  }
+  function refreshChipActive(){
+    Array.from(chipRow.children).forEach((c, idx)=>{
+      const isAll = idx===0;
+      c.classList.toggle('active', (isAll && currentFilterSection==='all') || (!isAll && currentFilterSection===(idx-1)));
+    });
+  }
+
+  function matchesFilter(card){
+    if(currentFilterSection!=='all' && card.sectionIndex!==currentFilterSection) return false;
+    if(unknownOnly && progress[card.num]==='know') return false;
+    if(searchTerm){
+      const t = searchTerm.toLowerCase();
+      if(!(card.eng.toLowerCase().includes(t) || card.kor.toLowerCase().includes(t))) return false;
+    }
+    return true;
+  }
+
+  function rebuildDeck(keepOrder){
+    const base = allCards.filter(matchesFilter);
+    deck = base;
+    flashIndex = 0;
+    flipped = false;
+    renderFlash();
+    renderList();
+  }
+
+  function countKnown(){
+    let k=0,d=0;
+    deck.forEach(c=>{
+      if(progress[c.num]==='know') k++;
+      else if(progress[c.num]==='dont') d++;
+    });
+    return {k,d};
+  }
+
+  function renderFlash(){
+    const progressLabel = document.getElementById('progressLabel');
+    const progressFill = document.getElementById('progressFill');
+    const markSummary = document.getElementById('markSummary');
+    const flipCard = document.getElementById('flipCard');
+
+    if(deck.length===0){
+      progressLabel.textContent = '0 / 0';
+      progressFill.style.width='0%';
+      markSummary.textContent = '✅0 ❌0';
+      document.getElementById('engText').textContent = '조건에 맞는 카드가 없어요';
+      document.getElementById('ipaText').textContent = '';
+      document.getElementById('korText').textContent = '';
+      document.getElementById('exText').textContent = '';
+      document.getElementById('numFront').textContent='';
+      document.getElementById('numBack').textContent='';
+      flipCard.classList.remove('flipped');
+      return;
+    }
+    if(flashIndex>=deck.length) flashIndex = deck.length-1;
+    if(flashIndex<0) flashIndex = 0;
+    const card = deck[flashIndex];
+    progressLabel.textContent = (flashIndex+1) + ' / ' + deck.length;
+    progressFill.style.width = ((flashIndex+1)/deck.length*100) + '%';
+    const {k,d} = countKnown();
+    markSummary.textContent = '✅' + k + ' ❌' + d;
+
+    document.getElementById('numFront').textContent = '#' + card.num;
+    document.getElementById('numBack').textContent = '#' + card.num;
+    document.getElementById('engText').textContent = card.eng;
+    document.getElementById('ipaText').textContent = card.ipa;
+    document.getElementById('korText').textContent = card.kor;
+    document.getElementById('exText').textContent = card.ex;
+
+    flipCard.classList.toggle('flipped', flipped);
+
+    updateMarkButtons(card);
+  }
+
+  function updateMarkButtons(card){
+    const knowBtn = document.getElementById('knowBtn');
+    const dontBtn = document.getElementById('dontKnowBtn');
+    knowBtn.classList.toggle('active', progress[card.num]==='know');
+    dontBtn.classList.toggle('active', progress[card.num]==='dont');
+  }
+
+  function renderList(){
+    listSection.innerHTML='';
+    if(deck.length===0){
+      const empty = document.createElement('div');
+      empty.className='empty-msg';
+      empty.textContent='조건에 맞는 표현이 없어요.';
+      listSection.appendChild(empty);
+      return;
+    }
+    let lastSection = null;
+    deck.forEach(card=>{
+      if(currentFilterSection==='all' && card.sectionIndex!==lastSection){
+        lastSection = card.sectionIndex;
+        const h = document.createElement('div');
+        h.className='section-title';
+        h.textContent = card.sectionTitle;
+        listSection.appendChild(h);
+      }
+      const item = document.createElement('div');
+      item.className='list-item';
+      item.innerHTML = `
+        <div class="row1">
+          <span class="num">#${card.num}</span>
+          <span class="eng">${escapeHtml(card.eng)}</span>
+        </div>
+        <div class="ipa">${escapeHtml(card.ipa)}</div>
+        <div class="kor">${escapeHtml(card.kor)}</div>
+        <div class="ex">${escapeHtml(card.ex)}</div>
+      `;
+      item.onclick = ()=>{ item.classList.toggle('open'); };
+      listSection.appendChild(item);
+    });
+  }
+
+  function escapeHtml(s){
+    return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  // Flip interaction
+  document.getElementById('flipCard').addEventListener('click', ()=>{
+    if(deck.length===0) return;
+    flipped = !flipped;
+    document.getElementById('flipCard').classList.toggle('flipped', flipped);
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', ()=>{
+    if(deck.length===0) return;
+    flashIndex = (flashIndex-1+deck.length)%deck.length;
+    flipped = false;
+    renderFlash();
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    if(deck.length===0) return;
+    flashIndex = (flashIndex+1)%deck.length;
+    flipped = false;
+    renderFlash();
+  });
+
+  document.getElementById('knowBtn').addEventListener('click', ()=>{
+    if(deck.length===0) return;
+    const card = deck[flashIndex];
+    progress[card.num] = progress[card.num]==='know' ? undefined : 'know';
+    if(progress[card.num]===undefined) delete progress[card.num];
+    saveProgress();
+    renderFlash();
+  });
+  document.getElementById('dontKnowBtn').addEventListener('click', ()=>{
+    if(deck.length===0) return;
+    const card = deck[flashIndex];
+    progress[card.num] = progress[card.num]==='dont' ? undefined : 'dont';
+    if(progress[card.num]===undefined) delete progress[card.num];
+    saveProgress();
+    renderFlash();
+  });
+
+  document.getElementById('shuffleBtn').addEventListener('click', ()=>{
+    for(let i=deck.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [deck[i],deck[j]] = [deck[j],deck[i]];
+    }
+    flashIndex = 0;
+    flipped = false;
+    renderFlash();
+    renderList();
+  });
+
+  const unknownOnlyBtn = document.getElementById('unknownOnlyBtn');
+  unknownOnlyBtn.addEventListener('click', ()=>{
+    unknownOnly = !unknownOnly;
+    unknownOnlyBtn.classList.toggle('active', unknownOnly);
+    unknownOnlyBtn.style.background = unknownOnly ? 'var(--accent-soft)' : '';
+    unknownOnlyBtn.style.color = unknownOnly ? 'var(--accent-ink)' : '';
+    unknownOnlyBtn.style.borderColor = unknownOnly ? 'var(--accent)' : '';
+    rebuildDeck();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    if(confirm('학습 기록(외웠음/모르겠음 표시)을 모두 초기화할까요?')){
+      progress = {};
+      saveProgress();
+      renderFlash();
+    }
+  });
+
+  searchBox.addEventListener('input', (e)=>{
+    searchTerm = e.target.value.trim();
+    rebuildDeck();
+  });
+
+  tabFlash.addEventListener('click', ()=>{
+    tabFlash.classList.add('active');
+    tabList.classList.remove('active');
+    flashSection.style.display='flex';
+    listSection.style.display='none';
+  });
+  tabList.addEventListener('click', ()=>{
+    tabList.classList.add('active');
+    tabFlash.classList.remove('active');
+    flashSection.style.display='none';
+    listSection.style.display='flex';
+  });
+
+  // keyboard support (desktop)
+  document.addEventListener('keydown', (e)=>{
+    if(flashSection.style.display==='none') return;
+    if(e.key==='ArrowRight') document.getElementById('nextBtn').click();
+    else if(e.key==='ArrowLeft') document.getElementById('prevBtn').click();
+    else if(e.key===' '){ e.preventDefault(); document.getElementById('flipCard').click(); }
+  });
+
+  buildChips();
+  rebuildDeck();
+})();
+</script>
+</body>
+</html>
