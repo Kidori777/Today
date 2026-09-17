@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유래초밥 스타일 비법 통도미찜 레시피</title>
+    <style>
+        /* 기본 스타일 초기화 및 폰트 설정 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            background-color: #2b1e1a; /* 일식 간장 및 목재 느낌의 깊고 따뜻한 배경색 */
+            color: #4a3b32;
+            line-height: 1.7;
+            padding: 20px 10px;
+        }
+
+        /* 컨테이너 및 카드 디자인 */
+        .recipe-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fcf8f2; /* 부드럽고 따뜻한 아이보리 톤 배경 */
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            padding: 40px 25px;
+        }
+
+        /* 헤더 섹션 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sub-title {
+            font-size: 0.95rem;
+            color: #d97736; /* 알싸하고 입맛을 돋우는 오렌지 브라운 */
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .main-title {
+            font-size: 2.1rem;
+            font-weight: 400; /* 과하게 굵지 않고 또렷한 굵기 */
+            color: #9e2a2b; /* 눈에 띄는 깊은 레드/버건디 포인트 컬러 */
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+            word-break: keep-all;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: #66574d;
+            max-width: 600px;
+            margin: 0 auto;
+            word-break: keep-all;
+        }
+
+        /* 이미지 중앙 정렬 영역 */
+        .image-container {
+            text-align: center;
+            margin: 25px 0 35px 0;
+        }
+
+        .image-container img {
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* 공통 섹션 스타일 */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2b1e1a;
+            border-bottom: 2px solid #e0d0c1;
+            padding-bottom: 8px;
+            margin: 35px 0 18px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 18px;
+            background-color: #d97736;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        /* 재료 리스트 */
+        .ingredients-grid {
+            background-color: #f4ede2;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .ingredient-group {
+            margin-bottom: 15px;
+        }
+
+        .ingredient-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .group-title {
+            font-weight: 700;
+            color: #8c3b1a;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .ingredient-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            font-size: 0.92rem;
+        }
+
+        .ingredient-list li {
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .ingredient-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d97736;
+        }
+
+        /* 조리 단계 및 플레이팅 */
+        .step-list {
+            list-style: none;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 30px;
+            height: 30px;
+            background-color: #2b1e1a;
+            color: #fcf8f2;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: #2b1e1a;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .step-desc {
+            font-size: 0.93rem;
+            color: #55463d;
+            word-break: keep-all;
+        }
+
+        .highlight {
+            color: #b84a14;
+            font-weight: 600;
+        }
+
+        /* 완결 문구 */
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #d8c6b5;
+            font-size: 0.95rem;
+            color: #7a685b;
+            font-style: italic;
+        }
+
+        /* 미디어 쿼리 (모바일 대응) */
+        @media (max-width: 600px) {
+            .recipe-card {
+                padding: 25px 15px;
+            }
+
+            .main-title {
+                font-size: 1.6rem;
+            }
+
+            .step-item {
+                padding-left: 38px;
+            }
+
+            .step-number {
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                font-size: 0.8rem;
+            }
+            
+            .image-container img {
+                max-width: 80% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="recipe-card">
+        <!-- 헤더 영역 -->
+        <header class="header">
+            <div class="sub-title">전현무계획 인천 계산동 노포 스타일</div>
+            <h1 class="main-title">유래초밥 비법 통도미찜</h1>
+            <p class="description">
+                일식 특유의 단짠 간장 베이스에 칼칼한 청양고추와 채소, 그리고 특유의 은은한 감칠맛이 조화를 이루는 프리미엄 생선 요리입니다.
+            </p>
+        </header>
+
+        <!-- 요청하신 음식 사진 영역 (가운데 정렬) -->
+        <div class="image-container">
+            <img src="https://kidori777.github.io/Korean-lesson/요리사진파일명" alt="요리 사진 이름" style="max-width: 50%; height: auto; max-height: 350px;">
+        </div>
+
+        <!-- 재료 준비 영역 -->
+        <section>
+            <h2 class="section-title">필수 재료 준비 <span style="font-size: 0.85rem; font-weight: normal; color: #7a685b; margin-left: 8px;">(2~3인분 기준)</span></h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-group">
+                    <div class="group-title">메인 재료</div>
+                    <ul class="ingredient-list">
+                        <li>싱싱한 참돔(도미) 1마리 (600g~800g)</li>
+                        <li>무 200g</li>
+                        <li>표고버섯 2개</li>
+                        <li>대파 2대</li>
+                        <li>청양고추 2개</li>
+                        <li>홍고추 1개</li>
+                        <li>양파 1/2개</li>
+                    </ul>
+                </div>
+                <div class="ingredient-group">
+                    <div class="group-title">도미 밑간 & 잡내 제거</div>
+                    <ul class="ingredient-list">
+                        <li>청주(또는 맛술) 4큰술</li>
+                        <li>얇게 썬 생강 5편</li>
+                        <li>천일염 약간</li>
+                    </ul>
+                </div>
+                <div class="ingredient-group">
+                    <div class="group-title">비법 간장 양념장</div>
+                    <ul class="ingredient-list">
+                        <li>물 200ml</li>
+                        <li>양조간장 5큰술</li>
+                        <li>국간장 1큰술</li>
+                        <li>맛술 3큰술</li>
+                        <li>황설탕 2큰술</li>
+                        <li>물엿 1큰술</li>
+                        <li>다진 마늘 1.5큰술</li>
+                        <li>다진 생강 0.5작은술</li>
+                        <li><span class="highlight">굴소스 1큰술</span> (노포 맛의 한 끗)</li>
+                        <li>후춧가루 약간</li>
+                        <li>참기름 1큰술</li>
+                        <li>통깨 약간</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 손질 및 조리 과정 -->
+        <section>
+            <h2 class="section-title">1단계: 재료 손질법</h2>
+            <ol class="step-list">
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-title">도미 손질 및 칼집 넣기</div>
+                    <div class="step-desc">비늘, 내장, 지느러미, 피딱지를 깨끗이 제거합니다. 몸통 양면에 2~3cm 간격으로 <span class="highlight">X자 또는 사선 칼집</span>을 깊게 넣습니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">잡내 밑작업</div>
+                    <div class="step-desc">칼집 사이와 배 안쪽에 생강을 끼우고, 청주와 소금을 뿌려 <span class="highlight">15분간</span> 재워둡니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-title">채소 손질</div>
+                    <div class="step-desc">무는 1.5cm 두께 부채꼴로, 양파는 두껍게 채 썹니다. 대파와 고추는 어슷하게 준비합니다.</div>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 class="section-title">2단계: 조리 과정 (Cooking Step)</h2>
+            <ol class="step-list">
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-title">무 1차 익히기</div>
+                    <div class="step-desc">냄비 바닥에 무를 깔고 물 100ml와 간장 1큰술을 넣어 <span class="highlight">약 8분간</span> 먼저 조려 무에 간이 먼저 배게 합니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">도미 얹기 & 양념장 투하</div>
+                    <div class="step-desc">무 위에 양파, 밑간한 도미를 올린 뒤 잘 섞은 비법 양념장을 칼집 사이에 골고루 얹어줍니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-title">본격 조리</div>
+                    <div class="step-desc">뚜껑을 덮고 <span class="highlight">중강 불에서 12~15분간</span> 쪄냅니다. 중간에 국물을 생선 위에 계속 끼얹어 줍니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-title">고명 추가 & 마무리</div>
+                    <div class="step-desc">표고버섯, 대파, 고추를 올리고 약불에서 <span class="highlight">3~5분 더</span> 숨을 죽인 뒤 불을 끄기 전 참기름 1큰술을 둘러 풍미를 올립니다.</div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- 플레이팅 노하우 -->
+        <section>
+            <h2 class="section-title">3단계: 셰프의 플레이팅 비법</h2>
+            <ol class="step-list">
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-title">접시선택 & 담기</div>
+                    <div class="step-desc">깊이감이 있는 <span class="highlight">오발(타원형) 접시</span>를 준비하고, 바닥에 무와 양파를 깐 후 뒤집개 두 개로 형태를 유지하며 도미를 얹습니다.</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">고명 강조 & 마무리</div>
+                    <div class="step-desc">초록빛 대파, 붉은 홍고추, 표고버섯을 예쁘게 정돈하고 자작한 국물을 부은 뒤 볶은 통깨를 뿌려 완성합니다.</div>
+                </li>
+            </ol>
+        </section>
+
+        <footer class="footer-note">
+            도미 특유의 담백하고 탱글한 살집에 청양고추의 알싸함이 감도는 달콤 짭조름한 간장 양념의 조화를 즐겨보세요!
+        </footer>
+    </div>
+
+</body>
+</html>
