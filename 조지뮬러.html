@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>조지 뮬러</title>
+<meta name="description" content="탕자였던 한 사람이 하나님을 만나고, 브리스톨의 고아들을 위해 기도로 살아간 조지 뮬러의 이야기.">
+<meta property="og:title" content="조지 뮬러">
+<meta property="og:description" content="탕자였던 한 사람이 하나님을 만나고, 브리스톨의 고아들을 위해 기도로 살아간 조지 뮬러의 이야기.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-serif:'Noto Serif KR', serif;
+    --font-sans:'Noto Sans KR', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-serif);
+    line-height:1.95;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  canvas#embers{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+  }
+  .hero, .act, footer{ position:relative; z-index:1; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#121019;
+    color:#e7e1ee;
+    padding:2rem;
+  }
+  .hero .kicker{
+    font-family:var(--font-sans);
+    font-weight:300;
+    letter-spacing:.3em;
+    font-size:.7rem;
+    color:#786f92;
+    margin-bottom:1.4rem;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 8vw, 4.6rem);
+    font-weight:600;
+    letter-spacing:.03em;
+    margin:0 0 .9rem;
+  }
+  .hero .years{
+    font-family:var(--font-sans);
+    font-weight:300;
+    letter-spacing:.2em;
+    font-size:.85rem;
+    color:#8f86a3;
+  }
+  .hero .cue{
+    position:absolute;
+    bottom:2.6rem;
+    font-family:var(--font-sans);
+    font-size:.72rem;
+    letter-spacing:.15em;
+    color:#655d7c;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.5rem;
+  }
+  .hero .cue .line{
+    width:1px;
+    height:28px;
+    background:linear-gradient(#655d7c, transparent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+  }
+
+  /* ---------- acts ---------- */
+  .act{ padding:7rem 1.5rem 8rem; }
+  .wrap{ max-width:640px; margin:0 auto; }
+  .era{
+    display:block;
+    font-family:var(--font-sans);
+    font-weight:400;
+    font-size:.8rem;
+    letter-spacing:.16em;
+    margin-bottom:2.4rem;
+  }
+  .act p{
+    margin:0 0 1.5rem;
+    font-size:1.08rem;
+    max-width:38ch;
+  }
+  .act p.quote{
+    font-size:1.3rem;
+    font-weight:500;
+    line-height:1.7;
+    margin:2.4rem 0 2.6rem;
+    padding-left:1.15rem;
+    border-left:2px solid;
+    max-width:34ch;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- act colors ---------- */
+  .act-1{
+    background:linear-gradient(180deg,#121019 0%,#18161d 14%,#18161d 86%,#201a2c 100%);
+    color:#d9d3e3;
+  }
+  .act-1 .era{ color:#7d7391; }
+  .act-1 p.quote{ border-color:#7d7391; color:#c9c0da; }
+
+  .act-2{
+    background:linear-gradient(180deg,#18161d 0%,#201a2c 14%,#201a2c 86%,#12222c 100%);
+    color:#e6dcc7;
+  }
+  .act-2 .era{ color:#d7a15c; }
+  .act-2 p.quote{ border-color:#d7a15c; color:#f0d9b3; }
+
+  .act-3{
+    background:linear-gradient(180deg,#201a2c 0%,#12222c 14%,#12222c 86%,#221c16 100%);
+    color:#d7e6ea;
+  }
+  .act-3 .era{ color:#5fa0b0; }
+  .act-3 p.quote{ border-color:#5fa0b0; color:#c7e6ec; }
+
+  .act-4{
+    background:linear-gradient(180deg,#12222c 0%,#221c16 14%,#221c16 86%,#241a14 100%);
+    color:#e7d8bb;
+  }
+  .act-4 .era{ color:#b98a4a; }
+  .act-4 p.quote{ border-color:#b98a4a; color:#f0dcb8; }
+
+  .act-5{
+    background:linear-gradient(180deg,#221c16 0%,#241a14 14%,#241a14 86%,#2c1f10 100%);
+    color:#e5cdb2;
+  }
+  .act-5 .era{ color:#a35f37; }
+  .act-5 p.quote{ border-color:#a35f37; color:#f0c8a6; }
+
+  .act-6{
+    background:linear-gradient(180deg,#241a14 0%,#2c1f10 14%,#2c1f10 86%,#191923 100%);
+    color:#f5e6bf;
+  }
+  .act-6 .era{ color:#e3a955; }
+  .act-6 p.quote{ border-color:#e3a955; color:#ffedbf; }
+
+  .act-7{
+    background:linear-gradient(180deg,#2c1f10 0%,#191923 14%,#191923 82%,#f4ead4 100%);
+    color:#d3d3e6;
+  }
+  .act-7 .era{ color:#7c86ab; }
+  .act-7 p.quote{ border-color:#7c86ab; color:#c9c9e8; }
+
+  .act-8{
+    background:#f4ead4;
+    color:#241a10;
+  }
+  .act-8 .era{ color:#9c5b28; }
+  .act-8 p.quote{ border-color:#9c5b28; color:#7a3f16; }
+
+  footer{
+    background:#efe0c4;
+    text-align:center;
+    padding:5rem 1.5rem 6rem;
+  }
+  footer p{
+    font-family:var(--font-sans);
+    font-weight:300;
+    font-size:.78rem;
+    letter-spacing:.1em;
+    color:#8a6a3f;
+    margin:0;
+  }
+
+  @media (max-width:480px){
+    .act{ padding:5.5rem 1.3rem 6.5rem; }
+    .act p{ font-size:1rem; max-width:none; }
+    .act p.quote{ font-size:1.15rem; max-width:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .hero .cue .line{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="embers"></canvas>
+
+<header class="hero">
+  <span class="kicker">한 사람의 생애</span>
+  <h1>조지 뮬러</h1>
+  <span class="years">1805 — 1898</span>
+  <div class="cue"><span class="line"></span>SCROLL</div>
+</header>
+
+<main>
+
+  <section class="act act-1">
+    <div class="wrap">
+      <span class="era reveal">1805 · 프로이센</span>
+      <p class="reveal">처음 그는 우리가 아는 모습과 전혀 다른 사람이었습니다.</p>
+      <p class="reveal">그의 이름은 조지 뮬러.</p>
+      <p class="reveal">그는 1805년, 프로이센의 작은 마을에서 태어났습니다.</p>
+      <p class="reveal">아버지는 세금을 관리하는 사람이었고, 집안은 가난하지 않았습니다.</p>
+      <p class="reveal">문제는 환경이 아니라, 그의 내면이었습니다.</p>
+      <p class="reveal">어린 시절부터 그는 이미 길을 잘못 잡고 있었습니다.</p>
+      <p class="reveal">그는 거짓말을 자연스럽게 했고,</p>
+      <p class="reveal">속이는 일에 점점 익숙해졌으며,</p>
+      <p class="reveal">돈에 대한 욕심이 일찍부터 자리 잡았습니다.</p>
+      <p class="reveal">그는 훗날 자신의 어린 시절을 이렇게 돌아봅니다.</p>
+      <p class="reveal quote">"나는 아주 어릴 때부터 도둑질을 했다."</p>
+      <p class="reveal">실제로 그는 열 살도 되기 전에</p>
+      <p class="reveal">아버지가 맡고 있던 돈,</p>
+      <p class="reveal">심지어 정부의 돈까지 훔쳤습니다.</p>
+      <p class="reveal">더 놀라운 것은,</p>
+      <p class="reveal">그는 들켜도 멈추지 않았다는 것입니다.</p>
+      <p class="reveal">벌을 받으면 후회하는 것이 아니라,</p>
+      <p class="reveal quote">"다음에는 더 잘 숨겨야겠다"</p>
+      <p class="reveal">이렇게 생각했습니다.</p>
+      <p class="reveal">그의 삶은 점점 더 깊어졌습니다.</p>
+      <p class="reveal">청소년이 되었을 때 그는 이미</p>
+      <p class="reveal">거짓말, 사기, 술, 방탕한 삶 속에 있었습니다.</p>
+      <p class="reveal">열네 살이 되었을 때, 그의 인생에 한 장면이 기록됩니다.</p>
+      <p class="reveal">그의 어머니가 죽어가고 있던 그 밤,</p>
+      <p class="reveal">그는 그것도 모른 채 친구들과 카드 놀이를 하고 있었습니다.</p>
+      <p class="reveal">그리고 다음 날은 술집에서 시간을 보냈습니다.</p>
+      <p class="reveal">이 장면은 단순한 사건이 아니라,</p>
+      <p class="reveal">그의 상태를 그대로 보여줍니다.</p>
+      <p class="reveal">하나님과는 전혀 관계없는 삶,</p>
+      <p class="reveal">양심보다 욕망이 앞선 삶.</p>
+      <p class="reveal">그는 심지어 사기죄로 감옥에 갇힌 적도 있었습니다.</p>
+      <p class="reveal">그런데도 그의 인생은 계속 같은 방향으로 흘러갔습니다.</p>
+      <p class="reveal">그의 아버지는 그를 신학자로 만들고 싶어 했습니다.</p>
+      <p class="reveal">그러나 이유는 하나님 때문이 아니었습니다.</p>
+      <p class="reveal quote">"편하게 먹고 살 수 있기 때문"이었습니다.</p>
+      <p class="reveal">그래서 그는 학교에 보내졌고,</p>
+      <p class="reveal">결국 대학에서 신학을 공부하게 됩니다.</p>
+      <p class="reveal">하지만 그는 여전히 변하지 않았습니다.</p>
+      <p class="reveal">성경도 읽지 않았고,</p>
+      <p class="reveal">하나님을 알고자 하는 마음도 없었습니다.</p>
+      <p class="reveal">그는 훗날 그 시기를 이렇게 말합니다.</p>
+      <p class="reveal quote">"나는 몇 년 동안 성경을 읽은 적도 없었다."</p>
+      <p class="reveal">겉으로는 신학도였지만,</p>
+      <p class="reveal">속은 완전히 하나님과 분리된 상태였습니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-2">
+    <div class="wrap">
+      <span class="era reveal">1825 · 전환점</span>
+      <p class="reveal">그렇게 흘러가던 그의 인생에</p>
+      <p class="reveal">조용하지만 결정적인 밤이 찾아옵니다.</p>
+      <p class="reveal">1825년 어느 날,</p>
+      <p class="reveal">친구의 초대를 받아 한 가정집 모임에 가게 됩니다.</p>
+      <p class="reveal">그곳에는 화려한 설교도 없었습니다.</p>
+      <p class="reveal">단지 몇 사람이 모여</p>
+      <p class="reveal">무릎을 꿇고 하나님께 기도하고 있었습니다.</p>
+      <p class="reveal">그는 그 장면을 보며 충격을 받습니다.</p>
+      <p class="reveal quote">"이 사람들은 하나님을 실제로 알고 있다…"</p>
+      <p class="reveal">그날 밤, 그는 처음으로</p>
+      <p class="reveal">자신이 하나님과 전혀 관계없는 사람이라는 것을 깨닫게 됩니다.</p>
+      <p class="reveal">그 자리에서 그의 안에 변화가 시작됩니다.</p>
+      <p class="reveal">그는 말합니다.</p>
+      <p class="reveal quote">"그날이 내 인생의 전환점이었다."</p>
+      <p class="reveal">그 변화는 단순한 감정이 아니었습니다.</p>
+      <p class="reveal">그 이후 그의 삶의 방향이 바뀌기 시작합니다.</p>
+      <p class="reveal">거짓과 속임으로 살던 사람이</p>
+      <p class="reveal">진실을 구하기 시작하고,</p>
+      <p class="reveal">자기를 위해 살던 사람이</p>
+      <p class="reveal">하나님을 찾기 시작합니다.</p>
+      <p class="reveal">그는 성경을 읽기 시작했고,</p>
+      <p class="reveal">기도를 배우기 시작했습니다.</p>
+      <p class="reveal">그리고 그의 안에 한 갈망이 생깁니다.</p>
+      <p class="reveal quote">"하나님은 정말 어떤 분인가?"</p>
+      <p class="reveal">이 시점부터 그의 삶은</p>
+      <p class="reveal">완전히 다른 흐름으로 들어가기 시작합니다.</p>
+      <p class="reveal">이전까지는</p>
+      <p class="reveal">죄 속에서 내려가던 흐름이었다면,</p>
+      <p class="reveal">이제는</p>
+      <p class="reveal">하나님을 향해 올라가는 길이 열리기 시작한 것입니다.</p>
+      <p class="reveal">그리고 바로 이 지점에서,</p>
+      <p class="reveal">그는 "교회란 무엇인가"를 고민하게 되고,</p>
+      <p class="reveal">훗날 형제회와 만나게 되는 길로 이어지게 됩니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-3">
+    <div class="wrap">
+      <span class="era reveal">영국</span>
+      <p class="reveal">그날 밤 이후, 조용히 시작된 변화는 그의 전 존재를 다른 방향으로 이끌기 시작했습니다.</p>
+      <p class="reveal">이전에는 하나님과 전혀 관계없이 살던 사람이, 이제는 하나님을 실제로 알고자 하는 사람으로 바뀌어 갔습니다.</p>
+      <p class="reveal">그는 점점 성경을 가까이하게 되었고, 단순한 지식이 아니라 하나님 자신을 알고 싶다는 갈망이 그의 안에 깊어졌습니다.</p>
+      <p class="reveal">그 갈망은 그를 독일을 떠나 다른 길로 이끌게 합니다.</p>
+      <p class="reveal">그는 선교사의 길을 생각하며 영국으로 향하게 됩니다.</p>
+      <p class="reveal">영국에 도착한 그는 한동안 전통적인 교회 안에서 사역을 시작합니다.</p>
+      <p class="reveal">처음에는 일반적인 목회자의 길을 따르려 했습니다.</p>
+      <p class="reveal">설교하고, 정해진 구조 속에서 사역을 하는 길이었습니다.</p>
+      <p class="reveal">그러나 시간이 지날수록 그의 안에는 또 하나의 질문이 깊어집니다.</p>
+      <p class="reveal quote">"성경이 말하는 교회는 과연 지금 내가 보고 있는 모습과 같은가?"</p>
+      <p class="reveal">그는 성경을 다시 읽기 시작합니다.</p>
+      <p class="reveal">특히 사도행전과 서신서들을 통해</p>
+      <p class="reveal">초기 교회의 모습이 단순히 제도나 조직이 아니라,</p>
+      <p class="reveal">살아있는 생명의 교통과 몸의 실제라는 것을 보게 됩니다.</p>
+      <p class="reveal">그는 점점 깨닫게 됩니다.</p>
+      <p class="reveal">사람이 세운 체계가 아니라,</p>
+      <p class="reveal">그리스도께서 머리가 되시는 실제가 교회라는 것을.</p>
+      <p class="reveal">이 무렵 그는 플리머스 형제회와 접촉하게 됩니다.</p>
+      <p class="reveal">이들은 기존 교단 구조를 따르지 않았습니다.</p>
+      <p class="reveal">성직자 중심이 아니라,</p>
+      <p class="reveal">모든 믿는 이들이 한 몸의 지체로서 모이는 것을 중요하게 여겼습니다.</p>
+      <p class="reveal">정해진 한 사람이 항상 앞에 서는 것이 아니라,</p>
+      <p class="reveal">성령의 인도에 따라 누구든지 말씀을 나눌 수 있는 열린 모임이었습니다.</p>
+      <p class="reveal">또한 그들은 단순히 모이는 것뿐 아니라,</p>
+      <p class="reveal">성찬을 중심으로 주님을 기억하고,</p>
+      <p class="reveal">기도와 말씀 안에서 서로 교통하는 삶을 살고 있었습니다.</p>
+      <p class="reveal">그에게 이것은 새로운 사상이 아니라,</p>
+      <p class="reveal">성경에서 보았던 것이 실제로 살아 움직이는 장면이었습니다.</p>
+      <p class="reveal">그는 그 안에서 한 가지를 분명히 보게 됩니다.</p>
+      <p class="reveal quote">"하나님은 조직이 아니라, 살아있는 사람들 가운데서 역사하신다."</p>
+      <p class="reveal">그는 점점 확신하게 됩니다.</p>
+      <p class="reveal">그리고 중요한 결정을 내립니다.</p>
+      <p class="reveal">그는 더 이상 사람에게 의존하는 방식의 사역을 하지 않기로 합니다.</p>
+      <p class="reveal">정해진 급여를 받지 않기로 하고</p>
+      <p class="reveal">재정을 사람에게 요청하지 않으며</p>
+      <p class="reveal">오직 하나님께만 필요를 구하기로 합니다</p>
+      <p class="reveal">이 결정은 단순한 방식의 변화가 아니라,</p>
+      <p class="reveal">그의 믿음을 실제로 시험하는 길이었습니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-4">
+    <div class="wrap">
+      <span class="era reveal">브리스톨</span>
+      <p class="reveal">그는 브리스톨로 가게 됩니다.</p>
+      <p class="reveal">그곳에서 그는 형제들과 함께 모이며</p>
+      <p class="reveal">단순한 교회의 삶을 실제로 살아가기 시작합니다.</p>
+      <p class="reveal">말씀과 기도,</p>
+      <p class="reveal">그리고 주님을 중심으로 한 교통 속에서</p>
+      <p class="reveal">그는 하나님이 실제로 공급하신다는 것을 점점 더 경험하게 됩니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-5">
+    <div class="wrap">
+      <span class="era reveal">고아들</span>
+      <p class="reveal">바로 이 흐름 속에서</p>
+      <p class="reveal">그의 마음에 또 하나의 부담이 생깁니다.</p>
+      <p class="reveal">길거리에는 부모를 잃은 아이들이 넘쳐났습니다.</p>
+      <p class="reveal">버려진 아이들, 돌봄받지 못하는 아이들.</p>
+      <p class="reveal">그는 생각합니다.</p>
+      <p class="reveal quote">"이 아이들을 누가 책임질 것인가?"</p>
+      <p class="reveal">그러나 그의 방식은 세상과 달랐습니다.</p>
+      <p class="reveal">그는 사람에게 후원을 요청하지 않기로 이미 결정한 상태였습니다.</p>
+      <p class="reveal">그래서 그는 이 일을 시작하기 전에</p>
+      <p class="reveal">먼저 한 가지 목적을 분명히 합니다.</p>
+      <p class="reveal quote">"이 사역을 통해, 하나님이 실제로 살아 계시고 응답하신다는 것을 증거하겠다."</p>
+      <p class="reveal">그렇게 고아원이 시작됩니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-6">
+    <div class="wrap">
+      <span class="era reveal">응답</span>
+      <p class="reveal">처음부터 상황은 어려웠습니다.</p>
+      <p class="reveal">돈도, 식량도 충분하지 않았습니다.</p>
+      <p class="reveal">어느 날 아침, 아이들은 식탁에 앉아 있었지만</p>
+      <p class="reveal">먹을 것이 아무것도 없었습니다.</p>
+      <p class="reveal">그는 아이들과 함께 조용히 기도합니다.</p>
+      <p class="reveal quote">"하나님, 오늘 우리에게 필요한 것을 아십니다."</p>
+      <p class="reveal">기도가 끝난 직후, 문을 두드리는 소리가 들립니다.</p>
+      <p class="reveal">빵집 주인이 찾아옵니다.</p>
+      <p class="reveal quote">"밤새 마음에 부담이 있어서 빵을 더 만들었습니다."</p>
+      <p class="reveal">얼마 지나지 않아 또 문을 두드립니다.</p>
+      <p class="reveal">우유 배달원이 말합니다.</p>
+      <p class="reveal quote">"마차가 고장 나서 우유를 나눠야 합니다."</p>
+      <p class="reveal">그날 아침, 식탁은 채워졌습니다.</p>
+      <p class="reveal">이 일은 한 번으로 끝나지 않았습니다.</p>
+      <p class="reveal">수십 년 동안,</p>
+      <p class="reveal">수천 번 반복되었습니다.</p>
+      <p class="reveal">그는 단 한 번도 사람에게 직접 요청하지 않았지만,</p>
+      <p class="reveal">필요는 계속 채워졌습니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-7">
+    <div class="wrap">
+      <span class="era reveal">형제회</span>
+      <p class="reveal">그러나 그의 길이 항상 평탄했던 것은 아닙니다.</p>
+      <p class="reveal">형제회 안에서도 갈등이 있었습니다.</p>
+      <p class="reveal">교리와 교제의 문제로 분열이 일어났고,</p>
+      <p class="reveal">그 역시 선택을 해야 했습니다.</p>
+      <p class="reveal">그는 사람을 배척하기보다,</p>
+      <p class="reveal">믿는 이들의 교제를 열어두는 길을 택했습니다.</p>
+      <p class="reveal">그의 선택은 단순한 입장이 아니라,</p>
+      <p class="reveal">그가 이해한 교회의 본질에 대한 표현이었습니다.</p>
+    </div>
+  </section>
+
+  <section class="act act-8">
+    <div class="wrap">
+      <p class="reveal">그의 삶은 한 흐름으로 이어집니다.</p>
+      <p class="reveal">죄와 자기 중심에서 시작된 한 사람이,</p>
+      <p class="reveal">하나님을 실제로 만나고,</p>
+      <p class="reveal">형식 속에서 답을 찾지 못하던 사람이,</p>
+      <p class="reveal">몸의 실제를 발견하며,</p>
+      <p class="reveal">사람을 의지하던 사람이,</p>
+      <p class="reveal">하나님만을 의지하는 자리로 옮겨집니다.</p>
+      <p class="reveal">그리고 그를 통해</p>
+      <p class="reveal">수많은 아이들이 돌봄을 받고,</p>
+      <p class="reveal">수많은 사람들이 하나님을 보게 됩니다.</p>
+      <p class="reveal">그의 삶은 단순한 기적의 기록이 아닙니다.</p>
+      <p class="reveal">하나님께서 한 사람을 얻으셔서</p>
+      <p class="reveal">그를 통해 보이지 않는 방식으로 역사하시는 과정입니다.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>조지 뮬러 (1805 — 1898)</p>
+</footer>
+
+<script>
+(function(){
+  // scroll reveal
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // ember particles
+  var canvas = document.getElementById('embers');
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w, h, particles = [];
+  var COUNT = 34;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight * 1.0;
+    canvas.style.height = window.innerHeight + 'px';
+  }
+  function makeParticle(){
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: 0.6 + Math.random() * 1.3,
+      speed: 0.12 + Math.random() * 0.25,
+      drift: (Math.random() - 0.5) * 0.15,
+      alpha: 0.08 + Math.random() * 0.16
+    };
+  }
+  function init(){
+    resize();
+    particles = [];
+    for(var i=0;i<COUNT;i++){ particles.push(makeParticle()); }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<particles.length;i++){
+      var p = particles[i];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(224,169,85,' + p.alpha + ')';
+      ctx.fill();
+      p.y -= p.speed;
+      p.x += p.drift;
+      if(p.y < -10){
+        p.y = h + 10;
+        p.x = Math.random() * w;
+      }
+    }
+    if(!reduced){ requestAnimationFrame(draw); }
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  if(reduced){
+    draw();
+  } else {
+    requestAnimationFrame(draw);
+  }
+})();
+</script>
+
+</body>
+</html>

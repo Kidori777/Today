@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>존 넬슨 다비 — 떠남, 그리고 기다림</title>
+<meta name="description" content="19세기 런던의 젊은 법률가에서 형제회 운동의 지도자로, 떠남과 기다림으로 요약되는 존 넬슨 다비의 생애 이야기.">
+<meta property="og:title" content="존 넬슨 다비 — 떠남, 그리고 기다림">
+<meta property="og:description" content="19세기 런던의 젊은 법률가에서 형제회 운동의 지도자로, 떠남과 기다림으로 요약되는 존 넬슨 다비의 생애 이야기.">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #141a26;
+    --accent: #8fa4c4;
+    --bg-prev: #141a26;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color:#f2efe9;
+    overflow-x:hidden;
+    transition: background-color 1.4s ease;
+    line-height:1.9;
+  }
+  em, i, .italic{ font-style:normal; }
+
+  canvas#stars{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:0;
+    opacity:0.4;
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+  }
+
+  section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding: 8vh 6vw;
+    position:relative;
+  }
+
+  .eyebrow{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:500;
+    letter-spacing:0.35em;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    color: var(--accent);
+    opacity:0.85;
+    margin-bottom:1.6rem;
+    transition: color 1.4s ease;
+  }
+
+  h1{
+    font-family:'Noto Serif KR', serif;
+    font-weight:900;
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.25;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+  }
+
+  h2{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:clamp(1.7rem, 3.6vw, 2.6rem);
+    line-height:1.4;
+    max-width:18ch;
+    margin-bottom:2.2rem;
+    color:#f6f2ea;
+  }
+
+  .sub{
+    font-family:'Noto Serif KR', serif;
+    font-weight:500;
+    font-size:clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--accent);
+    margin-top:1.4rem;
+    transition: color 1.4s ease;
+  }
+
+  .body-text{
+    max-width:62ch;
+    font-size:clamp(1rem, 1.6vw, 1.14rem);
+    color:#e4e0d8;
+    font-weight:300;
+  }
+
+  .body-text p{
+    margin-bottom:1.5rem;
+  }
+
+  .body-text p:last-child{margin-bottom:0;}
+
+  .quote-block{
+    max-width:56ch;
+    border-left:2px solid var(--accent);
+    padding: 0.4rem 0 0.4rem 1.8rem;
+    margin: 2.2rem 0;
+    transition: border-color 1.4s ease;
+  }
+
+  .quote-block p{
+    font-family:'Noto Serif KR', serif;
+    font-weight:600;
+    font-size:clamp(1.15rem, 2.2vw, 1.5rem);
+    color:#fbf7ef;
+    line-height:1.7;
+  }
+
+  .tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.7rem 1rem;
+    margin: 1.6rem 0 2rem;
+  }
+  .tag{
+    font-size:0.92rem;
+    font-weight:500;
+    color: var(--accent);
+    border:1px solid var(--accent);
+    border-radius:999px;
+    padding:0.35rem 1rem;
+    opacity:0.9;
+    transition: color 1.4s ease, border-color 1.4s ease;
+  }
+
+  .arrow-line{
+    display:flex;
+    align-items:flex-start;
+    gap:0.7rem;
+    margin: 0.5rem 0;
+    font-size:clamp(1rem, 1.7vw, 1.15rem);
+    color:#eae6dd;
+  }
+  .arrow-line .arrow{
+    color: var(--accent);
+    font-weight:700;
+    flex-shrink:0;
+    transition: color 1.4s ease;
+  }
+
+  .year-badge{
+    display:inline-block;
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:clamp(3rem, 9vw, 6rem);
+    color: var(--accent);
+    opacity:0.22;
+    line-height:1;
+    margin-bottom:1rem;
+    transition: color 1.4s ease;
+  }
+
+  .divider{
+    width:56px;
+    height:2px;
+    background: var(--accent);
+    margin: 2rem 0;
+    opacity:0.7;
+    transition: background-color 1.4s ease;
+  }
+
+  .center{
+    align-items:center;
+    text-align:center;
+  }
+  .center .body-text, .center .quote-block{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero{
+    align-items:center;
+    text-align:center;
+    position:relative;
+  }
+  .hero-glow{
+    position:absolute;
+    top:50%; left:50%;
+    width:min(70vw, 620px);
+    height:min(70vw, 620px);
+    transform:translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(143,164,196,0.14) 0%, rgba(143,164,196,0) 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-icon{
+    width:46px;
+    height:46px;
+    color: var(--accent);
+    opacity:0.75;
+    margin-bottom:1.6rem;
+    position:relative;
+    z-index:1;
+    transition: color 1.4s ease;
+  }
+  .location-line{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:400;
+    letter-spacing:0.2em;
+    font-size:0.78rem;
+    color:#8a8f9e;
+    margin-bottom:0.9rem;
+    position:relative;
+    z-index:1;
+  }
+  .hero .eyebrow{margin-bottom:1.6rem; position:relative; z-index:1;}
+  .hero h1{max-width:20ch; margin: 0 auto; position:relative; z-index:1;}
+  .hero .dates{
+    margin-top:1.8rem;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:300;
+    letter-spacing:0.08em;
+    color:#b9b4aa;
+    font-size:1rem;
+    position:relative;
+    z-index:1;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:6vh;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    color:#9a968c;
+    text-transform:uppercase;
+  }
+
+  .closing{
+    align-items:center;
+    text-align:center;
+  }
+  .closing .final-quote{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:clamp(1.4rem, 3vw, 2rem);
+    max-width:20ch;
+    line-height:1.65;
+    color:#fbf7ef;
+    margin: 1.6rem auto 2.4rem;
+  }
+  footer{
+    text-align:center;
+    padding: 5vh 6vw 7vh;
+    font-size:0.85rem;
+    color:#8a867d;
+    font-weight:300;
+    letter-spacing:0.04em;
+  }
+
+  @media (max-width:640px){
+    section{padding:9vh 7vw;}
+    .quote-block{padding-left:1.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="hero" data-bg="#141a26" data-accent="#8fa4c4">
+    <div class="hero-glow"></div>
+    <svg class="hero-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="14" x2="60" y2="96" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="24" y1="30" x2="96" y2="30" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M24 30 L12 58 Q24 70 36 58 L24 30 Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      <path d="M96 30 L84 58 Q96 70 108 58 L96 30 Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      <line x1="42" y1="96" x2="78" y2="96" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="60" cy="14" r="3" fill="currentColor"/>
+    </svg>
+    <div class="location-line">LONDON, 1800</div>
+    <div class="eyebrow">A Life of Leaving &amp; Waiting</div>
+    <h1>한 젊은 법률가,<br>그러나 다른 길을 바라보다</h1>
+    <div class="dates">John Nelson Darby · 1800 – 1882</div>
+    <div class="scroll-cue">Scroll ↓</div>
+  </section>
+
+  <!-- 1. 젊은 법률가 -->
+  <section id="s1" data-bg="#161d29" data-accent="#9db3d1">
+    <div class="eyebrow">19세기 초, 1800년 런던</div>
+    <h2>부유한 가정에서 태어나<br>분명해 보였던 길</h2>
+    <div class="body-text">
+      <p>부유한 가정에서 태어난 한 젊은이가 있었습니다. 그의 이름은 John Nelson Darby.</p>
+      <p>그는 어릴 때부터 뛰어난 지성을 보였고, 아일랜드의 트리니티 대학에서 최고의 성적으로 졸업했습니다. 원래 그의 길은 분명해 보였습니다. 법률가, 사회적으로 성공한 삶.</p>
+      <p>하지만 그 안에는 다른 질문이 있었습니다.</p>
+    </div>
+    <div class="quote-block">
+      <p>&ldquo;사람이 세운 길이 아니라, 하나님이 원하시는 길은 무엇인가?&rdquo;</p>
+    </div>
+    <div class="body-text">
+      <p>결국 그는 법률가의 길을 내려놓고, 영국 국교회 성직자의 길을 선택합니다.</p>
+      <p>그리고 아일랜드의 가난한 시골, 윅로(Wicklow)에서 사역을 시작합니다.</p>
+    </div>
+  </section>
+
+  <!-- 2. 내면의 갈등 -->
+  <section id="s2" data-bg="#211a35" data-accent="#a68fd1">
+    <div class="eyebrow">윅로의 가난한 마을</div>
+    <h2>가난한 마을에서<br>시작된 내면의 갈등</h2>
+    <div class="body-text">
+      <p>그곳에서 그는 단순한 설교자가 아니었습니다.</p>
+      <p>가난한 사람들과 함께 살며 복음을 전했고, 외형적인 성공과는 거리가 먼 삶을 살았습니다.</p>
+      <p>그러나 시간이 흐르면서 그의 안에는 깊은 충돌이 생깁니다.</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag">국가와 연결된 교회</span>
+      <span class="tag">제도 속에 묶인 신앙</span>
+    </div>
+    <div class="body-text">
+      <p>그는 성경을 읽으며 점점 확신하게 됩니다.</p>
+    </div>
+    <div class="quote-block">
+      <p>&ldquo;교회의 머리는 사람이 아니라, 하늘에 계신 그리스도다.&rdquo;</p>
+    </div>
+    <div class="body-text">
+      <p>이 깨달음은 그를 가만두지 않았습니다.</p>
+      <p>결국 1827년, 그는 결단합니다.</p>
+    </div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>국교회를 떠난다.</span></div>
+    <div class="body-text" style="margin-top:1.6rem;">
+      <p>이것은 단순한 직업 변경이 아니라 삶의 기반 전체를 내려놓는 선택이었습니다.</p>
+    </div>
+  </section>
+
+  <!-- 3. 작은 시작 -->
+  <section id="s3" data-bg="#2e2314" data-accent="#e0b46a">
+    <div class="eyebrow">형제회 운동의 씨앗</div>
+    <h2>&ldquo;단순히 떡을 떼는 사람들&rdquo;<br>— 작은 시작</h2>
+    <div class="body-text">
+      <p>그가 교회를 떠난 후, 몇 명의 사람들과 함께 한 일이 있습니다.</p>
+      <p>그들은 집에 모여 성직자도 없이, 형식도 없이, 단순히 떡을 떼며 주님을 기억했습니다.</p>
+      <p>이것이 훗날 형제회(Brethren Movement)의 시작이 됩니다.</p>
+      <p>그들의 특징은 분명했습니다.</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag">조직보다 생명</span>
+      <span class="tag">제도보다 그리스도</span>
+      <span class="tag">모든 성도의 기능</span>
+    </div>
+    <div class="body-text">
+      <p>그들은 이름도 없이 모였지만, 사람들은 그들을 이렇게 부르기 시작합니다.</p>
+    </div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>&ldquo;형제들&rdquo;</span></div>
+  </section>
+
+  <!-- 4. 불이 번지듯 -->
+  <section id="s4" data-bg="#3a2012" data-accent="#e8935a">
+    <div class="eyebrow">1830년대, 플리머스</div>
+    <h2>불이 번지듯<br>퍼지는 움직임</h2>
+    <div class="body-text">
+      <p>1830년대, 다비는 영국 플리머스로 가게 됩니다.</p>
+      <p>그곳에서 수백 명이 모이는 집회가 형성되고 이 운동은 점점 확산됩니다.</p>
+      <p>그래서 붙은 이름이 바로 플리머스 형제회(Plymouth Brethren)입니다.</p>
+      <p>이 흐름은 단순한 지역 운동이 아니었습니다.</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag">영국</span><span class="tag">프랑스</span><span class="tag">스위스</span>
+      <span class="tag">독일</span><span class="tag">북미</span>
+    </div>
+    <div class="body-text">
+      <p>그는 끊임없이 여행하며 복음을 전했고, 여러 나라에 모임들이 세워졌습니다.</p>
+      <p>그는 설교자이면서 동시에 번역자, 신학자, 저술가였습니다.</p>
+      <p>성경을 영어, 독일어, 프랑스어로 번역하며 말씀 자체를 회복하려 했습니다.</p>
+    </div>
+  </section>
+
+  <!-- 5. 갈라짐 -->
+  <section id="s5" data-bg="#2b1518" data-accent="#c9635a">
+    <div class="eyebrow">진리를 지키려다 생긴 갈라짐</div>
+    <h2>타협하지 않은 성격,<br>그리고 분열</h2>
+    <div class="body-text">
+      <p>그러나 이 길은 순탄하지 않았습니다.</p>
+      <p>다비는 진리에 대해 매우 강한 사람이었습니다. 타협하지 않는 성격, 분명한 기준.</p>
+      <p>결국 형제회 안에서도 갈등이 생깁니다.</p>
+    </div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>&ldquo;교회는 하나로 묶여야 하는가?&rdquo;</span></div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>&ldquo;각 모임은 독립적인가?&rdquo;</span></div>
+    <div class="body-text" style="margin-top:1.6rem;">
+      <p>이 논쟁은 결국 분열로 이어졌습니다.</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag">오픈 브레드런 (개방형)</span>
+      <span class="tag">익스클루시브 브레드런 (엄격한 분리)</span>
+    </div>
+    <div class="body-text">
+      <p>다비는 후자의 방향을 이끌었습니다.</p>
+      <p>그의 선택은 오늘까지도 평가가 갈립니다.</p>
+    </div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>&ldquo;진리를 지킨 사람&rdquo;</span></div>
+    <div class="arrow-line"><span class="arrow">👉</span><span>&ldquo;지나치게 분리한 사람&rdquo;</span></div>
+  </section>
+
+  <!-- 6. 떠남과 기다림 -->
+  <section id="s6" data-bg="#0d1120" data-accent="#d4b06a">
+    <div class="eyebrow">한 사람의 평생</div>
+    <h2>떠남,<br>그리고 기다림</h2>
+    <div class="body-text">
+      <p>그의 삶은 한마디로 요약됩니다.</p>
+    </div>
+    <div class="arrow-line"><span class="arrow">👉</span><span style="font-family:'Noto Serif KR',serif; font-weight:700; font-size:1.3rem;">떠남</span></div>
+    <div class="tag-list" style="margin-top:1rem;">
+      <span class="tag">세상의 길을 떠남</span>
+      <span class="tag">제도 교회를 떠남</span>
+      <span class="tag">인간 중심의 신앙을 떠남</span>
+    </div>
+    <div class="body-text" style="margin-top:1rem;"><p>그리고 또 하나</p></div>
+    <div class="arrow-line"><span class="arrow">👉</span><span style="font-family:'Noto Serif KR',serif; font-weight:700; font-size:1.3rem;">기다림</span></div>
+    <div class="body-text" style="margin-top:1rem;">
+      <p>그는 성경을 통해 한 가지를 붙잡았습니다.</p>
+    </div>
+    <div class="quote-block">
+      <p>&ldquo;성도는 이 땅에 정착하는 사람이 아니라 주님의 오심을 기다리는 사람이다.&rdquo;</p>
+    </div>
+    <div class="body-text">
+      <p>그는 휴거와 재림에 대한 가르침을 체계화하며 후대에 큰 영향을 남깁니다.</p>
+    </div>
+  </section>
+
+  <!-- 7. 마지막 장면 -->
+  <section id="s7" class="center" data-bg="#141a26" data-accent="#cbb283">
+    <div class="year-badge">1882</div>
+    <h2>마지막 장면</h2>
+    <div class="body-text">
+      <p>1882년, 그는 조용히 생을 마칩니다.</p>
+      <p>그러나 그가 남긴 것은 단순한 저작이나 조직이 아니었습니다.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="body-text">
+      <p>교회는 건물이 아니라 그리스도의 몸이라는 인식</p>
+      <p>성직자 중심이 아닌 모든 성도의 기능</p>
+      <p>성경으로 돌아가려는 강한 갈망</p>
+    </div>
+  </section>
+
+  <!-- 8. 마무리 -->
+  <section class="closing" id="s8" data-bg="#0d1120" data-accent="#d4b06a">
+    <div class="eyebrow">이야기의 흐름 속에서 보이는 것</div>
+    <div class="body-text">
+      <p>조지 뮬러가 &ldquo;믿음으로 하나님을 의지한 사람&rdquo;이라면,<br>존 넬슨 다비는</p>
+    </div>
+    <div class="final-quote">&ldquo;교회가 무엇인가를<br>끝까지 질문한 사람&rdquo;</div>
+    <div class="body-text">
+      <p>이었습니다.</p>
+      <p>그의 삶 전체는 하나의 질문처럼 보입니다.</p>
+    </div>
+    <div class="quote-block">
+      <p>&ldquo;사람이 만든 교회가 아니라 하나님이 원하시는 교회는 무엇인가?&rdquo;</p>
+    </div>
+    <div class="body-text">
+      <p>그리고 그는 그 답을 조직이 아니라 삶으로 선택했습니다.</p>
+    </div>
+    <footer>John Nelson Darby (1800–1882)</footer>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  // ---- Section-driven background/accent transitions ----
+  const sections = document.querySelectorAll('section[data-bg]');
+  const root = document.documentElement;
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && entry.intersectionRatio > 0.5){
+        const bg = entry.target.dataset.bg;
+        const accent = entry.target.dataset.accent;
+        root.style.setProperty('--bg', bg);
+        root.style.setProperty('--accent', accent);
+      }
+    });
+  }, { threshold: [0.5] });
+
+  sections.forEach(s => observer.observe(s));
+
+  // ---- Reveal-on-scroll for content blocks ----
+  const revealTargets = document.querySelectorAll('.body-text, .quote-block, h1, h2, .tag-list, .arrow-line, .year-badge, .final-quote, .hero-icon, .location-line, .dates, .scroll-cue');
+  revealTargets.forEach(el=>{
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+  });
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  revealTargets.forEach(el => revealObserver.observe(el));
+
+  // ---- Starfield canvas background ----
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars = [];
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = document.body.scrollHeight;
+  }
+
+  function initStars(){
+    const count = Math.floor((w * h) / 14000);
+    stars = [];
+    for(let i=0;i<count;i++){
+      stars.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.3 + 0.3,
+        baseAlpha: Math.random()*0.5 + 0.15,
+        phase: Math.random()*Math.PI*2,
+        speed: Math.random()*0.015 + 0.005
+      });
+    }
+  }
+
+  let t = 0;
+  function draw(){
+    t += 1;
+    ctx.clearRect(0,0,w,h);
+    stars.forEach(s=>{
+      const twinkle = Math.sin(t*s.speed + s.phase) * 0.35 + 0.65;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(230, 224, 210,' + (s.baseAlpha * twinkle) + ')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', ()=>{ resize(); initStars(); });
+  resize();
+  initStars();
+  draw();
+})();
+</script>
+
+</body>
+</html>
