@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>만찬집회 — 주님을 기념하며 아버지를 경배함</title>
+<meta name="description" content="윗트니스 리 형제님의 메시지에서 발췌한 만찬집회 성경공부 개요. 주님을 기념함, 아버지를 경배함, 만찬집회의 실제적 교통과 전진된 의미, 몸을 분변함까지 전체 6장.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="만찬집회 — 주님을 기념하며 아버지를 경배함">
+<meta property="og:description" content="윗트니스 리 형제님의 메시지에서 발췌한 만찬집회 성경공부 개요. 주님을 기념함, 아버지를 경배함, 만찬집회의 실제적 교통과 전진된 의미, 몸을 분변함까지 전체 6장.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:locale" content="ko_KR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#2a160d;
+  --bg-1:#331c11;
+  --bg-2:#3d2417;
+  --bg-soft:#f6efe2;
+  --gold:#c89b4a;
+  --gold-soft:#e3c179;
+  --wine:#ac4053;
+  --wine-soft:#cf7385;
+  --cream:#f3e9da;
+  --taupe:#b9a488;
+  --taupe-dim:#8d7a63;
+  --line:rgba(200,155,74,0.28);
+  --font-serif:'Noto Serif KR', serif;
+  --font-sans:'Noto Sans KR', sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:64px;}
+body{
+  margin:0;
+  background:var(--bg-0);
+  color:var(--cream);
+  font-family:var(--font-serif);
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--wine); color:var(--cream);}
+
+a{color:inherit;}
+
+/* ---------- background canvas ---------- */
+#emberCanvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  opacity:0.55;
+  pointer-events:none;
+}
+
+/* ---------- top nav ---------- */
+.topnav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  padding:10px 18px;
+  padding-top:calc(10px + env(safe-area-inset-top,0px));
+  background:rgba(42,22,13,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  overflow-x:auto;
+  scrollbar-width:none;
+  transform:translateY(-100%);
+  transition:transform .35s ease;
+}
+.topnav::-webkit-scrollbar{display:none;}
+.topnav.visible{transform:translateY(0);}
+.topnav .brand{
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-size:15px;
+  color:var(--gold-soft);
+  white-space:nowrap;
+  padding:6px 14px 6px 4px;
+  margin-right:6px;
+  border-right:1px solid var(--line);
+}
+.topnav a{
+  font-family:var(--font-sans);
+  font-size:13px;
+  white-space:nowrap;
+  padding:7px 12px;
+  border-radius:999px;
+  color:var(--taupe);
+  text-decoration:none;
+  transition:background .2s ease, color .2s ease;
+}
+.topnav a:hover{color:var(--cream);}
+.topnav a.active{
+  background:var(--wine);
+  color:var(--cream);
+}
+
+/* ---------- layout helpers ---------- */
+.wrap{
+  position:relative;
+  z-index:1;
+  max-width:760px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:120px 0 80px;
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+  margin:0 auto;
+  padding:0 24px;
+  width:100%;
+}
+.hero-eyebrow{
+  font-family:var(--font-sans);
+  font-size:14px;
+  letter-spacing:.02em;
+  color:var(--taupe);
+  margin-bottom:22px;
+}
+.hero h1{
+  font-family:var(--font-serif);
+  font-weight:900;
+  font-size:clamp(52px, 11vw, 104px);
+  line-height:1.05;
+  margin:0 0 26px;
+  color:var(--cream);
+}
+.hero-sub{
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:clamp(20px, 3.4vw, 28px);
+  color:var(--gold-soft);
+  margin:0 0 34px;
+}
+.hero-verse{
+  font-family:var(--font-serif);
+  font-size:17px;
+  color:var(--taupe);
+  border-left:2px solid var(--wine);
+  padding-left:18px;
+  max-width:440px;
+  margin:0;
+}
+.hero-verse cite{
+  display:block;
+  font-style:normal;
+  font-family:var(--font-sans);
+  font-size:13px;
+  color:var(--taupe-dim);
+  margin-top:8px;
+}
+.hero-motif{
+  position:absolute;
+  right:-60px;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(46vw, 420px);
+  opacity:.9;
+  z-index:1;
+}
+@media (max-width:760px){
+  .hero-motif{display:none;}
+  .hero{padding-top:100px;}
+}
+
+.scroll-cue{
+  position:absolute;
+  bottom:34px;
+  left:24px;
+  font-family:var(--font-sans);
+  font-size:12px;
+  color:var(--taupe-dim);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:2;
+}
+.scroll-cue .bar{
+  width:1px;
+  height:34px;
+  background:linear-gradient(to bottom, var(--gold), transparent);
+  animation:scrollcue 1.8s ease-in-out infinite;
+}
+@keyframes scrollcue{
+  0%{transform:scaleY(0); transform-origin:top;}
+  50%{transform:scaleY(1); transform-origin:top;}
+  50.01%{transform:scaleY(1); transform-origin:bottom;}
+  100%{transform:scaleY(0); transform-origin:bottom;}
+}
+
+/* ---------- section shared ---------- */
+section.block{
+  position:relative;
+  z-index:1;
+  padding:70px 0;
+}
+.section-label{
+  font-family:var(--font-sans);
+  font-size:13px;
+  color:var(--gold);
+  margin:0 0 14px;
+}
+.preface{
+  font-size:17.5px;
+  color:var(--taupe);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:34px 0;
+}
+
+/* ---------- TOC ---------- */
+.toc-grid{
+  display:grid;
+  gap:2px;
+  margin-top:18px;
+}
+.toc-item{
+  display:flex;
+  align-items:baseline;
+  gap:22px;
+  padding:22px 18px;
+  text-decoration:none;
+  border-bottom:1px solid var(--line);
+  transition:background .25s ease, padding-left .25s ease;
+}
+.toc-item:hover{background:rgba(200,155,74,0.06); padding-left:26px;}
+.toc-num{
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-size:15px;
+  color:var(--gold);
+  min-width:56px;
+}
+.toc-title{
+  font-family:var(--font-serif);
+  font-size:19px;
+  color:var(--cream);
+}
+
+/* ---------- chapter divider motif ---------- */
+.divider{
+  display:flex;
+  justify-content:center;
+  padding:10px 0 6px;
+  opacity:.7;
+}
+.divider svg{width:64px; height:34px;}
+
+/* ---------- chapter ---------- */
+.chapter{
+  padding:64px 0 30px;
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.chapter.revealed{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){
+  .chapter{opacity:1; transform:none; transition:none;}
+}
+.chapter-head{
+  margin-bottom:38px;
+}
+.chapter-eyebrow{
+  display:inline-block;
+  font-family:var(--font-sans);
+  font-size:13px;
+  color:var(--wine-soft);
+  border:1px solid var(--wine);
+  border-radius:999px;
+  padding:5px 14px;
+  margin-bottom:18px;
+}
+.chapter-title{
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-size:clamp(28px, 5vw, 40px);
+  margin:0 0 18px;
+  color:var(--cream);
+}
+.scripture-refs{
+  font-family:var(--font-sans);
+  font-size:13.5px;
+  line-height:1.9;
+  color:var(--taupe-dim);
+  margin:0;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- outline entries ---------- */
+.chapter-body{font-size:16.5px;}
+.entry{
+  display:flex;
+  gap:12px;
+  margin:0;
+  padding:10px 0;
+}
+.entry .marker{
+  flex:none;
+  font-family:var(--font-serif);
+  font-weight:700;
+}
+.entry .txt{color:var(--cream);}
+
+.entry.lv1{
+  margin-top:36px;
+  padding:16px 0 16px 18px;
+  border-left:2px solid var(--gold);
+}
+.entry.lv1 .marker{
+  font-size:17px;
+  color:var(--gold);
+  min-width:26px;
+}
+.entry.lv1 .txt{
+  font-weight:600;
+  font-size:19px;
+  color:var(--cream);
+}
+
+.entry.lv2{
+  margin-left:20px;
+  padding-left:16px;
+  border-left:1px solid var(--wine);
+}
+.entry.lv2 .marker{
+  font-size:15px;
+  color:var(--wine-soft);
+  min-width:20px;
+}
+.entry.lv2 .txt{
+  font-weight:600;
+  font-size:16.5px;
+}
+
+.entry.lv3{
+  margin-left:44px;
+  padding-left:14px;
+  border-left:1px solid var(--line);
+}
+.entry.lv3 .marker{
+  font-size:14.5px;
+  color:var(--gold-soft);
+  min-width:20px;
+}
+
+.entry.lv4{
+  margin-left:68px;
+  padding-left:14px;
+  border-left:1px solid var(--line);
+}
+.entry.lv4 .marker{
+  font-size:14px;
+  color:var(--taupe);
+  min-width:20px;
+}
+.entry.lv4 .txt{color:var(--taupe); font-size:15.5px;}
+
+.entry.lv5{
+  margin-left:92px;
+  padding-left:14px;
+}
+.entry.lv5 .marker{
+  font-size:13.5px;
+  color:var(--taupe-dim);
+  min-width:24px;
+}
+.entry.lv5 .txt{color:var(--taupe-dim); font-size:15px;}
+
+@media (max-width:600px){
+  .entry.lv2{margin-left:12px;}
+  .entry.lv3{margin-left:24px;}
+  .entry.lv4{margin-left:36px;}
+  .entry.lv5{margin-left:48px;}
+}
+
+/* ---------- references / footer ---------- */
+.refs{
+  padding:70px 0 110px;
+  border-top:1px solid var(--line);
+}
+.refs-intro{
+  font-size:15px;
+  color:var(--taupe);
+  margin-bottom:26px;
+}
+.refs ol{
+  font-family:var(--font-sans);
+  font-size:13.5px;
+  color:var(--taupe-dim);
+  line-height:2;
+  padding-left:20px;
+  columns:1;
+}
+@media (min-width:640px){
+  .refs ol{columns:2; column-gap:40px;}
+}
+footer{
+  text-align:center;
+  padding:40px 24px 60px;
+  font-family:var(--font-sans);
+  font-size:12.5px;
+  color:var(--taupe-dim);
+}
+</style>
+</head>
+<body>
+
+<canvas id="emberCanvas"></canvas>
+
+<nav class="topnav" id="topnav">
+  <span class="brand">만찬집회</span>
+  <a href="#ch1" data-nav="ch1">제1장</a>
+  <a href="#ch2" data-nav="ch2">제2장</a>
+  <a href="#ch3" data-nav="ch3">제3장</a>
+  <a href="#ch4" data-nav="ch4">제4장</a>
+  <a href="#ch5" data-nav="ch5">제5장</a>
+  <a href="#ch6" data-nav="ch6">제6장</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">지방교회 성경공부 개요</p>
+    <h1>만찬집회</h1>
+    <p class="hero-sub">주님을 기념하며 아버지를 경배함</p>
+    <p class="hero-verse">이것을 행하여 나를 기념하라
+      <cite>고린도전서 11:24</cite>
+    </p>
+  </div>
+  <svg class="hero-motif" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="180" cy="170" r="110" fill="none" stroke="#c89b4a" stroke-width="2" opacity="0.9"/>
+    <circle cx="180" cy="170" r="140" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.35"/>
+    <circle cx="180" cy="170" r="170" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.18"/>
+    <line x1="110" y1="170" x2="250" y2="170" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
+    <line x1="180" y1="100" x2="180" y2="240" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
+    <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+    <line x1="320" y1="320" x2="320" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+    <line x1="288" y1="380" x2="352" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+  </svg>
+  <div class="scroll-cue"><span class="bar"></span>SCROLL</div>
+</header>
+
+<main class="wrap">
+
+  <section class="block">
+    <p class="section-label">서문</p>
+    <p class="preface">이 책의 개요의 내용은 1964년부터 1990년까지 윗트니스 리 형제님이 전하신 메시지들에서 발췌한 것이다. 그는 만찬 집회가 지방 교회의 가장 중요한 집회라고 말했다. 우리는 이 개요가 주님을 기념하고 그분이 다시 오실 때까지 그분의 죽음을 전람하는 만찬집회에 대한 우리의 이상과 실행을 높일 수 있기를 기도한다.</p>
+  </section>
+
+  <section class="block">
+    <p class="section-label">목차</p>
+    <div class="toc-grid">
+      <a class="toc-item" href="#ch1"><span class="toc-num">제1장</span><span class="toc-title">주님을 기념함(1)</span></a>
+<a class="toc-item" href="#ch2"><span class="toc-num">제2장</span><span class="toc-title">주님을 기념함(2)</span></a>
+<a class="toc-item" href="#ch3"><span class="toc-num">제3장</span><span class="toc-title">아버지를 경배함</span></a>
+<a class="toc-item" href="#ch4"><span class="toc-num">제4장</span><span class="toc-title">만찬집회에 관한 실제적인 교통</span></a>
+<a class="toc-item" href="#ch5"><span class="toc-num">제5장</span><span class="toc-title">만찬집회의 전진된 의미</span></a>
+<a class="toc-item" href="#ch6"><span class="toc-num">제6장</span><span class="toc-title">몸을 분변함</span></a>
+    </div>
+  </section>
+
+  
+<section class="chapter" id="ch1" data-chapter="1">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제 1 장</span>
+    <h2 class="chapter-title">주님을 기념함</h2>
+    <p class="scripture-refs">고린도 전서 11:20, 23-25, 10:16-17,21, 마태복음 26:26-29</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">I</span><span class="txt">만찬집회는 떡을 떼는 집회로서 (행 20:7) 이 집회에서는 믿는이들이 주의 만찬을 먹고(고전 11:20) 주의 상에 참여하기 위하여 (고전 10:21) 함께 모인다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">만찬집회는 지방 교회의 가장 중요한 집회이며 주님의 누림을 위해서 주님을 기념하는 것을 중심으로 하는 집회이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">집회에서 행해지는 모든 것ㅡ찬송을 부르는 것, 찬송가를 말하는 것, 기도와 찬양, 성경 읽기, 영감의 말씀ㅡ 이 주님을 중심 삼아야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">집회에 참석한 사람들은 주님의 인격과 역사, 그분의 사랑과 미덕들, 그분의 이 땅에서의 생활과 고통, 혹은 하늘에서의 그분의 영광과 존귀 등을 말함으로써 다른 사람들이 주님 자신을 기념하기 위하여 이것들을 생각하고 인식할 수 있도록 해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">지방 교회의 만찬집회는 합당하고 적절해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">가련한 집회는 그 지방 교회 안에 있는 성도들의 약함을 드러낸다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">합당치 못한 집회는 그 교회가 아직 필요한 훈련을 받지 못했음을 보여 준다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">부적절한 집회는 그 교회가 성숙하지 못했음을 보여 준다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">강한 집회는 그 지방 교회가 주님의 강한 간증을 지니고 있음을 가리킨다.</span></div>
+<div class="entry lv1"><span class="marker">II</span><span class="txt">고린도 전서 11장은 주의 만찬을 다루며(20절), 주의 상은 고린도 전서 10장에서 다루어 진다(21절).</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리가 주의 만찬을 먹을 때 그 강조점은 주님을 기념하는 데 있다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">주의 상에 참여하는 것은 그리스도의 교통과 그분의 몸의 지체들이 주님 안에서 함께하는 교통을 위한 것이며 그 중점은 성도들 사이의 교통에 있다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">주의 만찬은 주의 상을 포함하지 않지만 주의 상은 주의 만찬을 포함한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리가 주의 만찬을 먹을 때 우리는 그리스도를 기념한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리가 주의 상을 위해 모일 때 거기에는 주님을 기념하고 그리스도와 그분의 지체들과 교통하는 두 방면이 모두 포함된다.</span></div>
+<div class="entry lv1"><span class="marker">III</span><span class="txt">만찬집회에는 두 가지 주된 방면이 있다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">주의 만찬을 먹는 것은 주님을 기념하기 위한 것이다ㅡ고전 11:24-25.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이것은 만찬 집회의 수직적인 방면이라고 불리워질 수 있다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">이것은 그분의 역사가 아닌 그분의 인격을 기념하는 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리가 주님께 드리는 기도와 찬양은 주님 자신에 관한 것이어야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">고린도 전서 11장 24절은, &quot;나를 기념하는 데 이르도록&quot; 떡을 떼는 것에 관해 말한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리는 주님의 죽음을 기념하기 위해 주의 상에 오는 것이 아니라.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">오히려 그리스도 자신을 기념하기 위해 온다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">고린도 전서 11장 25절은, &quot;나를 기념하는 데 이르도록&quot; 잔을 마시는 것에 관해 말한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리는 주님의 역사를 기념하기 위해 주의 상에 오는 것이 아니라,</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">오히려 그리스도 자신을 기념하기 위해 온다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">주의 상에 참석해서 자동적으로 주님의 죽으심을 기념하면서 주의 만찬을 먹는 것은 천연적인 관념이다. 그리스도 자신을 기념하기 위하여 우리는 그분의 인격에 관한 이상이 필요하다.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">우리는 역사보다 인격을 더 기념해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">6</span><span class="txt">주의 떡을 먹고 주의 잔을 마심으로써 우리는 주님을 기념하면서 주의 만찬을 먹는다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">주의 상에 참석하는 것은 그리스도의 몸의 모든 지체들과 교통을 갖기 위한 것이다-고전 10:16-17.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이것은 만찬집회의 수평적인 방면이라고 불리워질 수 있다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 주님이 십자가 위에서 우리를 위하여 흘리신 그분의 피와 우리를 위하여 주신 그분의 몸을 인하여 이러한 교통을 갖는다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그리스도의 피를 상징하는 우리가 함께 누리는 잔은 성도들 사이의 모든 장애를 제거하며, 그리스도의 개인적인 몸을 상징하는 우리가 함께 참여하는 떡은 우리 안에 들어와서 우리를 그리스도의 단체적인 몸을 상징하는 한 떡으로 만든다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리가 한 떡을 먹고 한 떡에 참여하는 것과 한 잔을 마시고 한 잔을 나누는 것은 상호 교통을 의미한다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">이러한 교통은 그리스도의 피의 교통과 그리스도의 몸의 교통이 된다-고전 10:16.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">고린도 전서 10장 16절과 17절, 그리고 21절에는 주의 상의 수직적인 방면과 수평적인 방면, 즉 그리스도와의 교통과 그리스도의 몸의 교통이 모두 나타난다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리가 주의 떡과 잔을 나누면서 함께 먹고 마실 때, 『우리는 주의 상에 참여한다』</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리는 다른 성도들과 함께 주의 상에 참여해야 한다. 그렇지 않으면 우리는 단지 수직적인 방면만을 갖게 된다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅳ</span><span class="txt">어떻게 주님을 기념하며 그분의 몸의 지체들과 교통하는가?</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">어떻게 주님을 기념하는가?</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">떡을 떼는 것은 우리가 먹을 수 있기 위한 것이다-마 26:26, 고전 11:23-24.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">떡에 관해서 주님은, 『이것은 너희를 위하는 내 몸이니 나를 기념하는 데 이르도록 이것을 행하라』고 말씀하셨다-고전 11:24, 눅 22:19.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">주님은 또한, 『받아 먹으라 이것이 내 몸이니라』고 말씀하셨다-마 26:26.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">우리는 떡을 먹음으로 주님을 기념한다-고전 11:24.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">주님을 기념하는 것은 그분을 먹는 것이다-요 6:57.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">우리가 그분을 영접하고 먹을수록 더욱 그분을 기념하게 된다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">잔에 참여하는 것은 우리가 그것을 마시기 위한 것이다-마 26:27, 고전 11:25.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">잔에 관하여 고린도 전서 11장 25절은, 『식후에 또한 이와같이 잔을 가지시고 가라사대 이 잔은 내 피로 세운 새 언약이니 이것을 행하여 마실 때마다 나를 기념하는 데 이르게 하라』고 말한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">주님은 또한, 『너희가 다 이것을 마시라 이것은 ‥‥ 나의 피 곧 언약의 피니라』고 말씀하셨다-마 26:27下-28.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">우리는 잔을 마시므로 주님을 기념한다-고전 11:25.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">주님을 기념하는 것은 그분으로부터, 그분을 마시는 것이다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">우리가 그분을 마실수록 우리는 그분을 더욱더 기념하게 된다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">참되게 주님을 기념하는 것은 그분의 몸을 상징하는 떡을 먹고 그분의 피를 상징하는 잔을 마시는 것이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리가 주님의 몸과 그분의 피를 마실 때 우리는 주님 자신과 그분의 몸을 주시고 그분의 피를 흘리심으로 성취하신 모든 것을 영접할 뿐만 아니라 누리기도 한다. 이것이 구속하는 죽음을 통하여 자신을 우리에게 주신 주님을 영접하고 누리며 그분께 참여하는 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">떡을 먹고 잔을 마시는 것은 구속하는 주님을 우리의 분깃(시 16:5, 애 3:24, 골 1:12)과 우리의 생명과 축복으로 취하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">이렇게 주님을 영접하고 누리는 것이 그분을 기념하는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">어떻게 교통하는가?</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리는 동일한 떡에 참여함으로써 그리스도의 몸의 모든 지체들과 교통한다-고전 10:16-17.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리는 모두가 같은 덩어리에 참여한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">떡 한 조각이 내 안에 들어오며 다른 형제 자매들 안에도 한 조각이 들어간다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 동일한 잔을 마심으로 그리스도의 몸의 모든 지체들과 교통한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">그리스도와 제자들은 동일한 떡을 먹었고 동일한 잔을 마셨다-막 14:22-23.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">만찬집회에 올 때 우리는 주님을 우리 안에 영접하기 위해 와야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이를 위해 우리는 그분을 먹고 마시도록 우리의 영을 사용하는 법을 배워야 한다. 우리는 우리의 마음으로 주님을 생각할 뿐만 아니라 우리의 영 안에서 누림이 되기 위해 그분이 행하신 것과 그분 자신을 영접해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">영 안에서 그리스도를 먹고 마심으로써 우리는 주님을 기념하는 것과 그리스도의 모든 지체들과 교통하는 두 방면을 모두 갖게 된다.</span></div>
+<div class="entry lv1"><span class="marker">V</span><span class="txt">만찬집회에는 두 가지 부차적인 방면이 있다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">주님의 죽으심을 전시함-고전 11:26.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도 전서 11장 26절은, 『주의 죽으심을 오실 때까지 선포하는(보여 주는, 전시하는, 선언하는, 알리는) 것이니라』고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">주의 만찬은 주님의 죽음을 기념하는 것보다 오히려 주님의 죽음을 전시하기 위한 것이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리는 주님의 인격은 기념하지만, 그분의 죽음은 알리고 선언한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리는 그분의 죽음을 온 우주와 귀신들과 천사들과 인류에게 선포한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">우리가 주님을 기념하는 동안 떡(몸)과 잔(피)의 두 가지가 상 위에 분리되어 전시된다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">이것은 피가 몸에서 분리된 것이 상징하는 바 죽음을 보여 준다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이러한 죽음의 전시로 우리는 다음과 같은 열두 항목을 포함한 십자가에서의 그리스도의 만유를 포함한 종결을 선언하고 알린다-천사의 생명(골 1:20), 사람의 생명(갈 2:20), 사단(히 2:14, 요 12:31), 죄(고후 5:21, 롬 8:3), 죄들(벧전 2:24, 사 53:6), 세상(갈 6:14, 요 12:31), 사망(히 2:14), 육신(갈 5:24), 옛사람(롬 6:6), 자아(갈 2:20), 그리고 만유 혹은 모든 피조물(골 1:20).</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">주님의 죽음으로 모든 소극적인 것들이 끝났으며 그들의 종말이 공개적으로 드러났다. 이것이 소극적인 방면이다.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">상은 또한 우리가 떡과 포도주로 상징된 주님을 우리 안에 영접할 수 있음을 보여 준다. 이것이 적극적인 방면이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">한 면으로 옛 창조는 끝났지만 다른 한 면으로 그분의 새 창조가 시작되었다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이제 그분은 그분 자신을 우리와 연합하셨으며 우리는 그분으로 말미암아 산다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리의 소망을 표현하기 위해-고전 11:26.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도 전서 11장 26절에 따르면 우리는 주의 죽으심을 「오실 때까지」 선포하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 그분이 오실 때까지 쉬지 않고 그분의 구속하는 죽음을 선포하여 그분을 기념하기 위해 주의 만찬을 먹는다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">우리는 영광스러운 일을 선포하지만, 우리는 또한 영광스러운 소망을 갖고 있다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">어떤 의미에서 우리는 만족하지만 그러나 여전히 우리 안에는 한 가지 소망이 있다-골 1:27.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">어느 날 그분은 돌아오셔서 우리의 몸을 변형시킬 것이다(고전 15:51-54). 우리는 이것을 기다리고 있다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">우리의 몸은 그분이 오실 때 변형될 것이다-빌 3:21.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">우리의 구속이 완성될 것이다-롬 8:23.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">「오실 때까지」라는 말은 오는 왕국을 가리킨다-마 26:29.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">마태복음 26장 29절에서 주님은 우리에게 포도나무에서 난 것을 그분의 아버지의 왕국에서 새것으로 우리와 함께 마시는 날까지 마시지 않겠다고 말씀하셨다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">오는 왕국은 하나님의 우주적인 행정의 문제이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">주의 만찬에 관한 이 두 가지 부차적인 방면은 그리스도의 두 번 오심을 가리킨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그분의 첫번째 오심 안에서 우리는 만유를 포함한 구속을 수행하기 위한 그분의 죽음을 소유한다. 이것이 그분의 첫번째 오심의 목적이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">그분의 두번째 오심은 그분이 왕국을 얻으신 후에 있을 것이며(단 7:13-14, 눅 19:12-27) 그때 그분은 이 왕국이 하나님의 우주적인 행정이 되도록 세우실 것이다. 이것이 그분의 두번째 오심의 목적이다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">첫번째 오심 안에서 그리스도의 죽음은 교회를 산출했으며 교회는 그분의 두번째 오심으로 왕국을 가져올 것이다. 주님의 죽으심을 오실 때까지 선포하는 것은 왕국을 가져오기 위한 교회의 존재를 선포하는 것과 동등하다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">교회는 주님의 죽으심을 그분의 다시 오심과 연결한다. 교회는 한 쪽을 다른 쪽으로 연결시키는 고속도로와 같다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">교회는 주님의 죽으심을 지속시키며 그분의 다시 오심을 가져온다.</span></div>
+  </div>
+</section>
+
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="34" cy="30" r="20" fill="none" stroke="#c89b4a" stroke-width="2"/>
+    <line x1="20" y1="30" x2="48" y2="30" stroke="#c89b4a" stroke-width="1.3"/>
+    <line x1="34" y1="16" x2="34" y2="44" stroke="#c89b4a" stroke-width="1.3"/>
+    <path d="M78 16 L96 16 L104 34 L87 54 L70 34 Z" fill="none" stroke="#ac4053" stroke-width="2"/>
+  </svg>
+</div>
+
+
+<section class="chapter" id="ch2" data-chapter="2">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제 2 장</span>
+    <h2 class="chapter-title">주님을 기념함 (2)</h2>
+    <p class="scripture-refs">요한복음 6:33-35, 48, 시편 16:5, 23:5, 116:13, 요한계시록 14:10, 누가복음 22:19-20, 히브리서 8:6-13, 9:16-17</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">Ⅵ</span><span class="txt">상징인 떡과 잔의 의미</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">떡은 주님께서 그분의 생명을 우리 안에 분배하기 위하여 십자가 위에서 우리를 위해 주신 분의 육신적인 몸을 상징한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">떡은 또한 삼일 하나님의 생명으로 소생함을 입고 삼일 하나님과의 유기적인 연합 안으로 들어와서 예수 그리스도의 부활을 통하여 거듭난 많은 지체들로 구성된 주님의 비밀한 몸을 상징한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">잔은 우리의 죄들이 사함 받도록 우리를 구속하기 위해 그분이 십자가에서 우리를 위해 흘리신 피를 상징한다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">떡의 의미는 무엇인가?</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">성경에서 떡은 생명을 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">요한복음 6장 33절부터 35절까지에서 그리스도는 그분이 세상에게 생명을 주는 생명의 떡이라고 말씀하셨다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">요한복음 6장 48절에서 그리스도는 다시, 『내가 곧 생명의 떡이로라』고 말씀하셨다. 생명의 떡은 떡의 본성을 언급하는데 그것은 바로 생명이다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">우리는 우리가 부숴뜨린 떡을 보거나 받을 때 주께서 어떻게 우리를 위하여 육신이 되셨는가와 우리를 위하여 어떻게 육신 안에서 죽으셨는가와 우리로 그분의 생명을 얻게 하기 위하여 어떻게 그분의 몸이 부숴져서 우리에게 주신 바 되셨는가를 생각해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">이것은 주의 만찬을 먹는 것과 관련된 의미이다. 우리에게 떡으로 주기 위해 부서지신 주님의 몸은 우리로 그분의 생명을 소유할 수 있도록 그분의 몸을 우리를 위해 주셨음을 의미한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">성경에서 떡은 또한 단체를 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">고린도 전서 10장 17절에서 떡은 유기적인 구성체, 곧 단체적인 몸의 상징이다. 『떡이 하나요 많은 우리가 한 몸이니』</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이러한 방면에서 떡은 부활 안에서 주님으로부터 산출된 어떤 것을 상징한다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">주 예수님은 죽으시기 전에 한 알의 밀이셨다-요 12:24.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">그러나 부활 안에서 그분의 죽음을 통해 산출된 것은 많은 열매, 단체적인 실체, 한 덩어리, 그 떡, 단체적인 몸이었다-고전 10:17.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">밀알들인(요 12:24) 모든 믿는이들은 고운 가루로 갈리워져서 한 떡이 되기 위해 함께 섞여진다(고전 10:17).</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">이 한 덩어리 안에서 우리는 모든 하나님의 자녀들이 하나임을 본다.</span></div>
+<div class="entry lv4"><span class="marker">e</span><span class="txt">한면으로 우리는 주님께서 십자가 위에서의 그분의 죽음 안에서 우리를 위해 주신 그 몸을 받음으로써 그분을 기념하고 누린다. 다른 한면으로 우리는 주님께서 죽은 자 가운데서 부활하심으로 말미암아 산출하신 비밀한 몸을 누리는데, 이는 이 비밀한 몸 안에 있는 모든 성도들과 교통하고 이 비밀한 몸의 하나를 간증함으로 말미암는다.</span></div>
+<div class="entry lv4"><span class="marker">f</span><span class="txt">이것은 주의 상에 참여하는 것에 관련된 의미이다. 떡은 주님의 단체적인 몸을 가리키는데, 이것은 그분께서 죽은 자 가운데서 부활하심으로 말미암아 거듭난 모든 성도들로 구성된다.</span></div>
+<div class="entry lv2"><span class="marker">E</span><span class="txt">잔의 의미는 무엇인가?</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">성경에서 포도주는 잔이라고 불리운다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그러나 떡은 접시라고 불리우지 않는다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">그러면 왜 성경은 포도주를 그 용기의 이름으로 부르는가?</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">성경에서 잔은 「분깃」을 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">시편 16편 5절은, 『여호와는 내 잔의 분깃이시니』라고 말한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">시편 23편 5절은, 『내 잔이 넘치나이다』라고 말한다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">시편 116편 13절에서 우리는 구원의 잔을 보게 된다. 이것은 하나님의 백성들에게 할당된 그분의 분깃이다.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">계시록 14장 10절에서 우리는 하나님의 진노의 잔을 보게 된다. 이것은 그분을 부인하는 사람들에게 할당된 하나님의 분깃이다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">죄인의 잔의 분깃은 「하나님의 진노의 포도주」가 가득한 「그의 진노의 잔」이다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">그리스도는 우리를 위해 이 잔을 마시셨다-요 18:11.</span></div>
+<div class="entry lv4"><span class="marker">e</span><span class="txt">그리스도가 진노의 잔을 마셨을 때 그분의 피가 쏟아져 나왔으며 이것은 우리에게 새 잔을 가져오는 구원을 이루었다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">신약의 고린도 전서 10장 16절에서는 이 새 잔이 축복의 잔이라고 불리운다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">구약의 시편 116편 13절에서는 이 잔이 구원의 잔이라고 불리운다.</span></div>
+<div class="entry lv4"><span class="marker">f</span><span class="txt">만찬집회에서 우리는 우리가 떼는 떡을 보거나 받을 때뿐만 아니라 우리가 마시는 잔을 보거나 받을 때에도 주님과 그분이 우리를 위하여 행하신 것을 생각해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">F</span><span class="txt">축복의 잔은 무엇인가?</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그리스도의 피는 잔 안에 있는 포도나무의 열매로 상징되지만(마 26:29), 분깃은 피가 아니다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">피는 그리스도의 본질이지만, 주님은 그 잔의 분깃이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">피는 우리를 위해 두 가지를 이루었다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">우리의 죄들을 씻었다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">하나님 자신을 우리에게 가져왔다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">잔을 마실 때마다 우리는 주님이 어떻게 우리를 위해 혈육을 입으셨는가(히 2:14)와 어떻게 우리를 위해 피를 흘리셨는가와 어떻게 우리의 죄들을 담당하셨고 우리를 위해 죄가 되셨으며, 심판받고 저주당하셨는가를 생각해야 한다. 이 모든 것은 우리로 최상의 축복, 즉 죄에서 해방되어 하나님과 그분께 속한 모든 것을 우리의 축복의 잔으로 소유하게 하기 위하여 성취되었다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">잔을 받을 때 우리는 또한 우리가 어떻게 구속되고 죄 사함 받고 거룩케 되고 의롭다함을 받고 화목되고 주님의 피로 말미암아 하나님께 열납된 것을 생각해야 한다. 그리고 주님의 피가 우리로 담대히 하나님께 나아갈 수 있도록 이제 어떻게 우리의 죄들을 씻고 우리의 양심을 깨끗케 하는가를 생각하며 이 피가 어떻게 하나님 앞에서 더 나은 것을 말하는가와 우리로 참소하는 자 마귀를 이길 수 있도록 이 피가 어떻게 악한 영의 공격을 저지하는가를 생각해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">누가복음 22장 20절에서 잔은 그리스도의 피로 제정된 새 언약 혹은 권리 증서이며 우리가 하나님으로부터 받은 분깃을 증명한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그분의 피는 그분의 부활 후에 신약이 된 새 언약, 즉 더 나은 언약을 설립했다(히 8:6-13).</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">십자가에서 흘린 그리스도의 피는 언약이 되었으며 이 언약은 잔, 곧 분깃이 되었는데 이는 우리의 누림을 위한 축복이신 하나님 자신이다. 하나님은 이 잔 안에서 우리에게 할당되신다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">이 새 언약은 하나님께서 은혜의 경륜 안에서 그분의 구속되고 거듭난 백성들과 하나되시는 근거가 된다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">이 언약 안에서 하나님은 우리에게 죄 사함과 생명과 구원과 모든 하늘에 속한 신성하고 영적인 축복을 주신다.</span></div>
+<div class="entry lv5"><span class="marker">3</span><span class="txt">이 새 언약이 우리에게 주어질 때 이것은 하나의 잔이며(눅 22:20) 이 잔 안에는 하나님의 모든 축복과 심지어 우리의 분깃이신 하나님 자신도 있다.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">주님은 피를 흘리셨으며 하나님은 언약을 세우셨고 우리는 하나님과 그분께 속한 모든 것이 우리의 영원한 축복의 분깃이 되는 그 잔을 누린다.</span></div>
+<div class="entry lv2"><span class="marker">G</span><span class="txt">그러므로 떡은 우리가 생명과 그리스도의 몸의 교통에 참여하는 것을 상징하며 잔은 우리의 유일한 분깃이자 축복이신 삼일 하나님 자신에 대한 누림을 상징한다(민 6:23-27, 고후 13:13).</span></div>
+<div class="entry lv1"><span class="marker">Ⅶ</span><span class="txt">떡과 잔이 있는 만찬집회에 참석할 때마다 우리는 주님의 생명 공급을 얻고 그분의 피를 통한 구속을 음미한다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">십자가 위에서 주님의 몸은 떡과 같이 우리에게 떼어 주실 수 있도록 우리를 위해 갈라지셨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이것은 우리가 그분을 생명으로 소유할 수 있도록 그분이 십자가에서 그분의 몸을 주신 것을 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">십자가 위에서 그분의 몸을 가르심으로 말미암아 그분은 하나님의 생명을 우리 안에 분배할 수 있도록 이 생명을 그분 안으로부터 해방하셨다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리가 그분의 갈라진 몸을 받을 때 우리는 그분의 생명에 참여한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">그리스도는 그분의 몸을 우리의 생명 공급과 누림을 위한 생명의 떡으로 주셨다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">더욱이 십자가 위에서 그리스도는 우리를 위해 그분의 몸을 주셨을 뿐만 아니라 그분의 피를 흘리셨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그분은 우리의 죄가 사함받을 수 있도록 우리를 위해 구속을 성취하기 위해 피를 흘리셨다. 십자가 위에서 그분은 우리의 죄를 지고 가셨다(요 1:29).</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">하나님의 영원한 목적은 주 예수 안에서 그분의 생명을 우리 안에 분배하는 것이지만, 우리의 타락으로 인해 우리가 하나님 앞에 죄 있게 되었으므로 그리스도께서 우리를 위하여 피를 흘리셨다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">그러므로 떡을 먹고 잔을 마실 때마다 우리는 이 생명을 누리며 주님으로부터 이 생명 공급을 받으며 주님의 보혈로 성취된 구속을 음미한다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅷ</span><span class="txt">성경 안에서 떡과 잔의 순서와 배열에 관한 계시</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">고린도 전서 10장 16절과 11장 24절부터 25절 안에 있는 순서와 배열이 왜 서로 다른가?</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">고린도 전서 11장 24절과 25절에서는 떡이 먼저 언급되었고 나중에 잔이 언급되었다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도 전서 11장 24절과 25절은 주의 만찬을 다룬다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">고린도 전서 11장 24절과 25절에서 떡이 첫번째인 이유는 몸이 하나님의 원래의 궁극적인 목적이었기 때문이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">하나님은 그분 자신을 표현하고 그분의 원수를 멸하기 위하여 몸을 원하신다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">그러나 이것이 이루어지기 전에 사람이 타락했으므로 구속이 필요했다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">사람은 하나님의 원래의 목적으로 회복될 필요가 있었다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">이 회복은 잔에 의해 성취되었다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">떡(몸)이 하나님의 원래의 목적이므로 처음에 언급되었으며 잔(구속)은 그 간격을 메우므로 나중에 언급되었다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">고린도 전서 10장 16절에서 잔이 떡 이전에 언급된다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도 전서 10장 16절은 주의 상을 다룬다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">10장에서 잔이 먼저인 것은 상이 표현되기 때문이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">상에서 우리는 믿는이들의 교통과 교제를 갖는다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">우리의 역사에 따르면 우리는 구속을 먼저 체험하고 나중에 그 몸의 지체가 된다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">믿는이의 체험에서 잔(구속)이 먼저이고 떡(몸)은 나중이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅸ</span><span class="txt">만찬집회에서 우리는 잔을 마시기 전에 떡을 먹는다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">떡으로 상징된 몸은 하나님의 원래의 목적이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이를 통하여 하나님이 표현된다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">이를 통하여 하나님의 원수가 패배당한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">잔으로 상징되는 구속은 하나님의 원래의 궁극적인 목적이 아니다. 이것은 하나님의 영원한 목적을 위해 우리를 회복하도록 하나님이 주신 것이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">그러므로 만찬집회에서 우리는 잔을 마시기 전에 떡에 참여한다.</span></div>
+  </div>
+</section>
+
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="34" cy="30" r="20" fill="none" stroke="#c89b4a" stroke-width="2"/>
+    <line x1="20" y1="30" x2="48" y2="30" stroke="#c89b4a" stroke-width="1.3"/>
+    <line x1="34" y1="16" x2="34" y2="44" stroke="#c89b4a" stroke-width="1.3"/>
+    <path d="M78 16 L96 16 L104 34 L87 54 L70 34 Z" fill="none" stroke="#ac4053" stroke-width="2"/>
+  </svg>
+</div>
+
+
+<section class="chapter" id="ch3" data-chapter="3">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제3장</span>
+    <h2 class="chapter-title">아버지를 경배함</h2>
+    <p class="scripture-refs">요한복음 15:26, 16:13-15, 고린도 전서 12:3, 요한일서 2:1, 2:23, 히브리서 2:10-12, 시편 22:12-22, 요한복음 20:17, 마태복음 26:26-30, 요한복음 17:1-5</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">Ⅰ</span><span class="txt">만찬집회는 전반부에 주님을 기념하는 것 뿐만 아니라 후반부에 아버지를 경배하는 것도 포함한다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">하나님의 구원의 순서에 따르면 우리는 먼저 주님을 영접하고 나중에 아버지께 나아간다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">마태복음 26장 26절부터 30절까지에서 주 예수님은 떡을 떼시고 제자들과 함께 찬미하신 후에 그들을 감람산으로 데리고 가셨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그분은 제자들을 아버지와 만날 수 있도록 감람산으로 이끌었다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">여기에 한 가지 원칙이 함축되고 세워져 있는데 이는 우리가 주님을 기념하기 위하여 떡을 뗀 후에 주님의 인도를 받아 함께 아버지를 경배해야 한다는 것이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅱ</span><span class="txt">하나님의 경륜 안에서 그 영은 아들에 관하여 증거하며 믿는이들을 아들에게로 이끈다ㅡ요 15:26, 16:13-15, 고전 12:3.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">요한복음 15장 26절은, 『보혜사 곧 아버지께로서 나오시는 진리의 성령이 오실 때에 그가 나를 증거하실 것이요』라고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">요한복음 16장 13절부터 15절은, 『그러하나 진리의 성령이 오시면 그가 너희를 모든 진리(아들) 가운데로 인도하시리니 ‥‥ 그가 내 영광을 나타내리니 내 것을 가지고 너희에게 알리겠음이니라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">고린도 전서 12장 3절은, 『하나님의 영으로 말하는 자는 누구든지 예수를 저주할 자라 하지 않고 또 성령으로 하지 아니하고는 누구든지 예수를 주시라 할 수 없느니라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">만찬집회에서 그 영은 우리를 아들에게 이끌어서 아들로 하여금 하나님의 아들들이자 맏아들의 형제들인 그리스도의 몸의 모든 지체들로부터 합당한 기념을 받게 하신다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅲ</span><span class="txt">하나님의 경륜 안에서 아들은 아버지와 함께 하시는 믿는이들의 대언자이자 중재자이며 그들을 아버지께로 이끈다-요일 3:1, 2:23, 히 2:12.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">요한일서 2장 1절은, 『만일 누가 죄를 범하면 아버지 앞에서 우리에게 대언자가 있으니 곧 의로우신 예수 그리스도시라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">요한일서 2장 23절은, 『아들을 부인하는 자에게는 또한 아버지가 없으되 아들을 시인하는 자에게는 아버지도 있느니라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">히브리서 2장 12절은, 『내가(예수) 주의 이름(아버지의 이름)을 내 형제들에게 선포하고 내가 주(아버지)를 교회 중에서 찬송하리라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">주님을 기념한 후에 아들은 우리를 아버지께 이끌어 그분과 우리가 아버지의 많은 아들들과 맏아들의 형제들로서 아버지를 경배하게 하신다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅳ</span><span class="txt">시편 22편 12절부터 22절까지와 히브리서 2장 10절부터 12절까지에서 볼 수 있는 계시</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">시편 22편 12절부터 21절은 그리스도의 죽음을 묘사하는 예언이다. 『많은 황소가 나를 에워싸며』, 『내 모든 뼈는 어그러졌으며』, 『내 혀가 잇틀에 붙었나이다』, 『저희가 나를 주목하여 보고』, 『저희가 내 속옷을 제비 뽑나이다』</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">그러나 시편 22편 22절은 그리스도의 부활 후에 성취된 예언이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">시편 22편 22절 상반절은, 『내가 주의 이름을 형제들에게 선포하고』라고 말한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">요한복음 20장 17절에서 예수님은 처음으로 제자들을 형제들이라고 부르셨다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">예수님은 부활 이전에는 결코 제자들을 형제들이라고 부르지 않으셨다. 부활 이전에 주님은 제자들을 다만 친구들이라고 부르셨다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">요한복음 20장 20절부터 23절에서 예수님은 부활 안에서 처음으로 제자들을 만나셨다. 그분은 제자들에게 아버지의 이름을 선포하셨다.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">이때, 그리스도의 부활의 날에 시편 22편 22절 상반절이 성취되었다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">시편 22편 22절 하반절은, 『회중에서 주를 찬송하리이다』라고 말한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">이것은 그리스도께서 교회 가운데서 아버지를 찬송하는 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">성경에는 이 예언의 성취가 기록되어 있지 않다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">히브리서 2장 10절은, 『만물이 인하고 만물이 말미암은 자에게는 많은 아들을 이끌어 영광에 들어가게 하시는 일에 저희 구원의 주를 고난으로 말미암아 온전케 하심이 합당하도다』라고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리의 구원의 주는 아들이시다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">아들은 많은 아들들(믿는이들)을 영광으로 이끌고 있다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">히브리서 2장 11절은, 『거룩하게 하시는 자와 거룩하게 함을 입은 자들이 다 하나에서 난지라 그러므로 형제라 부르시기를 부끄러워 아니 하시고』라고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">「하나」는 아버지를 가리킨다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">「거룩하게 하시는 자」는 아들이다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">「거룩하게 함을 입은 자들」은 아들들이다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">따라서 아들과 「거룩하게 함을 입은 자들」은 모두가 한 아버지에게서 말미암는다.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">그러므로 아들은 우리를 형제라 부르기를 부끄러워 아니 하신다. 요한복음 20장 17절에서 부활 후에 그분은 마리아에게 『내 형제들에게 가서』라고 말씀하셨다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그리스도의 부활을 통하여 그분의 모든 제자들은 아버지의 생명을 영접했다-벧전 1:3.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이제 그리스도와 우리는 모두가 동일한 근원에서 나왔고(엡 1:3, 4:6, 마 6:9) 동일한 본성과(벧후 1:4) 동일한 생명을 갖고 있으므로(요일 5:11-12) 그분은 우리를 형제라 부르시기를 부끄러워 아니 하신다.</span></div>
+<div class="entry lv2"><span class="marker">E</span><span class="txt">히브리서 2장 12절은 시편 22편 22절의 인용으로서 『내가 주의 이름을 내 형제들에게 선포하고 내가 주를 교회 중에서 찬송하리라』고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">여기서 우리는 아들이 아버지의 「이름」을 그분의 형제들에게 선포하는 것, 즉 아버지를 생명의 근원과 낳는 아버지로 알게 하는 것을 본다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">이 구절은 또한 우리에게 아들이 교회 중에서 아버지에게 찬송하는 것을 말한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">이 구절로 우리는 형제들이 교회라는 것을 보게 된다. 개인적으로 말해서 우리는 형제들이고 단체적으로 말해서 우리는 그리스도의 부활 안에서 산출된 교회이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅴ</span><span class="txt">예수님은 부활하신 후에 언제 형제들에게 와서 아버지께 찬송하셨는가?</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">시편 22편 22절 상반절과 히브리서 2장 12절 상반절은 요한복음 20장의 다락방에서 성취되었지만, 22절 하반절과 12절 하반절은 어떠한가?</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">그리스도께서 아버지께 찬송하셨다는 기록은 어디에 있는가?</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">이 예언의 성취는 어디에 있는가?</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">이 예언은 교회 안에서 지속적으로 성취된다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅵ</span><span class="txt">예수께서 제자들에게 숨을 내쉴 때(요 20:22) 성령, 즉 거룩한 공기이신 그분은 그들 안에 내주하기 위하여 그들 속으로 들어가셨다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">예수께서 그들에게 숨을 내쉴 때 그분은 자신을 그들 속으로 내쉰 것이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">이제 내주하는 영이신 예수는 우리, 곧 교회를 통하여 아버지께 찬송하신다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">교회 중에 계신 예수께서 아버지께 찬송함-히 2:12下.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">이로써 시편 22편 22절 하반절이 성취됨.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">이것이 교회 집회 가운데서 아버지의 많은 아들들과 함께 맏아들이 아버지를 찬양하는 것이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그분은 우리를 떠나서 홀로 아버지를 찬양하는 것이 아니라 우리의 찬양을 통해 우리 안에서 우리와 함께 찬양하신다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">그리스도의 형제들이 아버지께 찬미할 때마다 그분은 그들의 찬송 가운데서 찬송하신다.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">그렇다면 만일 우리가 찬송하지 않을 때 어떻게 그분이 찬송할 수 있는가?</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">예수께서 아버지께 찬미할 수 있도록 우리는 찬송해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리가 그리스도를 기념하면서 그분께 찬양을 드린 후에 그분은 우리를 아버지께 이끌 것이며 우리는 그분이 찬송 안에서 우리를 인도하시는 대로 우리의 내주하시는 맏형님을 따를 것이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅶ</span><span class="txt">마태복음 26장 30절은, 『이에 저희가 찬미하고 감람산으로 나아가니라』고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">이것은 주의 상 후에 주님께서 제자들과 함께 아버지께 드린 찬양이었다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">찬송한 후에 그분은 아버지의 얼굴을 대하도록 감람산으로 그들을 이끄셨다-요 17장.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리가 주의 상 후에 아버지께 대한 우리의 경배로써 아버지를 찬미하는 것은 이 구절에 근거한 것이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리는 교회 안에서 아버지를 경배하기 위하여 분명한 시간과 분명한 행동을 취해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 최상의 시간이 주의 상에서 주님을 기념한 직후라는 것을 믿어야 한다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅷ</span><span class="txt">아버지는 영 안에서 실제로 그분을 경배할 참된 경배자들을 찾고 계신다ㅡ요 4:23-24.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리는 아버지를 그분의 거처인 우리 사람의 영 안에서 경배해야 한다-엡 2:22.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리 아버지 하나님은 영이시므로 우리는 그분을 접촉하기 위해서 우리의 영을 사용해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">신성한 영과 연합된 우리의 영은 아들의 명분의 영으로서 그 안에서 우리는 「아바, 아버지」라고 부르짖는다-롬 8:15.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">그 영은 우리가 하나님 아버지의 자녀들인 것을 우리의 영과 함께 증거하신다-롬 8:16.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리는 실제 안에서 아버지를 경배해야 하는데 이는 모든 제물들의 실제인 그리스도를 통하여 그분을 경배하는 것이다-레 1-6장, 히 10:5-10.</span></div>
+  </div>
+</section>
+
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="34" cy="30" r="20" fill="none" stroke="#c89b4a" stroke-width="2"/>
+    <line x1="20" y1="30" x2="48" y2="30" stroke="#c89b4a" stroke-width="1.3"/>
+    <line x1="34" y1="16" x2="34" y2="44" stroke="#c89b4a" stroke-width="1.3"/>
+    <path d="M78 16 L96 16 L104 34 L87 54 L70 34 Z" fill="none" stroke="#ac4053" stroke-width="2"/>
+  </svg>
+</div>
+
+
+<section class="chapter" id="ch4" data-chapter="4">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제4장</span>
+    <h2 class="chapter-title">만찬집회에 관한 실제적인 교통</h2>
+    <p class="scripture-refs">요한복음 6:35, 57, 시편 116:12-14, 요한일서 1:7, 9, 요한계시록 1:10, 시편 118:24, 84:1-2, 42:4, 100:4, 96:8, 히브리서 13:15, 시편 50:23, 116:17, 요한계시록 5:13, 시편 8:2, 마태복음 21:16, 누가복음 22:19上, 시편 89:7, 히브리서 12:28, 신명기 14:23</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">Ⅰ</span><span class="txt">우리가 주의 만찬에서 먹고 마시고 누리는 것은 우리의 선포와 간증이다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리의 선포는 마치 떡이 우리 몸 안에 들어온 후에 우리와 연합되듯이 우리가 주님과 연결되었고 그분과 하나되었다는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리의 간증은 우리가 주님을 먹고 마시고 누림으로써 그분을 매일 우리의 생명으로 취하여 산다는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">떡을 먹고 잔을 마시는 것의 의미는 사실상 그리스도인의 생활의 의미이다. 그리스도인의 생활은 매일 주님을 먹고 마시고 누리는 생활이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅱ</span><span class="txt">우리는 만찬집회를 위하여 자신을 준비할 필요가 있다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리는 매일 아침 새롭게 되기 위하여 생명의 떡이신 예수를 먹음으로 거룩한 음식의 규례를 지켜야 한다(요 6:35, 57). 이것은 말씀을 기도로 읽고 말씀을 열어 주는 사역의 말씀을 읽음으로써 부활 생명의 신선한 공급으로 양육되는 것이다(고후 4:16).</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리는 온종일 계속적으로 주의 이름을 부름으로써(주님과 대화하고, 주님께 감사하고, 주님을 찬양함) 축복의 잔과 구원의 잔을 마셔야 한다(고전 10:16, 시 116:12-14, 17).</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리는 우리의 죄들을 자백함으로써 온종일 주의 보혈의 지속적이고도 변치않는 씻음을 누려야 한다(요일 1:7, 9).</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">우리는 주일 만찬집회를 위하여 우리 존재를 준비해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">주일 전날 저녁부터 하루를 시작함으로써-창 1:5, 레 23:32.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">주의 날에 영 안에 있기를 훈련함으로써-계 1:10, 행 20:7, 시 118:24.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">집회에 가려고 할 때 우리는 적어도 오 분에서 십 분 동안 기도해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">기도 중에 우리는 성령의 충만을 누리기 위하여 우리의 죄들을 자백해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">우리는 주님과의 교통 안에 거하는 것을 배워야 한다.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">원수는 우리가 집회에 가지 못하게 하거나 준비된 상태로 집회에 가지 못하도록 우리를 좌절시키려 한다.</span></div>
+<div class="entry lv4"><span class="marker">e</span><span class="txt">우리는 집회에서 말하며 주님을 찬양할 수 있도록 준비되어 있어야 한다ㅡ고전 14:26.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">우리는 집회를 행운에 맡겨서는 안 되며, 마치 제사장들이 언약궤를 짊어졌듯이 집회를 짊어지기 위해 주님과 함께 주님에 의해 준비되어 집회에 와야 한다. 집회는 언약궤, 즉 간증이다.</span></div>
+<div class="entry lv2"><span class="marker">E</span><span class="txt">우리는 회복된 방식으로 만찬집회에 와야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">집회에 대한 사랑으로-시 84:1-2.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">새로움 안에서-마 26:29.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">기쁨과 찬양의 목소리로-시 42:4.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">감사와 찬양으로-시 100:4.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">몇가지 제물을 가지고서-시 96:8.</span></div>
+<div class="entry lv3"><span class="marker">6</span><span class="txt">시간에 맞추어서.</span></div>
+<div class="entry lv3"><span class="marker">7</span><span class="txt">대적을 정복하기 위해 싸우는 군사와 경기에서 승리하기 위해 준비된 운동 선수처럼 집회를 돌보기 위해 앞 자리에 앉음.</span></div>
+<div class="entry lv3"><span class="marker">8</span><span class="txt">우리의 자아를 모든 감정적인 느낌과 함께 문 밖에 남겨두고 주님을 느끼고 주님께 찬양하고 감사하기 위하여 우리의 영을 사용함으로써 우리의 천연적인 기질을 거스림.</span></div>
+<div class="entry lv1"><span class="marker">Ⅲ</span><span class="txt">만찬집회의 실행</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리는 주님께 우리를 위해 무엇을 해달라고 기도하거나 간구하는 대신 그분께 찬양하고 감사함으로써 주님을 기념할 필요가 있다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">교회 집회에서 첫번째는 찬양과 감사의 제물을 드리는 것이다-고전 14:26上, 히 13:15, 시 50:23, 116:17.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">만찬집회에서 우리는 주님께 어떤 일을 해달라고 구해서는 안 되며 오히려 그분의 인격과 역사에 관한 복된 말로 주님을 축복해야 한다-계 5:13, 시 48:1.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">찬양이 교회의 힘이다-시 8:2, 마 21:16, 행 2:47上.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리는 두 단락으로 만찬집회를 실행해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">집회의 전반부에서는 우리의 모든 찬양이 그리스도께 드려져야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">집회의 후반부에서는 우리의 찬양을 아버지 하나님께 드려야 한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">주님을 기념하고 있는 동안 아버지께 경배를 드려서는 안 되며 아버지께 경배하고 있는 동안 주님을 찬양해서도 안 된다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">집회 시간의 삼분의 일이나 오분의 이 정도를 아버지를 경배하는 데 사용하는 것이 가장 좋다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리는 몸의 인식을 갖고 집회의 흐름과 분위기를 따르기를 배워야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리는 모두가 자신이 중심이나 흐름이나 노선이나 목적이 아니고 주님과 그 영이 그러하시다는 태도와 영을 가져야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 집회를 찬양과 찬송으로 일반적으로 시작하면서 우리의 찬양에 관한 주님의 부담이 무엇인지 느끼기를 배워야 한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">우리의 영적 감각은 예민해야 하며 그 영의 흐름이 무엇인가를 알아야 한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리는 집회에서 독립적이고 개인적인 방식으로 행동해서는 결코 안 된다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">당신의 영이 예민해져서 집회의 흐름을 느끼기를 추구하라.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">집회에서 어떤 노선이나 주제가 시작되면 다만 그것을 따르면서 다른 사람들과 협력하라.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">때로 흐름을 느끼기 위하여 우리는 균형잡힐 필요가 있다. 우리는 전체 집회의 흐름과 동일하게 자신의 주관적인 느낌을 주의해서는 안 된다.</span></div>
+<div class="entry lv4"><span class="marker">e</span><span class="txt">우리는 다른 사람을 따르며 서로의 찬양과 감사에 「아멘」함으로써 항상 동심합의를 실행해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">f</span><span class="txt">흐름을 감지한 후에 우리는 그것을 따르고 그 안에 들어가기 위해 우리의 영을 사용해야 한다. 만찬집회는 우리의 영을 사용함으로써 그 영으로 충만해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">g</span><span class="txt">만찬집회에서 우리 모두는 동시에 여러 개의 공이 아닌 한 「공」(그 영의 흐름)을 가지고 경기하기를 배워야 한다.</span></div>
+<div class="entry lv4"><span class="marker">h</span><span class="txt">만일 흐름이 끊기는 경우가 생겨서 그다지 영의 체험이 없는 사람에 의해 주제가 갑자기 바뀐다면</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">그러면 당신은 흐름을 회복하여 원래대로 되돌려야 한다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">흐름이 되돌려졌을 때 모든 사람은 이제 우리가 되돌아 왔음을 인식해야 한다.</span></div>
+<div class="entry lv5"><span class="marker">3</span><span class="txt">우리는 되돌아 오지 않은 채 진행해서는 안 된다. 그렇지 않으면 우리는 좋은 연결을 잃게 된다.</span></div>
+<div class="entry lv5"><span class="marker">4</span><span class="txt">때로 흐름이 전환하는 것은 좋고 옳은 것이지만, 점진적으로 이루어져야 한다. 우리는 방향도 모른 채 한 주제에서 다른 주제로 옮겨 갈 수 없다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">우리는 찬송가를 알아서 그것을 합당한 시기에 적용하는 것을 배워야 한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">집회의 한 단락을 시작함.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">시작된 단락을 강화하고 풍성하게 함.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">동일한 단락을 연장하고 높이 올림.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">집회의 분위기를 따름.</span></div>
+<div class="entry lv4"><span class="marker">e</span><span class="txt">모든 사람이 들을 수 있도록 큰 소리로 찬송을 신청하라.</span></div>
+<div class="entry lv4"><span class="marker">f</span><span class="txt">우리는 찬송을 부를 뿐만 아니라 주님을 찬양하고 아버지를 경배하기 위하여 찬송을 말하기도 해야 한다-엡 5:19, 골 3:16.</span></div>
+<div class="entry lv5"><span class="marker">1</span><span class="txt">만찬집회에서 연이어서 찬송을 부르는 것은 좋지 않다.</span></div>
+<div class="entry lv5"><span class="marker">2</span><span class="txt">어떤 만찬집회에서는 다만 한 찬송을 사용하는 것도 가능하다.</span></div>
+<div class="entry lv5"><span class="marker">3</span><span class="txt">이렇게 하려면 우리는 찬송을 말할 필요가 있다.</span></div>
+<div class="entry lv3"><span class="marker">5</span><span class="txt">우리가 집회에서 행하는 것은 무엇이나 집회의 주제와 목적과 흐름을 강화시키고 높여야 한다.</span></div>
+<div class="entry lv3"><span class="marker">6</span><span class="txt">우리는 집회를 오랫동안 높이 유지하기 위하여 우리의 영을 사용해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">7</span><span class="txt">떡과 잔을 너무 이르거나 너무 늦게 분배해서는 안 되며 주님에 대한 기념이 최고도에 이르렀을 때가 좋다.</span></div>
+<div class="entry lv3"><span class="marker">8</span><span class="txt">주님께 감사를 드린 후에 떡과 잔을 분배하는 것이 좋다-눅 22:19上.</span></div>
+<div class="entry lv3"><span class="marker">9</span><span class="txt">떡과 잔을 분배하는 동안 누군가가 그 의미에 관하여 살아있는 말씀을 할 수 있다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">만일 어떤 사람이 주의 상에서 떡과 잔의 의미에 관하여 살아있는 말씀을 말한다면 이 말은 생명을 공급하며 주님과 성도들을 사랑하도록 사람들을 자극할 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">주의 상에 참석하는 많은 새로운 사람들이 떡과 잔의 의미를 모르기 때문에 그들은 그 의미에 관한 이러한 생생한 말씀이 필요하다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">우리는 찬송과 기도가 가득하고 그 영과 거룩한 말씀으로 충만된 살아 있는 주의 상을 가질 필요가 있다.</span></div>
+<div class="entry lv2"><span class="marker">E</span><span class="txt">만찬집회에서 우리는 주님께 우리의 경의와 존경과 관심과 존중과 경외를 표해야 한다. 즉, 주를 두려워 해야 한다-시 89:7, 86:11, 130:4, 2:11, 고후 5:11上, 행 9:31, 히 12:28.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리는 정규적으로 집회에 오고 기능을 발휘하며 정시에 집회에 참석함으로써 하나님 경외하기를 배워야 한다ㅡ신 14:23.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">집회에서 의자에 앉아 있는 태도, 집회에서 행동하는 방식, 떡과 잔을 대하는 태도 등은 우리의 주님의 임재에 대한 존중과 경외함과 두려워함을 보여 준다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">만일 우리가 분열적으로나 모독적인 방식으로 모인다면 합당치 않게 먹고 마시는 것이요 자신에 대한 심판을 먹고 마시는 것이다-고전 11:27-29.</span></div>
+<div class="entry lv2"><span class="marker">F</span><span class="txt">합당하게 주님을 기념하는 것은 우리의 합당한 실행에 달려 있다.</span></div>
+  </div>
+</section>
+
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="34" cy="30" r="20" fill="none" stroke="#c89b4a" stroke-width="2"/>
+    <line x1="20" y1="30" x2="48" y2="30" stroke="#c89b4a" stroke-width="1.3"/>
+    <line x1="34" y1="16" x2="34" y2="44" stroke="#c89b4a" stroke-width="1.3"/>
+    <path d="M78 16 L96 16 L104 34 L87 54 L70 34 Z" fill="none" stroke="#ac4053" stroke-width="2"/>
+  </svg>
+</div>
+
+
+<section class="chapter" id="ch5" data-chapter="5">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제5장</span>
+    <h2 class="chapter-title">만찬집회의 전진된 의미</h2>
+    <p class="scripture-refs">히브리서 7:1, 6:20, 창세기 14:18, 고린도 전서 5:7-8, 누가복음 22:30, 고린도 전서 10:16, 18, 7, 14, 21, 11:26, 29</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">Ⅰ</span><span class="txt">과정을 거치신 삼일 하나님의 공급하는 잔치인 만찬집회는 멜기세덱의 반차를 따른 그리스도의 제사장 직분과 관계가 있다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리 주 예수님은 멜기세덱의 반차를 따라서 영원히 대제사장이 되셨다-히 5:6, 10, 6:20, 7:15-17, 슥 6:13.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">살렘(평강) 왕이자 의의 왕인 멜기세덱은 아브라함에게 떡과 포도주를 공급했으며(창 14:18) 주 예수님도 제자들에게 떡과 포도주를 공급하셨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리가 주의 상에 올 수 있는 근거는 의와 평강이다(롬 3-5장).</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">우리에게 의가 주어졌으며 우리는 의롭다함을 받았다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">그 결과 우리는 평강을 누린다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">상 위의 떡과 포도주는 하나님의 체현으로서 우리 안에 분배되시기 위하여 과정을 거치신 요리된 하나님을 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">떡은 생명 공급을 상징하며 포도주는 우리의 목마름을 해결하기 위하여 구속을 성취하는 피를 상징한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">하나님의 정죄 아래 있기 때문에 오는 우리의 목마름을 해결하기 위하여 그리스도는 구속하는 포도주(구속하는 생명의 즙-레 17:11)로 우리의 생명 공급이 되도록 십자가 위에서 죽음의 과정을 통과했다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">멜기세덱이 부르심받은 족속의 조상인 아브라함에게 떡과 포도주를 공급하기 위해 온 것은 그리스도께서 그분 자신을 과정을 거치신 하나님으로 우리 안에 공급하기 위해 오신 것을 상징한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">오늘날 우리의 그리스도는 제물을 드리는 대제사장이 아니라 떡과 포도주를 공급하는 대제사장이시다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그리스도의 영원한 제사장 직분과 하늘에서의 사역은 하나님 자신을 그분의 단체적인 표현을 위하여 우리 안에 분배하고 나누어 주는 하나님의 원래의 목적을 위한 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">그분은 우리를 구속하셨으며 지금은 우리를 먹이신다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">우리는 과정을 거친 은혜이신 하나님을 우리의 누림을 위해 매일의 공급이 되도록 우리 안에 분배하시는 우리의 멜기세덱을 향해 은혜의 보좌로 나아갈 필요가 있다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">멜기세덱으로 예표된 우리의 위대한 대제사장이신 그리스도는 우리를 위해 중재하시며, 아브라함처럼 하나님의 유익을 위해 싸우는 사람들에게 과정을 거치신 하나님을 신성한 축복과 함께 분배하신다-창 14:17-24, 히 7:1, 25.</span></div>
+<div class="entry lv1"><span class="marker">Ⅱ</span><span class="txt">주님은 유월절 잔치를 대치하기 위하여 떡과 잔으로 그분의 상을 제정하셨는데 이는 예표를 성취하시고 우리에게 참된 유월절이 되시기 위함이다. 마 26:17-30, 고전 5:7.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">유월절 상은 구약 경륜의 상이었지만(마 26:17-25), 유월절의 성취이자 대치인 주님의 상은 신약 경륜의 상이다(26-30절).</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">이제 우리는 누룩 없는 떡의 참된 절기를 지키고 있다-마 26:17, 고전 5:8.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">무교절은 칠 일 간의 절기였으며(레 23:5) 유월절이라고 불리웠다-눅 22:1, 막 14:1.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">사실상 유월절 잔치는 무교절의 첫 날이었다-출 12:15-20.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">유월절로 예표된 주의 상의 다른 의미들</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">유월절은 그 해의 첫 달에 있으므로 새로운 시작을 상징한다(출 12:2, 13:4). 주님의 상에서 우리는 새로운 시작, 즉 주의 첫 날이자 부활의 날인 제 팔 일의 새로운 시작을 필요로 한다는 것을 상기해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">주의 상에서 우리는 유월절로 예표된 것처럼 우리가 하나님의 의로운 심판 아래서 죽어야 할 사람이었지만 하나님께서 그리스도를 우리를 위해 죽을 수 있는 대치물이 되도록 예비하셨음을 기억해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">주님의 상에서 우리는 유월절로 예표된 것처럼 우리가 자신에게 속하지 않고 우리를 위해 죽으신 분께 속하며 이제 그분을 우리의 영원한 생명으로 누려야 한다는 것을 상기해야 한다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">주님의 상에서 우리는 유월절로 예표된 것처럼 하나님의 임재 안에서 그리스도를 누리기 위하여 잔치에 참여하며 이러한 누림은 하나님과 우리의 상호만족이 된다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">유월절 잔치와 주의 상의 잔치와 그리고 왕국의 잔치(눅 22:16, 마 26:29)는 사실상 세 단계 안에 있는 한 잔치인데 그것은 구약의 단계와 신약의 단계와 그리고 왕국의 단계이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">주의 상은 구약의 유월절 잔치의 대치이자 연속이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">신약의 주의 상의 잔치는 구주께서 이기는 성도들과 함께 잔치할 때, 오는 하나님의 왕국 안에서의 잔치로 대치되고 지속될 것이다-눅 22:30, 13:28-29.</span></div>
+<div class="entry lv1"><span class="marker">Ⅲ</span><span class="txt">그리스도를 만유를 포함한 분으로 누리기 위하여 주의 상에 올 때마다 우리는 체험에 있어서 좋은 땅의 모든 풍성을 누리면서 그 땅 안에 있는 것이다-신 8:7-11, 고전 1:9, 10:16.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리의 상(床)이신 그리스도는 이스라엘 자손들에게 상(床)이 되었던 좋은 땅으로 예표된다. 좋은 땅에 거했을 때 그들은 그 땅의 모든 풍성한 소산을 누리면서 상 위에서 잔치했었다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">그리스도의 풍성을 우리의 상으로 누리는 것은 그리스도를 사는 것과 원수를 패배시키는 것과 하나님의 왕국을 세우는 것과 그분의 영원한 목적을 성취하기 위하여 하나님의 집을 건축하는 결과를 가져온다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅳ</span><span class="txt">우리가 주의 상에서 누리는 것은 이스라엘이 제단에서 제물을 먹는 것으로 예표된다-고전 10:18.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">제단의 교통은 그리스도의 피와 몸의 교통의 예표이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">희생제물을 먹었던 제단에 교통하는 자들은 희생제물들의 실제이신 예수를 먹는(요 6:57) 주의 상에 교통하는 자들의 예표이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">교통하는 자들은 또한 공동 참여자들을 의미한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">상에 참여하는 것은 주님을 누리고 주님과 하나되는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">먹는 일은 먹는 자와 그가 먹는 것을 하나되게 한다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅴ</span><span class="txt">주의 상은 죄의 모든 속박으로부터 자유케 되고 우리의 생명과 축복이 되시는 삼일 하나님과 함께 하나님의 구원의 해방을 누리는 신약의 희년의 상징이다-눅 4:18-19, 레 25:8-17.</span></div>
+<div class="entry lv1"><span class="marker">Ⅵ</span><span class="txt">주의 상에 참여하는 것은 우상숭배를 벗어나는 것이다-고전 10:14.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">고린도 전서 10장 14절부터 22절까지에서 바울은 주의 상에 관하여 말하고 있지만, 그는 이 단락을 우상숭배를 피하라는 명령으로 시작한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우상숭배는 주님을 대신한 어떤 것을 누리는 것이지만(고전 10:7) 주님의 상은 주님 자신에 대한 참된 누림이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">궁극적으로 온 우주 가운데에는 오직 두 상이 있는데, 하나는 사람들로 귀신과 하나되게 하는 귀신의 상이며, 다른 하나는 믿는이들로 주님과 하나되게 하는 주의 상이다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">주의 상은 다만 주의 날에 함께 모이는 문제만이 아니라 이 상은 매일, 심지어 지속적으로 우리의 누림이 되어야 한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">주님 외에 어떤 것도 먹지 말며 그분을 대신하는 어떤 것도 누리지 말라.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 우리의 상이며 우리의 잔치이며 우리의 땅이신 그리스도 외에 어떤 것도 누려서는 안 된다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅶ</span><span class="txt">주의 만찬은 우리가 주의 만족을 위해 이 땅에 살고 있다는 것을 생각나게 해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">주의 상에서 우리는 그분의 몸과 피를 우리의 만족으로 취하지만 주님의 만찬에서 우리는 그분의 누림을 위해 우리의 기념을 그분께 바친다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">떡을 먹고 잔을 마심으로 우리는 『주의 죽으심을 오실 때까지 전한다』-고전 11:26.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">교회는 죽음을 통하여 만유를 포함한 구속을 성취하기 위한 주님의 첫번째 오심과 하나님의 왕국을 세우기 위한 그분의 두번째 오심 사이의 간격을 잇는다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">그리스도의 죽음은 교회를 산출하였으며 교회는 주님의 만족을 위하여 왕국을 가져올 것이다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">만찬을 먹는 것은 교회 안에서 우리가 그분의 만족을 위하여 왕국을 가져오기 위하여 하늘에서 사역하고 계신 그리스도와 협력하며 그분과 일치된 생활을 할 것을 상기시킨다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅷ</span><span class="txt">주의 상에서 우리는 그리스도를 하나님 아버지께 화목제물로 드린다-레 3:1-5, 6-7, 11-12, 16, 7:11-13, 20-21.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리의 허물과 죄가 속건제물이시며 속죄제물이신 그리스도로 인하여 해결되고 번제와 소제이신 그리스도로 하나님과 우리가 만족할 때 우리는 평강 안에서 상호누림을 위하여 그리스도를 화목제물로 아버지 하나님께 드릴 수 있다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">주의 상에서 그리스도를 화목제물로 누리기 위하여 우리는 주님의 구속하고 정결케 하는 피의 덮음이 필요하다-레 3:2, 벧전 1:2, 히 12:24.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">만일 우리가 부정하다면 우리는 화목제물에 참여할 수 없다. 모든 부정함은 처리되어야 한다-레 7:20-21, 고전 6:11.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">우리가 아버지께 화목제물로 드린 그리스도는 하나님과 경륜적인 경배에 참여한 모든 당사자들의 누림을 위한 것이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅹ</span><span class="txt">주의 만찬을 먹을 때 우리는 그분을 기념함으로써 그분을 만족케 하며 몸을 분변함으로 하나님의 행정을 주의한다-고전 11:29.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">유일하면서도 비밀한 그리스도의 몸은 하나님께서 그분의 행정을 수행하시는 수단이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">주의 만찬에 갈 때 우리는 상 위에 놓인 떡이 유일하고도 비밀한 그리스도의 몸을 나타내는가 혹은 사람의 어떤 분열(어떤 교파)을 나타내는가를 판단하기 위해 몸을 분변해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리가 주의 상에 참여하는 것은 실행에서나 영에 있어서 어떤 분열이 없는 그분의 유일한 몸의 유일한 교통이 되어야 한다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">하나님의 행정이 수행되기 위하여 우리는 유일하고도 비밀한 그리스도의 몸의 하나를 주의해야 한다.</span></div>
+  </div>
+</section>
+
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="34" cy="30" r="20" fill="none" stroke="#c89b4a" stroke-width="2"/>
+    <line x1="20" y1="30" x2="48" y2="30" stroke="#c89b4a" stroke-width="1.3"/>
+    <line x1="34" y1="16" x2="34" y2="44" stroke="#c89b4a" stroke-width="1.3"/>
+    <path d="M78 16 L96 16 L104 34 L87 54 L70 34 Z" fill="none" stroke="#ac4053" stroke-width="2"/>
+  </svg>
+</div>
+
+
+<section class="chapter" id="ch6" data-chapter="6">
+  <div class="chapter-head">
+    <span class="chapter-eyebrow">제6장</span>
+    <h2 class="chapter-title">몸을 분변함</h2>
+    <p class="scripture-refs">고린도 전서 10:14-17, 11:17-22, 27-34, 야고보서 5:14-15</p>
+  </div>
+  <div class="chapter-body">
+    <div class="entry lv1"><span class="marker">Ⅰ</span><span class="txt">고린도 전서 11장에서 바울은 고린도인들에게 강한 말을 함.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">17절에서 바울은 『이는 저희의 모임이 유익이 못 되고 도리어 해로움이라』고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">이것은 믿는이들의 모임이 유익이 되기보다 도리어 해가 될 수도 있음을 가리킨다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">「유익」은 이득을 말함.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">「해」는 손실을 말함.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">20절에서 바울은, 『그러므로 너희가 함께 모여서 주의 만찬을 먹을 수 없으니』라고 말한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">27절에서 바울은, 『누구든지 주의 떡이나 잔을 합당치 않게 먹고 마시는 자는 주의 몸과 피를 범하는 죄가 있느니라』고 말한다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">합당치 않게 먹고 마시는 것은 떡과 잔의 의미를 가치 있게 여기지 않는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">주의 몸과 피를 범하는 것은 자신에게 심판을 가져오는 것이다-29-30절.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">29절에서 바울은, 『주의 몸을 분변치 못하고 먹고 마시는 자는 자기의 죄를 먹고 마시는 것이니라』고 말한다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅱ</span><span class="txt">바울이 이렇게 강한 말을 한 이유는 무엇인가?</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">고린도인들은 분열의 상황에서 상에 오고 있었다-18절.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그들 가운데는 또한 편당과 종파가 있었다-19절.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">분열과 종파 사이에는 차이가 있다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">종파는 분열보다 강한 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">분열이 형태를 갖출 때 그것은 종파가 된다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">종파가 이름을 가질 때 그것은 교파가 된다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">고린도인들은 또한 주의 상을 더럽히고 있었다. 그들은 이것을 다른 종류의 음식과 동등한, 평범한 것으로 만들고 있었다-21-22절.</span></div>
+<div class="entry lv1"><span class="marker">Ⅲ</span><span class="txt">그리스도의 몸인 교회의 기본적인 원칙은 하나이다-엡 4:4-6.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">하나가 손상될 때 그 몸은 나뉘어진다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">분열은 하나님의 행정을 수행함에 있어서 그리스도의 몸을 손상시킨다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">그리스도인들 사이의 분열은 그 몸을 마비시킬 뿐만 아니라 심지어 그 몸을 조각조각 나게 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">하나님의 행정이 수행되게 하려면 우리는 그리스도의 몸의 하나를 주의해야 하며 이러한 관점을 갖는 것은 우리를 그 몸 안에서 보호하며 분열로부터 지켜줄 것이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">고린도에서 하나가 손상되었다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">서로 다른 의견(침례와 같은)이 들어올 때 우리가 점검하지 않으면 그것은 발전할 것이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">이러한 발전은 그 몸 안에서 편당을 형성하게 할 것이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">결국 그 발전은 교파-수침(침례교), 유아세례(장로교)를 가져올 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">고린도인들은 그들이 바울에게, 베드로에게, 아볼로에게 그리고 그리스도에게 속했다고 말하고 있었다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">그들은 편당을 만들었지만 교파는 아니었다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">편파적인 방식으로 바울이나 베드로나 아볼로나 혹은 그리스도에게 속하는 것은 주의 상을 무효화한다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">고린도인들 중 어떤 이들은 옳다 인정함을 받았다-고전 11:19.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">「옳다 인정함을 받음」은 명세서가 일치하는가를 검사하는 것을 의미한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이 구절에서 옳다 인정함을 받는 것은 어떤 편당이나 분열에도 연루되지 않는 것이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅳ</span><span class="txt">우리는 합당치 않게 떡을 먹거나 잔을 마셔서는 안 된다-고전 11:27.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">만일 우리가 분열 가운데 함께 모이거나 주의 상을 더럽힌다면 우리는 합당치 않게 먹고 마시는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">만일 우리가 합당치 않게 먹고 마신다면 우리는 자기의 심판을 먹고 마시는 것이다-29절.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">합당치 않게 먹고 마셨기 때문에 고린도인들 중에 약한 자와 병든 자가 많고 잠자는 자(죽은 자)도 적지 않았다-30절.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">먼저 주님은 그들을 육신적으로 약하게 하여 징계하셨다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">그들이 자신들의 범죄를 회개하지 않았으므로 더욱 징계를 받아 병이 들었다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">그들이 여전히 회개하지 않았으므로 주님은 사망으로 그들을 심판하셨다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">30절은 경고의 말씀이다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">약함은 우리에게 경고가 되어야 한다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">만일 우리가 이 경고를 받아들이지 않는다면 두번째 경고 즉 질병이 올 것이다.</span></div>
+<div class="entry lv4"><span class="marker">c</span><span class="txt">두번째 경고를 주의하지 못한다면 세번째 경고인 사망이 올 것이다.</span></div>
+<div class="entry lv4"><span class="marker">d</span><span class="txt">때로 성도들은 그들의 병이 치료되고 몸과의 합당한 관계로 되돌아올 수 있도록 몸의 대표인 장로들을 청하여 그들을 위해 기도를 부탁할 필요가 있다(약 5:14-15).</span></div>
+<div class="entry lv1"><span class="marker">Ⅴ</span><span class="txt">주의 만찬에 대하여 바울은 두 핵심적인 단어, 살핌과 분변함을 사용했다-고전 11:28-29.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">우리 자신을 살피는 것은 우리가 합당하게 떡을 먹고 잔을 마시는가의 여부를 점검하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">우리는 주의 만찬에 참여하기에 불합당하게 되지 않도록 확실하게 자신을 살필 필요가 있다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 떡을 먹고 잔을 마시면서 그것이 엄중하고 거룩하며 신성한 표징이라는 것을 인식해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">그 몸을 분변하는 것은 주님의 육신의 몸과 그분의 비밀한 몸 모두를 분변하는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">우리 자신을 살피는 것은 주님을 기념하기 위한 것이며 그 몸을 분변하는 것은 주로 하나님의 행정을 수행하기 위한 것이다.</span></div>
+<div class="entry lv1"><span class="marker">Ⅵ</span><span class="txt">주의 상에 올 때마다 우리는 그 몸을 분변해야 한다.</span></div>
+<div class="entry lv2"><span class="marker">A</span><span class="txt">분변하는 것은 구별하고 분리하며 판별하고 구분짓는 것이다.</span></div>
+<div class="entry lv2"><span class="marker">B</span><span class="txt">먼저 주의 상에 놓인 떡은 우리의 구속을 위해 십자가에서 드려진 주님의 육신의 몸을 상징한다-고전 11:23-24.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도인들은 거룩한 만찬을 평범한 것으로 만듦으로써 이를 더럽혔다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">이것은 십자가에 못박히신 그리스도의 육신의 몸을 범하는 죄이다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">상 위에 놓인 떡은 성별되어야 한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 일상적인 음식을 대하듯이 떡을 만져서는 안 되며 경건하게 만져야 한다.</span></div>
+<div class="entry lv2"><span class="marker">C</span><span class="txt">주의 상에 놓인 떡은 또한 그리스도의 비밀한 몸을 상징한다ㅡ고전 10:16-17.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">고린도 전서 11장 29절에서 「몸을 분변치 않고」라는 말은 그리스도의 비밀한 몸을 분변치 않는 것을 언급한다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 상 위에 놓인 떡이 그리스도의 유일하고도 비밀한 몸을 상징하는가 아니면 분열을 상징하는가를 분변해야 한다.</span></div>
+<div class="entry lv4"><span class="marker">a</span><span class="txt">만일 떡이 분열적인 모임이나 교파를 상징한다면 우리는 그것을 먹어서는 안 된다.</span></div>
+<div class="entry lv4"><span class="marker">b</span><span class="txt">이렇게 몸을 분변하는 것은 이것이 다른 어떤 것과도 전혀 다르다는 것을 인식하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">분열 가운데서 상에 나아가는 것은 그리스도의 비밀한 몸을 범하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">4</span><span class="txt">각 사람은 자신과 그 몸의 다른 지체들 사이에 어떤 다툼이 있는가를 살피기 위해 자신을 돌아보아야 한다.</span></div>
+<div class="entry lv2"><span class="marker">D</span><span class="txt">그 몸을 분변(구별)하는 것은 떡이 평범한 것이 아니라 분별되고 거룩케 된 떡이라는 것과 비밀한 몸이 그리스도 안의 모든 믿는이들, 특히 함께 떡을 떼고 있는 사람들을 포함한다는 것을 인식하는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">1</span><span class="txt">만일 우리가 이러한 분별이 없이 떡을 먹는다면 우리는 자신의 심판을 먹고 마시는 것이다.</span></div>
+<div class="entry lv3"><span class="marker">2</span><span class="txt">우리는 떡을 평범한 것으로 만들거나 다른 성도와의 사이에 다툼이 있으면서도 떡을 먹음으로써 떡을 더럽혀서는 안 된다.</span></div>
+<div class="entry lv3"><span class="marker">3</span><span class="txt">만일 우리가 다른 성도와의 사이에 아무런 다툼이 없이 거룩하고 분별된 방식으로 떡을 먹는다면 우리는 그 몸을 분변하는 것이다.</span></div>
+  </div>
+</section>
+
+
+  <section class="refs" id="refs">
+    <p class="section-label">참고 문헌</p>
+    <p class="refs-intro">모든 개요에 나온 요점들을 더욱 자세히 숙고하고 발전시키기 원한다면, 사용된 성경 구절의 회복역 각주(한국복음서원 발행 예정)와 다음의 참고 문헌들(윗트니스 리 지음, 한국복음서원 발행: 서울 광화문 우체국 사서함 827)을 참조하시오.</p>
+    <ol>
+      <li>1. 창세기 라이프-스타디, 메시지 43.</li>
+<li>2. 출애굽기 라이프-스타디, 메시지 23-25, 45, 79.</li>
+<li>3. 레위기 라이프-스타디, 메시지 2-27.</li>
+<li>4. 마태복음 라이프-스타디, 메시지 68.</li>
+<li>5. 마가복음 라이프-스타디, 메시지 43.</li>
+<li>6. 누가복음 라이프-스타디, 메시지 11-12, 49-50, 53, 64-69.</li>
+<li>7. 요한복음 라이프-스타디, 메시지 15-16, 28, 45-46.</li>
+<li>8. 고린도전서 라이프-스타디, 메시지 49-51, 54-56, 64-69.</li>
+<li>9. 히브리서 라이프-스타디, 메시지 8, 11-12, 28, 32, 36, 38, 41, 43, 58-60, 65, 68.</li>
+<li>10. 주의 회복의 오늘날의 전진, 3, 9장.</li>
+<li>11. 만유를 포함한 그리스도, 1-8, 10장.</li>
+<li>12. 날마다 새로와짐, 1장.</li>
+<li>13. 시편 강해, 4-5, 10장.</li>
+<li>14. 실제이신 그리스도, 1-2, 19-21장.</li>
+<li>15. 생명의 계시, 8장.</li>
+<li>16. 하나님의 경륜, 14장.</li>
+<li>17. 장로들의 훈련, 제3권, 11장.</li>
+<li>18. 교회 집회에서 체험하는 제물이신 그리스도, 1-14장.</li>
+<li>19. 생명공과, 16-17과.</li>
+<li>20. 교회의 실지적 표현, 14-16장.</li>
+<li>21. 그리스도의 몸의 건축을 위해 그리스도를 말함, 7-10장.</li>
+<li>22. 하나님의 건축의 이상, 5장.</li>
+    </ol>
+  </section>
+
+</main>
+
+<footer>부산교회 2구역 · 만찬집회 성경공부 개요</footer>
+
+<script>
+// ---------------- ember particle canvas ----------------
+(function(){
+  const canvas = document.getElementById('emberCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  function makeParticles(){
+    const count = Math.min(46, Math.floor(w/28));
+    particles = Array.from({length:count}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: 0.6 + Math.random()*1.8,
+      speed: 0.15 + Math.random()*0.35,
+      drift: (Math.random()-0.5)*0.25,
+      alpha: 0.15 + Math.random()*0.35,
+      hue: Math.random() > 0.5 ? '200,155,74' : '172,64,83'
+    }));
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.y -= p.speed;
+      p.x += p.drift;
+      if(p.y < -10){ p.y = h+10; p.x = Math.random()*w; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${p.hue},${p.alpha})`;
+      ctx.fill();
+    });
+    if(!reduceMotion) requestAnimationFrame(tick);
+  }
+  resize();
+  makeParticles();
+  window.addEventListener('resize', () => { resize(); makeParticles(); });
+  tick();
+})();
+
+// ---------------- top nav visibility + active state ----------------
+(function(){
+  const nav = document.getElementById('topnav');
+  const hero = document.querySelector('.hero');
+  const links = Array.from(document.querySelectorAll('.topnav a'));
+  const chapters = Array.from(document.querySelectorAll('.chapter'));
+
+  const heroObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      nav.classList.toggle('visible', !e.isIntersecting);
+    });
+  }, {threshold:0});
+  heroObserver.observe(hero);
+
+  const navObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = e.target.getAttribute('id');
+        links.forEach(l=>l.classList.toggle('active', l.dataset.nav === id));
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+  chapters.forEach(c=>navObserver.observe(c));
+})();
+
+// ---------------- chapter scroll reveal ----------------
+(function(){
+  const chapters = document.querySelectorAll('.chapter');
+  function revealAll(){ chapters.forEach(c=>c.classList.add('revealed')); }
+
+  if(!('IntersectionObserver' in window)){
+    revealAll();
+    return;
+  }
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('revealed');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -60px 0px'});
+  chapters.forEach(c=>revealObserver.observe(c));
+
+  // safety net: if a chapter is jumped to directly (deep link) and somehow
+  // isn't caught by the observer, ensure it's visible after load.
+  window.addEventListener('load', () => setTimeout(revealAll, 2500));
+})();
+</script>
+</body>
+</html>
