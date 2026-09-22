@@ -178,9 +178,19 @@ a{color:inherit;}
   opacity:.9;
   z-index:1;
 }
+.hero-motif-mobile{
+  display:none;
+}
 @media (max-width:760px){
   .hero-motif{display:none;}
   .hero{padding-top:100px;}
+  .hero-motif-mobile{
+    display:block;
+    width:190px;
+    max-width:60vw;
+    margin:38px auto 0;
+    opacity:.85;
+  }
 }
 
 .scroll-cue{
@@ -446,6 +456,15 @@ footer{
     <p class="hero-verse">이것을 행하여 나를 기념하라
       <cite>고린도전서 11:24</cite>
     </p>
+    <svg class="hero-motif-mobile" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="180" cy="170" r="110" fill="none" stroke="#c89b4a" stroke-width="2" opacity="0.9"/>
+      <circle cx="180" cy="170" r="140" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.35"/>
+      <line x1="110" y1="170" x2="250" y2="170" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
+      <line x1="180" y1="100" x2="180" y2="240" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
+      <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+      <line x1="320" y1="320" x2="320" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+      <line x1="288" y1="380" x2="352" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+    </svg>
   </div>
   <svg class="hero-motif" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="180" cy="170" r="110" fill="none" stroke="#c89b4a" stroke-width="2" opacity="0.9"/>
