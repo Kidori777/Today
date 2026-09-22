@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전쟁의 기도 | 부산교회 2구역 성경공부</title>
+<meta name="description" content="하나님의 왕국을 가져오고 원수를 쫓아내는 전쟁의 기도 — 마태복음 6:10, 에베소서 6:12, 요한계시록 8:4-5에 기초한 성경공부 개요">
+<meta property="og:title" content="전쟁의 기도">
+<meta property="og:description" content="보좌로부터 쏟아지는 기도 — 하나님의 왕국을 가져오고 원수를 쫓아내는 전쟁의 기도">
+<meta property="og:image" content="6-og.png">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#15121D;
+    --bg-1:#1B1626;
+    --storm:#4A4066;
+    --storm-soft:#3B3550;
+    --ember:#8A3A40;
+    --ember-bright:#B4525A;
+    --gold:#C9A24E;
+    --gold-bright:#E4C273;
+    --ink:#EDE6D8;
+    --ink-dim:#B9AFC7;
+    --ink-faint:#867C99;
+    --line:rgba(201,162,78,0.22);
+    --serif:'Noto Serif KR', serif;
+    --sans:'Noto Sans KR', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-0);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color 1.4s ease;
+    overflow-x:hidden;
+  }
+  body[data-act="storm"]{ background:#15121D; }
+  body[data-act="thunder"]{ background:#1A1420; }
+  body[data-act="throne"]{ background:#181321; }
+
+  #particles{
+    position:fixed; inset:0; width:100%; height:100%;
+    pointer-events:none; z-index:0; opacity:0.55;
+  }
+
+  .wrap{ position:relative; z-index:1; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 6vw 10vh;
+    position:relative;
+  }
+  .hero .kicker{
+    font-family:var(--serif);
+    font-size:clamp(0.95rem, 1.6vw, 1.15rem);
+    color:var(--gold);
+    letter-spacing:0.28em;
+    margin:0 0 1.6rem;
+    font-weight:500;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:clamp(3rem, 10vw, 6.4rem);
+    margin:0;
+    letter-spacing:0.02em;
+    color:var(--ink);
+    text-shadow:0 0 60px rgba(201,162,78,0.18);
+  }
+  .hero .rule{
+    width:min(70vw, 420px);
+    height:1px;
+    margin:2.4rem auto;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:0.6;
+  }
+  .hero .refs{
+    font-size:clamp(0.92rem, 1.6vw, 1.05rem);
+    color:var(--ink-dim);
+    letter-spacing:0.02em;
+  }
+  .hero .hymn{
+    margin-top:0.9rem;
+    font-size:0.88rem;
+    color:var(--ink-faint);
+    letter-spacing:0.04em;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:6vh; left:50%; transform:translateX(-50%);
+    width:1px; height:52px;
+    background:linear-gradient(var(--gold), transparent);
+    opacity:0.5;
+  }
+
+  /* ---------- MAIN LAYOUT ---------- */
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 6vw 14vh;
+  }
+
+  section.chapter{
+    position:relative;
+    padding:9vh 0 6vh;
+    border-top:1px solid var(--line);
+  }
+  section.chapter:first-child{ border-top:none; }
+
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:1.4rem;
+    margin-bottom:2.6rem;
+  }
+  .numeral{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(2.6rem, 7vw, 3.6rem);
+    color:var(--gold);
+    line-height:1;
+    opacity:0.92;
+    flex-shrink:0;
+  }
+  .chapter-head h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.35rem, 3.6vw, 1.85rem);
+    margin:0;
+    color:var(--ink);
+    line-height:1.4;
+  }
+
+  .point{ margin:0 0 1.9rem; }
+  .point-row{
+    display:flex;
+    gap:0.9rem;
+    align-items:flex-start;
+  }
+  .letter{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:0.95rem;
+    color:var(--bg-0);
+    background:var(--gold);
+    width:1.7rem; height:1.7rem;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    margin-top:0.2rem;
+    opacity:0.9;
+  }
+  .point-body{ flex:1; min-width:0; }
+  .point-body p{
+    margin:0 0 0.5rem;
+    font-size:clamp(1rem, 2.4vw, 1.08rem);
+    color:var(--ink);
+  }
+  .point-body p strong{ color:var(--gold-bright); font-weight:600; }
+
+  ol.sub{
+    list-style:none;
+    counter-reset:sub;
+    margin:0.7rem 0 0.3rem;
+    padding-left:0;
+  }
+  ol.sub > li{
+    counter-increment:sub;
+    position:relative;
+    padding-left:2rem;
+    margin-bottom:0.9rem;
+    font-size:0.98rem;
+    color:var(--ink-dim);
+  }
+  ol.sub > li::before{
+    content:counter(sub) ".";
+    position:absolute; left:0; top:0;
+    color:var(--ink-faint);
+    font-family:var(--serif);
+    font-weight:600;
+  }
+  ol.sub > li em.term{
+    font-style:normal;
+    color:var(--gold);
+    border-bottom:1px solid var(--line);
+    padding:0 0.1rem;
+  }
+
+  blockquote{
+    margin:1rem 0 1.2rem;
+    padding:1.1rem 1.4rem;
+    border-left:2px solid var(--gold);
+    background:linear-gradient(90deg, rgba(201,162,78,0.07), transparent);
+    border-radius:2px;
+  }
+  blockquote .ref{
+    display:block;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.06em;
+    margin-bottom:0.4rem;
+  }
+  blockquote p{
+    margin:0;
+    font-size:0.98rem;
+    color:var(--ink-dim);
+    line-height:1.8;
+  }
+
+  .footnote{
+    margin-top:1.4rem;
+    font-size:0.85rem;
+    color:var(--ink-faint);
+  }
+
+  /* Chapter VII closing quote block */
+  .final-quote{
+    margin-top:2.4rem;
+    padding:2.2rem clamp(1.4rem, 4vw, 2.6rem);
+    text-align:center;
+    background:radial-gradient(ellipse at center, rgba(201,162,78,0.09), transparent 70%);
+    border:1px solid var(--line);
+    border-radius:4px;
+  }
+  .final-quote p{
+    font-family:var(--serif);
+    font-size:clamp(1.05rem, 2.6vw, 1.3rem);
+    color:var(--gold-bright);
+    margin:0;
+    line-height:1.9;
+  }
+
+  footer{
+    text-align:center;
+    padding:6vh 6vw 8vh;
+    color:var(--ink-faint);
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    border-top:1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    #particles{ display:none; }
+  }
+
+  ::selection{ background:rgba(201,162,78,0.35); color:var(--ink); }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+</style>
+</head>
+<body data-act="storm">
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<div class="wrap">
+
+  <section class="hero">
+    <p class="kicker">보좌로부터 쏟아지는 기도</p>
+    <h1>전쟁의 기도</h1>
+    <div class="rule"></div>
+    <p class="refs">마태복음 6:10 · 에베소서 6:12 · 요한계시록 8:4-5</p>
+    <p class="hymn">찬송가 637장</p>
+    <div class="scroll-cue"></div>
+  </section>
+
+  <main>
+
+    <section class="chapter" data-act="storm">
+      <div class="chapter-head">
+        <span class="numeral">Ⅰ</span>
+        <h2>기도와 하나님의 왕국</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>하나님의 왕국은 하나님께서 다스리시는 영역이다.</p>
+            <ol class="sub">
+              <li>긍정적인 면에서 하나님의 계획은 그분 자신을 그분의 아들 안에서 표현되게 하는 것이다 ― 창 1:26.
+                <blockquote>
+                  <span class="ref">창 1:26</span>
+                  <p>하나님이 이르시되 우리의 형상을 따라 우리의 모양대로 우리가 사람을 만들고 그들로 바다의 물고기와 하늘의 새와 가축과 온 땅과 땅에 기는 모든 것을 다스리게 하자 하시고</p>
+                </blockquote>
+              </li>
+              <li>부정적인 면에서 하나님의 계획은 온 우주 가운데 그분의 권위가 행사되게 함으로써 우주 전체가 그분의 왕국, 곧 그분의 통치의 영역이 되게 하는 것이다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>기도의 최종 목적은 하나님의 왕국을 가져오는 것이다 ― 마 6:10, 13, 계 12:10.</p>
+            <blockquote>
+              <span class="ref">마 6:10</span>
+              <p>왕국이 오게 하시며, 뜻이 하늘에서 이루어진 것같이, 땅에서도 이루어지게 하십시오.</p>
+            </blockquote>
+            <blockquote>
+              <span class="ref">마 6:13하</span>
+              <p>왕국과 능력과 영광이 영원토록 아버지의 것입니다. 아멘.</p>
+            </blockquote>
+            <blockquote>
+              <span class="ref">계 12:10</span>
+              <p>또 나는 하늘에 있는 큰 음성을 들었습니다. "우리 하나님의 구원과 능력과 왕국과 그분의 그리스도의 권위가 이제 나타났다."</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="storm">
+      <div class="chapter-head">
+        <span class="numeral">Ⅱ</span>
+        <h2>기도와 하나님의 원수</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>하나님의 권위는 우주 가운데 거역하는 사탄이 있기 때문에 방해와 제한을 받는다. 우리는 한 면으로 하나님의 왕국을 가져오고, 또 다른 면으로 하나님의 원수를 쫓아내기 위해 전쟁의 기도를 해야 한다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>기도는 사람이 자신이 하나님을 원하고 하나님 편에 서 있다는 것을 '하나님'께 표현하는 것이다. 또한 기도는 사람이 자신이 사탄을 대항하기 위해 하나님과 함께 서 있음을 '사탄'에게 말하는 것이다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">C</span>
+          <div class="point-body">
+            <p>우리는 사람들이 구원받고, 가정이 평안해지고, 교회 안에 다툼이나 논쟁이 사라지도록, 하나님의 왕국을 가져오고 사탄의 세력을 몰아내는 기도를 해야 한다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="storm">
+      <div class="chapter-head">
+        <span class="numeral">Ⅲ</span>
+        <h2>하나님의 원수의 위치</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>사탄은 공중을 탈취하여 자신의 거처로 삼고 땅을 통제하여 자신의 활동 영역으로 삼는다 ― 엡 2:2, 엡 6:12, 참조 단 10:11-14.</p>
+            <blockquote>
+              <span class="ref">엡 2:2</span>
+              <p>그때에 여러분은 그 가운데서 이 세상의 풍조를 따라 살고, 공중의 권세를 잡은 통치자, 곧 지금도 불순종의 아들들 안에서 운행하고 있는 영을 따라 살았습니다.</p>
+            </blockquote>
+            <blockquote>
+              <span class="ref">단 10:12-13</span>
+              <p>… 네 하나님 앞에 스스로 겸비하게 하기로 결심하던 첫날부터 네 말이 응답 받았으므로 내가 네 말로 말미암아 왔느니라 (13) 그런데 바사 왕국의 군주가 이십일 일 동안 나를 막았으므로 내가 거기 바사 왕국의 왕들과 함께 머물러 있더니 가장 높은 군주 중 하나인 미가엘이 와서 나를 도와 주므로</p>
+            </blockquote>
+            <ol class="sub">
+              <li>하나님은 하늘에 계시고, 사탄은 공중에 있으며, 사람은 땅에 있다.</li>
+              <li>온 땅은 공중의 통제 아래 있고, 사람은 사탄의 통제 아래 있다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>주 예수님은 우리가 하나님의 왕국이 임하고 하나님의 뜻이 하늘에서 이루어진 것처럼 땅에서도 이루어지도록 기도하기를 원하신다 ― 마 6:10.</p>
+            <blockquote>
+              <span class="ref">마 6:10</span>
+              <p>왕국이 오게 하시며, 뜻이 하늘에서 이루어진 것같이, 땅에서도 이루어지게 하십시오.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="thunder">
+      <div class="chapter-head">
+        <span class="numeral">Ⅳ</span>
+        <h2>기도의 위치</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>기도의 위치는 승천의 위치이다. 승천의 위치에서 기도하지 않는다면 사탄의 통제 아래 떨어진다.</p>
+            <ol class="sub">
+              <li>우리는 사탄의 위치가 공중에 있음을 항상 기억해야 한다. 땅 위에서 기도한다면 사탄의 통제 아래 있을 것이며 우리가 하늘로 가서 기도한다면 위에서 아래로 기도하게 된다.</li>
+              <li>하나님의 뜻과 일을 위해 기도할 때뿐 아니라, 우리의 건강과 가족, 사업과 같이 우리 자신을 위해 기도할 때에도 승천의 위치에서 기도하는 것이 원칙이다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>향기로 말하자면, 기도는 하늘에 올라가는 것이지만 하나님께서 성취하신 것으로 말하자면 그 기도들은 하늘에서 아래로 내려가는 것이다. 원수를 처리하는 우리의 기도들은 보좌에서 아래로 부어져야 한다 ― 계 8:4-5.</p>
+            <blockquote>
+              <span class="ref">계 8:4-5</span>
+              <p>향의 연기가 성도들의 기도와 함께 그 천사의 손에서 하나님 앞으로 올라갔고, (5) 그 천사께서 향로를 가져오시어 제단의 불을 가득히 채우셔서 땅에 던지시니, 천둥과 음성과 번개와 지진이 일어났습니다.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="throne">
+      <div class="chapter-head">
+        <span class="numeral">Ⅴ</span>
+        <h2>보좌 위에 있는 기도</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>우리는 보좌에 있는 기도, 심지어 왕으로서 다스리는 기도를 해야 한다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>우리에게 사람의 감정, 성질, 육체, 의견, 불만, 분노 등이 있을 때 우리는 하늘에서 땅으로 떨어지며 기도하기 위한 승천의 위치를 상실한다. 우리는 이러한 것들을 철저히 처리받아야 한다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="throne">
+      <div class="chapter-head">
+        <span class="numeral">Ⅵ</span>
+        <h2>전쟁의 기도</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>전쟁의 기도는 하늘들의 영역 안에서 하나님의 보좌로부터 표현되는 기도이다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>전쟁의 기도를 하는 사람은 십자가를 통과하여 부활하고 승천한 사람이다. 그는 땅 위 높은 곳의 보좌에 앉아 있고 땅에 속한 것들에 만져지지 않는 사람이다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">C</span>
+          <div class="point-body">
+            <p>영적 전쟁의 기도가 다루는 대상은 피와 살이 있는 사람이 아니라 영적인 영역에 속한 마귀이다 ― 엡 6:12.</p>
+            <blockquote>
+              <span class="ref">엡 6:12</span>
+              <p>우리의 싸움은 피와 살이 있는 사람들에게 대항하는 것이 아니라, 통치자들과 권세자들과 이 어둠의 세상 지배자들과 하늘들의 영역에 있는 악한 영적인 세력들에게 대항하는 것입니다.</p>
+            </blockquote>
+            <ol class="sub">
+              <li>공중에 있는 악한 자가 사람을 강탈하고 통제하기 때문에 죄인들은 복음을 받지 않으며, 성도들은 주님을 추구하지 않는다.</li>
+              <li>우리는 하나님의 하늘의 권위가 땅으로 내려오도록 기도해야 한다. 그럴 때 죄인들은 구원을 받고, 성도들은 일어나 주님을 추구하고 사랑할 것이다.</li>
+            </ol>
+            <p class="footnote">(개요 발췌 근거: '기도' 제18장)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" data-act="throne">
+      <div class="chapter-head">
+        <span class="numeral">Ⅶ</span>
+        <h2>전쟁의 기도에 협력하는 사람이 됨</h2>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">A</span>
+          <div class="point-body">
+            <p>하나님은 천사들을 선택하셔서 그분을 표현하고 대표하게 하신 것이 아니라 오히려 그분은 사람을 선택하셨고 사람을 그분의 형상과 모양에 따라 창조하셔서 그분을 표현하고 대표하게 하신다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">B</span>
+          <div class="point-body">
+            <p>하나님의 경륜 안에서 사람은 바로 하나님께서 그분의 표현과 통치를 위한 그분의 영원한 목적을 수행하시는 수단이다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="point-row">
+          <span class="letter">C</span>
+          <div class="point-body">
+            <p>그러므로 '사람'은 성경에 있어서 중대한 단어이다. 왜냐하면 사람은 하나님의 영원한 사랑의 대상일 뿐 아니라 또한 사람의 동역을 통해 하나님의 영원한 경륜이 성취되기 때문이다.</p>
+            <ol class="sub">
+              <li>하나님의 <em class="term">[의도]</em>는 사람에게 있으며, 하나님의 <em class="term">[사상]</em>은 사람에게 초점을 맞추고 있고, 하나님의 <em class="term">[마음]</em>은 사람에게 있다.</li>
+              <li>하나님의 <em class="term">[계획]</em>을 이루는 것도 사람이요, 하나님을 <em class="term">[표현]</em>하는 것도 사람이요, 하나님의 원수를 <em class="term">[패배]</em>시키는 것도 사람이요, 하나님의 <em class="term">[왕국]</em>을 인류에게 가져오는 것도 사람이다.</li>
+              <li>하나님의 <em class="term">[나타나심]</em>의 수단도 사람이요, 하나님의 <em class="term">[움직이심]</em>의 수단도 사람이요, 하나님의 <em class="term">[행정]</em>의 수단도 사람이다.</li>
+            </ol>
+            <div class="final-quote">
+              <p>"사람이 없다면 하나님의 영원한 목적은 이 땅에서 수행될 수 없고 성취될 수도 없다."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    전쟁의 기도 · 부산교회 2구역 성경공부
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // ---------- scroll-act observer ----------
+  var body = document.body;
+  var chapters = document.querySelectorAll('section.chapter');
+  var currentAct = 'storm';
+  var thunderFired = false;
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && entry.intersectionRatio > 0.35){
+        var act = entry.target.getAttribute('data-act');
+        if(act && act !== currentAct){
+          currentAct = act;
+          body.setAttribute('data-act', act);
+        }
+        if(act === 'thunder' && !thunderFired){
+          thunderFired = true;
+          fireLightning();
+        }
+      }
+    });
+  }, { threshold: [0, 0.35, 0.6] });
+
+  chapters.forEach(function(c){ obs.observe(c); });
+
+  // ---------- particle canvas ----------
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W, H, particles = [];
+  var N = window.innerWidth < 640 ? 34 : 60;
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function colorForAct(){
+    if(currentAct === 'storm') return [122,110,150];
+    if(currentAct === 'thunder') return [180,82,90];
+    return [222,187,108];
+  }
+
+  function Particle(){
+    this.reset(true);
+  }
+  Particle.prototype.reset = function(initial){
+    this.x = Math.random() * W;
+    this.y = initial ? Math.random() * H : H + 10;
+    this.r = 0.6 + Math.random() * 1.8;
+    this.speed = 0.15 + Math.random() * 0.35;
+    this.drift = (Math.random() - 0.5) * 0.25;
+    this.alpha = 0.15 + Math.random() * 0.45;
+    this.phase = Math.random() * Math.PI * 2;
+  };
+
+  for(var i=0;i<N;i++) particles.push(new Particle());
+
+  var flash = 0;
+
+  function fireLightning(){
+    flash = 1;
+  }
+
+  function tick(t){
+    ctx.clearRect(0,0,W,H);
+    var col = colorForAct();
+
+    if(flash > 0){
+      ctx.fillStyle = 'rgba(' + col.join(',') + ',' + (flash*0.18) + ')';
+      ctx.fillRect(0,0,W,H);
+      flash -= 0.02;
+      if(flash < 0) flash = 0;
+    }
+
+    particles.forEach(function(p){
+      p.y -= p.speed;
+      p.x += Math.sin((t||0)/1800 + p.phase) * p.drift;
+      if(p.y < -10) p.reset(false);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(' + col.join(',') + ',' + p.alpha + ')';
+      ctx.fill();
+    });
+
+    if(!reduceMotion){
+      requestAnimationFrame(tick);
+    }
+  }
+
+  if(!reduceMotion){
+    requestAnimationFrame(tick);
+  } else {
+    tick(0);
+  }
+})();
+</script>
+
+</body>
+</html>
