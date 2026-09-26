@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캄보디아 전도 회화집</title>
+<meta name="description" content="11월 캄보디아 전도 여행을 위한 크메르어 필수 회화 및 전도 스크립트 모음">
+<meta property="og:title" content="캄보디아 전도 회화집">
+<meta property="og:description" content="11월 캄보디아 전도 여행을 위한 크메르어 필수 회화 및 전도 스크립트 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F3ECDC;
+    --panel: #FBF7EC;
+    --line: #D8C49C;
+    --ink: #241C14;
+    --sub: #6E5C43;
+    --gold: #9C6C22;
+    --jade: #385444;
+    --jade-bg: #E7EEE7;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif KR', serif;}
+
+  header{
+    position:sticky; top:0; z-index:20;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:18px 20px 0;
+  }
+  .title-row{
+    display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px 16px;
+    max-width:920px; margin:0 auto;
+  }
+  h1{font-size:1.5rem; font-weight:700; margin:0 0 12px;}
+  .subtitle{color:var(--sub); font-size:0.88rem; margin:0 0 14px;}
+
+  nav{
+    max-width:920px; margin:0 auto;
+    display:flex; gap:6px; overflow-x:auto;
+    padding-bottom:12px;
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{display:none;}
+  nav button{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--sub);
+    font-family:'Noto Serif KR', serif;
+    font-size:0.85rem;
+    padding:8px 14px;
+    border-radius:2px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  nav button.active{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#fff;
+  }
+  nav button:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold); outline-offset:2px;
+  }
+
+  main{max-width:920px; margin:0 auto; padding:24px 20px 80px;}
+  section{display:none;}
+  section.active{display:block;}
+
+  .group-label{
+    font-size:0.8rem; color:var(--sub);
+    margin:28px 0 10px; padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .group-label:first-child{margin-top:0; padding-top:0; border-top:none;}
+
+  .grid{
+    display:grid; grid-template-columns:1fr; gap:12px;
+  }
+  @media(min-width:680px){
+    .grid{grid-template-columns:1fr 1fr;}
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    padding:14px 16px;
+  }
+  .ko{font-family:'Noto Serif KR', serif; font-weight:600; font-size:1.02rem; margin:0 0 8px;}
+  .km{
+    font-family:'Noto Sans Khmer','Noto Sans KR', sans-serif;
+    font-weight:600; font-size:1.35rem; color:var(--jade);
+    margin:0 0 6px; line-height:1.5;
+  }
+  .pron{font-size:0.92rem; color:var(--sub); margin:0;}
+
+  /* sequential script sections */
+  .steps{list-style:none; margin:0; padding:0; counter-reset:step;}
+  .step{
+    position:relative;
+    padding:6px 0 26px 38px;
+    border-left:1px solid var(--line);
+    margin-left:14px;
+  }
+  .step:last-child{border-left:1px solid transparent;}
+  .step::before{
+    counter-increment:step;
+    content:counter(step);
+    position:absolute; left:-14px; top:0;
+    width:28px; height:28px;
+    background:var(--gold); color:#fff;
+    border-radius:50%;
+    font-family:'Noto Serif KR', serif; font-weight:700; font-size:0.85rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step h3{font-size:0.98rem; margin:0 0 10px 4px; color:var(--ink);}
+  .step .note{
+    font-size:0.85rem; color:var(--sub); margin:8px 0 0 4px;
+  }
+  .step .card{margin-left:4px;}
+  .step .grid{margin-left:4px;}
+
+  /* method section */
+  .method-list{list-style:none; margin:0; padding:0;}
+  .method-list li{
+    background:var(--jade-bg);
+    border:1px solid var(--line);
+    padding:16px 18px;
+    margin-bottom:10px;
+    font-family:'Noto Serif KR', serif;
+    font-size:1.05rem;
+    color:var(--jade);
+    font-weight:600;
+  }
+  .method-note{color:var(--sub); font-family:'Noto Sans KR', sans-serif; font-weight:400; font-size:0.9rem; margin-top:24px;}
+
+  footer{
+    max-width:920px; margin:0 auto; padding:0 20px 40px;
+    color:var(--sub); font-size:0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-row">
+    <h1>캄보디아 전도 회화집</h1>
+  </div>
+  <p class="subtitle">11월 캄보디아 전도 여행 · 크메르어 핵심 표현</p>
+  <nav id="tabs"></nav>
+</header>
+
+<main id="main"></main>
+
+<footer>화면을 가로로 넘겨 항목을 이동할 수 있습니다.</footer>
+
+<script>
+const DATA = [
+  {
+    id: "life",
+    label: "기본 생활 언어",
+    type: "cards",
+    groups: [
+      {
+        title: "인사 / 기본 표현",
+        items: [
+          { ko:"안녕하세요", km:"ជំរាបសួរ", pron:"쭘립 쑤어" },
+          { ko:"감사합니다", km:"អរគុណ", pron:"어꾼" },
+          { ko:"괜찮습니다", km:"មិនអីទេ", pron:"민 아이 떼" },
+          { ko:"죄송합니다", km:"សុំទោស", pron:"솜 또" },
+          { ko:"네", km:"បាទ(남) / ចាស(여)", pron:"바 / 짜" },
+          { ko:"아니요", km:"ទេ", pron:"떼" }
+        ]
+      },
+      {
+        title: "간단한 대화",
+        items: [
+          { ko:"이름이 무엇입니까?", km:"ឈ្មោះអ្វី?", pron:"츠무어 아웨이?" },
+          { ko:"제 이름은 ○○입니다", km:"ខ្ញុំឈ្មោះ ○○", pron:"크뇸 츠무어 ○○" },
+          { ko:"어디에서 오셨습니까?", km:"មកពីណា?", pron:"먹 삐 나?" },
+          { ko:"한국에서 왔습니다", km:"មកពីកូរ៉េ", pron:"먹 삐 코레" }
+        ]
+      },
+      {
+        title: "길 / 도움 요청",
+        items: [
+          { ko:"화장실 어디입니까?", km:"បន្ទប់ទឹកនៅណា?", pron:"번뚭 뜩 너 나?" },
+          { ko:"이것 얼마입니까?", km:"តម្លៃប៉ុន្មាន?", pron:"뜸라이 뽄만?" },
+          { ko:"도와주세요", km:"ជួយខ្ញុំផង", pron:"쭈어이 크뇸 퐁" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "gospel",
+    label: "전도 핵심 표현",
+    type: "cards",
+    groups: [
+      {
+        title: "하나님 / 믿음",
+        items: [
+          { ko:"하나님은 당신을 사랑하십니다", km:"ព្រះជាម្ចាស់ស្រឡាញ់អ្នក", pron:"프레아 쯔암차 쓸라라인 네악" },
+          { ko:"예수님을 아십니까?", km:"អ្នកស្គាល់ព្រះយេស៊ូវទេ?", pron:"네악 스깔 프레아 예수 떼?" },
+          { ko:"예수님은 구주이십니다", km:"ព្រះយេស៊ូវជាព្រះអង្គសង្គ្រោះ", pron:"프레아 예수 찌어 프레아 옹 쏭끄러" }
+        ]
+      },
+      {
+        title: "죄와 구원",
+        items: [
+          { ko:"우리는 모두 죄가 있습니다", km:"យើងទាំងអស់មានបាប", pron:"여엉 떵아오스 미엔 밥" },
+          { ko:"예수님께서 우리를 위해 죽으셨습니다", km:"ព្រះយេស៊ូវស្លាប់សម្រាប់យើង", pron:"프레아 예수 슬랍 쌈랍 여엉" },
+          { ko:"그분을 믿으면 구원을 받습니다", km:"ជឿលើព្រះអង្គ នឹងបានសង្គ្រោះ", pron:"쯔으 러 프레아 옹 넝 반 쏭끄러" }
+        ]
+      },
+      {
+        title: "초청 / 반응",
+        items: [
+          { ko:"예수님을 믿으시겠습니까?", km:"អ្នកចង់ជឿព្រះយេស៊ូវទេ?", pron:"네악 쫑 쯔으 프레아 예수 떼?" },
+          { ko:"함께 기도하시겠습니까?", km:"ចង់អធិស្ឋានជាមួយខ្ញុំទេ?", pron:"쫑 아티쓰탄 쯔어 무어이 크뇸 떼?" },
+          { ko:"하나님께 기도합시다", km:"យើងអធិស្ឋានទៅព្រះជាម្ចាស់", pron:"여엉 아티쓰탄 따우 프레아 쯔암차" },
+          { ko:"예수님의 이름을 같이 불러 봅시다", km:"តោះហៅព្រះនាមព្រះយេស៊ូវជាមួយគ្នា", pron:"또어 하오 프레아 니엄 프레아 예수 쯔어 무어이 크니어" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "prayer",
+    label: "짧은 기도 문장",
+    type: "cards",
+    groups: [
+      {
+        title: "아주 간단한 기도 문장",
+        items: [
+          { ko:"하나님, 저를 사랑해 주셔서 감사합니다", km:"ព្រះជាម្ចាស់ អរគុណសម្រាប់សេចក្ដីស្រឡាញ់", pron:"프레아 쯔암차 어꾼 쌈랍 세크데이 쓸라라인" },
+          { ko:"예수님, 저를 구원해 주세요", km:"ព្រះយេស៊ូវ សូមសង្គ្រោះខ្ញុំ", pron:"프레아 예수 솜 쏭끄러 크뇸" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "script-adult",
+    label: "전도 스크립트 (성인)",
+    type: "steps",
+    steps: [
+      {
+        title: "인사와 접근",
+        items: [
+          { ko:"안녕하세요", km:"ជំរាបសួរ", pron:"쭘립 쑤어" },
+          { ko:"잠깐 이야기 나눌 수 있을까요?", km:"អាចនិយាយបន្តិចបានទេ?", pron:"아잇 니예이 번떳 반 떼?" }
+        ]
+      },
+      {
+        title: "관심 열기",
+        items: [
+          { ko:"하나님을 믿으십니까?", km:"អ្នកជឿព្រះជាម្ចាស់ទេ?", pron:"네악 쯔으 프레아 쯔암차 떼?" },
+          { ko:"하나님은 당신을 사랑하십니다", km:"ព្រះជាម្ចាស់ស្រឡាញ់អ្នក", pron:"프레아 쯔암차 쓸라라인 네악" }
+        ],
+        note: "(상대가 모르거나 머뭇거릴 때)"
+      },
+      {
+        title: "핵심 복음",
+        items: [
+          { ko:"우리는 모두 죄가 있습니다", km:"យើងទាំងអស់មានបាប", pron:"여엉 떵아오스 미엔 밥" },
+          { ko:"예수님께서 우리를 위해 죽으셨습니다", km:"ព្រះយេស៊ូវស្លាប់សម្រាប់យើង", pron:"프레아 예수 슬랍 쌈랍 여엉" },
+          { ko:"그분을 믿으면 구원을 받습니다", km:"ជឿលើព្រះអង្គ នឹងបានសង្គ្រោះ", pron:"쯔으 러 프레아 옹 넝 반 쏭끄러" }
+        ]
+      },
+      {
+        title: "초청",
+        items: [
+          { ko:"예수님을 믿으시겠습니까?", km:"អ្នកចង់ជឿព្រះយេស៊ូវទេ?", pron:"네악 쫑 쯔으 프레아 예수 떼?" },
+          { ko:"함께 기도해도 될까요?", km:"អាចអធិស្ឋានជាមួយគ្នាបានទេ?", pron:"아잇 아티쓰탄 쯔어 무어이 크니어 반 떼?" }
+        ]
+      },
+      {
+        title: "함께 부르기 (핵심 포인트)",
+        items: [
+          { ko:"예수님의 이름을 같이 불러 봅시다", km:"តោះហៅព្រះនាមព្រះយេស៊ូវជាមួយគ្នា", pron:"또어 하오 프레아 니엄 프레아 예수 쯔어 무어이 크니어" }
+        ]
+      },
+      {
+        title: "짧은 기도",
+        items: [
+          { ko:"예수님, 저를 구원해 주세요", km:"ព្រះយេស៊ូវ សូមសង្គ្រោះខ្ញុំ", pron:"프레아 예수 솜 쏭끄러 크뇸" },
+          { ko:"하나님, 감사합니다", km:"ព្រះជាម្ចាស់ អរគុណ", pron:"프레아 쯔암차 어꾼" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "script-kids",
+    label: "전도 스크립트 (아동)",
+    type: "steps",
+    steps: [
+      {
+        title: "인사 + 분위기 열기",
+        items: [
+          { ko:"안녕!", km:"សួស្តី", pron:"쑤어스데이" },
+          { ko:"다 같이 해볼까요?", km:"តោះធ្វើជាមួយគ្នា", pron:"또어 트버 쯔어 무어이 크니어" }
+        ],
+        note: "(손동작, 웃음, 반복 유도)"
+      },
+      {
+        title: "하나님 사랑 (핵심 한 문장)",
+        items: [
+          { ko:"하나님은 여러분을 사랑하세요", km:"ព្រះជាម្ចាស់ស្រឡាញ់អ្នកទាំងអស់", pron:"프레아 쯔암차 쓸라라인 네악 떵아오스" }
+        ],
+        note: "👉 아이들에게는 이 문장을 두 번 이상 반복시키세요"
+      },
+      {
+        title: "예수님 소개 (짧고 명확하게)",
+        items: [
+          { ko:"예수님은 여러분을 사랑하세요", km:"ព្រះយេស៊ូវស្រឡាញ់អ្នក", pron:"프레아 예수 쓸라라인 네악" },
+          { ko:"예수님은 우리를 도와주세요", km:"ព្រះយេស៊ូវជួយយើង", pron:"프레아 예수 쭈어이 여엉" }
+        ]
+      },
+      {
+        title: "따라 말하기 (콜 앤 리스폰스)",
+        items: [
+          { ko:"예수님!", km:"ព្រះយេស៊ូវ", pron:"프레아 예수" },
+          { ko:"다시!", km:"ម្ដងទៀត", pron:"멍 띠엣" }
+        ],
+        note: "(천천히 한 단어씩 → 아이들이 따라하면 반복)"
+      },
+      {
+        title: "핵심 순간 (함께 부르기)",
+        items: [
+          { ko:"예수님의 이름을 같이 불러 봅시다", km:"តោះហៅព្រះនាមព្រះយេស៊ូវជាមួយគ្នា", pron:"또어 하오 프레아 니엄 프레아 예수 쯔어 무어이 크니어" }
+        ],
+        note: "👉 2~3번 반복 (리듬 있게)"
+      },
+      {
+        title: "아주 짧은 기도 (아이용)",
+        items: [
+          { ko:"예수님, 저를 사랑해 주세요", km:"ព្រះយេស៊ូវ សូមស្រឡាញ់ខ្ញុំ", pron:"프레아 예수 솜 쓸라라인 크뇸" },
+          { ko:"예수님, 저를 도와주세요", km:"ព្រះយេស៊ូវ សូមជួយខ្ញុំ", pron:"프레아 예수 솜 쭈어이 크뇸" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "method",
+    label: "핵심 방법",
+    type: "method",
+    items: [
+      "설명보다 “반복”",
+      "긴 문장보다 “짧은 문장”",
+      "말하기보다 “함께 따라하기”"
+    ],
+    note: "이 세 가지가 가장 중요합니다. 특히 “예수님 이름 반복”은 아이들이 가장 잘 받아들이는 부분입니다."
+  }
+];
+
+const tabsEl = document.getElementById("tabs");
+const mainEl = document.getElementById("main");
+
+function cardHTML(item){
+  return `<div class="card">
+    <p class="ko">${item.ko}</p>
+    <p class="km">${item.km}</p>
+    <p class="pron">${item.pron}</p>
+  </div>`;
+}
+
+function renderSection(sec){
+  if(sec.type === "cards"){
+    return sec.groups.map(g => `
+      <div class="group-label">${g.title}</div>
+      <div class="grid">${g.items.map(cardHTML).join("")}</div>
+    `).join("");
+  }
+  if(sec.type === "steps"){
+    return `<ol class="steps">${sec.steps.map(s => `
+      <li class="step">
+        <h3>${s.title}</h3>
+        <div class="grid">${s.items.map(cardHTML).join("")}</div>
+        ${s.note ? `<p class="note">${s.note}</p>` : ""}
+      </li>
+    `).join("")}</ol>`;
+  }
+  if(sec.type === "method"){
+    return `<ul class="method-list">${sec.items.map(t => `<li>${t}</li>`).join("")}</ul>
+      <p class="method-note">${sec.note}</p>`;
+  }
+  return "";
+}
+
+DATA.forEach((sec, i) => {
+  const btn = document.createElement("button");
+  btn.textContent = sec.label;
+  btn.dataset.id = sec.id;
+  if(i === 0) btn.classList.add("active");
+  btn.addEventListener("click", () => showSection(sec.id));
+  tabsEl.appendChild(btn);
+
+  const section = document.createElement("section");
+  section.id = sec.id;
+  if(i === 0) section.classList.add("active");
+  section.innerHTML = renderSection(sec);
+  mainEl.appendChild(section);
+});
+
+function showSection(id){
+  document.querySelectorAll("nav button").forEach(b => b.classList.toggle("active", b.dataset.id === id));
+  document.querySelectorAll("main section").forEach(s => s.classList.toggle("active", s.id === id));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
