@@ -47,22 +47,26 @@
 
   nav{
     max-width:920px; margin:0 auto;
-    display:flex; gap:6px; overflow-x:auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:6px;
     padding-bottom:12px;
-    -ms-overflow-style:none; scrollbar-width:none;
   }
-  nav::-webkit-scrollbar{display:none;}
   nav button{
-    flex:0 0 auto;
     border:1px solid var(--line);
     background:transparent;
     color:var(--sub);
     font-family:'Noto Serif KR', serif;
-    font-size:0.85rem;
-    padding:8px 14px;
+    font-size:0.78rem;
+    padding:9px 4px;
     border-radius:2px;
     cursor:pointer;
-    white-space:nowrap;
+    white-space:normal;
+    line-height:1.3;
+  }
+  @media(min-width:680px){
+    nav{grid-template-columns:repeat(6, 1fr);}
+    nav button{font-size:0.85rem; padding:8px 10px;}
   }
   nav button.active{
     background:var(--gold);
