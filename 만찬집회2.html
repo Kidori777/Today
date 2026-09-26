@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제2장 주님을 기념함 (2) — 만찬집회 성경공부</title>
+<meta name="description" content="만찬집회 성경공부 제2장: 주님을 기념함 (2) — 떡과 잔이 상징하는 생명과 분깃, 그리스도의 몸과 피의 의미.">
+<meta property="og:title" content="제2장 주님을 기념함 (2)">
+<meta property="og:description" content="떡과 잔의 상징적 의미 — 생명의 떡, 축복의 잔, 그리고 만찬집회에서 우리가 누리는 그리스도.">
+<meta property="og:image" content="https://kidori777.github.io/Today/manchan-2jang-og.png">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#241410;
+    --bg-panel:#2f1c16;
+    --bg-panel-2:#38221a;
+    --cream:#f1e6d4;
+    --cream-dim:#cdb9a0;
+    --gold:#caa049;
+    --gold-soft:#e6c885;
+    --wine:#9c2c3f;
+    --wine-soft:#c05a67;
+    --rule:rgba(241,230,212,0.14);
+    --max:720px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Noto Serif KR', serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold); color:#241410;}
+
+  .sans{font-family:'Noto Sans KR', sans-serif;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:6.5rem 1.5rem 4rem;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(202,160,73,0.10), transparent 55%),
+      radial-gradient(ellipse at 75% 80%, rgba(156,44,63,0.14), transparent 55%),
+      var(--bg);
+    border-bottom:1px solid var(--rule);
+  }
+  #hero-canvas{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:2; max-width:640px; margin:0 auto;}
+  .hero-eyebrow{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:400;
+    font-size:0.92rem;
+    letter-spacing:0.08em;
+    color:var(--cream-dim);
+    margin-bottom:1.1rem;
+  }
+  .hero-eyebrow .div{ color:var(--gold-soft); }
+  .hero h1{
+    font-size:clamp(1.7rem, 4.6vw, 2.5rem);
+    font-weight:700;
+    margin:0 0 1.6rem;
+    color:var(--cream);
+  }
+  .hero h1 .cup-word{ color:var(--wine-soft); }
+  .hero h1 .bread-word{ color:var(--gold-soft); }
+
+  .refs{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem 0.7rem;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.82rem;
+    color:var(--cream-dim);
+  }
+  .refs span{
+    padding:0.3rem 0.75rem;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:var(--max); margin:0 auto; padding:0 1.5rem;}
+  .roman-section{ padding:3.6rem 0 1.2rem; opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }
+  .roman-section.in-view{ opacity:1; transform:translateY(0); }
+
+  .roman-heading{
+    display:flex; align-items:baseline; gap:0.8rem;
+    margin-bottom:1.6rem;
+    padding-bottom:0.9rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .roman-num{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--gold-soft);
+    flex-shrink:0;
+  }
+  .roman-heading h2{
+    font-size:clamp(1.15rem, 3vw, 1.4rem);
+    font-weight:600;
+    margin:0;
+    color:var(--cream);
+  }
+
+  /* letter-level blocks (A. B. C. ...) */
+  .letter-block{
+    position:relative;
+    margin:0 0 2.1rem;
+    padding:0.15rem 0 0.15rem 1.35rem;
+    border-left:3px solid var(--rule);
+  }
+  .letter-block.thread-bread{ border-left-color:var(--gold); }
+  .letter-block.thread-cup{ border-left-color:var(--wine); }
+
+  .letter-label{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    margin-right:0.5rem;
+  }
+  .thread-bread .letter-label{ color:var(--gold-soft); }
+  .thread-cup .letter-label{ color:var(--wine-soft); }
+  .letter-block:not(.thread-bread):not(.thread-cup) .letter-label{ color:var(--cream-dim); }
+
+  .letter-block > p{ margin:0.2rem 0 0.6rem; }
+
+  ol.num-list{
+    list-style:none;
+    margin:0.4rem 0 0;
+    padding:0;
+    counter-reset:num;
+  }
+  ol.num-list > li{
+    position:relative;
+    margin:0 0 1.05rem;
+    padding-left:1.7rem;
+  }
+  ol.num-list > li::before{
+    counter-increment:num;
+    content: counter(num) ".";
+    position:absolute; left:0; top:0;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.88rem;
+    color:var(--cream-dim);
+  }
+  ol.num-list > li > p{ margin:0 0 0.55rem; }
+
+  ol.sub-list{
+    list-style:none;
+    margin:0.35rem 0 0.2rem;
+    padding:0;
+  }
+  ol.sub-list > li{
+    position:relative;
+    margin:0 0 0.7rem;
+    padding-left:1.55rem;
+    font-size:0.98rem;
+    color:var(--cream-dim);
+  }
+  ol.sub-list > li > span.sub-marker{
+    position:absolute; left:0; top:0;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.85rem;
+    color:inherit;
+    opacity:0.75;
+  }
+
+  .verse-tag{
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.78rem;
+    color:var(--cream-dim);
+    opacity:0.8;
+  }
+
+  .quote-block{
+    margin:1.1rem 0 1.3rem;
+    padding:1rem 1.2rem;
+    background:var(--bg-panel);
+    border-radius:6px;
+    font-size:0.98rem;
+    color:var(--cream);
+  }
+  .quote-block.gold{ box-shadow: inset 3px 0 0 var(--gold); }
+  .quote-block.wine{ box-shadow: inset 3px 0 0 var(--wine); }
+
+  .synthesis{
+    margin:1.6rem 0 0;
+    padding:1.3rem 1.4rem;
+    background:linear-gradient(135deg, rgba(202,160,73,0.09), rgba(156,44,63,0.09));
+    border:1px solid var(--rule);
+    border-radius:8px;
+    font-size:1rem;
+  }
+
+  footer{
+    max-width:var(--max); margin:0 auto;
+    padding:3rem 1.5rem 5rem;
+    text-align:center;
+    color:var(--cream-dim);
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:0.82rem;
+    border-top:1px solid var(--rule);
+    margin-top:2rem;
+  }
+
+  @media (max-width:480px){
+    .hero{padding:5rem 1.2rem 3rem;}
+    .letter-block{padding-left:1.05rem;}
+    ol.num-list > li{padding-left:1.4rem;}
+    ol.sub-list > li{padding-left:1.3rem;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">만찬집회 성경공부 <span class="div">·</span> 제2장</p>
+    <h1>주님을 <span class="bread-word">기념</span>함 (2)</h1>
+    <div class="refs sans">
+      <span>요한복음 6:33-35, 48</span>
+      <span>시편 16:5</span>
+      <span>시편 23:5</span>
+      <span>시편 116:13</span>
+      <span>요한계시록 14:10</span>
+      <span>누가복음 22:19-20</span>
+      <span>히브리서 8:6-13</span>
+      <span>히브리서 9:16-17</span>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- VI -->
+  <section class="roman-section">
+    <div class="roman-heading">
+      <span class="roman-num sans">VI.</span>
+      <h2>상징인 떡과 잔의 의미</h2>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">A.</span>
+      <p>떡은 주님께서 그분의 생명을 우리 안에 분배하기 위하여 십자가 위에서 우리를 위해 주신 분의 육신적인 몸을 상징한다.</p>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">B.</span>
+      <p>떡은 또한 삼일 하나님의 생명으로 소생함을 입고 삼일 하나님과의 유기적인 연합 안으로 들어와서 예수 그리스도의 부활을 통하여 거듭난 많은 지체들로 구성된 주님의 비밀한 몸을 상징한다.</p>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">C.</span>
+      <p>잔은 우리의 죄들이 용서함 받도록 우리를 구속하기 위해 그분이 십자가에서 우리를 위해 흘리신 피를 상징한다.</p>
+    </div>
+
+    <!-- D: 떡의 의미 -->
+    <div class="letter-block thread-bread">
+      <span class="letter-label">D.</span>
+      <p>떡의 의미는 무엇인가?</p>
+      <ol class="num-list">
+        <li>
+          <p>성경에서 떡은 생명을 상징한다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>요한복음 6장 33절부터 35절까지에서 그리스도는 그분이 세상에게 생명을 주는 생명의 떡이라고 말씀하셨다.</li>
+            <li><span class="sub-marker">b.</span>요한복음 6장 48절에서 그리스도는 다시, 『나는 생명의 떡입니다.』고 말씀하셨다. 생명의 떡은 떡의 본성을 언급하는데 그것은 바로 생명이다.</li>
+            <li><span class="sub-marker">c.</span>우리는 우리가 부숴뜨린 떡을 보거나 받을 때 주께서 어떻게 우리를 위하여 육신이 되셨는가와 우리를 위하여 어떻게 육신 안에서 죽으셨는가와 우리로 그분의 생명을 얻게 하기 위하여 어떻게 그분의 몸이 부숴져서 우리에게 주신 바 되셨는가를 생각해야 한다.</li>
+            <li><span class="sub-marker">d.</span>이것은 주의 만찬을 먹는 것과 관련된 의미이다. 우리에게 떡으로 주기 위해 부서지신 주님의 몸은 우리로 그분의 생명을 소유할 수 있도록 그분의 몸을 우리를 위해 주셨음을 의미한다.</li>
+          </ol>
+        </li>
+        <li>
+          <p>성경에서 떡은 또한 단체를 상징한다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>고린도전서 10장 17절에서 떡은 유기적인 구성체, 곧 단체적인 몸의 상징이다. 『떡이 하나요 우리 많은 사람이 한 몸입니다.』</li>
+            <li><span class="sub-marker">b.</span>이러한 방면에서 떡은 부활 안에서 주님으로부터 산출된 어떤 것을 상징한다.</li>
+          </ol>
+        </li>
+        <li><p>주 예수님은 죽으시기 전에 한 알의 밀이셨다 <span class="verse-tag">— 요 12:24</span>.</p></li>
+        <li>
+          <p>그러나 부활 안에서 그분의 죽음을 통해 산출된 것은 많은 열매, 단체적인 실체, 한 덩어리, 그 떡, 단체적인 몸이었다 <span class="verse-tag">— 고전 10:17</span>.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">c.</span>밀알들인(요 12:24) 모든 믿는이들은 고운 가루로 갈리워져서 한 떡이 되기 위해 함께 섞여진다(고전 10:17).</li>
+            <li><span class="sub-marker">d.</span>이 한 덩어리 안에서 우리는 모든 하나님의 자녀들이 하나임을 본다.</li>
+            <li><span class="sub-marker">e.</span>한 면으로 우리는 주님께서 십자가 위에서의 그분의 죽음 안에서 우리를 위해 주신 그 몸을 받음으로써 그분을 기념하고 누린다. 다른 한면으로 우리는 주님께서 죽은 자 가운데서 부활하심으로 말미암아 산출하신 비밀한 몸을 누리는데, 이는 이 비밀한 몸 안에 있는 모든 성도들과 교통하고 이 비밀한 몸의 하나를 간증함으로 말미암는다.</li>
+            <li><span class="sub-marker">f.</span>이것은 주의 상에 참여하는 것에 관련된 의미이다. 떡은 주님의 단체적인 몸을 가리키는데, 이것은 그분께서 죽은 자 가운데서 부활하심으로 말미암아 거듭난 모든 성도들로 구성된다.</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+    <!-- E: 잔의 의미 -->
+    <div class="letter-block thread-cup">
+      <span class="letter-label">E.</span>
+      <p>잔의 의미는 무엇인가?</p>
+      <ol class="num-list">
+        <li>
+          <p>성경에서 포도주는 「잔」이라고 불리운다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>그러나 떡은 접시라고 불리우지 않는다.</li>
+            <li><span class="sub-marker">b.</span>그러면 왜 성경은 포도주를 그 용기의 이름으로 부르는가?</li>
+          </ol>
+        </li>
+        <li>
+          <p>성경에서 「잔」은 「몫(분깃)」을 상징한다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>시편 16편 5절은, 『여호와는 저의 유업과 잔의 몫(분깃)이시니』라고 말한다.</li>
+            <li><span class="sub-marker">b.</span>시편 23편 5절은, 『제 잔이 넘칩니다.』라고 말한다.</li>
+            <li><span class="sub-marker">c.</span>시편 116편 13절에서 우리는 구원의 잔을 보게 된다. 이것은 하나님의 백성들에게 할당된 그분의 몫(분깃)이다.</li>
+            <li><span class="sub-marker">d.</span>계시록 14장 10절에서 우리는 「하나님의 진노의 잔」을 보게 된다. 이것은 그분을 부인하는 사람들에게 할당된 하나님의 몫(분깃)이다.</li>
+          </ol>
+        </li>
+        <li><p>죄인의 잔의 몫(분깃)은 「하나님의 진노의 포도주가 가득한 「그의 진노의 잔」이다.</p></li>
+        <li>
+          <p>그리스도는 우리를 위해 이 잔을 마시셨다 <span class="verse-tag">— 요 18:11</span>.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">e.</span>그리스도가 진노의 잔을 마셨을 때 그분의 피가 쏟아져 나왔으며 이것은 우리에게 새 잔을 가져오는 구원을 이루었다.</li>
+          </ol>
+        </li>
+        <li><p>신약의 고린도전서 10장 16절에서는 이 새 잔이 「축복의 잔」이라고 불리운다.</p></li>
+        <li>
+          <p>구약의 시편 116편 13절에서는 이 잔이 「구원의 잔」이라고 불리운다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">f.</span>만찬집회에서 우리는 우리가 떼는 떡을 보거나 받을 때뿐만 아니라 우리가 마시는 잔을 보거나 받을 때에도 주님과 그분이 우리를 위하여 행하신 것을 생각해야 한다.</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+    <!-- F: 축복의 잔 -->
+    <div class="letter-block thread-cup">
+      <span class="letter-label">F.</span>
+      <p>축복의 잔은 무엇인가?</p>
+      <ol class="num-list">
+        <li>
+          <p>그리스도의 피는 잔 안에 있는 포도나무의 열매로 상징되지만(마 26:29), 몫(분깃)은 피가 아니다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>피는 그리스도의 본질이지만, 주님은 그 잔의 몫(분깃)이다.</li>
+            <li><span class="sub-marker">b.</span>피는 우리를 위해 두 가지를 이루었다.</li>
+          </ol>
+        </li>
+        <li><p>우리의 죄들을 씻었다.</p></li>
+        <li><p>하나님 자신을 우리에게 가져왔다.</p></li>
+        <li><p>잔을 마실 때마다 우리는 주님이 어떻게 우리를 위해 혈육을 입으셨는가(히 2:14)와 어떻게 우리를 위해 피를 흘리셨는가와 어떻게 우리의 죄들을 담당하셨고 우리를 위해 죄가 되셨으며, 심판받고 저주당하셨는가를 생각해야 한다. 이 모든 것은 우리로 최상의 축복, 즉 죄에서 해방되어 하나님과 그분께 속한 모든 것을 우리의 축복의 잔으로 소유하게 하기 위하여 성취되었다.</p></li>
+        <li><p>잔을 받을 때 우리는 또한 우리가 어떻게 구속되고 죄들이 용서함 받고 거룩케 되고 의롭다함을 받고 화목되고 주님의 피로 말미암아 하나님께 열납된 것을 생각해야 한다. 그리고 주님의 피가 우리로 담대히 하나님께 나아갈 수 있도록 이제 어떻게 우리의 죄들을 씻고 우리의 양심을 깨끗케 하는가를 생각하며 이 피가 어떻게 하나님 앞에서 더 나은 것을 말하는가와 우리로 참소하는 자 마귀를 이길 수 있도록 이 피가 어떻게 악한 영의 공격을 저지하는가를 생각해야 한다.</p></li>
+        <li>
+          <p>누가복음 22장 20절에서 잔은 그리스도의 피로 제정된 새 언약 혹은 권리 증서이며 우리가 하나님으로부터 받은 분깃을 증명한다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>그분의 피는 그분의 부활 후에 신약이 된 새 언약, 즉 더 나은 언약을 설립했다(히 8:6-13).</li>
+            <li><span class="sub-marker">b.</span>십자가에서 흘린 그리스도의 피는 언약이 되었으며 이 언약은 잔, 곧 분깃이 되었는데 이는 우리의 누림을 위한 축복이신 하나님 자신이다. 하나님은 이 잔 안에서 우리에게 할당되신다.</li>
+          </ol>
+        </li>
+        <li><p>이 새 언약은 하나님께서 은혜의 경륜 안에서 그분의 구속되고 거듭난 백성들과 하나되시는 근거가 된다.</p></li>
+        <li><p>이 언약 안에서 하나님은 우리에게 죄 사함과 생명과 구원과 모든 하늘에 속한 신성하고 영적인 축복을 주신다.</p></li>
+        <li><p>이 새 언약이 우리에게 주어질 때 이것은 하나의 잔이며(눅 22:20) 이 잔 안에는 하나님의 모든 축복과 심지어 우리의 분깃이신 하나님 자신도 있다.</p></li>
+        <li><p>주님은 피를 흘리셨으며 하나님은 언약을 세우셨고 우리는 하나님과 그분께 속한 모든 것이 우리의 영원한 축복의 분깃이 되는 그 잔을 누린다.</p></li>
+      </ol>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">G.</span>
+      <p>그러므로 떡은 우리가 생명과 그리스도의 몸의 교통에 참여하는 것을 상징하며 잔은 우리의 유일한 몫(분깃)이자 축복이신 삼일 하나님 자신에 대한 누림을 상징한다 <span class="verse-tag">(민 6:23-27, 고후 13:13)</span>.</p>
+    </div>
+  </section>
+
+  <!-- VII -->
+  <section class="roman-section">
+    <div class="roman-heading">
+      <span class="roman-num sans">VII.</span>
+      <h2>떡과 잔이 있는 만찬집회에 참석할 때마다 우리는 주님의 생명 공급을 얻고 그분의 피를 통한 구속을 음미한다</h2>
+    </div>
+
+    <div class="letter-block thread-bread">
+      <span class="letter-label">A.</span>
+      <p>십자가 위에서 주님의 몸은 떡과 같이 우리에게 떼어 주실 수 있도록 우리를 위해 갈라지셨다.</p>
+      <ol class="num-list">
+        <li>
+          <p>이것은 우리가 그분을 생명으로 소유할 수 있도록 그분이 십자가에서 그분의 몸을 주신 것을 상징한다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>십자가 위에서 그분의 몸을 가르심으로 말미암아 그분은 하나님의 생명을 우리 안에 분배할 수 있도록 이 생명을 그분 안으로부터 해방하셨다.</li>
+            <li><span class="sub-marker">b.</span>우리가 그분의 갈라진 몸을 받을 때 우리는 그분의 생명에 참여한다.</li>
+          </ol>
+        </li>
+        <li><p>그리스도는 그분의 몸을 우리의 생명 공급과 누림을 위한 생명의 떡으로 주셨다.</p></li>
+      </ol>
+    </div>
+
+    <div class="letter-block thread-cup">
+      <span class="letter-label">B.</span>
+      <p>더욱이 십자가 위에서 그리스도는 우리를 위해 그분의 몸을 주셨을 뿐만 아니라 그분의 피를 흘리셨다.</p>
+      <ol class="num-list">
+        <li><p>그분은 우리의 죄들이 용서함 받을 수 있도록 우리를 위해 구속을 성취하기 위해 피를 흘리셨다. 십자가 위에서 그분은 우리의 죄를 지고 가셨다(요 1:29).</p></li>
+        <li><p>하나님의 영원한 목적은 주 예수 안에서 그분의 생명을 우리 안에 분배하는 것이지만, 우리의 타락으로 인해 우리가 하나님 앞에 죄 있게 되었으므로 그리스도께서 우리를 위하여 피를 흘리셨다.</p></li>
+      </ol>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">C.</span>
+      <p>그러므로 떡을 먹고 잔을 마실 때마다 우리는 이 생명을 누리며 주님으로부터 이 생명 공급을 받으며 주님의 보혈로 성취된 구속을 음미한다.</p>
+    </div>
+  </section>
+
+  <!-- VIII -->
+  <section class="roman-section">
+    <div class="roman-heading">
+      <span class="roman-num sans">VIII.</span>
+      <h2>성경 안에서 떡과 잔의 순서와 배열에 관한 계시</h2>
+    </div>
+
+    <div class="letter-block">
+      <span class="letter-label">A.</span>
+      <p>고린도전서 10장 16절과 11장 24절부터 25절 안에 있는 순서와 배열이 왜 서로 다른가?</p>
+    </div>
+
+    <div class="letter-block thread-bread">
+      <span class="letter-label">B.</span>
+      <p>고린도전서 11장 24절과 25절에서는 떡이 먼저 언급되었고 나중에 잔이 언급되었다.</p>
+      <ol class="num-list">
+        <li><p>고린도전서 11장 24절과 25절은 주의 만찬을 다룬다.</p></li>
+        <li>
+          <p>고린도전서 11장 24절과 25절에서 떡이 첫 번째인 이유는 몸이 하나님의 원래의 궁극적인 목적이었기 때문이다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>하나님은 그분 자신을 표현하고 그분의 원수를 멸하기 위하여 몸을 원하신다.</li>
+            <li><span class="sub-marker">b.</span>그러나 이것이 이루어지기 전에 사람이 타락했으므로 구속이 필요했다.</li>
+          </ol>
+        </li>
+        <li><p>사람은 하나님의 원래의 목적으로 회복될 필요가 있었다.</p></li>
+        <li><p>이 회복은 잔에 의해 성취되었다.</p></li>
+        <li><p>떡(몸)이 하나님의 원래의 목적이므로 처음에 언급되었으며 잔(구속)은 그 간격을 메우므로 나중에 언급되었다.</p></li>
+      </ol>
+    </div>
+
+    <div class="letter-block thread-cup">
+      <span class="letter-label">C.</span>
+      <p>고린도전서 10장 16절에서 잔이 떡 이전에 언급된다.</p>
+      <ol class="num-list">
+        <li><p>고린도전서 10장 16절은 주의 상을 다룬다.</p></li>
+        <li>
+          <p>10장에서 잔이 먼저인 것은 상이 표현되기 때문이다.</p>
+          <ol class="sub-list">
+            <li><span class="sub-marker">a.</span>상에서 우리는 믿는이들의 교통과 교제를 갖는다.</li>
+            <li><span class="sub-marker">b.</span>우리의 역사에 따르면 우리는 구속을 먼저 체험하고 나중에 그 몸의 지체가 된다.</li>
+          </ol>
+        </li>
+        <li><p>믿는 이의 체험에서 잔(구속)이 먼저이고 떡(몸)은 나중이다.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- IX -->
+  <section class="roman-section">
+    <div class="roman-heading">
+      <span class="roman-num sans">IX.</span>
+      <h2>만찬집회에서 우리는 잔을 마시기 전에 떡을 먹는다</h2>
+    </div>
+
+    <div class="letter-block thread-bread">
+      <span class="letter-label">A.</span>
+      <p>떡으로 상징된 몸은 하나님의 원래의 목적이다.</p>
+      <ol class="num-list">
+        <li><p>이를 통하여 하나님이 표현된다.</p></li>
+        <li><p>이를 통하여 하나님의 원수가 패배당한다.</p></li>
+      </ol>
+    </div>
+
+    <div class="letter-block thread-cup">
+      <span class="letter-label">B.</span>
+      <p>잔으로 상징되는 구속은 하나님의 원래의 궁극적인 목적이 아니다. 이것은 하나님의 영원한 목적을 위해 우리를 회복하도록 하나님이 주신 것이다.</p>
+    </div>
+
+    <div class="synthesis">
+      <span class="letter-label" style="color:var(--cream-dim);">C.</span>
+      그러므로 만찬집회에서 우리는 잔을 마시기 전에 떡에 참여한다.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  만찬집회 성경공부 · 제2장 주님을 기념함 (2)
+</footer>
+
+<script>
+  // scroll reveal
+  const sections = document.querySelectorAll('.roman-section');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, {threshold:0, rootMargin:'0px 0px -10% 0px'});
+  sections.forEach(s=>io.observe(s));
+
+  // subtle hero particles: drifting wheat-gold / wine motes
+  (function(){
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      const rect = canvas.parentElement.getBoundingClientRect();
+      w = canvas.width = rect.width;
+      h = canvas.height = rect.height;
+    }
+    function init(){
+      resize();
+      const count = w < 480 ? 12 : 20;
+      particles = Array.from({length:count}, ()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: 1 + Math.random()*2.2,
+        speed: 0.15 + Math.random()*0.35,
+        drift: (Math.random()-0.5)*0.3,
+        gold: Math.random() > 0.45
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p=>{
+        p.y -= p.speed;
+        p.x += p.drift;
+        if(p.y < -10){ p.y = h + 10; p.x = Math.random()*w; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = p.gold ? 'rgba(202,160,73,0.35)' : 'rgba(156,44,63,0.32)';
+        ctx.fill();
+      });
+      if(!prefersReduced) requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize', ()=>{ resize(); });
+    init();
+    draw();
+  })();
+</script>
+
+</body>
+</html>
