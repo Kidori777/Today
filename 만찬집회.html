@@ -15,18 +15,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg-0:#2a160d;
-  --bg-1:#331c11;
-  --bg-2:#3d2417;
-  --bg-soft:#f6efe2;
-  --gold:#c89b4a;
-  --gold-soft:#e3c179;
-  --wine:#ac4053;
-  --wine-soft:#cf7385;
-  --cream:#f3e9da;
-  --taupe:#b9a488;
-  --taupe-dim:#8d7a63;
-  --line:rgba(200,155,74,0.28);
+  --bg-0:#f9f3e5;
+  --bg-1:#f1e7d2;
+  --bg-2:#e8dabb;
+  --gold:#96631c;
+  --gold-soft:#b3822f;
+  --wine:#8a2c3e;
+  --wine-soft:#a8455a;
+  --cream:#241407;
+  --paper:#fbf6ea;
+  --taupe:#5c4c38;
+  --taupe-dim:#7c6b53;
+  --line:rgba(36,20,7,0.16);
   --font-serif:'Noto Serif KR', serif;
   --font-sans:'Noto Sans KR', sans-serif;
   box-sizing:border-box;
@@ -43,7 +43,7 @@ body{
   line-height:1.8;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--wine); color:var(--cream);}
+::selection{background:var(--wine); color:var(--paper);}
 
 a{color:inherit;}
 
@@ -54,7 +54,7 @@ a{color:inherit;}
   width:100%;
   height:100%;
   z-index:0;
-  opacity:0.55;
+  opacity:0.4;
   pointer-events:none;
 }
 
@@ -68,7 +68,7 @@ a{color:inherit;}
   gap:2px;
   padding:10px 18px;
   padding-top:calc(10px + env(safe-area-inset-top,0px));
-  background:rgba(42,22,13,0.86);
+  background:rgba(249,243,229,0.88);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
   overflow-x:auto;
@@ -101,7 +101,7 @@ a{color:inherit;}
 .topnav a:hover{color:var(--cream);}
 .topnav a.active{
   background:var(--wine);
-  color:var(--cream);
+  color:var(--paper);
 }
 
 /* ---------- layout helpers ---------- */
@@ -253,7 +253,7 @@ section.block{
   border-bottom:1px solid var(--line);
   transition:background .25s ease, padding-left .25s ease;
 }
-.toc-item:hover{background:rgba(200,155,74,0.06); padding-left:26px;}
+.toc-item:hover{background:rgba(150,99,28,0.08); padding-left:26px;}
 .toc-num{
   font-family:var(--font-serif);
   font-weight:700;
@@ -294,7 +294,7 @@ section.block{
   display:inline-block;
   font-family:var(--font-sans);
   font-size:13px;
-  color:var(--wine-soft);
+  color:var(--wine);
   border:1px solid var(--wine);
   border-radius:999px;
   padding:5px 14px;
@@ -414,17 +414,20 @@ section.block{
   color:var(--taupe);
   margin-bottom:26px;
 }
-.refs ol{
+.refs ul{
+  list-style:none;
   font-family:var(--font-sans);
   font-size:13.5px;
   color:var(--taupe-dim);
   line-height:2;
-  padding-left:20px;
+  margin:0;
+  padding-left:0;
   columns:1;
 }
 @media (min-width:640px){
-  .refs ol{columns:2; column-gap:40px;}
+  .refs ul{columns:2; column-gap:40px;}
 }
+.refs ul li{break-inside:avoid; margin-bottom:2px;}
 footer{
   text-align:center;
   padding:40px 24px 60px;
@@ -457,24 +460,24 @@ footer{
       <cite>고린도전서 11:24</cite>
     </p>
     <svg class="hero-motif-mobile" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="180" cy="170" r="110" fill="none" stroke="#c89b4a" stroke-width="2" opacity="0.9"/>
-      <circle cx="180" cy="170" r="140" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.35"/>
-      <line x1="110" y1="170" x2="250" y2="170" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
-      <line x1="180" y1="100" x2="180" y2="240" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
-      <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
-      <line x1="320" y1="320" x2="320" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
-      <line x1="288" y1="380" x2="352" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+      <circle cx="180" cy="170" r="110" fill="none" stroke="#96631c" stroke-width="2" opacity="0.9"/>
+      <circle cx="180" cy="170" r="140" fill="none" stroke="#96631c" stroke-width="1" opacity="0.35"/>
+      <line x1="110" y1="170" x2="250" y2="170" stroke="#96631c" stroke-width="1.5" opacity="0.8"/>
+      <line x1="180" y1="100" x2="180" y2="240" stroke="#96631c" stroke-width="1.5" opacity="0.8"/>
+      <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
+      <line x1="320" y1="320" x2="320" y2="380" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
+      <line x1="288" y1="380" x2="352" y2="380" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
     </svg>
   </div>
   <svg class="hero-motif" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="180" cy="170" r="110" fill="none" stroke="#c89b4a" stroke-width="2" opacity="0.9"/>
-    <circle cx="180" cy="170" r="140" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.35"/>
-    <circle cx="180" cy="170" r="170" fill="none" stroke="#c89b4a" stroke-width="1" opacity="0.18"/>
-    <line x1="110" y1="170" x2="250" y2="170" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
-    <line x1="180" y1="100" x2="180" y2="240" stroke="#c89b4a" stroke-width="1.5" opacity="0.8"/>
-    <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
-    <line x1="320" y1="320" x2="320" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
-    <line x1="288" y1="380" x2="352" y2="380" stroke="#ac4053" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="180" cy="170" r="110" fill="none" stroke="#96631c" stroke-width="2" opacity="0.9"/>
+    <circle cx="180" cy="170" r="140" fill="none" stroke="#96631c" stroke-width="1" opacity="0.35"/>
+    <circle cx="180" cy="170" r="170" fill="none" stroke="#96631c" stroke-width="1" opacity="0.18"/>
+    <line x1="110" y1="170" x2="250" y2="170" stroke="#96631c" stroke-width="1.5" opacity="0.8"/>
+    <line x1="180" y1="100" x2="180" y2="240" stroke="#96631c" stroke-width="1.5" opacity="0.8"/>
+    <path d="M300 210 L340 210 L360 260 L320 320 L280 260 Z" fill="none" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
+    <line x1="320" y1="320" x2="320" y2="380" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
+    <line x1="288" y1="380" x2="352" y2="380" stroke="#8a2c3e" stroke-width="2.5" opacity="0.9"/>
   </svg>
   <div class="scroll-cue"><span class="bar"></span>SCROLL</div>
 </header>
@@ -1069,7 +1072,7 @@ footer{
   <section class="refs" id="refs">
     <p class="section-label">참고 문헌</p>
     <p class="refs-intro">모든 개요에 나온 요점들을 더욱 자세히 숙고하고 발전시키기 원한다면, 사용된 성경 구절의 회복역 각주(한국복음서원 발행 예정)와 다음의 참고 문헌들(윗트니스 리 지음, 한국복음서원 발행: 서울 광화문 우체국 사서함 827)을 참조하시오.</p>
-    <ol>
+    <ul>
       <li>1. 창세기 라이프-스타디, 메시지 43.</li>
 <li>2. 출애굽기 라이프-스타디, 메시지 23-25, 45, 79.</li>
 <li>3. 레위기 라이프-스타디, 메시지 2-27.</li>
@@ -1092,7 +1095,7 @@ footer{
 <li>20. 교회의 실지적 표현, 14-16장.</li>
 <li>21. 그리스도의 몸의 건축을 위해 그리스도를 말함, 7-10장.</li>
 <li>22. 하나님의 건축의 이상, 5장.</li>
-    </ol>
+    </ul>
   </section>
 
 </main>
