@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>무너지는 도시, 예루살렘(자아)</title>
+<meta name="description" content="기원전 586년, 무너지는 예루살렘에서 시작해 바빌론과 고레스를 지나 마음의 회복에 이르는 이야기">
+<meta property="og:type" content="website">
+<meta property="og:image" content="무너지는 도시 예루살렘 og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="무너지는 도시, 예루살렘(자아)">
+<meta property="og:description" content="기원전 586년, 무너지는 예루살렘에서 시작해 바빌론과 고레스를 지나 마음의 회복에 이르는 이야기">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7ece4;--ac:#b23a26;--ink:#161412}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 clamp(17px,2.2vw,20px)/1.95 "Noto Serif KR",serif;transition:background 1.4s ease;font-style:normal}
+em,cite,i{font-style:normal}
+#bar{position:fixed;top:0;left:0;height:5px;width:0;background:var(--ac);z-index:9;transition:background 1.4s}
+#yr{position:fixed;right:14px;top:16px;z-index:8;font:700 15px "Noto Sans KR",sans-serif;color:#161412;background:rgba(255,255,255,.82);border:2px solid var(--ac);padding:6px 12px;transition:border-color 1.4s}
+#yr.tick{animation:tk .5s}
+@keyframes tk{30%{transform:scale(1.15)}}
+section{position:relative;padding:14vh 22px;max-width:760px;margin:0 auto}
+section.hero{min-height:100vh;max-width:none;display:flex;flex-direction:column;justify-content:flex-start;padding-top:16vh;overflow:hidden}
+.hero>*:not(canvas){position:relative;z-index:2;max-width:760px;width:100%;margin:0 auto}
+#city{position:absolute;left:0;bottom:0;width:100%;height:46vh;z-index:1;pointer-events:none}
+h1{font-weight:900;font-size:clamp(34px,8vw,68px);line-height:1.25;color:var(--ink)}
+h1 span{color:var(--ac);transition:color 1.4s}
+.hint{font:400 15px "Noto Sans KR",sans-serif;margin-top:26px;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(9px)}}
+h2{font-weight:900;font-size:clamp(28px,5.5vw,44px);line-height:1.35;margin-bottom:38px;padding-left:16px;border-left:8px solid var(--ac);transition:border-color 1.4s}
+h3{font-weight:700;font-size:clamp(21px,3.6vw,28px);margin:56px 0 18px;color:var(--ac);transition:color 1.4s}
+p{margin-bottom:16px}
+b{font-weight:900;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--ac) 32%,transparent) 0)}
+.r{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+.r.on{opacity:1;transform:none}
+blockquote{margin:30px 0;padding:22px 24px;background:rgba(255,255,255,.72);border-left:6px solid var(--ac);font-weight:600;transition:border-color 1.4s}
+blockquote span{display:block;margin-top:10px;font:700 15px "Noto Sans KR",sans-serif;color:var(--ac)}
+ul{list-style:none;padding:0;margin:22px 0}
+ul li{position:relative;padding:14px 16px 14px 44px;margin-bottom:10px;background:rgba(255,255,255,.66);border-left:4px solid var(--ac)}
+ul li:before{content:"";position:absolute;left:16px;top:24px;width:12px;height:12px;background:var(--ac)}
+.waves li{font-weight:600;font-size:1.06em}
+.waves li:nth-child(1){margin-left:0}.waves li:nth-child(2){margin-left:22px}
+.waves li:nth-child(3){margin-left:44px;background:var(--ac);color:#fff}
+.waves li:nth-child(3):before{background:#fff}
+.acc{margin:12px 0;border:2px solid var(--ac);background:rgba(255,255,255,.75)}
+.acc button{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;padding:16px 20px;font:700 1.05em "Noto Serif KR",serif;color:#161412}
+.acc button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.acc button:after{content:"＋";float:right;color:var(--ac)}
+.acc.open button:after{content:"－"}
+.acc div{max-height:0;overflow:hidden;padding:0 20px;transition:max-height .6s,padding .6s}
+.acc.open div{max-height:220px;padding:0 20px 14px}
+.acc.open{background:var(--ac);color:#fff}.acc.open button,.acc.open div{color:#fff}.acc.open button:after{color:#fff}
+.big{font-weight:900;font-size:clamp(23px,4.4vw,34px);line-height:1.6;padding:34px 0;margin:30px 0;border-top:4px solid var(--ac);border-bottom:4px solid var(--ac)}
+.flow{font-weight:900;font-size:clamp(20px,3.8vw,28px);line-height:1.7;padding:26px;background:#fff;border:3px solid var(--ac)}
+.end li{font-weight:600}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="yr" aria-live="off">기원전 586년</div>
+
+<section class="hero" data-t="0" data-year="기원전 586년">
+<canvas id="city"></canvas>
+<h1>🏛️ 무너지는 도시, <span>예루살렘(자아)</span></h1>
+<p class="hint">아래로 스크롤하세요</p>
+</section>
+
+<section data-t="0">
+<p class="r">기원전 586년, 한 장면에서 이야기를 시작해 보겠습니다.
+<p class="r">오래도록 하나님을 섬기던 도시, 예루살렘이 있었습니다.
+<p class="r">그 중심에는 성전이 있었고, 사람들은 그곳에서 하나님을 경배하였습니다.
+<p class="r">그런데 시간이 흐르면서 사람들의 마음이 변하기 시작합니다.
+<p class="r">겉으로는 하나님을 섬기는 것처럼 보였지만, 실제로는 하나님보다 다른 것들을 더 사랑하게 됩니다.
+<p class="r">성경은 이렇게 경고합니다.
+<blockquote class="r">“내가 북방 모든 족속, 곧 나의 종 바빌론 왕 느부갓레살을 불러오겠다. 여호와의 선포이다. 내가 저들을 데려다 이 땅과 이곳 주민들과 주변 모든 민족을 치고 그들을 완전히 멸망시켜, 그들을 놀람거리와 비웃음거리와 영원한 수치거리가 되게 하겠다.”<span>(예레미야 25장 9절)</span></blockquote>
+<p class="r">하지만 사람들은 그 말을 가볍게 여겼습니다.
+<p class="r">결국 한 나라가 다가옵니다.
+<p class="big r">그 나라가 바로 <b>바빌론 제국</b>입니다.
+</section>
+
+<section data-t="1" data-year="기원전 626년">
+<h2 class="r">⚔️ 바빌론의 왕, 느부갓네살</h2>
+<p class="r">기원전 586년, 예루살렘의 성벽이 무너지고, 성전의 불길이 하늘로 치솟던 그 장면 뒤에는
+<p class="r">이미 오래전부터 준비되어 온 하나의 흐름이 있었습니다.
+<p class="r">그 중심에 서 있는 나라가 바로 신(新)바빌론 제국,
+<p class="r">그리고 그 왕이 <b>느부갓네살 2세</b>입니다.
+<h3 class="r">갈대아에서 시작된 작은 불씨</h3>
+<p class="r">바빌론은 갑자기 나타난 나라가 아니었습니다.
+<p class="r">그 뿌리는 남쪽 메소포타미아의 갈대아 사람들에게서 시작됩니다.
+<p class="r">이들은 오랫동안 강대국 <b>아시리아 제국</b>의 지배를 받던 작은 민족이었습니다.
+<p class="r">겉으로는 조용히 있었지만, 속에서는 기회를 기다리고 있었습니다.
+<p class="r">그 기회가 찾아온 것은 아시리아가 약해지기 시작하던 때였습니다.
+<h3 class="r" data-year="기원전 626년">제국의 탄생 — 나보폴라살</h3>
+<p class="r">기원전 626년, 한 사람이 일어납니다.
+<p class="r">그가 바로 느부갓네살의 아버지 <b>나보폴라살</b>입니다.
+<p class="r">그는 바빌론에서 반란을 일으켜 스스로 왕이 되었고,
+<p class="r">오랜 세월 세계를 지배하던 아시리아에 맞서기 시작합니다.
+<p class="r">그리고 결정적인 순간이 옵니다.
+<p class="r" data-year="기원전 612년">기원전 612년, 바빌론은 메대와 연합하여
+<p class="r">아시리아의 수도 니느웨를 무너뜨립니다.
+<p class="r">이 사건은 단순한 전쟁의 승리가 아니라
+<p class="r">세계의 중심이 바뀌는 순간이었습니다.
+<p class="r">아시리아는 무너지고, 바빌론이 그 자리를 이어받게 됩니다.
+<h3 class="r">왕자의 등장 — 느부갓네살</h3>
+<p class="r">이 흐름 속에서 한 젊은 왕자가 전쟁터에 나섭니다.
+<p class="r">그가 바로 느부갓네살입니다.
+<p class="r">그는 단순한 왕자가 아니라, 이미 뛰어난 군사 지도자였습니다.
+<p class="r" data-year="기원전 605년">기원전 605년,
+<p class="r">그는 갈그미스 전투에서 이집트 군대를 완전히 격파합니다.
+<p class="r">이 전투는 매우 중요합니다.
+<p class="r">왜냐하면 이 승리로 인해 바빌론은
+<p class="r">메소포타미아를 넘어 유다와 시리아, 팔레스타인 전체를 지배하는 제국이 되었기 때문입니다.
+<p class="r">바로 이때부터
+<p class="r">예루살렘은 바빌론의 영향 아래 들어가기 시작합니다.
+<h3 class="r">제국의 절정 — 세계를 덮은 바빌론</h3>
+<p class="r">느부갓네살은 왕위에 오른 후, 단순히 영토만 넓힌 것이 아니었습니다.
+<p class="r">그는 바빌론을 세상에서 가장 찬란한 도시로 만들었습니다.
+<p class="r">거대한 성벽, 화려한 궁전, 그리고 공중정원으로 불리는 건축물까지
+<p class="r">바빌론은 그 시대 사람들이 “세계의 중심”이라 부를 만큼 번영합니다.
+<p class="r">그러나 이 모든 영광의 이면에는
+<p class="r">하나님의 말씀을 집행하는 도구로서의 역할이 있었습니다.
+</section>
+
+<section data-t="2" data-year="기원전 605년">
+<h2 class="r">예루살렘을 향한 세 번의 물결</h2>
+<p class="r">느부갓네살은 한 번에 예루살렘을 무너뜨리지 않았습니다.
+<p class="r">세 번에 걸쳐 점점 압박해 들어옵니다.
+<ul class="waves">
+<li class="r" data-year="기원전 605년">기원전 605년 — 첫 번째 침입 (다니엘 포로)
+<li class="r" data-year="기원전 597년">기원전 597년 — 두 번째 침입 (에스겔 포로)
+<li class="r" data-year="기원전 586년">기원전 586년 — 세 번째, 완전한 멸망
+</ul>
+<p class="r">이 마지막 순간에
+<p class="r">성전은 불타고, 도시는 무너지고, 백성은 포로로 끌려갑니다.
+<h3 class="r">하나님의 의도와 경륜 안에서</h3>
+<p class="r">이 역사는 단순히 강한 나라가 약한 나라를 이긴 이야기가 아닙니다.
+<p class="r">이미 오래전에 하나님은 이렇게 말씀하셨습니다.
+<blockquote class="r">“‘너희가 내 말을 듣지 않았기 때문에 내가 북방 모든 족속, 곧 나의 종 바빌론 왕 느부갓레살을 불러오겠다. ”<span>— 예레미야 25장 8–9절</span></blockquote>
+<p class="r">여기서 바빌론은 침략자가 아니라 하나님의 손에 들린 도구로 나타납니다.
+<p class="r">즉, 역사의 흐름은
+<p class="r">사람의 힘으로 움직이는 것 같지만,
+<p class="r">실제 중심에는 하나님의 경륜이 흐르고 있는 것입니다.
+<h3 class="r">한 장면으로 돌아가 보면</h3>
+<p class="r">불타는 예루살렘과 무너지는 성벽,
+<p class="r">그리고 승리의 깃발을 들고 들어오는 바빌론 군대.
+<p class="r">겉으로 보면
+<p class="r">느부갓네살이 모든 것을 이긴 것처럼 보입니다.
+<p class="r">그러나 말씀의 빛으로 보면
+<p class="r">그 장면은 다른 의미를 갖습니다.
+<p class="big r">하나님이 하신 말씀이<br>역사 속에서 그대로 이루어지는 순간입니다.
+</section>
+
+<section data-t="2" data-year="계속된 반역">
+<p class="r">이 제국을 이끌던 왕은 <b>느부갓네살 2세</b>였습니다.
+<p class="r">그는 아주 강한 왕이었고, 많은 나라를 정복했습니다.
+<p class="r">그리고 마침내 예루살렘까지 공격하게 됩니다.
+<p class="r">처음부터 한 번에 무너진 것은 아닙니다.
+<ul>
+<li class="r">사람들이 조금씩 끌려가고
+<li class="r">왕이 바뀌고
+<li class="r">계속 반역이 반복되다가
+</ul>
+<p class="r">마지막에 완전히 무너집니다.
+<p class="r">그러면 여기서 계속된 반역은 무엇일까요?
+<h2 class="r">겉으로는 정치, 실제로는 하나님을 향한 반역</h2>
+<p class="r">역사적으로 보면 유다는 바빌론의 지배 아래에 있었습니다.
+<p class="r">그런데 왕들이 바뀔 때마다 계속 이런 일이 반복됩니다.
+<ul>
+<li class="r">바빌론에 복종했다가
+<li class="r">다시 이집트를 의지하며 반역하고
+<li class="r">또다시 바빌론의 심판을 받는 것
+</ul>
+<p class="r">대표적인 인물들이 있습니다.
+<ul>
+<li class="r">여호야김 — 바빌론에 복종하다가 다시 반역
+<li class="r">시드기야 — 끝까지 하나님 말씀을 거부하고 반역
+</ul>
+<p class="r">겉으로 보면 국제 정치 속 선택처럼 보이지만,
+<p class="r">성경은 그것을 이렇게 보지 않습니다.
+<h3 class="r">하나님은 이미 길을 말씀하셨습니다</h3>
+<p class="r">하나님은 분명하게 말씀하셨습니다.
+<blockquote class="r">“나는 이 모든 말씀에 따라 유다 왕 시드기야에게 말하였다. “바빌론 왕의 멍에를 여러분의 목에 메고 그와 그의 백성을 섬겨서 살아남도록 하십시오.”<span>— 예레미야서 27장 12절</span></blockquote>
+<p class="r">이 말씀은 단순한 항복 권유가 아니라
+<p class="r">하나님의 정하신 길이었습니다.
+<p class="r">왜냐하면 바빌론은 이미
+<p class="r">하나님이 사용하시는 도구였기 때문입니다.
+<h3 class="r">그러나 왕들과 백성은 다른 길을 택합니다</h3>
+<p class="r">그들은 이 말씀을 받아들이지 않습니다.
+<blockquote class="r">“그들은 내 말을 귀담아듣거나 내게 귀를 기울이기는 커녕 자기들의 목을 곧게 하고서, 자기들 조상보다 더 악한 짓을 하였다.”<span>— 예레미야 7장 26절</span></blockquote>
+<p class="r">그 결과, 반복되는 선택은 하나였습니다.
+<p class="r">자기 판단을 따르며 다른 나라를 의지함으로 하나님 말씀을 거절하였습니다.
+<p class="r">이것이 성경이 말하는 “반역”입니다.
+<h3 class="r">반복된 반역의 실제 모습</h3>
+<p class="r">이 반역은 세 단계로 계속 반복됩니다. (눌러서 펼쳐 보세요)
+<div class="acc r"><button aria-expanded="false">1. 말씀을 듣지 않음</button><div>하나님이 선지자를 통해 계속 말씀하셨지만 사람들은 그것을 가볍게 여깁니다.</div></div>
+<div class="acc r"><button aria-expanded="false">2. 다른 것을 의지함</button><div>하나님 대신 이집트나 정치적 계산을 의지합니다.</div></div>
+<div class="acc r"><button aria-expanded="false">3. 돌이키지 않음</button><div>경고가 와도 돌아오지 않고 오히려 더 완고해집니다.</div></div>
+<p class="r">이 세 가지가 쌓이고 쌓입니다.
+<h3 class="r">결국 마지막 무너짐</h3>
+<p class="r">이 반복이 끝까지 이어지면서 마침내 마지막 왕 시드기야 때에
+<p class="r">완전한 멸망이 옵니다.
+<blockquote class="r">“여호와의 노가 유다와 예루살렘에 미쳐 그들을 그 앞에서 쫓아내시기까지 이르렀더라”<span>— 열왕기하 24장 20절</span></blockquote>
+<p class="r">이 구절이 모든 것을 설명합니다.
+<h3 class="r">하나님의 의도와 경륜 안에서</h3>
+<p class="r">이 “계속된 반역”은 단순한 역사적 실패가 아닙니다.
+<p class="r">하나님은 오랫동안 기다리셨습니다.
+<ul>
+<li class="r">선지자를 보내고
+<li class="r">말씀을 반복하시고
+<li class="r">돌이킬 기회를 주셨습니다
+</ul>
+<p class="r">그러나 사람이 끝까지 거절할 때 결국 심판이 집행됩니다.
+<h3 class="r">한 문장으로 정리하면</h3>
+<p class="big r">“계속된 반역”은<br>정치적 반란의 반복이 아니라 하나님의 말씀을 알면서도 끝까지 거절한 삶의 누적입니다.</p>
+<p class="r">이렇게 보시면,
+<p class="r">예루살렘의 멸망은 갑작스러운 사건이 아니라
+<p class="r">오랜 시간 쌓여온 선택의 결과이며,
+<p class="r">그 속에서도 하나님은 계속 말씀하시고 기다리셨다는 것을 보시게 됩니다.
+</section>
+
+<section data-t="3" data-year="포로의 땅 바빌론">
+<p class="r">성전은 불타고, 도시는 무너지고, 사람들은 바빌론으로 끌려갑니다.
+<p class="r">이 장면은 아주 슬픈 장면입니다.
+<p class="r">하지만 여기서 이야기가 끝나지 않습니다.
+<h2 class="r">🏞️ 낯선 땅, 바빌론에서 시작되는 이야기</h2>
+<p class="r">사람들은 생각했습니다.
+<p class="big r">“이제 끝이다. 하나님도 우리를 떠나신 것 아닐까?”</p>
+<p class="r">그런데 놀라운 일이 일어납니다.
+<p class="r">바빌론이라는 낯선 땅에서 하나님이 다시 나타나십니다.
+<ul>
+<li class="r"><b>에스겔</b>은 하나님의 영광을 봅니다 - 에스겔 1장 26절
+<li class="r"><b>다니엘</b>은 왕 앞에서 하나님을 증거합니다 — 다니엘 2장 28절
+</ul>
+<p class="r">이것은 아주 중요한 사실을 보여줍니다.
+<p class="r">하나님은 한 장소에만 계시는 분이 아니라
+<p class="r">어디서든 사람과 함께하시는 분이라는 것입니다
+<p class="r">예루살렘이 무너졌어도 하나님의 일은 멈추지 않았습니다.
+</section>
+
+<section data-t="4" data-year="기원전 539년">
+<h2 class="r">👑 바빌론의 끝, 그리고 새로운 시작</h2>
+<p class="r">시간이 지나자, 그렇게 강하던 바빌론도 무너지게 됩니다.
+<p class="r">예루살렘을 무너뜨린 왕이 느부갓네살이었다면,
+<p class="r">그 무너진 자리에서 다시 시작하게 하는 왕이 있습니다.
+<p class="r">그가 바로 <b>고레스 2세</b>입니다.
+<p class="r">이 두 사람은 역사 속에서 서로 반대되는 위치에 서 있지만,
+<p class="r">성경의 흐름 안에서는 하나의 연결된 역할을 가지고 있습니다.
+<h3 class="r">제국의 전환 — 바빌론에서 페르시아로</h3>
+<p class="r">느부갓네살 이후 시간이 흐르면서
+<p class="r">바빌론은 점점 약해집니다.
+<p class="r">그리고 기원전 539년,
+<p class="r">새로운 세력이 등장합니다.
+<p class="r">바로 <b>페르시아 제국</b>입니다.
+<p class="r">이 제국을 세운 왕이 고레스입니다.
+<p class="r">그는 전쟁으로만 정복하는 왕이 아니라,
+<p class="r">지혜롭게 사람들의 마음을 얻으며 세력을 확장합니다.
+<p class="r">결국 바빌론은 큰 전투 없이 무너지고
+<p class="r">세계의 중심은 페르시아로 넘어갑니다.
+<h3 class="r">성경 속에서의 고레스 — 놀라운 호칭</h3>
+<p class="r">고레스에 대해 가장 놀라운 점은
+<p class="r">하나님이 그를 어떻게 부르시는가입니다.
+<blockquote class="r">“여호와께서 그분의 기름부음 받은 이, 고레스에게 이렇게 말씀하신다. “<span>— 이사야서 45장 1절</span></blockquote>
+<p class="r">여기서 “기름 부음을 받은 이”라는 표현은
+<p class="r">원래 하나님께 특별히 쓰임 받는 사람에게 붙이는 말입니다.
+<p class="r">이방 왕에게 이 표현이 사용된 것은 매우 이례적인 일입니다.
+<p class="r">또 이렇게 말씀하십니다.
+<blockquote class="r">“내가 의로 그를 일으켰으니 나는 그의 모든 길을 곧게 해 주고 그는 나의 성을 건축하며 포로 된 내 백성을 대가나 보상도 받지 않고 보내 주리라. 만군의 여호와의 말이다”<span>— 이사야 45장 13절</span></blockquote>
+<p class="r">여기서 이미 하나님은
+<p class="r">고레스의 역할을 미리 말씀해 두셨습니다.
+<h3 class="r">실제 역사 속 사건 — 포로 귀환</h3>
+<p class="r">그 예언은 실제로 이루어집니다.
+<p class="r">고레스가 왕이 된 후, 그는 칙령을 내립니다.
+<blockquote class="r">“페르시아 왕 고레스가 말한다. 여호와 하늘의 하나님께서 땅의 모든 왕국을 나에게 주시고, 유다의 예루살렘에 그분을 위한 집을 건축하라고 나에게 명령하셨다.”<span>— 에스라기 1장 2절</span></blockquote>
+<p class="r">그리고 이렇게 명령합니다.
+<blockquote class="r">“너희 가운데 그분 백성에게 속한 이들에게는 누구나 그의 하나님께서 그와 함께 계시기를 바라니, 그가 유다의 예루살렘으로 올라가서 예루살렘에 계시는 여호와 이스라엘의 하나님의 집을 건축하게 하라. 그분은 하나님이시다.”<span>— 에스라기 1장 3절</span></blockquote>
+<p class="r">이로써
+<p class="r">바빌론에 잡혀 있던 유다 백성들이
+<p class="r">다시 예루살렘으로 돌아가기 시작합니다.
+<h3 class="r">느부갓네살과 고레스 — 하나의 흐름</h3>
+<p class="r">이 두 왕을 나란히 놓고 보면
+<p class="r">하나님의 경륜이 분명해집니다.
+<ul>
+<li class="r">느부갓네살 → 무너뜨리는 도구
+<li class="r">고레스 → 회복하게 하는 도구
+</ul>
+<p class="r">한 사람은 심판을 집행하고 다른 한 사람은 회복을 시작합니다.
+<p class="r">그러나 둘 다 공통점이 있습니다.
+<p class="r">하나님이 사용하신 도구(사람)이라는 점입니다.
+<h3 class="r">하나님의 의도와 경륜 안에서</h3>
+<p class="r">하나님은 단지 멸망으로 끝내지 않으십니다.
+<p class="r">예레미야에서 70년을 말씀하신 후,
+<p class="r">그 다음 단계를 이미 준비해 두셨습니다.
+<p class="r">고레스는 그 준비된 답입니다.
+<p class="r">즉,
+<ul>
+<li class="r">포로의 삶은 끝이 아니라 과정이었습니다.
+<li class="r">황폐하고 무너진 예루살렘은 끝이 아니라 회복을 위한 다음 단계(하나님의 계획)입니다.
+</ul>
+<h3 class="r">한 장면으로 보면</h3>
+<p class="r">느부갓네살이 성전을 불태울 때 모든 것이 끝난 것처럼 보였습니다.
+<p class="r">그러나 하나님은 이미 그 다음 왕을 준비하고 계셨습니다.
+<p class="r">그가 바로 고레스입니다.
+<p class="r">이 흐름을 더 깊이 보면 하나님은 단지 백성을 다시 돌아오게 하는 것이 아니라
+<p class="big r">무너진 것 위에 다시 하나님의 집을 세우려는 목적을 가지고 계신 것을 볼 수 있습니다.</p>
+</section>
+
+<section data-t="5" data-year="돌아온 뒤">
+<h2 class="r">🏗️ 돌아왔지만, 완전하지 않은 회복</h2>
+<p class="r">사람들은 기뻤습니다. 다시 성전을 짓고, 성벽도 세웁니다.
+<p class="r">겉으로 보면 모든 것이 회복된 것처럼 보입니다.
+<p class="r">그런데 성경은 한 장면을 보여줍니다.
+<blockquote class="r">“첫 번째 집을 보았던 노인들은 그들의 눈앞에서 이 집의 기초가 놓일 때 큰 소리로 울었고” <span>(에스라 3:12)</span></blockquote>
+<p class="r">왜 울었을까요? 예전과 같지 않았기 때문입니다
+<p class="r">겉은 다시 세워졌지만
+<p class="r">사람들의 마음은 아직 완전히 회복되지 않았습니다.
+<h2 class="r" style="margin-top:70px">🌱 하나님이 원하시는 진짜 회복</h2>
+<p class="r">그래서 하나님은 더 깊은 약속을 하십니다.
+<blockquote class="r">“그러나 그날들 후에 내가 이스라엘 집과 맺을 언약은 다음과 같다. 여호와의 선포이다. 나는 내 법을 그들의 속 부분들에 두고, 그들의 마음에 그것을 기록할 것이다. 나는 그들의 하나님이 되고, 그들은 나의 백성이 될 것이다.” <span>(예레미야 31:33)</span></blockquote>
+<p class="r">이 말은 이런 뜻입니다.
+<p class="big r">겉이 아니라 사람의 마음이 바뀌어야 한다는 것입니다</p>
+<p class="r">시간이 지나 <b>예수 그리스도</b>께서 오십니다.
+<p class="r">그리고 이렇게 말씀하십니다.
+<blockquote class="r">“여러분이 이 성전을 허십시오. 그러면 내가 삼 일 만에 다시 세울 것입니다.” <span>(요한복음 2:19)</span></blockquote>
+<p class="r">이제 성전은 건물이 아니라 사람과 하나님 사이의 관계를 말하게 됩니다
+</section>
+
+<section data-t="6" data-year="지금, 나의 마음">
+<h2 class="r">🌿 전체 이야기 한 줄 흐름</h2>
+<p class="r">이 긴 이야기를 아주 쉽게 한 줄로 보면 이렇습니다.
+<p class="flow r">사람은 하나님을 떠났습니다. 그러나 하나님은 바빌론을 통해 깨닫게 하시고 자아를 깨뜨리고 무너뜨려 영을 새롭게 하여 다시 돌아오게 하십니다.</p>
+<h2 class="r" style="margin-top:80px">🌟 마지막으로 꼭 기억할 점</h2>
+<p class="r">이 이야기는 단순히 옛날 이야기가 아닙니다.
+<p class="r">하나님은 지금도 사람의 겉모습이나 행동이 아니라 사람의 마음 안에서 함께 하시고 싶어 하십니다.
+<p class="big r">나의 행동을 바꾸어 인정 받으려 하지 마십시오!</p>
+<p class="r">나의 신실한 행동이 다른 지체들보다 낫다고 생각하십니까?
+<p class="r">예수님은 가장 높으신 하나님으로서 가장 낮은 자리에까지 오셔서 십자가의 죽음으로 그 사랑을 증명하셨습니다. 나의 행동과 잣대로 위치를 정하는 순간 그 성은 무너져야 할 것입니다. 하나님은 바로 우리 마음 안에서 자유롭게 일하시고 싶어 하시는 분이십니다
+<p class="r">그래서 이 모든 역사는 결국 한 가지를 향합니다.
+<p class="r"><b>하나님이 함께하실 수 있는 사람을 얻으시는 것입니다.</b>
+<ul class="end">
+<li class="r">“내가 중심이던 자리”가 내려오고 “예수님이 중심이고 둘레이신 상태”
+<li class="r">겉이 아니라 중심이 바뀐 사람
+<li class="r">자기 힘이 아니라 하나님 생명으로 사는 사람
+<li class="r">높아지려 하지 않고 낮아지고 파쇄된 사람
+<li class="r">자기 뜻이 아니라 하나님 뜻에 반응하는 사람
+<li class="r">하나님이 마음 안에 거처 할 수 있도록 자아가 무너진 사람!
+</ul>
+<p class="r">이 모든 것을 한 문장으로 말하면 이렇습니다.
+<p class="big r">하나님이 우리의 마음 안에서 자유롭게 살아 움직이실 수 있는 사람!</p>
+<p class="big r" style="color:var(--ac)">바로 당신이길 기도 드립니다.</p>
+</section>
+
+<script>
+(function(){
+var T=[["#f7ece4","#b23a26"],["#f8efdc","#a86a10"],["#f6e6e4","#9c2a2a"],["#e8edf6","#2f4a8a"],["#fbf3d6","#8f6a00"],["#e9f2e4","#3c7a3a"],["#fdf1e3","#c2571a"]];
+var root=document.documentElement,yr=document.getElementById("yr"),bar=document.getElementById("bar"),curT=-1,curY="";
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll(".r").forEach(function(el,i){el.style.transitionDelay=(i%3)*70+"ms";io.observe(el)});
+document.querySelectorAll(".acc button").forEach(function(b){b.addEventListener("click",function(){var a=b.parentNode,o=a.classList.toggle("open");b.setAttribute("aria-expanded",o)})});
+var secs=[].slice.call(document.querySelectorAll("[data-t]")),yrs=[].slice.call(document.querySelectorAll("[data-year]"));
+var canvas=document.getElementById("city"),cx=canvas.getContext("2d"),blocks=[],W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
+function build(){var r=canvas.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*dpr;canvas.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);blocks=[];var bw=Math.max(18,Math.round(W/32)),n=Math.ceil(W/bw);
+for(var c=0;c<n;c++){var rows=3+Math.floor(Math.abs(Math.sin(c*1.7)*4+Math.cos(c*.6)*3));for(var k=0;k<rows;k++){blocks.push({x:c*bw,y:H-(k+1)*bw*.8,w:bw-2,h:bw*.8-2,th:Math.random()*.9+(rows-k)*.02,rot:(Math.random()-.5)*3,dx:(Math.random()-.5)*60})}}}
+function draw(){var p=Math.min(1,window.scrollY/(window.innerHeight*.9));cx.clearRect(0,0,W,H);var ac=getComputedStyle(root).getPropertyValue("--ac");
+blocks.forEach(function(b){var f=Math.max(0,p*1.2-b.th);if(f>1.2)return;var y=b.y+f*f*H*1.6;cx.save();cx.translate(b.x+b.w/2+b.dx*f,y+b.h/2);cx.rotate(b.rot*f);cx.globalAlpha=.55*(1-Math.min(1,f*.8));cx.fillStyle=ac;cx.fillRect(-b.w/2,-b.h/2,b.w,b.h);cx.restore()})}
+function upd(){var s=window.scrollY,m=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(m>0?s/m*100:0)+"%";var line=window.innerHeight*.45,t=0,y="";
+secs.forEach(function(e){if(e.getBoundingClientRect().top<line)t=+e.dataset.t});
+yrs.forEach(function(e){if(e.getBoundingClientRect().top<line)y=e.dataset.year});
+if(t!==curT){curT=t;root.style.setProperty("--bg",T[t][0]);root.style.setProperty("--ac",T[t][1])}
+if(y&&y!==curY){curY=y;yr.textContent=y;yr.classList.remove("tick");void yr.offsetWidth;yr.classList.add("tick")}
+if(s<window.innerHeight*1.6)draw()}
+var q=false;window.addEventListener("scroll",function(){if(!q){q=true;requestAnimationFrame(function(){q=false;upd()})}},{passive:true});
+window.addEventListener("resize",function(){build();upd()});build();upd();
+})();
+</script>
+</body>
+</html>
