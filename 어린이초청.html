@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>어린이 초청 집회에 여러분을 초대합니다</title>
+<meta name="description" content="아이와 함께, 가족과 함께 편안한 마음으로 오십시오. 10월 17일 오전 11시, 집회 후 다과와 식사가 준비되어 있습니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="어린이 초청 집회에 여러분을 초대합니다">
+<meta property="og:description" content="아이와 함께, 가족과 함께 편안한 마음으로 오십시오. 10월 17일 오전 11시">
+<meta property="og:image" content="%EC%96%B4%EB%A6%B0%EC%9D%B4%20%EC%B4%88%EC%B2%AD%20%EC%A7%91%ED%9A%8C.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f1a17;--coral:#FF7A59;--sun:#FFD84D;--sky:#6CC5F0;--paper:#FFFDF6}
+*{box-sizing:border-box;margin:0;font-style:normal}
+html,body{min-height:100%}
+body{font-family:"Noto Sans KR",sans-serif;color:var(--ink);background:linear-gradient(160deg,#FFF6DD 0%,#FFE9C7 55%,#DDF1FF 100%);background-attachment:fixed;overflow-x:hidden;word-break:keep-all}
+.dots{position:fixed;inset:0;pointer-events:none;z-index:0}
+.dot{position:absolute;border-radius:50%;opacity:.7;animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px)}}
+#stage{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px;transition:opacity .7s,transform .7s}
+#stage.gone{opacity:0;transform:scale(.9);pointer-events:none}
+.pre{font-family:Jua,sans-serif;font-size:22px;text-align:center}
+.env{all:unset;cursor:pointer;position:relative;width:min(84vw,340px);aspect-ratio:340/240;perspective:900px;animation:bob 2.2s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.env:focus-visible{outline:4px solid var(--sky);outline-offset:10px}
+.env.open{animation:none}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-1.5deg)}}
+.env>*{position:absolute}
+.back{inset:0;background:#F58B66;border-radius:14px;z-index:0;box-shadow:0 18px 30px rgba(120,60,20,.25)}
+.letter{left:6%;width:88%;top:7%;height:82%;background:var(--paper);border-radius:10px;z-index:2;transition:transform .9s cubic-bezier(.3,1.3,.5,1) .55s;text-align:center;padding-top:16%;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.letter b{display:block;font-family:Jua,sans-serif;font-weight:400;font-size:clamp(20px,6vw,26px)}
+.letter i{display:block;width:34px;height:34px;margin:8px auto;border-radius:50%;background:var(--sun)}
+.open .letter{transform:translateY(-52%)}
+.front{inset:0;z-index:3;background:linear-gradient(#FFB89C,#FFA783);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);border-radius:14px}
+.flap{left:0;top:0;width:100%;height:56%;background:#FF9A6E;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:4;transition:transform .7s ease,z-index 0s .35s}
+.open .flap{transform:rotateX(180deg);z-index:1}
+.seal{left:50%;top:56%;width:44px;height:44px;margin:-26px 0 0 -22px;z-index:5;transition:opacity .3s,transform .3s;animation:beat 1.2s infinite}
+.open .seal{opacity:0;transform:scale(1.6);animation:none}
+@keyframes beat{50%{transform:scale(1.15)}}
+.hint{font-family:Jua,sans-serif;font-size:clamp(22px,6.4vw,30px);text-align:center;line-height:1.4;background:#fff;border:3px solid var(--ink);border-radius:40px;padding:10px 26px;box-shadow:0 5px 0 var(--ink)}
+.hint small{display:block;font-size:.62em;font-family:"Noto Sans KR";font-weight:700;color:#C2441F}
+#card{position:relative;z-index:1;display:none;padding:28px 16px 60px}
+#card.show{display:block}
+.paper{max-width:540px;margin:0 auto;background:var(--paper);border-radius:26px;padding:0 28px 36px;box-shadow:0 20px 50px rgba(120,60,20,.2);overflow:hidden;text-align:center}
+.ribbon{height:12px;margin:0 -28px 30px;background:repeating-linear-gradient(90deg,var(--coral) 0 28px,var(--sun) 28px 56px,var(--sky) 56px 84px)}
+h1{font-family:Jua,sans-serif;font-weight:400;font-size:clamp(27px,7.6vw,36px);line-height:1.4;margin-bottom:26px}
+h1 em{color:#D9482B}
+.paper p{font-size:17px;line-height:2;margin-bottom:22px;font-weight:500}
+.lead{font-family:"Noto Serif KR",serif;font-weight:700;font-size:19px}
+.verse{background:#FFF1BF;border-radius:18px;padding:20px 20px 16px;text-align:left;margin:8px 0 26px}
+.verse p{font-family:"Noto Serif KR",serif;font-size:16px;margin-bottom:8px}
+.verse cite{display:block;text-align:right;font-style:normal;font-weight:700;font-size:15px;color:#7A4A00}
+.fam{width:100%;max-width:380px;height:auto;margin:6px auto 20px;display:block}
+.sep{border:0;height:2px;margin:26px 0;background:repeating-linear-gradient(90deg,#d8b98e 0 8px,transparent 8px 16px)}
+.info{text-align:left;font-size:17px;line-height:1.7;display:grid;gap:10px;font-weight:500}
+.info div{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.info b{font-weight:900}
+.info a{color:var(--ink);font-weight:900;text-decoration:underline;text-underline-offset:4px}
+.meal{display:inline-block;margin-top:18px;background:#E6F6EC;border:2px solid #7ED6A5;border-radius:14px;padding:9px 16px;font-size:15px;font-weight:700}
+.end{font-family:"Noto Serif KR",serif;font-weight:700;font-size:18px;line-height:1.9}
+.end span{display:block;font-family:Noto Sans KR;font-weight:500;font-size:16px;margin-top:6px}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style></head>
+<body>
+<div class="dots" id="dots" aria-hidden="true"></div>
+
+<main id="stage">
+<p class="pre">우체통에 편지가 도착했어요 ✉</p>
+<button class="env" id="env" aria-label="초대장 열기">
+<span class="back"></span>
+<span class="letter"><i></i><b>어린이 초청장</b></span>
+<span class="front"></span>
+<span class="flap"></span>
+<svg class="seal" viewBox="0 0 44 44"><path d="M22 40C4 27 9 11 22 19C35 11 40 27 22 40Z" fill="#E5384F" stroke="#7a1626" stroke-width="2.5" stroke-linejoin="round"/></svg>
+</button>
+<p class="hint">꼭 눌러주세요.<small>당신을 초대랍니다.</small></p>
+</main>
+
+<section id="card" aria-label="초청장">
+<div class="paper">
+<div class="ribbon"></div>
+<h1 class="rv">[어린이 초청 집회에<br><em>여러분을 초대합니다</em>]</h1>
+
+<p class="lead rv">아이의 웃음은<br>가정을 따뜻하게 밝히는 작은 빛입니다.</p>
+<p class="rv">하나님은 그 작은 아이들을 깊이 사랑하시며,<br>그 아이들을 통해 우리 모두를 부르고 계십니다.</p>
+
+<div class="verse rv">
+<p>예수님께서 그것을 보시고 분개하시며 말씀하셨다. “어린아이들이 나에게 오는 것을 허락하고 막지 마십시오. 왜냐하면 하나님의 왕국이 이와 같은 사람들의 것이기 때문입니다.</p>
+<cite>(마가복음 10:14)</cite>
+</div>
+
+<p class="lead rv">아이와 함께,<br>가족과 함께<br>편안한 마음으로 오십시오.</p>
+<p class="rv">처음 방문하셔도 괜찮습니다.<br>누구나 따뜻하게 맞이합니다.</p>
+
+<svg class="fam rv" viewBox="0 0 360 230" role="img" aria-label="함께 둘러앉은 가족">
+<circle cx="295" cy="50" r="28" fill="#FFD84D"/>
+<ellipse cx="82" cy="46" rx="34" ry="14" fill="#fff"/><ellipse cx="104" cy="38" rx="22" ry="13" fill="#fff"/>
+<path d="M0 190Q90 150 180 175T360 165V230H0Z" fill="#BFE3A5"/>
+<rect x="28" y="110" width="10" height="64" fill="#A9714B"/><circle cx="33" cy="98" r="34" fill="#7CC47F"/>
+<ellipse cx="185" cy="198" rx="140" ry="22" fill="#FFB4A2"/><ellipse cx="185" cy="197" rx="118" ry="15" fill="#FFD6C9"/>
+<ellipse cx="120" cy="184" rx="28" ry="12" fill="#3F5E9E"/><ellipse cx="190" cy="180" rx="26" ry="11" fill="#C94F5A"/>
+<ellipse cx="153" cy="190" rx="18" ry="8" fill="#E0A82E"/><ellipse cx="233" cy="190" rx="18" ry="8" fill="#36A387"/>
+<rect x="100" y="124" width="40" height="56" rx="16" fill="#5B8DEF"/>
+<circle cx="190" cy="104" r="19" fill="#6B3E2A"/><rect x="172" y="116" width="36" height="58" rx="16" fill="#F26B6B"/>
+<rect x="140" y="154" width="26" height="32" rx="12" fill="#FFC93C"/><rect x="220" y="152" width="26" height="34" rx="12" fill="#4CC9A8"/>
+<g fill="#F5C9A6"><circle cx="120" cy="108" r="17"/><circle cx="190" cy="100" r="16"/><circle cx="152" cy="142" r="13"/><circle cx="232" cy="140" r="13"/></g>
+<g fill="#3B2A20"><path d="M103 108A17 17 0 0 1 137 108Z"/><path d="M139 144A13 13 0 0 1 165 144Z"/><path d="M219 142A13 13 0 0 1 245 142Z"/><circle cx="142" cy="130" r="5"/><circle cx="162" cy="130" r="5"/></g>
+<g fill="#2b2b2b"><circle cx="114" cy="109" r="1.7"/><circle cx="126" cy="109" r="1.7"/><circle cx="184" cy="101" r="1.7"/><circle cx="196" cy="101" r="1.7"/><circle cx="147" cy="143" r="1.5"/><circle cx="157" cy="143" r="1.5"/><circle cx="227" cy="141" r="1.5"/><circle cx="237" cy="141" r="1.5"/></g>
+<g fill="none" stroke="#2b2b2b" stroke-width="1.8" stroke-linecap="round"><path d="M115 115Q120 120 125 115"/><path d="M185 107Q190 112 195 107"/><path d="M148 148Q152 152 156 148"/><path d="M228 146Q232 150 236 146"/></g>
+<g fill="#FF8FA3" opacity=".7"><circle cx="110" cy="114" r="3"/><circle cx="130" cy="114" r="3"/><circle cx="180" cy="106" r="3"/><circle cx="200" cy="106" r="3"/></g>
+<path d="M160 70c-10-8-3-18 3-12 6-6 13 4 3 12l-3 3z" fill="#FF6B7F"/><path d="M262 96c-8-6-2-14 2-9 5-5 10 3 2 9l-2 2z" fill="#FF8FA3"/>
+</svg>
+
+<p class="rv">집회 후에는<br>간단한 다과와 식사를 함께 나누며<br>서로 교제하는 시간을 준비하였습니다.</p>
+
+<hr class="sep">
+<div class="info rv">
+<div><span>📍</span><span><b>일시:</b> 10월 17일 오전 11시</span></div>
+<div><span>📍</span><span><b>장소:</b> 부산 사하구 하신번영로 201번길 10, 2층</span></div>
+<div><span>📍</span><span><b>대상:</b> 어린이 및 가족 누구나</span></div>
+<div><span>📍</span><span><b>문의:</b> <a href="tel:01093627642">010-9362-7642</a></span></div>
+</div>
+<div class="meal rv">🍽 집회 후 다과와 식사가 준비되어 있습니다</div>
+<hr class="sep">
+
+<p class="end rv">당신과 당신의 가정을 기다립니다.<span>이 시간, 하나님께서 준비하신 따뜻한 만남이 있습니다.</span></p>
+</div>
+</section>
+
+<script>
+(function(){
+var cols=['#FFD84D','#6CC5F0','#FF8FA3','#7ED6A5','#FFB38A'],box=document.getElementById('dots');
+for(var i=0;i<16;i++){var d=document.createElement('span'),s=10+Math.random()*22;d.className='dot';
+d.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;background:'+cols[i%5]+';animation-delay:-'+Math.random()*7+'s';box.appendChild(d);}
+var env=document.getElementById('env'),stage=document.getElementById('stage'),card=document.getElementById('card'),opened=false;
+env.addEventListener('click',function(){
+if(opened)return;opened=true;env.classList.add('open');
+setTimeout(function(){stage.classList.add('gone')},1700);
+setTimeout(function(){stage.style.display='none';card.classList.add('show');window.scrollTo(0,0);reveal();},2400);
+});
+function reveal(){
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+els.forEach(function(e){io.observe(e)});
+}
+})();
+</script>
+</body></html>
