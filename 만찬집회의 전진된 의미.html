@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>만찬집회의 전진된 의미</title>
+<meta name="description" content="구속하시는 그리스도와 공급하시는 그리스도 — 멜기세덱의 떡과 포도주, 그리고 유월절의 어린양으로 보는 만찬집회의 전진된 의미">
+<meta property="og:type" content="article">
+<meta property="og:title" content="만찬집회의 전진된 의미">
+<meta property="og:description" content="구속하시는 그리스도와 공급하시는 그리스도 — 멜기세덱의 떡과 포도주, 그리고 유월절의 어린양으로 보는 만찬집회의 전진된 의미">
+<meta property="og:image" content="https://kidori777.github.io/Today/%EB%A7%8C%EC%B0%AC%EC%A7%91%ED%9A%8C%EC%9D%98%20%EC%A0%84%EC%A7%84%EB%90%9C%20%EC%9D%98%EB%AF%B8.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F8FB;
+  --paper-2:#EAF0F6;
+  --ink:#10141A;
+  --line:#D5DDE7;
+  --wine:#7A1D3A;
+  --wine-pale:#F0DCE3;
+  --wheat:#E0A421;
+  --wheat-pale:#F7E9C4;
+  --herb:#3E6B52;
+  --serif:'Noto Serif KR','Noto Serif CJK KR','Apple SD Gothic Neo',serif;
+  --sans:'Noto Sans KR','Noto Sans CJK KR','Apple SD Gothic Neo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:18px;line-height:2;
+  font-style:normal;word-break:keep-all;overflow-wrap:break-word;
+  padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
+}
+em,i,cite,address{font-style:normal}
+
+/* ───── 읽기 진행 바 + 상단 이동 ───── */
+.bar{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  background:rgba(245,248,251,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  padding-top:env(safe-area-inset-top,0px);
+}
+.bar-in{
+  max-width:1040px;margin:0 auto;height:48px;padding:0 24px;
+  display:flex;align-items:center;gap:6px;font-family:var(--sans);
+}
+.bar a{
+  color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;
+  min-width:36px;height:34px;padding:0 10px;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent;
+}
+.bar a:hover{border-color:var(--line);background:#fff}
+.bar a:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+.bar .sep{width:1px;height:18px;background:var(--line);margin:0 6px}
+.bar .title{margin-right:auto;font-family:var(--serif);font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--wheat),var(--wine))}
+
+/* ───── 히어로 ───── */
+.hero{
+  min-height:100vh;min-height:100svh;
+  padding:calc(48px + env(safe-area-inset-top,0px) + 32px) 24px 56px;
+  display:grid;align-items:center;
+  background:
+    linear-gradient(180deg,#FFFFFF 0%,var(--paper) 62%,var(--paper-2) 100%);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-in{
+  width:100%;max-width:1040px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;
+}
+.hero h1{
+  font-weight:900;font-size:clamp(40px,7.2vw,84px);line-height:1.18;letter-spacing:-.02em;
+  word-break:keep-all;
+}
+.hero h1 span{display:block}
+.hero .rule{width:96px;height:6px;margin-top:36px;background:linear-gradient(90deg,var(--wheat) 0 50%,var(--wine) 50% 100%)}
+.disc{width:100%;max-width:460px;justify-self:center;aspect-ratio:1/1}
+.disc svg{width:100%;height:100%;display:block;overflow:visible}
+.c-bread{transform:translateX(-34px);animation:bread 1.6s cubic-bezier(.2,.7,.2,1) .2s forwards}
+.c-cup{transform:translateX(34px);animation:cup 1.6s cubic-bezier(.2,.7,.2,1) .2s forwards}
+@keyframes bread{to{transform:translateX(0)}}
+@keyframes cup{to{transform:translateX(0)}}
+.c-bread,.c-cup{transform-box:fill-box}
+.ring{opacity:0;animation:ring 1.2s ease 1.5s forwards}
+@keyframes ring{to{opacity:1}}
+
+/* ───── 본문 공통 ───── */
+main{display:block}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.part{padding:96px 0 40px}
+.part + .part{border-top:1px solid var(--line)}
+
+.grid{display:grid;grid-template-columns:128px minmax(0,1fr);column-gap:32px}
+.rail{position:relative}
+.rail .num{
+  position:sticky;top:76px;display:block;
+  font-family:var(--serif);font-weight:900;font-size:104px;line-height:1;letter-spacing:-.02em;
+}
+.p1 .rail .num{color:var(--wheat)}
+.p2 .rail .num{color:var(--wine)}
+.body{max-width:700px}
+
+.lead{
+  font-weight:700;font-size:clamp(22px,3.2vw,30px);line-height:1.7;letter-spacing:-.01em;
+  margin-bottom:28px;
+}
+.body p{margin-bottom:2px}
+.body p + p{margin-top:0}
+.gap{height:34px}
+
+/* 성경 인용 */
+.verse{
+  margin:44px 0;padding:28px 32px 24px;background:#fff;
+  border:1px solid var(--line);border-left:8px solid var(--wine);
+}
+.p1 .verse{border-left-color:var(--wheat)}
+.verse p{font-size:17.5px;line-height:2;margin-bottom:0}
+.verse p + p{margin-top:12px}
+.verse .ref{
+  display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+  font-family:var(--sans);font-size:14.5px;font-weight:500;letter-spacing:.01em;
+}
+
+/* A B C D */
+.point{margin-top:64px;padding-top:44px;border-top:1px solid var(--line)}
+.point:first-of-type{margin-top:48px}
+.point-head{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:20px;align-items:start;margin-bottom:26px}
+.mark{
+  width:56px;height:56px;display:grid;place-items:center;
+  font-family:var(--sans);font-weight:700;font-size:24px;color:#fff;background:var(--wine);
+}
+.point:nth-of-type(odd) .mark{background:var(--wine)}
+.point:nth-of-type(even) .mark{background:var(--ink)}
+.point-head p{font-weight:700;font-size:19.5px;line-height:1.85;margin:0}
+
+/* 끝맺음 */
+.end{padding:72px 0 120px;display:grid;place-items:center}
+.end svg{width:132px;height:72px;display:block}
+
+@media (max-width:820px){
+  body{font-size:17px;line-height:1.95}
+  .hero-in{grid-template-columns:1fr;gap:20px}
+  .disc{max-width:300px;order:-1}
+  .hero{align-items:start}
+  .grid{grid-template-columns:1fr;column-gap:0}
+  .rail{margin-bottom:12px}
+  .rail .num{position:static;font-size:72px}
+  .part{padding:72px 0 24px}
+  .verse{padding:22px 20px 18px;border-left-width:6px}
+  .point-head{grid-template-columns:44px minmax(0,1fr);column-gap:14px}
+  .mark{width:44px;height:44px;font-size:20px}
+  .point-head p{font-size:18px}
+  .bar .title{display:none}
+  .bar-in{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .c-bread,.c-cup{animation:none;transform:none}
+  .ring{animation:none;opacity:1}
+}
+@media print{.bar{display:none}.hero{min-height:auto}}
+</style>
+</head>
+<body>
+
+<nav class="bar" aria-label="이동">
+  <div class="bar-in">
+    <span class="title">만찬집회의 전진된 의미</span>
+    <a href="#p1" aria-label="Ⅰ로 이동">Ⅰ</a>
+    <a href="#p2" aria-label="Ⅱ로 이동">Ⅱ</a>
+    <span class="sep"></span>
+    <a href="#pa" aria-label="A로 이동">A</a>
+    <a href="#pb" aria-label="B로 이동">B</a>
+    <a href="#pc" aria-label="C로 이동">C</a>
+    <a href="#pd" aria-label="D로 이동">D</a>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1><span>만찬집회의</span><span>전진된 의미</span><span class="rule"></span></h1>
+    <div class="disc" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <g style="mix-blend-mode:multiply">
+          <circle class="c-bread" cx="148" cy="200" r="112" fill="#E0A421" fill-opacity=".92"/>
+          <circle class="c-cup" cx="252" cy="200" r="112" fill="#7A1D3A" fill-opacity=".88"/>
+        </g>
+        <g class="ring" fill="none" stroke="#10141A" stroke-width="1.5">
+          <circle cx="148" cy="200" r="130" stroke-opacity=".35"/>
+          <circle cx="252" cy="200" r="130" stroke-opacity=".35"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═════════ Ⅰ ═════════ -->
+<section class="part p1" id="p1">
+  <div class="wrap grid">
+    <div class="rail"><span class="num">Ⅰ</span></div>
+    <div class="body">
+      <h2 class="lead">과정을 거치신 삼일 하나님의 공급하는 잔치인 만찬집회는 멜기세덱의 반차를 따른 그리스도의 제사장 직분과 관계가 있다.</h2>
+
+      <p>우리는 주님의 만찬을 통하여 우리가 그리스도를 먹고 마시며, 그리스도의 몸 안에서 하나로 건축되고, 장차 올 하나님의 왕국을 가져오는 하나님의 경륜에 참여한다는 것이 중심에 있습니다</p>
+      <div class="gap"></div>
+
+      <p>주님의 만찬은 우리가 주님을 기억하는 집회인 동시에, 부활하시고 승천하신 그리스도께서 지금도 하늘에서 사역하시면서 그분 자신을 우리에게 공급하시는 자리입니다. 그리고 그 공급의 목적은 개인적인 영적 만족에 머물지 않고, 그리스도의 몸을 건축하여 하나님의 영원한 목적을 성취하는 데 있습니다.</p>
+      <div class="gap"></div>
+
+      <p>그리스도께서 우리를 구속하신 것은 하나님의 목적의 끝이 아니라, 그분 자신을 우리 안에 공급하시기 위한 길을 여신 것입니다.</p>
+      <p>이것이 멜기세덱과 주님의 만찬을 연결해서 보아야 하는 중요한 이유입니다.</p>
+      <p>사람이 먼저 자신의 힘으로 평강을 만들어 하나님께 나아가는 것이 아닙니다. 그리스도께서 구속을 성취하셨기 때문에 우리는 의롭다 함을 받고, 그 결과 하나님과 화평을 누릴 수 있게 되었습니다.</p>
+      <p>그러므로 멜기세덱이 의의 왕이자 평강의 왕으로 나타나는 것은 주님의 상에 참여하는 우리가 어떤 근거 위에 서 있는지를 보여 줍니다. 우리는 자신의 의로움을 자랑하면서 주님의 상에 나아가는 것이 아닙니다. 그리스도께서 성취하신 구속과 그분이 주신 의에 근거하여 하나님 앞에 나아갑니다.</p>
+      <p>그러나 여기서 이야기는 끝나지 않습니다.</p>
+      <p>멜기세덱은 전쟁에서 돌아오는 아브라함에게 떡과 포도주를 가지고 나왔습니다.</p>
+      <p>하나님은 그분의 생명을 사람에게 공급하시고, 사람이 그분을 누리며 그분의 목적을 이루도록 하기를 원하십니다.</p>
+      <p>여기에서 우리는 구속하시는 그리스도와 공급하시는 그리스도의 관계를 보기 시작합니다.</p>
+      <p>하나님의 백성이 싸우는 힘은 자기 자신에게서 나오지 않습니다. 그들은 먼저 하나님께서 공급하시는 것을 받아야 합니다.</p>
+      <div class="gap"></div>
+
+      <p>우리는 오늘도 하나님께 나아갈 수 있으며, 살아 계신 그리스도께서 우리를 위해 중재하시고 필요한 은혜를 공급하신다는 사실을 믿는 것입니다.</p>
+      <p>그리고 바로 여기에서 멜기세덱의 떡과 포도주가 주님의 상과 연결됩니다.</p>
+
+      <blockquote class="verse">
+        <p>우리가 축복하는 축복의 잔은 그리스도의 피의 교통이 아니겠습니까? 우리가 떼는 떡은 그리스도의 몸의 교통이 아니겠습니까?</p>
+        <p>떡이 하나이요, 우리 많은 사람이 한 몸입니다. 왜냐하면 우리 모두가 한 떡에 참여하기 때문입니다.</p>
+        <span class="ref">– 고린도전서 10장 16-17절 –</span>
+      </blockquote>
+
+      <p>주님께서 우리를 위해 자신을 내어 주셨고, 그분의 피로 우리를 구속하셨으며, 그 구속으로 말미암아 우리가 하나님과 교통하고 그리스도의 몸 안에서 하나가 되었다는 사실을 기억하고 선포합니다.</p>
+      <p>우리가 떡을 뗄 때, 우리는 우리를 위해 십자가에서 몸을 내어 주신 주님을 기념합니다. 동시에 한 알의 밀이신 그리스도께서 죽음과 부활을 통하여 많은 열매를 산출하셨고, 그 생명을 받은 많은 사람이 하나의 떡으로 표현되는 한 몸을 이루었다는 사실을 나타냅니다.</p>
+      <p>그리스도의 피로 말미암아 구속받은 사람들이 함께 그리스도의 몸에 참여하여 한 몸을 나타냅니다.</p>
+      <div class="gap"></div>
+
+      <p>주님의 만찬에서 우리는 단지 “주님께서 나를 위해 죽으셨다”라는 사실만 기억하지 않습니다. 우리는 그분께서 죽음과 부활을 통과하시고 지금도 살아 계시며, 그분의 몸의 지체들인 우리에게 생명으로 공급하신다는 사실도 함께 바라봅니다.</p>
+      <p>그리스도께서는 우리를 구속하셨고, 지금도 우리를 위해 중재하시며, 우리를 먹이십니다. 그분의 공급을 받는 우리는 그분의 몸 안에서 함께 자라고 건축되어야 합니다.</p>
+      <div class="gap"></div>
+
+      <p>그리스도는 우리를 위해 죽으신 구속자이실 뿐 아니라, 지금도 살아 계시면서 우리를 위해 중재하시고 우리에게 생명으로 공급하시는 영원한 대제사장이십니다. 그분의 공급을 누리는 목적은 우리가 그분으로 말미암아 살고, 그분의 몸 안에서 함께 건축되어 하나님의 영원한 목적을 이루는 것입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ Ⅱ ═════════ -->
+<section class="part p2" id="p2">
+  <div class="wrap grid">
+    <div class="rail"><span class="num">Ⅱ</span></div>
+    <div class="body">
+      <h2 class="lead">주님은 유월절 잔치를 대치하기 위하여 떡과 잔으로 그분의 상을 제정하셨는데 이는 예표를 성취하시고 우리에게 참된 유월절이 되시기 위함이다. 마 26:17-30, 고전 5:7.</h2>
+
+      <blockquote class="verse">
+        <p>무교절의 첫날에 제자들이 예수님께 나아와 “주님께서 드실 유월절 음식을 우리가 어디서 준비하기를 원하십니까?”라고 하니, 예수님께서 말씀하셨다. “여러분은 성안에 들어가, 이러이러한 사람에게 ‘선생님께서 자신의 때가 가까웠으니, 제자들과 함께 이 집에서 유월절을 지키시겠답니다.’라고 하십시오.”</p>
+        <p>제자들이 예수님께서 지시하신 대로 하여, 유월절을 준비하였다. 저녁이 되어, 예수님께서 열두 제자와 함께 상에 앉으셨다. … 그들이 먹고 있을 때, 예수님께서 떡을 가지시어 축복하시고, 떼시어 제자들에게 주시며 “받아서 드십시오. 이것이 내 몸입니다.”라고 하시고, 또 잔을 가지시어 감사드리시고, 그들에게 주시며 말씀하셨다. “여러분은 다 이것을 마시십시오. 이것은 죄들이 용서받을 수 있도록 많은 사람을 위하여 쏟는 나의 피, 곧 언약의 피입니다. 그러나 내가 여러분에게 말합니다. 내가 이제부터 내 아버지의 왕국에서 여러분과 함께 새것을 마시는 그날까지, 포도나무에서 난 것을 결코 마시지 않겠습니다.”</p>
+        <p>그리고 그들은 찬송하는 노래를 부르고 나서, 올리브산으로 나아갔다.</p>
+        <span class="ref">– 마태복음26장 17-30절 –</span>
+      </blockquote>
+
+      <!-- A -->
+      <div class="point" id="pa">
+        <div class="point-head">
+          <span class="mark">A</span>
+          <p>유월절은 그 해의 첫 달에 있으므로 새로운 시작을 상징한다(출 12:2, 13:4). 주님의 상에서 우리는 새로운 시작, 즉 주의 첫 날이자 부활의 날인 제 팔 일의 새로운 시작을 필요로 한다는 것을 상기해야 한다.</p>
+        </div>
+        <p>하나님은 심판은 그분께서 정하신 어린양의 피를 근거로 사람을 심판에서 구출하셨습니다.</p>
+        <p>이것을 유월절 어린양과 연결해서 보면 더욱 깊어집니다. 이스라엘의 새로운 시작은 어린양의 피와 분리될 수 없었습니다. 신약에서 그리스도께서 우리의 유월절 어린양이 되셨다는 사실을 생각하면, 성경이 말하는 새로운 시작은 단순한 달력의 변화가 아니라 그리스도의 구속으로 말미암아 시작되는 새로운 삶과도 연결하여 묵상할 수 있습니다.</p>
+        <div class="gap"></div>
+        <p>유월절을 이해하는 것은 주님의 만찬을 이해하는 첫걸음입니다. 주님의 상에 참여하는 사람은 자신이 원래 하나님의 구원이 필요한 사람이었다는 사실과, 그리스도께서 자신을 위해 구속을 성취하셨다는 사실을 기억해야 합니다.</p>
+        <p>그러나 유월절에는 피만 있었던 것이 아닙니다. 하나님은 이스라엘 자손에게 어린양을 먹으라고도 명하셨습니다.</p>
+        <p>이 부분을 놓치면 유월절의 의미를 충분히 이해할 수 없습니다.</p>
+      </div>
+
+      <!-- B -->
+      <div class="point" id="pb">
+        <div class="point-head">
+          <span class="mark">B</span>
+          <p>주의 상에서 우리는 유월절로 예표된 것처럼 우리가 하나님의 의로운 심판 아래서 죽어야 할 사람이었지만 하나님께서 그리스도를 우리를 위해 죽을 수 있는 대치물이 되도록 예비하셨음을 기억해야 한다.</p>
+        </div>
+      </div>
+
+      <!-- C -->
+      <div class="point" id="pc">
+        <div class="point-head">
+          <span class="mark">C</span>
+          <p>주님의 상에서 우리는 유월절로 예표된 것처럼 우리가 자신에게 속하지 않고 우리를 위해 죽으신 분께 속하며 이제 그분을 우리의 영원한 생명으로 누려야 한다는 것을 상기해야 한다.</p>
+        </div>
+        <p>우리는 그리스도의 구속을 통해 죄 용서함을 받고 하나님과 화목하게 됩니다. 그러나 하나님의 목적은 단지 우리를 죄의 심판에서 구출하시는 데 그치지 않습니다. 하나님께서는 그리스도께서 우리의 생명이 되시고, 우리가 그분을 누리면서 그분의 목적을 향해 나아가기를 원하십니다.</p>
+        <p>출애굽기 12장에서 하나님은 이스라엘 자손에게 어린양의 피를 바르라고 하셨을 뿐 아니라, 그 어린양의 고기를 먹으라고 명하셨습니다. 그들은 무교병과 쓴 나물도 함께 먹어야 했습니다(출 12:8).</p>
+        <p>이 장면을 자세히 살펴보십시오.</p>
+        <p>어린양의 피는 집 밖에 발라졌습니다. 하나님께서 정하신 구원의 표징이었습니다. 반면 어린양의 고기는 집 안에서 먹었습니다. 이스라엘 자손은 그 어린양을 먹음으로써 출애굽의 밤을 준비했습니다.</p>
+        <p>여기에는 구별되는 두 방면이 있습니다. 피는 심판에서 보호받는 근거를 보여 주고, 어린양을 먹는 것은 구속받은 사람들이 그분의 공급을 받아 살아가는 방면을 보여 줍니다.</p>
+        <div class="gap"></div>
+        <p>이스라엘 백성은 어린양의 피로 보호받고 구출되었지만, 하나님께서는 그들이 구출된 뒤에도 계속해서 이집트의 옛 생활 방식에 머물기를 원하지 않으셨습니다. 하나님께서는 그들을 이집트에서 나오게 하셨을 뿐 아니라, 그들의 생활도 새로운 방향으로 바뀌기를 원하셨습니다.</p>
+        <p>이것이 무교병의 영적인 의미입니다. 그리스도께서 우리의 유월절 어린양이 되셨으므로, 우리는 그분의 구속을 누릴 뿐 아니라 옛 생활의 누룩, 곧 죄와 악을 버리고 순수함과 진실함 가운데 살아야 합니다.</p>
+      </div>
+
+      <!-- D -->
+      <div class="point" id="pd">
+        <div class="point-head">
+          <span class="mark">D</span>
+          <p>주님의 상에서 우리는 유월절로 예표된 것처럼 하나님의 임재 안에서 그리스도를 누리기 위하여 잔치에 참여하며 이러한 누림은 하나님과 우리의 상호만족이 된다..</p>
+        </div>
+        <p>주님의 상에는 과거의 십자가가 있습니다. 현재의 교회생활이 있습니다. 그리고 장차 올 왕국에서의 잔치에 대한 소망이 있는 것입니다.</p>
+        <p>바로 부활의 날 새로운 여정의 시작을 주님과 함께 하는 것입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="end" aria-hidden="true">
+  <svg viewBox="0 0 132 72">
+    <g style="mix-blend-mode:multiply">
+      <circle cx="49" cy="36" r="28" fill="#E0A421" fill-opacity=".92"/>
+      <circle cx="83" cy="36" r="28" fill="#7A1D3A" fill-opacity=".88"/>
+    </g>
+  </svg>
+</div>
+
+</main>
+
+<script>
+(function(){
+  var p=document.getElementById('progress');
+  function upd(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var r=max>0?(window.scrollY||h.scrollTop)/max:0;
+    p.style.transform='scaleX('+Math.min(1,Math.max(0,r))+')';
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+})();
+</script>
+</body>
+</html>
