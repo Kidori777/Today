@@ -51,11 +51,17 @@ h2{font-family:'Noto Serif KR',serif;font-weight:600;font-size:24px;color:var(--
 .cal .h{font-weight:500;color:var(--ink2);padding:6px 0}
 .cal .h.sun,.cal .d.sun{color:#a33a2c}
 .cal .d{padding:9px 0;color:var(--ink);border-radius:50%}
+.cal .d.ring{box-shadow:inset 0 0 0 2px var(--gold);font-weight:700}
 .cal .d.on{background:var(--gold);color:#fff;font-weight:700}
 .dday{display:flex;justify-content:center;gap:10px;margin-top:34px}
 .dday div{background:var(--bg2);border:1px solid var(--line);width:68px;padding:12px 0 8px}
 .dday strong{display:block;font-family:'Noto Serif KR',serif;font-size:24px;color:var(--ink);line-height:1.3}
 .dday small{font-size:11px;letter-spacing:.15em;color:var(--ink2)}
+.together{display:none;margin-top:34px;padding:30px 18px;border:1px solid var(--line);background:var(--bg2)}
+.together .t-lead{font-family:'Noto Serif KR',serif;font-size:15px;color:var(--ink2);letter-spacing:.12em}
+.together .t-num{font-family:'Noto Serif KR',serif;font-weight:700;font-size:56px;line-height:1.3;color:var(--ink);margin:6px 0 4px}
+.together .t-num small{font-size:22px;font-weight:600;margin-left:6px;color:var(--gold)}
+.together .t-msg{font-family:'Noto Serif KR',serif;font-size:16px;line-height:2;color:var(--ink2);word-break:keep-all;margin-top:10px}
 .dnote{margin-top:18px;font-size:14px;color:var(--ink2)}
 /* gallery */
 .gal{display:grid;gap:12px}
@@ -113,9 +119,9 @@ h2{font-family:'Noto Serif KR',serif;font-weight:600;font-size:24px;color:var(--
 
 <section class="rv">
   <div class="eyebrow">SCHEDULE</div>
-  <h2>예식 일정</h2>
+  <h2 id="schTitle">예식 일정</h2>
   <div class="rule"></div>
-  <div class="date-big">2026년 11월 28일 토요일 오후 4시</div>
+  <div class="date-big" id="dateBig">2026년 11월 28일 토요일 오후 4시</div>
   <div class="cal" id="cal"></div>
   <div class="dday" id="dday">
     <div><strong id="dd">0</strong><small>DAY</small></div>
@@ -124,6 +130,11 @@ h2{font-family:'Noto Serif KR',serif;font-weight:600;font-size:24px;color:var(--
     <div><strong id="ds">0</strong><small>SEC</small></div>
   </div>
   <p class="dnote" id="dnote"></p>
+  <div class="together" id="together">
+    <div class="t-lead" id="tLead">한 가정을 이룬 지</div>
+    <div class="t-num"><span id="tNum">1</span><small>일째</small></div>
+    <div class="t-msg" id="tMsg"></div>
+  </div>
 </section>
 
 <section class="rv">
@@ -164,24 +175,72 @@ h2{font-family:'Noto Serif KR',serif;font-weight:600;font-size:24px;color:var(--
 </div>
 <script>
 (function(){
-  var cal=document.getElementById('cal');
-  var heads=['일','월','화','수','목','금','토'], html='';
-  for(var i=0;i<7;i++){html+='<div class="h'+(i===0?' sun':'')+'">'+heads[i]+'</div>';}
-  var first=new Date(2026,10,1).getDay();
-  for(var b=0;b<first;b++){html+='<div></div>';}
-  for(var d=1;d<=30;d++){
-    var dow=(first+d-1)%7;
-    html+='<div class="d'+(dow===0?' sun':'')+(d===28?' on':'')+'">'+d+'</div>';
+  var cal=document.getElementById('cal'), calKey='';
+  function renderCal(y,m,today){
+    var key=y+'-'+m+'-'+today;
+    if(key===calKey){return;}
+    calKey=key;
+    var heads=['일','월','화','수','목','금','토'], html='';
+    for(var i=0;i<7;i++){html+='<div class="h'+(i===0?' sun':'')+'">'+heads[i]+'</div>';}
+    var first=new Date(y,m,1).getDay(), last=new Date(y,m+1,0).getDate();
+    for(var b=0;b<first;b++){html+='<div></div>';}
+    for(var d=1;d<=last;d++){
+      var dow=(first+d-1)%7;
+      var wedding=(m===10&&d===28&&y>=2026);
+      var cls='d'+(dow===0?' sun':'');
+      if(today===null){ if(wedding){cls+=' on';} }
+      else{ if(d===today){cls+=' on';} else if(wedding){cls+=' ring';} }
+      html+='<div class="'+cls+'">'+d+'</div>';
+    }
+    cal.innerHTML=html;
   }
-  cal.innerHTML=html;
+  renderCal(2026,10,null);
 
   var target=new Date('2026-11-28T16:00:00+09:00').getTime();
   function pad(n){return n<10?'0'+n:''+n;}
+  var daily=[
+    '주님이 맺어주신 사랑으로 오늘도 함께 걷습니다',
+    '기도로 시작한 하루, 감사로 마무리합니다',
+    '서로의 곁에서 매일이 선물이 됩니다',
+    '함께여서 더 깊어지는 은혜의 날들입니다',
+    '오늘도 한 걸음, 주님과 함께 두 사람이 걷습니다',
+    '작은 일상 속에도 하나님의 사랑이 머뭅니다',
+    '함께 쌓아가는 하루하루가 믿음의 기록이 됩니다'
+  ];
+  var miles={
+    1:'오늘, 두 사람이 한 가정을 이루었습니다',
+    7:'함께한 첫 주, 모든 순간이 감사입니다',
+    30:'한 달, 서로를 향한 사랑이 더 깊어졌습니다',
+    100:'함께한 백 일, 변함없는 감사로 채워졌습니다',
+    200:'이백 일, 서로의 기도가 쌓여 갑니다',
+    300:'삼백 일, 주님의 인도하심을 따라 걸어왔습니다',
+    500:'오백 일, 늘 함께해 주신 은혜에 감사드립니다',
+    1000:'천 일, 하나님이 이끄신 사랑의 길 위에 서 있습니다'
+  };
+  function kst(){var k=new Date(Date.now()+9*3600*1000);return {y:k.getUTCFullYear(),m:k.getUTCMonth(),d:k.getUTCDate()};}
+  function together(k){
+    var n=Math.floor((Date.UTC(k.y,k.m,k.d)-Date.UTC(2026,10,28))/86400000)+1;
+    var msg;
+    if(k.m===10&&k.d===28&&k.y>2026){
+      var yrs=k.y-2026;
+      msg='결혼 '+yrs+'주년, 주님의 은혜로 한 해 한 해 걸어왔습니다';
+    }else if(miles[n]){msg=miles[n];}
+    else{msg=daily[(n-2+daily.length*1000)%daily.length];}
+    return {n:n,msg:msg};
+  }
   function tick(){
     var diff=target-Date.now();
     if(diff<=0){
-      ['dd','dh','dm','ds'].forEach(function(id){document.getElementById(id).textContent='00';});
-      document.getElementById('dnote').textContent='함께 해주셔서 감사합니다.';
+      document.getElementById('dday').style.display='none';
+      document.getElementById('dnote').style.display='none';
+      document.getElementById('schTitle').textContent='함께한 날';
+      var k=kst();
+      renderCal(k.y,k.m,k.d);
+      document.getElementById('dateBig').textContent=k.y+'년 '+(k.m+1)+'월';
+      var t=together(k);
+      document.getElementById('tNum').textContent=t.n;
+      document.getElementById('tMsg').textContent=t.msg;
+      document.getElementById('together').style.display='block';
       return;
     }
     var s=Math.floor(diff/1000);
