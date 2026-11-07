@@ -14,7 +14,7 @@
 <style>
 :root{--bg:#fbf8f1;--ink:#141414;--card:#fff;--line:#e4dccb;--gold:#a8741a;--grace:#1f4a7a;--law:#8f3f26;--soft:#f3ede0}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.95 'Noto Sans KR',sans-serif;font-style:normal;word-break:keep-all}
 b,strong,em,i,cite{font-style:normal}
 h1,h2,h3{font-family:'Noto Serif KR',serif;font-style:normal;line-height:1.4}
@@ -261,9 +261,13 @@ section h3{font-size:19px;margin:26px 0 10px;color:var(--grace)}
 const secs=[...document.querySelectorAll('section')],nav=document.getElementById('nav');
 secs.forEach((s,i)=>{const a=document.createElement('a');a.href='#'+s.id;a.textContent=i+1;nav.appendChild(a)});
 const links=[...nav.children];
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{threshold:.15});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:0,rootMargin:'0px 0px -8% 0px'});
 secs.forEach(s=>io.observe(s));
-addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+let cur=-1;
+function onScroll(){const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+let k=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)k=i});
+if(k!==cur){cur=k;links.forEach((l,i)=>l.classList.toggle('on',i===k));links[k].scrollIntoView({block:'nearest',inline:'center'})}}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+b.dataset.t))});
 </script>
 </body>
