@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>그리스도인의 부모되기 1편 — 어린 시절의 신앙 양육이 평생의 믿음을 좌우하는 이유</title>
+<meta name="description" content="어린 시절의 신앙 양육이 평생의 믿음을 좌우하는 이유 — 그리스도인의 부모되기 1편">
+<meta property="og:type" content="website">
+<meta property="og:title" content="그리스도인의 부모되기 1편">
+<meta property="og:description" content="어린 시절의 신앙 양육이 평생의 믿음을 좌우하는 이유">
+<meta property="og:image" content="그리스도인의 부모되기 1편.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&family=Noto+Serif+KR:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF6;--ink:#141414;--green:#1E5B43;--leaf:#2E7D4F;--tint:#E8F1EA;--line:#CFDDD3;--soil:#6B4A32;--serif:'Noto Serif KR',serif;--sans:'Noto Sans KR',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18.5px;line-height:2;font-style:normal;word-break:keep-all;-webkit-text-size-adjust:100%}
+em,i,cite,address{font-style:normal}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--leaf);z-index:50}
+a:focus-visible,button:focus-visible{outline:3px solid var(--leaf);outline-offset:3px}
+
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:2rem;padding:6vh 7vw;max-width:1280px;margin:0 auto}
+.series{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--green);letter-spacing:.04em;margin-bottom:1.6rem;display:inline-block;border-bottom:3px solid var(--leaf);padding-bottom:.35rem}
+.hero h1{font-weight:900;font-size:clamp(2.1rem,5.2vw,4rem);line-height:1.35;letter-spacing:-.02em}
+.hero svg{width:100%;max-height:78vh}
+.hero .scroll{margin-top:2.4rem;font-family:var(--sans);font-size:.95rem;font-weight:500;color:var(--green)}
+.rt{fill:none;stroke:var(--soil);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:grow 2.6s ease-out forwards}
+.rt.s{stroke-width:3}.rt.m{stroke-width:6}
+.d1{animation-delay:.2s}.d2{animation-delay:1s}.d3{animation-delay:1.5s}
+.sp{opacity:0;animation:pop 1s ease-out 2.4s forwards;transform-origin:200px 200px}
+@keyframes grow{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+
+/* toc */
+.toc{max-width:880px;margin:0 auto;padding:4rem 6vw 2rem}
+.toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.6rem 2rem;font-family:var(--sans)}
+.toc a{display:flex;gap:.8rem;padding:.7rem .2rem;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.98rem;line-height:1.55;font-weight:500}
+.toc a:hover{color:var(--green)}
+.toc b{color:var(--green);min-width:1.4em}
+
+/* rail */
+.rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:10px;z-index:40}
+.rail a{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--green);font:700 .8rem/26px var(--sans);text-align:center;text-decoration:none}
+.rail a.on{background:var(--green);border-color:var(--green);color:#fff}
+@media(min-width:1240px){.rail{display:flex}}
+
+/* article */
+main{max-width:720px;margin:0 auto;padding:0 6vw 6rem}
+section{padding-top:4.5rem}
+section p{margin-top:1.35em}
+.sh{display:flex;align-items:flex-start;gap:1.1rem;padding-bottom:1.2rem;border-bottom:3px solid var(--green)}
+.no{font-family:var(--sans);font-weight:700;font-size:1.05rem;background:var(--green);color:#fff;min-width:2.5rem;height:2.5rem;display:grid;place-items:center;margin-top:.35rem;flex:none}
+h2{font-weight:900;font-size:clamp(1.4rem,3.4vw,1.85rem);line-height:1.55;letter-spacing:-.01em}
+strong{font-weight:900}
+.scripture{background:var(--tint);border-left:5px solid var(--leaf);padding:1.1rem 1.4rem;line-height:1.95}
+.scripture strong{font-family:var(--sans);font-weight:700;color:var(--green)}
+.pull{font-weight:900;font-size:clamp(1.3rem,3vw,1.6rem);line-height:1.7;color:var(--green);border-top:3px solid var(--leaf);border-bottom:3px solid var(--leaf);padding:1.6rem 0;margin-top:1.8rem}
+.lead{font-weight:900;font-size:1.25em}
+.bridge{font-weight:600;font-size:1.2em;background:var(--tint);padding:1.2rem 1.5rem;margin-top:2.4rem}
+.voice{display:block;margin-top:.9rem;padding:.2rem 0 .2rem 1.2rem;border-left:3px solid var(--soil);font-weight:600}
+.voices .voice:first-of-type{margin-top:1.3rem}
+.habits{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.2rem}
+.habits li{background:#fff;border:1px solid var(--line);border-top:4px solid var(--leaf);padding:.9rem 1.1rem;font-size:.95em;line-height:1.75}
+.line3{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:2rem;font-family:var(--sans);font-weight:700;text-align:center}
+.line3 div{background:var(--tint);border:1px solid var(--line);padding:.8rem 1.2rem}
+.line3 span{color:var(--soil);font-size:1.4rem}
+.line3 small{display:block;font-weight:500;font-size:.85rem;color:#333}
+
+/* stages */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;counter-reset:x}
+.stage{background:#fff;border:1px solid var(--line);border-top:6px solid var(--leaf);padding:1.3rem 1.2rem 1.5rem;position:relative}
+.stage:nth-child(2){border-top-color:var(--green)}
+.stage:nth-child(3){border-top-color:var(--soil)}
+.stage svg{width:56px;height:56px;margin-bottom:.4rem}
+.stage h3{font-family:var(--sans);font-size:1.15rem;font-weight:700;line-height:1.5}
+.stage h4{font-size:1.02rem;font-weight:900;color:var(--green);line-height:1.6;margin-top:.3rem}
+.stage p{font-size:.9rem;line-height:1.85;margin-top:.8rem}
+
+/* ending */
+.question{font-weight:900;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.65;text-align:center;margin:2.2rem 0;padding:2.4rem 1.2rem;background:var(--tint);border-top:6px solid var(--green)}
+.triple p{padding:1.1rem 1.4rem;border-left:5px solid var(--leaf);background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-weight:600}
+.triple p:nth-child(2){border-left-color:var(--green)}
+.triple p:nth-child(3){border-left-color:var(--soil)}
+footer{text-align:center;padding:3rem 6vw 4rem;border-top:1px solid var(--line);font-family:var(--sans);font-weight:700;color:var(--green)}
+
+@media(max-width:860px){
+ .hero{grid-template-columns:1fr;min-height:auto;padding-top:9vh}
+ .hero svg{max-height:46vh}
+ .toc ol,.stages,.habits{grid-template-columns:1fr}
+ body{font-size:17.5px}
+}
+@media(prefers-reduced-motion:reduce){.rt{animation:none;stroke-dashoffset:0}.sp{animation:none;opacity:1}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav class="rail" aria-label="장 이동">
+<a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#end">끝</a>
+</nav>
+
+<header class="hero">
+<div>
+<div class="series">그리스도인의 부모되기 1편</div>
+<h1>어린 시절의 신앙 양육이 평생의 믿음을 좌우하는 이유</h1>
+<div class="scroll">아래로 내려가며 읽기 ↓</div>
+</div>
+<svg viewBox="0 0 400 520" role="img" aria-label="땅 위의 새싹과 땅속 깊이 내려가는 뿌리">
+<rect x="20" y="200" width="360" height="300" fill="#EFE7DE"/>
+<line x1="20" y1="200" x2="380" y2="200" stroke="#6B4A32" stroke-width="4" stroke-linecap="round"/>
+<g class="sp"><path d="M200 200 C200 170 200 150 200 118" stroke="#2E7D4F" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M200 150 C170 150 150 130 148 100 C178 100 198 122 200 150Z" fill="#2E7D4F"/>
+<path d="M200 128 C228 126 250 106 252 76 C224 78 202 98 200 128Z" fill="#1E5B43"/></g>
+<path class="rt m d1" pathLength="1" d="M200 200 C200 270 188 340 200 470"/>
+<path class="rt s d2" pathLength="1" d="M199 245 C160 255 120 275 92 330"/>
+<path class="rt s d2" pathLength="1" d="M201 275 C245 285 285 305 312 365"/>
+<path class="rt s d3" pathLength="1" d="M196 340 C168 355 150 385 140 430"/>
+<path class="rt s d3" pathLength="1" d="M200 370 C232 385 252 410 262 450"/>
+<path class="rt s d3" pathLength="1" d="M120 290 C100 295 82 310 66 335"/>
+</svg>
+</header>
+
+<nav class="toc" aria-label="목차">
+<ol>
+<li><a href="#s1"><b>1</b>어린 시절은 하나님을 받아들이는 생활의 기초가 형성되는 시기입니다</a></li>
+<li><a href="#s2"><b>2</b>어린 시절에는 믿음을 심어 주고, 생활의 습관을 형성해야 합니다</a></li>
+<li><a href="#s3"><b>3</b>디모데의 어린 시절을 주목해야 합니다</a></li>
+<li><a href="#s4"><b>4</b>사춘기와 중고등학교 시절은 신앙을 느슨하게 할 때가 아니라 더욱 깊게 뿌리내리게 할 때입니다</a></li>
+<li><a href="#s5"><b>5</b>부모는 자녀를 통제하는 사람이 아니라, 주님께 인도하는 사람이어야 합니다</a></li>
+<li><a href="#s6"><b>6</b>신앙 양육의 궁극적인 목적은 훌륭한 아이가 아니라 주님을 표현하는 사람을 얻는 것입니다</a></li>
+<li><a href="#s7"><b>7</b>어린 시절을 놓쳤다고 해서 모든 것이 끝난 것은 아닙니다</a></li>
+<li><a href="#s8"><b>8</b>우리가 다음 세대를 위해 반드시 생각해야 할 것</a></li>
+<li><a href="#end"><b>끝</b>마지막으로, 이 문제를 관통하는 한 가지 질문</a></li>
+</ol>
+</nav>
+
+<main>
+<section id="s0" style="padding-top:2rem">
+<p>말씀하신 문제는 오늘날 그리스도인 가정과 교회가 깊이 생각해야 할 중요한 문제라고 생각합니다.</p>
+<p>저는 이 문제를 단순히 자녀들에게 어릴 때부터 교회에 열심히 다니게 해야 한다는 차원에서만 바라보아서는 안 된다고 생각합니다. 더 근본적인 문제는 어린 시절에 하나님을 알고 사랑하는 생활이 그 아이의 존재 안에 얼마나 깊이 자리 잡느냐 하는 것입니다.</p>
+<p>많은 부모가 자녀가 어릴 때는 아직 어리니까 자유롭게 자라도록 두어야 한다고 생각합니다. 공부도 해야 하고, 친구도 사귀어야 하고, 세상도 경험해야 하니 신앙은 아이가 스스로 선택할 나이가 되면 그때 가서 결정하도록 하자는 것입니다.</p>
+<p class="lead">그런데 여기에는 중요한 모순이 있습니다.</p>
+<p>아이에게는 아직 무엇이 옳고 그른지 분별할 능력이 충분히 형성되지 않았는데, 정작 가장 중요한 가치관과 생활의 기초를 스스로 선택하도록 맡겨 버리는 것입니다.</p>
+<p>집을 지을 때를 생각해 보십시오. 기초를 놓는 시기에는 아직 집의 모습이 제대로 드러나지 않습니다. 그렇다고 기초 공사를 뒤로 미루고 벽부터 쌓을 수는 없습니다. 기초가 부실하면 나중에 아무리 좋은 자재를 사용하고 많은 비용을 들여도 건물 전체가 흔들릴 수 있습니다.</p>
+<p class="lead">신앙도 이와 같습니다.</p>
+<p class="pull">어린 시절은 신앙의 열매를 맺으라고 요구하는 시기이기 전에, 신앙의 뿌리를 내리는 시기입니다.</p>
+<p>그 뿌리가 하나님을 향하여 깊이 내려가지 못하면 중고등학교에 진학하여 학업과 친구 관계, 세상의 가치관과 유혹을 만났을 때 믿음이 쉽게 흔들릴 수 있습니다.</p>
+<p class="bridge">그렇다면 성경은 왜 어린 시절의 양육을 중요하게 말씀하고 있을까요?</p>
+</section>
+
+<section id="s1">
+<div class="sh"><span class="no">1</span><h2>어린 시절은 하나님을 받아들이는 생활의 기초가 형성되는 시기입니다</h2></div>
+<p>먼저 잠언 22장 6절을 보겠습니다.</p>
+<p class="scripture"><strong>잠언 22장 6절(회복역)</strong>은 아이를 마땅히 가야 할 길로 훈련시키라고 말씀합니다.</p>
+<p>이 말씀에서 우리가 주목해야 할 것은 단순히 아이에게 성경 지식을 가르치라는 것이 아니라, 아이가 걸어가야 할 길을 어릴 때부터 익히도록 도와주라는 것입니다.</p>
+<p>어린아이는 부모가 보여 주는 것을 통해 세상을 이해합니다. 부모가 무엇을 중요하게 여기는지, 어려움이 생겼을 때 어떻게 반응하는지, 다른 사람을 어떻게 대하는지, 하나님을 어떤 분으로 대하는지를 보면서 가치관을 형성합니다.</p>
+<p>예를 들어 보겠습니다.</p>
+<p>어떤 아이가 어릴 때부터 주일을 소중히 여기는 가정에서 자랐다고 생각해 보십시오. 부모는 주일이 되면 다른 약속보다 주님과 함께하는 시간을 먼저 생각합니다. 아이가 교회에 가기 싫다고 할 때에도 무조건 야단치는 것이 아니라, 왜 우리가 주님을 만나고 성도들과 함께 모이는 것을 소중히 여기는지 설명해 줍니다.</p>
+<p>또한 식사할 때 감사하고, 어려운 일이 생기면 함께 기도하며, 잘못했을 때에는 자신의 잘못을 인정하고 주님 앞에 돌이키는 모습을 보여 줍니다.</p>
+<p>이러한 생활이 반복되면 아이에게는 하나의 기준이 형성됩니다.</p>
+<div class="voices">
+<span class="voice">'하나님은 우리 가정에서 중요한 분이시다.'</span>
+<span class="voice">'주님을 믿는 것은 특별한 날에만 하는 일이 아니다.'</span>
+<span class="voice">'내가 어려울 때에도 주님께 나아갈 수 있다.'</span>
+</div>
+<p>이런 인식이 아이의 마음속에 조금씩 자리 잡는 것입니다.</p>
+<p>반대로 부모가 어린 시절에는 신앙생활을 소홀히 하다가 아이가 중고등학생이 된 후에 갑자기 교회에 열심히 나오라고 한다면 어떻겠습니까?</p>
+<p>아이는 이렇게 생각할 수 있습니다.</p>
+<div class="voices"><span class="voice">'어릴 때는 공부도 하고 놀기도 하라고 하더니, 이제 와서 왜 갑자기 신앙생활을 강조하지?'</span></div>
+<p>부모에게는 신앙이 인생의 중요한 가치이지만, 아이에게는 그것이 갑자기 추가된 의무처럼 느껴질 수 있습니다.</p>
+<p class="pull">어릴 때부터 신앙이 생활의 중심이었던 아이와, 어릴 때 신앙을 생활의 주변에 두었던 아이는 성장하면서 전혀 다른 출발점에 서게 됩니다.</p>
+</section>
+
+<section id="s2">
+<div class="sh"><span class="no">2</span><h2>어린 시절에는 믿음을 심어 주고, 생활의 습관을 형성해야 합니다</h2></div>
+<p class="scripture">신명기 6장 6-7절은 하나님의 말씀을 자녀에게 부지런히 가르치고, 집에 앉아 있을 때나 길을 걸을 때나 누워 있을 때나 일어날 때에도 말씀을 이야기하라고 합니다.</p>
+<p>이 말씀은 매우 중요합니다.</p>
+<p>하나님은 자녀 양육을 어떤 특별한 종교 교육 시간에만 국한하지 않으셨습니다. 가정의 일상생활 전체가 하나님의 말씀을 접하는 환경이 되어야 한다는 것입니다.</p>
+<p>여기에서 우리는 두 가지를 생각해야 합니다.</p>
+<p><strong>첫째, 신앙은 가르침을 통해 전달되지만, 생활을 통해 더욱 깊이 새겨집니다.</strong></p>
+<p>부모가 아이에게 기도하라고 말하면서 정작 부모 자신은 기도하지 않는다면 아이는 무엇을 배우겠습니까?</p>
+<p>부모가 정직하라고 가르치면서 작은 이익을 위해 거짓말하는 모습을 보인다면 아이는 무엇을 배우겠습니까?</p>
+<p>아이들은 부모의 말을 듣지만, 부모의 생활을 더 깊이 관찰합니다.</p>
+<p>그러므로 부모의 신앙생활 자체가 자녀에게 가장 가까운 본이 되어야 합니다.</p>
+<p><strong>둘째, 어린 시절에는 좋은 신앙 습관을 형성해야 합니다.</strong></p>
+<p>예를 들어 다음과 같은 생활입니다.</p>
+<ul class="habits">
+<li>매일 짧게라도 말씀을 읽고 주님께 나아가는 생활</li>
+<li>식사 전후에 감사하는 생활</li>
+<li>잘못했을 때 자신의 잘못을 인정하고 주님께 자백하는 생활</li>
+<li>주일 집회와 성도들과의 교통을 소중히 여기는 생활</li>
+<li>부모와 함께 기도하고 찬송하는 생활</li>
+<li>다른 사람을 존중하고 약한 사람을 배려하는 생활</li>
+</ul>
+<p>이것은 아이에게 종교적인 행동을 강요하기 위한 것이 아닙니다. 하나님을 사랑하는 생활이 자연스러운 일상의 일부가 되도록 양육하는 것입니다.</p>
+<p>여기에서 특히 인성의 문제를 간과해서는 안 됩니다.</p>
+<p>자기 뜻대로 되지 않을 때 참을 줄 알고, 자신의 잘못을 인정할 줄 알고, 다른 사람의 입장을 생각할 줄 알고, 작은 일에도 책임을 질 줄 아는 아이로 성장하도록 도와야 합니다.</p>
+<p>신앙과 인성은 서로 분리된 문제가 아닙니다. 하나님을 사랑하는 사람은 사람을 대하는 태도에서도 그 사랑을 나타내야 하기 때문입니다.</p>
+<p>물론 좋은 인성을 갖추었다고 곧 믿음이 생기는 것은 아닙니다. 그러나 신앙을 생활 속에서 실천하도록 돕는 합당한 인성의 기초는 매우 중요합니다.</p>
+</section>
+
+<section id="s3">
+<div class="sh"><span class="no">3</span><h2>디모데의 어린 시절을 주목해야 합니다</h2></div>
+<p>이 문제를 설명할 때 사도 바울이 디모데에게 한 말을 살펴보면 좋겠습니다.</p>
+<p>디모데후서 3장 15절입니다.</p>
+<p class="scripture"><strong>디모데후서 3장 15절(회복역)</strong>에서 바울은 디모데가 어려서부터 성경을 알았다는 사실을 언급합니다.</p>
+<p>디모데는 어느 날 갑자기 훌륭한 사도가 된 사람이 아닙니다.</p>
+<p>그의 믿음에는 어린 시절부터 이어져 온 신앙의 배경이 있었습니다.</p>
+<p class="scripture">디모데후서 1장 5절을 보면 바울은 디모데 안에 있는 꾸밈없는 믿음을 언급하면서, 그것이 먼저 그의 외할머니 로이스와 어머니 유니게 안에 있었다고 말합니다.</p>
+<div class="line3" aria-label="외할머니 로이스, 어머니 유니게, 디모데">
+<div><small>외할머니</small>로이스</div><span>→</span><div><small>어머니</small>유니게</div><span>→</span><div><small>&nbsp;</small>디모데</div>
+</div>
+<p>여기에는 참으로 중요한 원리가 있습니다.</p>
+<p class="pull">믿음은 한 세대에서 다음 세대로 전달되어야 합니다.</p>
+<p>할머니가 가졌던 믿음이 어머니에게 있었고, 그 믿음이 다시 디모데 안에서 발견되었습니다.</p>
+<p>물론 믿음은 혈통으로 유전되는 것이 아닙니다. 할머니가 믿는다고 손자가 자동으로 믿는 것도 아니며, 부모가 주님을 사랑한다고 자녀가 반드시 같은 믿음을 갖게 되는 것도 아닙니다.</p>
+<p>그러나 믿음을 살아 내는 부모와 조부모의 생활은 자녀에게 매우 깊은 영향을 줍니다.</p>
+<p>디모데의 경우가 바로 그러한 본을 보여 줍니다.</p>
+<p>이것을 오늘날 우리 가정에 적용한다면, 부모는 자녀에게 단순히 교회에 다니는 습관만 물려주려 해서는 안 됩니다.</p>
+<p>주님을 사랑하는 마음, 말씀을 귀하게 여기는 마음, 교회를 사랑하는 마음, 어려울 때 주님을 의지하는 생활을 물려주어야 합니다.</p>
+<p>그것이 다음 세대에게 남겨 줄 수 있는 가장 귀한 유산입니다.</p>
+</section>
+
+<section id="s4">
+<div class="sh"><span class="no">4</span><h2>사춘기와 중고등학교 시절은 신앙을 느슨하게 할 때가 아니라 더욱 깊게 뿌리내리게 할 때입니다</h2></div>
+<p>저는 말씀하신 내용 가운데 이 부분이 특히 중요하다고 생각합니다.</p>
+<p>많은 가정에서 아이가 중학생이 되면 상황이 달라집니다.</p>
+<p>학업의 부담이 커지고, 친구 관계가 중요해지며, 휴대전화와 인터넷을 통해 접하는 세상의 범위도 넓어집니다. 부모의 말보다 친구들의 말에 더 귀를 기울이고, 자신의 생각과 선택을 주장하기 시작합니다.</p>
+<p>이때 부모들은 흔히 이렇게 생각합니다.</p>
+<div class="voices">
+<span class="voice">'이제 공부해야 하니까 교회 활동은 조금 줄이자.'</span>
+<span class="voice">'고등학교에 가면 시간이 없으니 지금은 공부에 집중하자.'</span>
+<span class="voice">'대학에 들어간 후에 다시 신앙생활을 열심히 하면 되겠지.'</span>
+</div>
+<p>그런데 여기에는 매우 위험한 생각이 숨어 있습니다.</p>
+<p class="lead">신앙생활을 학업과 경쟁하는 시간으로 생각하는 것입니다.</p>
+<p>물론 학업은 중요합니다. 학생은 학생으로서 자신의 책임을 다해야 합니다. 성실하게 공부하고 맡겨진 일을 충실히 수행하는 것도 필요합니다.</p>
+<p>그러나 학업을 위해 하나님과의 관계를 뒤로 미루는 것이 과연 지혜로운 선택일까요?</p>
+<p>한번 생각해 보십시오.</p>
+<p>어떤 학생이 대학에 진학하기 위해 3년 동안 열심히 공부했다고 합시다. 그런데 그 3년 동안 말씀을 읽는 생활도, 기도하는 생활도, 교회와의 연결도 점점 약해졌습니다. 주일 집회도 공부 때문에 자주 빠지고, 주님보다 성적과 진학이 더 중요한 기준이 되었습니다.</p>
+<p>그 학생이 대학에 들어가면 저절로 신앙이 회복될까요?</p>
+<p class="lead">그렇지 않습니다.</p>
+<p>오히려 대학에 들어가면 더 많은 자유와 선택의 기회가 주어집니다. 부모의 통제에서 벗어나고, 새로운 인간관계를 형성하며, 자신의 시간과 생활을 스스로 결정해야 합니다.</p>
+<p>그런데 자기 생활을 주님 앞에서 관리하는 훈련이 되어 있지 않다면 그 자유는 신앙을 성장시키는 기회가 아니라 신앙에서 멀어지는 통로가 될 수 있습니다.</p>
+<p>이것은 단순히 대학생들의 문제가 아닙니다. 어릴 때부터 무엇을 가장 중요하게 여기며 살아왔는가의 문제입니다.</p>
+<p>농부가 씨앗을 심고 나서 싹이 나올 때까지 돌보지 않다가 열매를 맺을 시기가 되어서야 물을 주기 시작한다면 어떻게 되겠습니까?</p>
+<p class="pull">열매를 기대하기 전에 뿌리가 말라 버릴 수 있습니다.</p>
+<p>그러므로 중고등학교 시절은 신앙을 잠시 보류하는 기간이 아니라, 어린 시절에 형성된 믿음이 실제적인 자기 신앙으로 성장하는 중요한 시기가 되어야 합니다.</p>
+<p>여기서 부모의 역할도 달라져야 합니다.</p>
+<p>어린 시절에는 부모가 자녀의 생활을 주도적으로 인도했다면, 청소년기에는 자녀가 스스로 주님을 찾고 말씀을 선택하며 자신의 생활을 책임지도록 도와야 합니다.</p>
+<p>단순한 통제에서 내적인 확신으로, 부모의 신앙에서 자녀 자신의 신앙으로 성장하도록 해야 하는 것입니다.</p>
+</section>
+
+<section id="s5">
+<div class="sh"><span class="no">5</span><h2>부모는 자녀를 통제하는 사람이 아니라, 주님께 인도하는 사람이어야 합니다</h2></div>
+<p>여기에서 한 가지 균형을 잡아야 합니다.</p>
+<p>어린 시절부터 신앙을 양육해야 한다고 해서 아이의 모든 생활을 통제해야 한다는 뜻은 아닙니다.</p>
+<p>신앙은 억압으로 만들어지지 않습니다. 부모가 무서워서 교회에 가고, 혼날까 봐 성경을 읽고, 벌을 받을까 봐 기도하는 생활은 참된 믿음의 성장이라고 할 수 없습니다.</p>
+<p class="scripture">에베소서 6장 4절에서 바울은 아버지들에게 자녀를 화나게 하지 말고 주님의 훈계와 권고로 양육하라고 권합니다.</p>
+<p>여기에는 두 가지가 함께 있습니다.</p>
+<p>하나는 훈계와 권고이고, 다른 하나는 자녀를 화나게 하거나 낙심시키지 않는 것입니다.</p>
+<p>부모가 자녀에게 신앙을 강조하면서도 자녀의 마음을 이해하지 못한다면 오히려 주님에 대한 반감을 갖게 할 수도 있습니다.</p>
+<p>예를 들어 아이가 교회에 가기 싫다고 말한다면 단순히 불순종으로 판단하기 전에 그 이유를 들어 주어야 합니다. 친구와 갈등이 있었는지, 집회에서 이해하지 못하는 것이 있었는지, 부모의 지나친 요구 때문에 부담을 느끼는지 살펴야 합니다.</p>
+<p>그리고 주님을 믿는 것이 왜 귀한지 생활 속에서 보여 주어야 합니다.</p>
+<p>자녀에게는 부모의 신앙을 강요하는 것보다 부모가 주님을 누리고 사랑하는 모습을 보여 주는 것이 더 깊은 영향을 줄 수 있습니다.</p>
+<p>또한 부모는 자녀가 자신의 신앙을 스스로 선택하고 책임지는 사람으로 성장하도록 도와야 합니다.</p>
+<p>그렇게 될 때 아이는 부모가 지켜보지 않아도 주님 앞에서 자신의 생활을 돌아볼 수 있게 됩니다.</p>
+<p class="pull">이것이 우리가 바라는 양육의 방향입니다.</p>
+</section>
+
+<section id="s6">
+<div class="sh"><span class="no">6</span><h2>신앙 양육의 궁극적인 목적은 훌륭한 아이가 아니라 주님을 표현하는 사람을 얻는 것입니다</h2></div>
+<p>여기서 우리는 한 단계 더 깊이 생각할 필요가 있습니다.</p>
+<p>우리가 자녀를 양육하는 궁극적인 목적은 단지 공부 잘하고, 예의 바르고, 부모 말씀 잘 듣고, 교회에 열심히 다니는 아이를 만드는 것이 아닙니다.</p>
+<p>그것들은 귀한 요소이지만 하나님의 목적 전체를 설명하지는 못합니다.</p>
+<p>하나님께서 원하시는 것은 사람 안에 그분 자신의 생명을 넣어 주시고, 사람이 그분의 생명으로 자라 그분을 표현하는 것입니다.</p>
+<p class="scripture">요한복음 1장 12절은 그분을 영접한 사람들에게 하나님의 자녀가 되는 권위를 주셨다고 말씀합니다.</p>
+<p>따라서 자녀 양육은 단순한 도덕 교육이나 종교 교육이 아니라, 자녀가 주님을 영접하고 그분의 생명 안에서 성장하도록 돕는 일이어야 합니다.</p>
+<p>이러한 관점에서 요한계시록 2장 7절의 생명나무를 먹는 문제도 주목할 만합니다.</p>
+<p>라이프스타디의 설명에서도 주님은 단순히 가르치시는 분이 아니라 먹이시는 분이라는 점을 강조합니다. 성경 말씀도 단지 생각을 훈련시키는 교리로만 대하지 않고 우리의 영을 양육하는 양식으로 받아들여야 한다는 것입니다.</p>
+<p>이것을 자녀 양육에 적용해 보십시오.</p>
+<p>아이에게 성경 지식을 많이 알려 주는 것만으로는 충분하지 않습니다.</p>
+<p>아이가 말씀을 통해 주님을 만나고, 기도를 통해 주님께 나아가며, 집회에서 성도들과 함께 주님을 누리는 것을 배워야 합니다.</p>
+<p>그렇게 자란 아이는 교회에 가는 이유도 달라질 것입니다.</p>
+<p>부모가 가라고 하니까 가는 것이 아니라 주님을 사랑하기 때문에 가는 것입니다.</p>
+<p>부모가 기도하라고 하니까 기도하는 것이 아니라 주님과 대화하고 싶어서 기도하는 것입니다.</p>
+<p class="pull">이것이 신앙의 내적인 성장입니다.</p>
+</section>
+
+<section id="s7">
+<div class="sh"><span class="no">7</span><h2>어린 시절을 놓쳤다고 해서 모든 것이 끝난 것은 아닙니다</h2></div>
+<p>한 가지 더 강조하고 싶습니다.</p>
+<p>어린 시절의 양육이 중요하다고 해서 이미 청소년기를 지나고 대학생이 된 자녀들에게는 소망이 없다는 뜻은 결코 아닙니다.</p>
+<p>어떤 자녀들은 어릴 때 부모와 함께 신앙생활을 했지만 성장하면서 주님을 떠나기도 합니다. 반대로 어린 시절에 신앙의 기초를 충분히 갖추지 못했지만 나중에 주님을 만나고 변화되는 사람도 있습니다.</p>
+<p>믿음의 성장은 하나님의 은혜 안에서 이루어지는 것이기 때문입니다.</p>
+<p>부모는 자녀를 위해 기도해야 하고, 자녀가 주님을 떠났을 때에도 정죄하거나 포기하지 말아야 합니다.</p>
+<p>누가복음 15장의 탕자를 생각해 보십시오.</p>
+<p>아버지는 집을 떠난 아들을 억지로 붙잡아 두지 않았지만, 아들이 돌아왔을 때 그를 받아들일 마음을 가지고 있었습니다.</p>
+<p>우리의 자녀들이 잠시 주님을 떠나 있더라도 부모는 주님 안에서 그들을 향한 사랑과 소망을 잃지 말아야 합니다.</p>
+<p>다만 이것을 자녀가 어릴 때 양육하지 않아도 된다는 이유로 삼아서는 안 됩니다.</p>
+<p class="pull">하나님의 은혜를 믿는 것과 부모의 양육 책임을 다하는 것은 서로 대립되는 것이 아닙니다.</p>
+</section>
+
+<section id="s8">
+<div class="sh"><span class="no">8</span><h2>우리가 다음 세대를 위해 반드시 생각해야 할 것</h2></div>
+<p>저는 이 문제를 세 시기로 나누어 생각하면 좋겠습니다.</p>
+<div class="stages">
+<article class="stage">
+<svg viewBox="0 0 56 56" aria-hidden="true"><ellipse cx="28" cy="44" rx="22" ry="6" fill="#EFE7DE"/><path d="M28 44 C28 36 28 30 28 24" stroke="#2E7D4F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 30 C18 30 13 24 12 17 C22 17 27 22 28 30Z" fill="#2E7D4F"/><path d="M28 24 C36 24 41 19 42 12 C34 12 29 17 28 24Z" fill="#1E5B43"/></svg>
+<h3>유치부·초등부</h3>
+<h4>믿음의 기초를 심는 시기</h4>
+<p>주님을 사랑하는 마음, 말씀을 귀하게 여기는 태도, 기도와 집회 생활, 정직과 책임감 등 신앙과 생활의 기초를 형성하는 시기입니다.</p>
+</article>
+<article class="stage">
+<svg viewBox="0 0 56 56" aria-hidden="true"><line x1="6" y1="18" x2="50" y2="18" stroke="#6B4A32" stroke-width="3" stroke-linecap="round"/><path d="M28 18 C28 28 27 38 28 52" stroke="#6B4A32" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M28 28 C20 30 14 36 11 44" stroke="#6B4A32" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M28 34 C36 36 42 41 45 49" stroke="#6B4A32" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M28 18 C28 12 28 8 28 4" stroke="#2E7D4F" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+<h3>중·고등부</h3>
+<h4>믿음의 뿌리를 깊게 내리는 시기</h4>
+<p>부모의 믿음을 자신의 믿음으로 받아들이고, 학업과 친구 관계 속에서도 주님을 첫째로 두는 생활을 배우는 시기입니다. 자기 시간을 관리하고, 유혹을 분별하며, 말씀에 따라 선택하는 훈련이 필요합니다.</p>
+</article>
+<article class="stage">
+<svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 50 L28 22" stroke="#6B4A32" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="16" r="11" fill="#2E7D4F"/><circle cx="17" cy="24" r="8" fill="#1E5B43"/><circle cx="39" cy="24" r="8" fill="#1E5B43"/><circle cx="22" cy="14" r="3.2" fill="#E8F1EA"/><circle cx="34" cy="20" r="3.2" fill="#E8F1EA"/><circle cx="25" cy="27" r="3.2" fill="#E8F1EA"/></svg>
+<h3>대학·청년부</h3>
+<h4>자신의 믿음으로 살아가는 시기</h4>
+<p>부모의 감독에서 벗어나더라도 주님과의 관계를 유지하고, 교회 안에서 몸의 지체로서 기능하며, 자신의 삶과 은사를 주님의 목적을 위해 드리는 시기입니다.</p>
+</article>
+</div>
+<p>이 세 시기는 서로 분리된 것이 아닙니다. 어린 시절에 심은 씨앗이 청소년기에 뿌리를 내리고, 청년기에 성장하여 열매를 맺는 하나의 생명의 과정입니다.</p>
+<p>그러므로 교회도 다음 세대를 단순히 행사에 참여시키거나 프로그램으로 관리하는 차원에 머물러서는 안 됩니다. 어린 자녀들이 말씀을 누리고, 주님을 사랑하며, 성도들과 함께 교회생활을 체험하도록 양육해야 합니다.</p>
+<p class="pull">부모와 교회가 함께 이 일을 감당해야 합니다.</p>
+</section>
+
+<section id="end">
+<div class="sh"><span class="no">끝</span><h2>마지막으로, 이 문제를 관통하는 한 가지 질문</h2></div>
+<p class="question">우리가 자녀에게 무엇을 물려주려고 하는가 하는 것입니다.</p>
+<p>부모는 자녀에게 좋은 교육을 제공하려고 애씁니다. 좋은 대학에 보내려고 노력하고, 사회에서 안정적으로 살아갈 수 있도록 준비시킵니다. 그것도 부모의 사랑에서 비롯된 귀한 수고입니다.</p>
+<p>그러나 자녀가 좋은 대학을 졸업하고 좋은 직장을 얻었는데 주님을 잃어버렸다면, 과연 우리는 자녀에게 가장 중요한 것을 물려준 것일까요?</p>
+<p>반대로 세상적인 성공이 조금 늦어지더라도 주님을 사랑하고, 말씀을 귀하게 여기며, 교회 안에서 몸의 지체로 성장하고, 하나님께서 자신을 통해 이루시려는 목적을 아는 자녀로 자랐다면 그것은 얼마나 귀한 일입니까?</p>
+<p>저는 이 말씀을 꼭 기억했으면 합니다.</p>
+<div class="triple">
+<p>어린 시절은 아이에게 자유를 주지 말아야 하는 시기가 아니라, 올바른 자유를 누릴 수 있도록 내적인 생명의 기초를 세워 주어야 하는 시기입니다.</p>
+<p>중고등학교 시절은 학업을 위해 신앙을 양보하는 시기가 아니라, 세상의 많은 선택 앞에서 주님을 첫째로 선택하는 법을 배우는 시기입니다.</p>
+<p>대학과 청년 시절은 부모의 신앙을 떠나는 시기가 아니라, 부모에게서 배운 믿음을 자신의 실제적인 생활로 살아 내는 시기입니다.</p>
+</div>
+<p>우리가 자녀를 위해 가장 염려해야 할 것은 그 아이가 어느 대학에 들어갈 것인가만이 아닙니다. 그 아이가 평생 누구를 사랑하며 살아갈 것인가, 무엇을 인생의 가장 귀한 것으로 여기며 살아갈 것인가 하는 것입니다.</p>
+<p class="scripture">하나님께서 아브라함을 부르셨을 때 그에게 말씀하신 창세기 18장 19절도 이 문제와 연결됩니다. 하나님은 아브라함이 자기 자녀와 집안 사람들에게 여호와의 길을 지키도록 명령할 것을 아셨습니다. 하나님께서 아브라함을 부르신 것은 단지 한 사람을 얻기 위한 것이 아니라, 그를 통해 하나님의 길이 다음 세대에도 이어지도록 하기 위한 것이었습니다.</p>
+<p>우리의 가정도 마찬가지입니다.</p>
+<p>우리가 자녀를 양육하는 것은 단지 한 세대의 자녀를 훌륭하게 키우는 일이 아니라, 하나님의 생명과 간증이 다음 세대에도 이어지도록 하는 일입니다.</p>
+<p class="pull">그것이 그리스도인 부모에게 맡겨진 참으로 귀한 책임이라고 생각합니다.</p>
+</section>
+</main>
+
+<footer>그리스도인의 부모되기 1편</footer>
+
+<script>
+(function(){
+var bar=document.getElementById('bar');
+function prog(){var h=document.documentElement;var m=h.scrollHeight-h.clientHeight;bar.style.width=(m>0?h.scrollTop/m*100:0)+'%'}
+window.addEventListener('scroll',prog,{passive:true});prog();
+var links={};document.querySelectorAll('.rail a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('on')});var l=links[e.target.id];if(l)l.classList.add('on')}})},{rootMargin:'-30% 0px -60% 0px'});
+Object.keys(links).forEach(function(k){var s=document.getElementById(k);if(s)io.observe(s)});
+}
+})();
+</script>
+</body>
+</html>
